@@ -482,8 +482,10 @@ def create_help_flex() -> FlexMessage:
                     "paddingAll": "12px",
                     "cornerRadius": "8px",
                     "contents": [
-                        {"type": "text", "text": "🎲 抽籤分工", "weight": "bold", "size": "sm", "color": "#991B1B"},
-                        {"type": "text", "text": "• /roulette 或 /抽籤：沒人認領的工作，讓系統隨機分配。", "size": "xs", "color": "#B91C1C", "margin": "xs"}
+                        {"type": "text", "text": "🎲 抽籤分工與名冊", "weight": "bold", "size": "sm", "color": "#991B1B"},
+                        {"type": "text", "text": "• /roulette 或 /抽籤：優先抽無任務組員", "size": "xs", "color": "#B91C1C", "margin": "xs"},
+                        {"type": "text", "text": "• /member 新增 [名字1] [名字2]：加入幽靈組員", "size": "xs", "color": "#B91C1C"},
+                        {"type": "text", "text": "• /member：查看名冊與各自工作現況", "size": "xs", "color": "#B91C1C"}
                     ]
                 },
                 {

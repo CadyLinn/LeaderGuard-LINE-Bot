@@ -116,7 +116,7 @@ def record_member_activity(group_id: str, user_id: str, user_name: str = None, m
         logger.error(f"Firestore 更新成員紀錄失敗: {e}")
 
 def get_group_members(group_id: str):
-    """取得該群組已知成員名單"""
+    """取得該群組已知成員名單（包含發過言的組員、點選過的組員與手動加入的名冊）"""
     database = get_db()
     members = []
     
@@ -133,8 +133,42 @@ def get_group_members(group_id: str):
     if not members and group_id in _memory_members:
         for uid, data in _memory_members[group_id].items():
             members.append({"user_id": uid, "user_name": data["user_name"]})
+    elif group_id in _memory_members:
+        known_ids = {m["user_id"] for m in members}
+        for uid, data in _memory_members[group_id].items():
+            if uid not in known_ids:
+                members.append({"user_id": uid, "user_name": data["user_name"]})
 
     return members
+
+def add_manual_member(group_id: str, member_name: str):
+    """手動將成員名稱加入該群組的抽籤池（針對完全不發言的幽靈組員）"""
+    database = get_db()
+    member_name = member_name.strip()
+    if not member_name:
+        return False
+        
+    user_id = f"manual_{member_name}"
+    if group_id not in _memory_members:
+        _memory_members[group_id] = {}
+    _memory_members[group_id][user_id] = {
+        "user_name": member_name,
+        "last_seen": datetime.now(),
+        "is_manual": True
+    }
+    
+    if database:
+        try:
+            member_ref = database.collection("groups").document(group_id).collection("members").document(user_id)
+            member_ref.set({
+                "user_name": member_name,
+                "last_seen": firestore.SERVER_TIMESTAMP,
+                "is_manual": True
+            }, merge=True)
+        except Exception as e:
+            logger.error(f"手動新增成員失敗: {e}")
+            
+    return True
 
 # --- 任務管理 ---
 

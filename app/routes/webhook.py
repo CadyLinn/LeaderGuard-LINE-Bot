@@ -14,6 +14,8 @@ from linebot.v3.messaging import (
 from linebot.v3.webhooks import (
     MessageEvent,
     TextMessageContent,
+    StickerMessageContent,
+    ImageMessageContent,
     JoinEvent,
     MemberJoinedEvent,
     FollowEvent
@@ -153,6 +155,19 @@ def handle_message(event):
             message_text=user_text
         )
 
+        # 嘗試調用 LINE 官方群組成員 API（若為認證官方帳號藍盾/綠盾，可自動一次同步全員名冊）
+        if group_id:
+            try:
+                resp = line_bot_api.get_group_members_ids(group_id)
+                for mid in getattr(resp, "member_ids", []):
+                    try:
+                        m_profile = line_bot_api.get_group_member_profile(group_id, mid)
+                        record_member_activity(group_id=target_group, user_id=mid, user_name=m_profile.display_name)
+                    except Exception:
+                        pass
+            except Exception:
+                pass
+
         # 解析並處理指令
         reply_messages = handle_user_command(
             user_text=user_text,
@@ -176,4 +191,47 @@ def handle_message(event):
                     messages=[create_main_menu_flex()]
                 )
             )
+
+@handler.add(MessageEvent, message=(StickerMessageContent, ImageMessageContent))
+def handle_media_message(event):
+    """處理群組內傳送貼圖或圖片的成員（即使不發文字，傳貼圖也能自動登記進抽籤池）"""
+    user_id = getattr(event.source, "user_id", "unknown")
+    group_id = getattr(event.source, "group_id", None)
+    if not group_id or user_id == "unknown":
+        return
+
+    with ApiClient(configuration) as api_client:
+        line_bot_api = MessagingApi(api_client)
+        user_name = "組員"
+        try:
+            profile = line_bot_api.get_group_member_profile(group_id, user_id)
+            user_name = profile.display_name
+        except Exception:
+            pass
+
+        record_member_activity(
+            group_id=group_id,
+            user_id=user_id,
+            user_name=user_name,
+            message_text="[貼圖或多媒體]"
+        )
+
+@handler.add(MemberJoinedEvent)
+def handle_member_joined(event):
+    """當新成員加入群組時，自動將其收錄至小組成員名冊"""
+    group_id = getattr(event.source, "group_id", None)
+    if not group_id:
+        return
+
+    with ApiClient(configuration) as api_client:
+        line_bot_api = MessagingApi(api_client)
+        for m in getattr(event.joined, "members", []):
+            user_id = getattr(m, "user_id", None)
+            if user_id:
+                try:
+                    profile = line_bot_api.get_group_member_profile(group_id, user_id)
+                    user_name = profile.display_name
+                except Exception:
+                    user_name = "組員"
+                record_member_activity(group_id, user_id, user_name)
 

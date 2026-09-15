@@ -8,7 +8,8 @@ from app.services.firebase_service import (
     claim_task,
     get_group_members,
     assign_roulette_task,
-    get_unassigned_members
+    get_unassigned_members,
+    add_manual_member
 )
 from app.utils.flex_templates import (
     create_main_menu_flex,
@@ -132,6 +133,52 @@ def handle_user_command(user_text: str, group_id: str, user_id: str, user_name: 
             f"輸入「/roulette」隨機抽籤分配未認領工作"
         )
         return [TextMessage(text=status_msg, quick_reply=get_main_quick_reply())]
+
+    # 10. 手動新增成員名單（針對不發言、沒點過選單的組員）：/member 新增 [名字1] [名字2]...
+    if text.startswith("/member 新增") or text.startswith("/成員 新增") or text.startswith("/名單 新增"):
+        # 支援空白或逗號分隔
+        raw_names = re.split(r"\s+", text, maxsplit=2)
+        if len(raw_names) < 3:
+            return [TextMessage(text="指令格式：/member 新增 [組員1] [組員2] ...\n\n例如：\n/member 新增 小明 小華 阿美\n\n（適合直接將未發言的組員加入抽籤池）")]
+        
+        names_str = raw_names[2]
+        names = [n.strip() for n in re.split(r"[,，\s]+", names_str) if n.strip()]
+        added = []
+        for name in names:
+            if add_manual_member(target_group, name):
+                added.append(name)
+                
+        if added:
+            return [TextMessage(text=f"已將 {len(added)} 位成員加入群組抽籤名冊：\n{', '.join(added)}\n\n未指派任務時將優先納入隨機抽籤池。")]
+        else:
+            return [TextMessage(text="未能成功解析成員名稱，請確認輸入格式。")]
+
+    # 11. 查看群組成員名冊與狀態：/member 或 /成員 或 /名單
+    if text.lower() in ["/member", "/member 清單", "/成員", "/成員 清單", "/名單", "名單", "組員名單"]:
+        free_members, all_members, all_tasks, _ = get_unassigned_members(target_group)
+        if not all_members:
+            return [TextMessage(text="目前群組名冊尚無成員。\n組員可在群內發言、傳貼圖，或由組長輸入：\n/member 新增 小明 小華 阿美")]
+            
+        task_map = {}
+        for t in all_tasks:
+            if t.get("status") == "claimed" and t.get("assignee_id"):
+                task_map[t["assignee_id"]] = t.get("title", "")
+
+        lines = ["【小組成員與任務現況】"]
+        for m in all_members:
+            uid = m.get("user_id", "")
+            uname = m.get("user_name", "組員")
+            if uid in task_map:
+                lines.append(f"• {uname}：負責「{task_map[uid]}」")
+            else:
+                lines.append(f"• {uname}：尚未分配任務（抽籤候選）")
+                
+        lines.append("\n若有名單遺漏，可由組長使用：\n/member 新增 [名字1] [名字2]")
+        return [TextMessage(text="\n".join(lines))]
+
+    # 12. 成員手動簽到：/checkin 或 簽到 或 +1
+    if text.lower() in ["/checkin", "簽到", "報到", "+1"]:
+        return [TextMessage(text=f"「{user_name}」簽到成功！已將您登記至小組名冊。")]
 
     # 非指令，回傳 None
     return None
