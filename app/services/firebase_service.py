@@ -263,3 +263,24 @@ def assign_roulette_task(group_id: str, chosen_user_id: str, chosen_user_name: s
             logger.error(f"輪盤指派任務更新失敗: {e}")
             
     return task_id, target_task["title"]
+
+def get_unassigned_members(group_id: str):
+    """
+    取得群組中目前尚未被分配任何任務的成員名單
+    回傳：
+        free_members: 尚未有任務的成員清單
+        all_members: 該群組所有已知成員清單
+        all_tasks: 該群組所有任務
+        pending_tasks: 該群組待認領任務
+    """
+    all_members = get_group_members(group_id)
+    all_tasks = list_tasks(group_id)
+    pending_tasks = [t for t in all_tasks if t.get("status") == "pending"]
+    
+    assigned_user_ids = {
+        t["assignee_id"] for t in all_tasks 
+        if t.get("status") == "claimed" and t.get("assignee_id")
+    }
+    
+    free_members = [m for m in all_members if m["user_id"] not in assigned_user_ids]
+    return free_members, all_members, all_tasks, pending_tasks

@@ -10,47 +10,49 @@ from linebot.v3.messaging import (
 def get_main_quick_reply() -> QuickReply:
     """聊天室底部的常駐快捷按鈕列"""
     return QuickReply(items=[
-        QuickReplyItem(action=MessageAction(label="⚡ 常用分工範本", text="/task 範本")),
-        QuickReplyItem(action=MessageAction(label="📋 任務清單", text="/task 清單")),
+        QuickReplyItem(action=MessageAction(label="常用分工範本", text="/task 範本")),
+        QuickReplyItem(action=MessageAction(label="任務清單", text="/task 清單")),
         QuickReplyItem(action=MessageAction(label="🎲 抽籤分工", text="/roulette")),
-        QuickReplyItem(action=MessageAction(label="📊 專案進度", text="/status")),
-        QuickReplyItem(action=MessageAction(label="📖 使用指南", text="/help")),
+        QuickReplyItem(action=MessageAction(label="專案進度", text="/status")),
+        QuickReplyItem(action=MessageAction(label="使用指南", text="/help")),
     ])
 
 def create_preset_tasks_carousel() -> FlexMessage:
-    """常見小組專案工作範本輪播卡片（不用使用者自己打字，直接一鍵按鈕建立）"""
+    """常見小組專案工作範本輪播卡片（卡片尺寸設為 mega，文字精簡不截斷）"""
     carousel_contents = [
         # 卡片 1：簡報製作
         {
             "type": "bubble",
-            "size": "kilo",
+            "size": "mega",
             "header": {
                 "type": "box",
                 "layout": "vertical",
                 "backgroundColor": "#0F766E",
                 "paddingAll": "16px",
                 "contents": [
-                    {"type": "text", "text": "📊 簡報製作與美編", "weight": "bold", "color": "#FFFFFF", "size": "md"}
+                    {"type": "text", "text": "簡報製作與美編", "weight": "bold", "color": "#FFFFFF", "size": "md"}
                 ]
             },
             "body": {
                 "type": "box",
                 "layout": "vertical",
                 "spacing": "sm",
+                "paddingAll": "16px",
                 "contents": [
                     {"type": "text", "text": "負責項目：", "weight": "bold", "size": "xs", "color": "#0F172A"},
-                    {"type": "text", "text": "• 統整各組員文字與圖表\n• PPT / Canva 視覺美化排版\n• 整理報告講稿備忘錄", "size": "xs", "color": "#64748B", "wrap": True}
+                    {"type": "text", "text": "• 統整組員文字與圖表\n• PPT / Canva 視覺美化\n• 彙整報告講稿備忘錄", "size": "xs", "color": "#64748B", "wrap": True}
                 ]
             },
             "footer": {
                 "type": "box",
                 "layout": "vertical",
+                "paddingAll": "12px",
                 "contents": [
                     {
                         "type": "button",
                         "action": {
                             "type": "message",
-                            "label": "➕ 建立此任務",
+                            "label": "建立任務",
                             "text": "/task 新增 簡報製作與美化 負責PPT視覺美編與排版"
                         },
                         "style": "primary",
@@ -63,34 +65,36 @@ def create_preset_tasks_carousel() -> FlexMessage:
         # 卡片 2：口頭報告
         {
             "type": "bubble",
-            "size": "kilo",
+            "size": "mega",
             "header": {
                 "type": "box",
                 "layout": "vertical",
                 "backgroundColor": "#0284C7",
                 "paddingAll": "16px",
                 "contents": [
-                    {"type": "text", "text": "🎤 上台口頭報告", "weight": "bold", "color": "#FFFFFF", "size": "md"}
+                    {"type": "text", "text": "上台口頭報告", "weight": "bold", "color": "#FFFFFF", "size": "md"}
                 ]
             },
             "body": {
                 "type": "box",
                 "layout": "vertical",
                 "spacing": "sm",
+                "paddingAll": "16px",
                 "contents": [
                     {"type": "text", "text": "負責項目：", "weight": "bold", "size": "xs", "color": "#0F172A"},
-                    {"type": "text", "text": "• 掌握全組報告架構與脈絡\n• 代表小組進行上台口頭發表\n• 現場教授與同學提問 Q&A 應答", "size": "xs", "color": "#64748B", "wrap": True}
+                    {"type": "text", "text": "• 掌握專案架構脈絡\n• 代表小組上台發表\n• 現場提問 Q&A 應對", "size": "xs", "color": "#64748B", "wrap": True}
                 ]
             },
             "footer": {
                 "type": "box",
                 "layout": "vertical",
+                "paddingAll": "12px",
                 "contents": [
                     {
                         "type": "button",
                         "action": {
                             "type": "message",
-                            "label": "➕ 建立此任務",
+                            "label": "建立任務",
                             "text": "/task 新增 上台口頭報告 負責掌握專案脈絡並代表口頭發表"
                         },
                         "style": "primary",
@@ -103,34 +107,36 @@ def create_preset_tasks_carousel() -> FlexMessage:
         # 卡片 3：文獻與資料蒐集
         {
             "type": "bubble",
-            "size": "kilo",
+            "size": "mega",
             "header": {
                 "type": "box",
                 "layout": "vertical",
                 "backgroundColor": "#7C3AED",
                 "paddingAll": "16px",
                 "contents": [
-                    {"type": "text", "text": "🔍 文獻查證與資料蒐集", "weight": "bold", "color": "#FFFFFF", "size": "md"}
+                    {"type": "text", "text": "文獻查證與資料蒐集", "weight": "bold", "color": "#FFFFFF", "size": "md"}
                 ]
             },
             "body": {
                 "type": "box",
                 "layout": "vertical",
                 "spacing": "sm",
+                "paddingAll": "16px",
                 "contents": [
                     {"type": "text", "text": "負責項目：", "weight": "bold", "size": "xs", "color": "#0F172A"},
-                    {"type": "text", "text": "• 前期相關主題論文/資料調研\n• 競品案例分析與背景研究\n• 驗證數據來源與文獻整理", "size": "xs", "color": "#64748B", "wrap": True}
+                    {"type": "text", "text": "• 前期專案主題調研\n• 相關文獻與案例查證\n• 數據統整與來源驗證", "size": "xs", "color": "#64748B", "wrap": True}
                 ]
             },
             "footer": {
                 "type": "box",
                 "layout": "vertical",
+                "paddingAll": "12px",
                 "contents": [
                     {
                         "type": "button",
                         "action": {
                             "type": "message",
-                            "label": "➕ 建立此任務",
+                            "label": "建立任務",
                             "text": "/task 新增 文獻查證與資料蒐集 負責前期調研、文獻查證與數據整理"
                         },
                         "style": "primary",
@@ -143,34 +149,36 @@ def create_preset_tasks_carousel() -> FlexMessage:
         # 卡片 4：書面報告統整
         {
             "type": "bubble",
-            "size": "kilo",
+            "size": "mega",
             "header": {
                 "type": "box",
                 "layout": "vertical",
                 "backgroundColor": "#D97706",
                 "paddingAll": "16px",
                 "contents": [
-                    {"type": "text", "text": "📝 書面報告撰寫統整", "weight": "bold", "color": "#FFFFFF", "size": "md"}
+                    {"type": "text", "text": "書面報告撰寫統整", "weight": "bold", "color": "#FFFFFF", "size": "md"}
                 ]
             },
             "body": {
                 "type": "box",
                 "layout": "vertical",
                 "spacing": "sm",
+                "paddingAll": "16px",
                 "contents": [
                     {"type": "text", "text": "負責項目：", "weight": "bold", "size": "xs", "color": "#0F172A"},
-                    {"type": "text", "text": "• 彙整各章節文字與圖表\n• 校對格式、目錄與參考文獻\n• 產出期末正式 Word / PDF 報告", "size": "xs", "color": "#64748B", "wrap": True}
+                    {"type": "text", "text": "• 彙整各章節文字與圖表\n• 校對格式、目錄與文獻\n• 產出期末正式完整報告", "size": "xs", "color": "#64748B", "wrap": True}
                 ]
             },
             "footer": {
                 "type": "box",
                 "layout": "vertical",
+                "paddingAll": "12px",
                 "contents": [
                     {
                         "type": "button",
                         "action": {
                             "type": "message",
-                            "label": "➕ 建立此任務",
+                            "label": "建立任務",
                             "text": "/task 新增 書面報告撰寫統整 負責期末書面Word/PDF格式與內容校對"
                         },
                         "style": "primary",
@@ -183,34 +191,36 @@ def create_preset_tasks_carousel() -> FlexMessage:
         # 卡片 5：一鍵批次建立全套
         {
             "type": "bubble",
-            "size": "kilo",
+            "size": "mega",
             "header": {
                 "type": "box",
                 "layout": "vertical",
                 "backgroundColor": "#1E293B",
                 "paddingAll": "16px",
                 "contents": [
-                    {"type": "text", "text": "⚡ 一鍵全套分工", "weight": "bold", "color": "#38BDF8", "size": "md"}
+                    {"type": "text", "text": "一鍵全套分工", "weight": "bold", "color": "#38BDF8", "size": "md"}
                 ]
             },
             "body": {
                 "type": "box",
                 "layout": "vertical",
                 "spacing": "sm",
+                "paddingAll": "16px",
                 "contents": [
-                    {"type": "text", "text": "組長省時首選！", "weight": "bold", "size": "sm", "color": "#0F172A"},
-                    {"type": "text", "text": "直接一次建立以上 4 項小組標準分工（簡報、報告、資料、書面），全組立刻開搶認領！", "size": "xs", "color": "#64748B", "wrap": True}
+                    {"type": "text", "text": "組長省時首選", "weight": "bold", "size": "sm", "color": "#0F172A"},
+                    {"type": "text", "text": "一次建立以上 4 項小組標準分工（簡報、報告、資料、書面），全組立刻認領。", "size": "xs", "color": "#64748B", "wrap": True}
                 ]
             },
             "footer": {
                 "type": "box",
                 "layout": "vertical",
+                "paddingAll": "12px",
                 "contents": [
                     {
                         "type": "button",
                         "action": {
                             "type": "message",
-                            "label": "🚀 一鍵建立全部",
+                            "label": "一鍵建立全部",
                             "text": "/task 批次建立"
                         },
                         "style": "primary",
@@ -228,7 +238,7 @@ def create_preset_tasks_carousel() -> FlexMessage:
     }
 
     return FlexMessage(
-        alt_text="⚡ 小組專案常用分工範本（可直接點擊建立）",
+        alt_text="小組專案常用分工範本",
         contents=FlexContainer.from_dict(carousel),
         quick_reply=get_main_quick_reply()
     )
@@ -247,7 +257,7 @@ def create_main_menu_flex() -> FlexMessage:
             "contents": [
                 {
                     "type": "text",
-                    "text": "📋【組長保險】專案協作功能選單",
+                    "text": "【組長保險】專案協作功能選單",
                     "weight": "bold",
                     "color": "#F8FAFC",
                     "size": "lg"
@@ -279,7 +289,7 @@ def create_main_menu_flex() -> FlexMessage:
                     "contents": [
                         {
                             "type": "text",
-                            "text": "⚡ 專案工作分工（不用手打字）",
+                            "text": "專案工作分工（不用手打字）",
                             "weight": "bold",
                             "size": "sm",
                             "color": "#0F172A"
@@ -302,7 +312,7 @@ def create_main_menu_flex() -> FlexMessage:
                                     "type": "button",
                                     "action": {
                                         "type": "message",
-                                        "label": "⚡ 常用分工範本",
+                                        "label": "分工範本",
                                         "text": "/task 範本"
                                     },
                                     "style": "primary",
@@ -313,7 +323,7 @@ def create_main_menu_flex() -> FlexMessage:
                                     "type": "button",
                                     "action": {
                                         "type": "message",
-                                        "label": "📋 查看任務清單",
+                                        "label": "任務清單",
                                         "text": "/task 清單"
                                     },
                                     "style": "secondary",
@@ -335,14 +345,14 @@ def create_main_menu_flex() -> FlexMessage:
                     "contents": [
                         {
                             "type": "text",
-                            "text": "🎲 隨機抽籤分工（不用組長當壞人）",
+                            "text": "🎲 隨機抽籤分工",
                             "weight": "bold",
                             "size": "sm",
                             "color": "#991B1B"
                         },
                         {
                             "type": "text",
-                            "text": "卡關沒人認領的工作？直接交給系統隨機抽籤，公平又省事。",
+                            "text": "卡關沒人認領的工作？直接交給系統隨機抽籤，公平省事。",
                             "size": "xs",
                             "color": "#B91C1C",
                             "margin": "xs",
@@ -352,7 +362,7 @@ def create_main_menu_flex() -> FlexMessage:
                             "type": "button",
                             "action": {
                                 "type": "message",
-                                "label": "🎲 抽籤決定人選",
+                                "label": "🎲 隨機抽籤",
                                 "text": "/roulette"
                             },
                             "style": "primary",
@@ -374,7 +384,7 @@ def create_main_menu_flex() -> FlexMessage:
                     "contents": [
                         {
                             "type": "text",
-                            "text": "📊 專案狀況與使用說明",
+                            "text": "專案狀況與說明",
                             "weight": "bold",
                             "size": "sm",
                             "color": "#334155"
@@ -389,7 +399,7 @@ def create_main_menu_flex() -> FlexMessage:
                                     "type": "button",
                                     "action": {
                                         "type": "message",
-                                        "label": "📊 當前進度",
+                                        "label": "專案進度",
                                         "text": "/status"
                                     },
                                     "style": "secondary",
@@ -399,7 +409,7 @@ def create_main_menu_flex() -> FlexMessage:
                                     "type": "button",
                                     "action": {
                                         "type": "message",
-                                        "label": "📖 常用指令",
+                                        "label": "指令說明",
                                         "text": "/help"
                                     },
                                     "style": "secondary",
@@ -413,7 +423,7 @@ def create_main_menu_flex() -> FlexMessage:
         }
     }
     return FlexMessage(
-        alt_text="📋【組長保險】專案協作功能選單",
+        alt_text="【組長保險】專案協作功能選單",
         contents=FlexContainer.from_dict(bubble),
         quick_reply=get_main_quick_reply()
     )
@@ -432,7 +442,7 @@ def create_help_flex() -> FlexMessage:
             "contents": [
                 {
                     "type": "text",
-                    "text": "📖 組長保險・常用指令說明",
+                    "text": "組長保險・常用指令說明",
                     "weight": "bold",
                     "color": "#F8FAFC",
                     "size": "lg"
@@ -458,7 +468,7 @@ def create_help_flex() -> FlexMessage:
                     "paddingAll": "12px",
                     "cornerRadius": "8px",
                     "contents": [
-                        {"type": "text", "text": "📌 任務建立與認領", "weight": "bold", "size": "sm", "color": "#0F172A"},
+                        {"type": "text", "text": "任務建立與認領", "weight": "bold", "size": "sm", "color": "#0F172A"},
                         {"type": "text", "text": "• /task 範本：瀏覽常見專案工作一鍵建立", "size": "xs", "color": "#0284C7", "weight": "bold", "margin": "xs"},
                         {"type": "text", "text": "• /task 新增 [名稱] [說明]：自訂待辦工作", "size": "xs", "color": "#475569"},
                         {"type": "text", "text": "• /task 清單：查看目前大家的進度（附一鍵認領）", "size": "xs", "color": "#475569"},
@@ -483,7 +493,7 @@ def create_help_flex() -> FlexMessage:
                     "paddingAll": "12px",
                     "cornerRadius": "8px",
                     "contents": [
-                        {"type": "text", "text": "📊 貢獻度與狀態", "weight": "bold", "size": "sm", "color": "#065F46"},
+                        {"type": "text", "text": "貢獻度與狀態", "weight": "bold", "size": "sm", "color": "#065F46"},
                         {"type": "text", "text": "• /status：查看群組目前已認領與未認領件數", "size": "xs", "color": "#047857", "margin": "xs"}
                     ]
                 }
@@ -491,14 +501,14 @@ def create_help_flex() -> FlexMessage:
         }
     }
     return FlexMessage(
-        alt_text="📖 組長保險・常用指令說明",
+        alt_text="組長保險・常用指令說明",
         contents=FlexContainer.from_dict(bubble),
         quick_reply=get_main_quick_reply()
     )
 
 
 def create_task_created_flex(task_id: str, title: str, description: str, creator_name: str) -> FlexMessage:
-    """任務建立成功通知卡片"""
+    """任務建立成功通知卡片（精簡標籤與版面）"""
     bubble = {
         "type": "bubble",
         "size": "mega",
@@ -506,10 +516,11 @@ def create_task_created_flex(task_id: str, title: str, description: str, creator
             "type": "box",
             "layout": "vertical",
             "backgroundColor": "#0F766E",
+            "paddingAll": "16px",
             "contents": [
                 {
                     "type": "text",
-                    "text": "📌 新增小組任務",
+                    "text": "新增小組任務",
                     "weight": "bold",
                     "color": "#FFFFFF",
                     "size": "md"
@@ -520,18 +531,19 @@ def create_task_created_flex(task_id: str, title: str, description: str, creator
             "type": "box",
             "layout": "vertical",
             "spacing": "md",
+            "paddingAll": "16px",
             "contents": [
                 {
                     "type": "text",
                     "text": f"【{task_id}】{title}",
                     "weight": "bold",
-                    "size": "lg",
+                    "size": "md",
                     "wrap": True
                 },
                 {
                     "type": "text",
                     "text": description if description else "（無補充說明）",
-                    "size": "sm",
+                    "size": "xs",
                     "color": "#64748B",
                     "wrap": True
                 },
@@ -541,12 +553,12 @@ def create_task_created_flex(task_id: str, title: str, description: str, creator
                     "layout": "horizontal",
                     "contents": [
                         {"type": "text", "text": "發起人", "size": "xs", "color": "#94A3B8"},
-                        {"type": "text", "text": creator_name, "size": "xs", "color": "#334155", "align": "end"}
+                        {"type": "text", "text": creator_name, "size": "xs", "color": "#334155", "align": "end", "wrap": True}
                     ]
                 },
                 {
                     "type": "text",
-                    "text": "大家記得來認領～如果一直沒人認領，可以使用抽籤隨機分配喔！",
+                    "text": "請組員主動認領，若無人認領可點選抽籤隨機分工。",
                     "size": "xs",
                     "color": "#EA580C",
                     "wrap": True
@@ -556,29 +568,31 @@ def create_task_created_flex(task_id: str, title: str, description: str, creator
         "footer": {
             "type": "box",
             "layout": "vertical",
+            "paddingAll": "12px",
             "contents": [
                 {
                     "type": "button",
                     "action": {
                         "type": "message",
-                        "label": f"🙋 我來負責 ({task_id})",
+                        "label": "認領任務",
                         "text": f"/claim {task_id}"
                     },
                     "style": "primary",
-                    "color": "#0F766E"
+                    "color": "#0F766E",
+                    "height": "sm"
                 }
             ]
         }
     }
     return FlexMessage(
-        alt_text=f"📌 新任務待認領：{title}",
+        alt_text=f"新任務待認領：{title}",
         contents=FlexContainer.from_dict(bubble),
         quick_reply=get_main_quick_reply()
     )
 
 
 def create_task_list_flex(tasks: list) -> FlexMessage:
-    """任務清單卡片（每筆待認領項目皆附帶直接按鈕，點擊即認領）"""
+    """任務清單卡片（使用 giga 寬版尺寸與簡潔按鈕，確保字體絕不截斷）"""
     if not tasks:
         item_boxes = [{
             "type": "text",
@@ -591,12 +605,13 @@ def create_task_list_flex(tasks: list) -> FlexMessage:
         footer_box = {
             "type": "box",
             "layout": "vertical",
+            "paddingAll": "12px",
             "contents": [
                 {
                     "type": "button",
                     "action": {
                         "type": "message",
-                        "label": "⚡ 瀏覽常見分工範本",
+                        "label": "瀏覽分工範本",
                         "text": "/task 範本"
                     },
                     "style": "primary",
@@ -615,7 +630,7 @@ def create_task_list_flex(tasks: list) -> FlexMessage:
             
             if is_pending:
                 has_pending = True
-                # 待認領：提供小巧的「我來負責」直接點擊按鈕
+                # 待認領：提供 2 字「認領」按鈕，左邊 flex 8，右邊 flex 3，絕不裁切
                 item_boxes.append({
                     "type": "box",
                     "layout": "horizontal",
@@ -625,7 +640,7 @@ def create_task_list_flex(tasks: list) -> FlexMessage:
                         {
                             "type": "box",
                             "layout": "vertical",
-                            "flex": 7,
+                            "flex": 8,
                             "contents": [
                                 {
                                     "type": "text",
@@ -637,7 +652,7 @@ def create_task_list_flex(tasks: list) -> FlexMessage:
                                 },
                                 {
                                     "type": "text",
-                                    "text": "⏳ 尚未認領",
+                                    "text": "尚未認領",
                                     "size": "xxs",
                                     "color": "#EA580C"
                                 }
@@ -647,18 +662,18 @@ def create_task_list_flex(tasks: list) -> FlexMessage:
                             "type": "button",
                             "action": {
                                 "type": "message",
-                                "label": "🙋 我負責",
+                                "label": "認領",
                                 "text": f"/claim {task_id}"
                             },
                             "style": "primary",
                             "color": "#0F766E",
                             "height": "sm",
-                            "flex": 4
+                            "flex": 3
                         }
                     ]
                 })
             else:
-                # 已認領：顯示綠色徽章與負責人
+                # 已認領：顯示負責人
                 assignee_name = t.get("assignee_name", "組員")
                 item_boxes.append({
                     "type": "box",
@@ -669,7 +684,7 @@ def create_task_list_flex(tasks: list) -> FlexMessage:
                         {
                             "type": "box",
                             "layout": "vertical",
-                            "flex": 7,
+                            "flex": 8,
                             "contents": [
                                 {
                                     "type": "text",
@@ -683,15 +698,16 @@ def create_task_list_flex(tasks: list) -> FlexMessage:
                         {
                             "type": "box",
                             "layout": "vertical",
-                            "flex": 4,
+                            "flex": 3,
                             "contents": [
                                 {
                                     "type": "text",
-                                    "text": f"✅ {assignee_name}",
+                                    "text": assignee_name,
                                     "size": "xs",
-                                    "color": "#10B981",
+                                    "color": "#0F766E",
                                     "align": "end",
-                                    "weight": "bold"
+                                    "weight": "bold",
+                                    "wrap": True
                                 }
                             ]
                         }
@@ -704,7 +720,7 @@ def create_task_list_flex(tasks: list) -> FlexMessage:
                 "type": "button",
                 "action": {
                     "type": "message",
-                    "label": "⚡ 新增更多工作範本",
+                    "label": "新增分工範本",
                     "text": "/task 範本"
                 },
                 "style": "secondary",
@@ -716,7 +732,7 @@ def create_task_list_flex(tasks: list) -> FlexMessage:
                 "type": "button",
                 "action": {
                     "type": "message",
-                    "label": "🎲 抽籤決定未認領工作",
+                    "label": "🎲 抽籤未認領工作",
                     "text": "/roulette"
                 },
                 "style": "primary",
@@ -729,36 +745,39 @@ def create_task_list_flex(tasks: list) -> FlexMessage:
             "type": "box",
             "layout": "vertical",
             "spacing": "sm",
+            "paddingAll": "12px",
             "contents": footer_buttons
         }
 
     bubble = {
         "type": "bubble",
-        "size": "mega",
+        "size": "giga",
         "header": {
             "type": "box",
             "layout": "vertical",
             "backgroundColor": "#334155",
+            "paddingAll": "16px",
             "contents": [
-                {"type": "text", "text": "📋 小組工作清單與認領現況", "weight": "bold", "color": "#FFFFFF", "size": "md"}
+                {"type": "text", "text": "小組工作清單與認領現況", "weight": "bold", "color": "#FFFFFF", "size": "md"}
             ]
         },
         "body": {
             "type": "box",
             "layout": "vertical",
+            "paddingAll": "16px",
             "contents": item_boxes
         },
         "footer": footer_box
     }
     return FlexMessage(
-        alt_text="📋 小組工作清單與認領現況",
+        alt_text="小組工作清單與認領現況",
         contents=FlexContainer.from_dict(bubble),
         quick_reply=get_main_quick_reply()
     )
 
 
 def create_roulette_flex(task_id: str, task_title: str, victim_name: str) -> FlexMessage:
-    """隨機指派抽籤卡片"""
+    """隨機指派抽籤卡片（文字精簡置中）"""
     bubble = {
         "type": "bubble",
         "size": "mega",
@@ -766,41 +785,45 @@ def create_roulette_flex(task_id: str, task_title: str, victim_name: str) -> Fle
             "type": "box",
             "layout": "vertical",
             "backgroundColor": "#0284C7",
+            "paddingAll": "16px",
             "contents": [
-                {"type": "text", "text": "🎲 隨機抽籤分工結果", "weight": "bold", "color": "#FFFFFF", "size": "lg", "align": "center"}
+                {"type": "text", "text": "🎲 抽籤分工結果", "weight": "bold", "color": "#FFFFFF", "size": "md", "align": "center"}
             ]
         },
         "body": {
             "type": "box",
             "layout": "vertical",
             "spacing": "md",
+            "paddingAll": "16px",
             "contents": [
                 {
                     "type": "text",
-                    "text": "🎯 這次由你負責：",
-                    "size": "sm",
+                    "text": "由你負責：",
+                    "size": "xs",
                     "color": "#64748B",
                     "align": "center"
                 },
                 {
                     "type": "text",
-                    "text": f"👉 {victim_name}",
+                    "text": victim_name,
                     "weight": "bold",
-                    "size": "xxl",
+                    "size": "xl",
                     "color": "#0284C7",
-                    "align": "center"
+                    "align": "center",
+                    "wrap": True
                 },
                 {"type": "separator"},
                 {
                     "type": "text",
-                    "text": f"這項工作全組還沒人認領，系統抽籤決定由你負責【{task_id}：{task_title}】囉！",
+                    "text": f"抽籤任務：【{task_id}】{task_title}",
                     "size": "sm",
                     "color": "#334155",
-                    "wrap": True
+                    "wrap": True,
+                    "weight": "bold"
                 },
                 {
                     "type": "text",
-                    "text": "辛苦了！有問題隨時在群組提出，大家一起分工搞定 💪",
+                    "text": "辛苦了！有問題隨時在群組討論。",
                     "size": "xs",
                     "color": "#64748B",
                     "align": "center"
