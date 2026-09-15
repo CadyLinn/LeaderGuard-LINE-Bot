@@ -1,8 +1,9 @@
-fastapi
-uvicorn
-line-bot-sdk>=3.0.0
-python-dotenv
-firebase-admin
-google-generativeai
-reportlab
-pydantic
+fastapi==0.128.8
+uvicorn==0.39.0
+line-bot-sdk==3.21.0
+python-dotenv==1.2.1
+firebase-admin==7.5.0
+google-generativeai==0.8.6
+reportlab==5.0.1
+pydantic==2.13.5
+pillow==11.3.0
