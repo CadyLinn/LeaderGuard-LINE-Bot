@@ -1,29 +1,35 @@
-import os
+import logging
+from dotenv import load_dotenv
 from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
 
-from app.routes import webhook, liff
+# 在引入任何內部模組前先載入 .env 變數
+load_dotenv()
 
-app = FastAPI(title="LeaderGuard LINE Bot", version="0.1.0")
-
-# Allow CORS for LIFF front‑end
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+# 設定全域日誌格式
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s] %(name)s: %(message)s"
 )
+logger = logging.getLogger("leaderguard")
 
-# Include routers
-app.include_router(webhook.router, prefix="/webhook", tags=["webhook"])
-app.include_router(liff.router, prefix="/liff", tags=["liff"])
+from app.routes import webhook
+from app.services.firebase_service import init_firebase
 
-# Environment variables (LINE, Gemini)
-LINE_CHANNEL_SECRET = os.getenv("LINE_CHANNEL_SECRET")
-LINE_CHANNEL_ACCESS_TOKEN = os.getenv("LINE_CHANNEL_ACCESS_TOKEN")
-GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+app = FastAPI(title="LeaderGuard LINE Bot")
 
-if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=int(os.getenv("PORT", 8080)))
+# 啟動時初始化 Firebase
+@app.on_event("startup")
+async def startup_event():
+    logger.info("LeaderGuard LINE Bot 伺服器啟動中...")
+    init_firebase()
+
+# 註冊路由
+app.include_router(webhook.router)
+
+@app.get("/")
+def read_root():
+    return {
+        "status": "online",
+        "service": "LeaderGuard LINE Bot",
+        "message": "智慧校園小組協作與已讀不回審判庭 API 已就緒"
+    }

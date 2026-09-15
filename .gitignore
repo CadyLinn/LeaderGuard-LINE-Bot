@@ -1,0 +1,56 @@
+# Environment variables & secrets (CRITICAL)
+.env
+.env.*
+!.env.example
+
+# Firebase Service Account Credentials (CRITICAL)
+*firebase*.json
+serviceAccountKey.json
+credentials.json
+
+# Python virtual environments & bytecode
+venv/
+.venv/
+env/
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# macOS system files
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Local SQLite databases & logs
+*.db
+*.sqlite3
+*.log
+
+# IDE & editors
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Node / LIFF build artifacts (if applicable)
+node_modules/
+dist/
+.npm
