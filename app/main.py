@@ -51,9 +51,9 @@ def health_check():
 @app.get("/version")
 def get_version():
     return {
-        "version": "1.9.12",
-        "build": "upgrade-plan-pro-only",
-        "description": "升級方案卡片精簡為免費版與尊榮PRO方案雙層對比，移除個人專案包"
+        "version": "1.9.13",
+        "build": "upgrade-plan-student-pricing",
+        "description": "升級方案全面落實學生定價模式：NT$49專案包（手搖價）、NT$99學期Pass（便當價）"
     }
 
 
