@@ -97,17 +97,46 @@ def handle_user_command(user_text: str, group_id: str, user_id: str, user_name: 
         "/任務 批次建立", "/任務 batch", "/任務 全部建立", "/任務 一鍵建立"
     ]:
         presets = [
-            ("簡報製作與美化", "負責PPT視覺美編與排版"),
-            ("上台口頭報告", "負責掌握專案脈絡並代表口頭發表"),
-            ("文獻查證與資料蒐集", "負責前期調研、文獻查證與數據整理"),
-            ("書面報告撰寫統整", "負責期末書面Word/PDF格式與內容校對")
+            ("簡報製作與美化", "負責PPT視覺美編與排版", ["簡報", "ppt", "canva", "slides", "投影片"]),
+            ("上台口頭報告", "負責掌握專案脈絡並代表口頭發表", ["口頭報告", "上台報告", "口頭發表", "上台發表", "口頭"]),
+            ("文獻查證與資料蒐集", "負責前期調研、文獻查證與數據整理", ["文獻", "資料蒐集", "資料收集", "文獻查證", "調研"]),
+            ("書面報告撰寫統整", "負責期末書面Word/PDF格式與內容校對", ["書面報告", "書面撰寫", "報告統整", "書面統整", "報告撰寫"])
         ]
-        for title, desc in presets:
-            record_task(target_group, title, desc, user_id)
-            
+        
+        existing_tasks = list_tasks(target_group)
+        existing_titles = [t.get("title", "").strip().lower() for t in existing_tasks]
+        
+        def is_already_exists(p_title, keywords):
+            p_lower = p_title.lower()
+            for ext in existing_titles:
+                if ext == p_lower or ext in p_lower or p_lower in ext:
+                    return True
+                for kw in keywords:
+                    if kw.lower() in ext:
+                        return True
+            return False
+
+        added_tasks = []
+        skipped_tasks = []
+        for title, desc, kws in presets:
+            if is_already_exists(title, kws):
+                skipped_tasks.append(title)
+            else:
+                record_task(target_group, title, desc, user_id)
+                added_tasks.append(title)
+                
         tasks = list_tasks(target_group)
+        
+        if not added_tasks:
+            msg = "小組 4 大常見專案工作先前均已建立，已為您自動略過重複項目。請直接在下方查看任務清單："
+        elif skipped_tasks:
+            skipped_str = "、".join(skipped_tasks)
+            msg = f"已為本組建立 {len(added_tasks)} 項專案工作（已自動略過重複的「{skipped_str}」），請組員在下方卡片點選「我負責」認領："
+        else:
+            msg = "已為本組建立 4 項常見專案工作，請組員在下方卡片點選「我負責」認領："
+
         return [
-            TextMessage(text="已為本組建立 4 項常見專案工作，請組員在下方卡片點選「我負責」認領："),
+            TextMessage(text=msg, quick_reply=get_main_quick_reply()),
             create_task_list_flex(tasks)
         ]
 
@@ -134,6 +163,17 @@ def handle_user_command(user_text: str, group_id: str, user_id: str, user_name: 
         
         title = parts[0]
         description = parts[1] if len(parts) > 1 else ""
+        
+        # 檢查是否已存在相同名稱的任務，避免重複點擊重複新增
+        existing_tasks = list_tasks(target_group)
+        if any(t.get("title", "").strip().lower() == title.lower() for t in existing_tasks):
+            return [
+                TextMessage(
+                    text=f"任務「{title}」已經在群組清單中囉！請直接在下方任務清單中認領，避免重複建立。",
+                    quick_reply=get_main_quick_reply()
+                ),
+                create_task_list_flex(existing_tasks)
+            ]
         
         task_id = record_task(target_group, title, description, user_id)
         return [create_task_created_flex(task_id, title, description, user_name)]

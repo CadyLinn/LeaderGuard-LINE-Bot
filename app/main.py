@@ -51,9 +51,9 @@ def health_check():
 @app.get("/version")
 def get_version():
     return {
-        "version": "1.9.25",
-        "build": "clean-template-buttons-and-strict-no-emoji",
-        "description": "任務範本按鈕刪除認領責任改為建立任務，嚴格清除全專案非骰子emoji"
+        "version": "1.9.26",
+        "build": "smart-deduplication-batch-and-single-task-create",
+        "description": "一鍵全套分工智慧排重，自動識別並跳過已建立之簡報、口頭、文獻、書面等同類項目"
     }
 
 
