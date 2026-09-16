@@ -33,3 +33,11 @@ def read_root():
         "service": "LeaderGuard LINE Bot",
         "message": "智慧校園小組協作與已讀不回審判庭 API 已就緒"
     }
+
+@app.get("/health")
+def health_check():
+    return {
+        "status": "healthy",
+        "service": "LeaderGuard LINE Bot"
+    }
+
