@@ -1330,26 +1330,6 @@ def create_welcome_guide_flex() -> FlexMessage:
                     ]
                 }
             ]
-        },
-        "footer": {
-            "type": "box",
-            "layout": "vertical",
-            "paddingAll": "12px",
-            "backgroundColor": "#160F29",
-            "contents": [
-                {
-                    "type": "button",
-                    "style": "primary",
-                    "height": "sm",
-                    "color": "#059669",
-                    "action": {
-                        "type": "uri",
-                        "label": "立即召喚進群組",
-                        "uri": group_invite_url
-                    }
-                }
-            ],
-            "flex": 0
         }
     }
 

@@ -51,9 +51,9 @@ def health_check():
 @app.get("/version")
 def get_version():
     return {
-        "version": "1.9.6",
-        "build": "welcome-guide-single-invite-btn",
-        "description": "新手入門指引卡片底端精簡為單一聚焦行動按鈕：立即召喚進群組"
+        "version": "1.9.7",
+        "build": "welcome-guide-no-footer-button",
+        "description": "移除新手入門指引卡片底端的可點擊按鈕，卡片以純手冊導覽呈現"
     }
 
 
