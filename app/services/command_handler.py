@@ -70,6 +70,9 @@ def handle_user_command(user_text: str, group_id: str, user_id: str, user_name: 
     if text.lower() in [
         "/升級方案", "升級方案",
         "/升級", "升級",
+        "/立即升級", "立即升級",
+        "/了解pro專案", "了解pro專案",
+        "/了解pro方案", "了解pro方案",
         "/方案", "方案",
         "/upgrade", "upgrade",
         "/諮詢升級", "諮詢升級",

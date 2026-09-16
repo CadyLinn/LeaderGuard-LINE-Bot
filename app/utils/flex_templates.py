@@ -1207,166 +1207,198 @@ def create_welcome_guide_flex() -> FlexMessage:
                             "type": "box",
                             "layout": "horizontal",
                             "spacing": "md",
-                            "alignItems": "center",
+                            "alignItems": "flex-start",
                             "contents": [
                                 {
                                     "type": "box",
                                     "layout": "vertical",
-                                    "width": "28px",
-                                    "height": "28px",
-                                    "cornerRadius": "14px",
-                                    "backgroundColor": "#06B6D4",
+                                    "width": "26px",
+                                    "height": "26px",
+                                    "cornerRadius": "13px",
+                                    "backgroundColor": "#FDE047",
                                     "justifyContent": "center",
                                     "alignItems": "center",
                                     "contents": [
-                                        { "type": "text", "text": "1", "size": "sm", "weight": "bold", "color": "#100B1E", "align": "center" }
+                                        { "type": "text", "text": "1", "size": "xs", "weight": "bold", "color": "#160F29", "align": "center" }
                                     ]
                                 },
                                 {
-                                    "type": "text",
-                                    "text": "把我邀請進小組群組！",
-                                    "size": "md",
-                                    "color": "#FDE047",
-                                    "weight": "bold",
-                                    "wrap": True,
-                                    "flex": 1
-                                }
-                            ]
-                        },
-                        {
-                            "type": "text",
-                            "text": "點擊「群組」右上角「≡」>「邀請」將我加入，立刻啟用專案協作！",
-                            "size": "xs",
-                            "color": "#E2E8F0",
-                            "wrap": True,
-                            "margin": "xs"
-                        }
-                    ]
-                },
-                { "type": "separator", "color": "#2A1B4E" },
-                {
-                    "type": "box",
-                    "layout": "horizontal",
-                    "spacing": "md",
-                    "contents": [
-                        {
-                            "type": "box",
-                            "layout": "vertical",
-                            "width": "26px",
-                            "height": "26px",
-                            "cornerRadius": "13px",
-                            "backgroundColor": "#0891B2",
-                            "justifyContent": "center",
-                            "alignItems": "center",
-                            "contents": [
-                                { "type": "text", "text": "2", "size": "xs", "weight": "bold", "color": "#FFFFFF", "align": "center" }
-                            ]
-                        },
-                        {
-                            "type": "text",
-                            "text": "輸入 /assign 快速發起分工",
-                            "size": "sm",
-                            "color": "#FFFFFF",
-                            "gravity": "center",
-                            "wrap": True,
-                            "flex": 1,
-                            "weight": "bold"
-                        }
-                    ]
-                },
-                { "type": "separator", "color": "#2A1B4E" },
-                {
-                    "type": "box",
-                    "layout": "horizontal",
-                    "spacing": "md",
-                    "contents": [
-                        {
-                            "type": "box",
-                            "layout": "vertical",
-                            "width": "26px",
-                            "height": "26px",
-                            "cornerRadius": "13px",
-                            "backgroundColor": "#FDE047",
-                            "justifyContent": "center",
-                            "alignItems": "center",
-                            "contents": [
-                                { "type": "text", "text": "3", "size": "xs", "weight": "bold", "color": "#160F29", "align": "center" }
-                            ]
-                        },
-                        {
-                            "type": "box",
-                            "layout": "vertical",
-                            "flex": 1,
-                            "contents": [
-                                {
                                     "type": "box",
-                                    "layout": "horizontal",
-                                    "spacing": "xs",
-                                    "alignItems": "center",
+                                    "layout": "vertical",
+                                    "flex": 1,
                                     "contents": [
                                         {
                                             "type": "text",
-                                            "text": "沈靜30分鐘自動標註",
+                                            "text": "把我邀請進「群組」！",
                                             "size": "sm",
-                                            "color": "#FFFFFF",
-                                            "weight": "bold",
-                                            "flex": 0
+                                            "color": "#FDE047",
+                                            "weight": "bold"
                                         },
                                         {
-                                            "type": "box",
-                                            "layout": "vertical",
-                                            "backgroundColor": "#E11D48",
-                                            "cornerRadius": "3px",
-                                            "paddingStart": "4px",
-                                            "paddingEnd": "4px",
-                                            "paddingTop": "1px",
-                                            "paddingBottom": "1px",
-                                            "contents": [
-                                                {"type": "text", "text": "PRO", "size": "xxs", "color": "#FFFFFF", "weight": "bold"}
-                                            ]
+                                            "type": "text",
+                                            "text": "點右上角「≡」>「邀請」加入小組群組",
+                                            "size": "xxs",
+                                            "color": "#E2E8F0",
+                                            "wrap": True,
+                                            "margin": "xs"
                                         }
+                                    ]
+                                }
+                            ]
+                        },
+                        { "type": "separator", "color": "#2A1B4E" },
+                        {
+                            "type": "box",
+                            "layout": "horizontal",
+                            "spacing": "md",
+                            "alignItems": "flex-start",
+                            "contents": [
+                                {
+                                    "type": "box",
+                                    "layout": "vertical",
+                                    "width": "26px",
+                                    "height": "26px",
+                                    "cornerRadius": "13px",
+                                    "backgroundColor": "#0891B2",
+                                    "justifyContent": "center",
+                                    "alignItems": "center",
+                                    "contents": [
+                                        { "type": "text", "text": "2", "size": "xs", "weight": "bold", "color": "#FFFFFF", "align": "center" }
                                     ]
                                 },
                                 {
-                                    "type": "text",
-                                    "text": "PRO 版本專屬：無人認領將發送提醒並啟動 🎲 輪盤指派！",
-                                    "size": "xxs",
-                                    "color": "#06B6D4",
-                                    "wrap": True,
-                                    "margin": "xs"
+                                    "type": "box",
+                                    "layout": "vertical",
+                                    "flex": 1,
+                                    "contents": [
+                                        {
+                                            "type": "text",
+                                            "text": "輸入 /assign 快速發起分工",
+                                            "size": "sm",
+                                            "color": "#FFFFFF",
+                                            "weight": "bold"
+                                        },
+                                        {
+                                            "type": "text",
+                                            "text": "選擇小組任務範本或自訂分工指派組員",
+                                            "size": "xxs",
+                                            "color": "#94A3B8",
+                                            "wrap": True,
+                                            "margin": "xs"
+                                        }
+                                    ]
                                 }
                             ]
-                        }
-                    ]
-                },
-                { "type": "separator", "color": "#2A1B4E" },
-                {
-                    "type": "box",
-                    "layout": "horizontal",
-                    "spacing": "md",
-                    "contents": [
+                        },
+                        { "type": "separator", "color": "#2A1B4E" },
                         {
                             "type": "box",
-                            "layout": "vertical",
-                            "width": "26px",
-                            "height": "26px",
-                            "cornerRadius": "13px",
-                            "backgroundColor": "#E11D48",
-                            "justifyContent": "center",
-                            "alignItems": "center",
+                            "layout": "horizontal",
+                            "spacing": "md",
+                            "alignItems": "flex-start",
                             "contents": [
-                                { "type": "text", "text": "4", "size": "xs", "weight": "bold", "color": "#FFFFFF", "align": "center" }
+                                {
+                                    "type": "box",
+                                    "layout": "vertical",
+                                    "width": "26px",
+                                    "height": "26px",
+                                    "cornerRadius": "13px",
+                                    "backgroundColor": "#E11D48",
+                                    "justifyContent": "center",
+                                    "alignItems": "center",
+                                    "contents": [
+                                        { "type": "text", "text": "3", "size": "xs", "weight": "bold", "color": "#FFFFFF", "align": "center" }
+                                    ]
+                                },
+                                {
+                                    "type": "box",
+                                    "layout": "vertical",
+                                    "flex": 1,
+                                    "contents": [
+                                        {
+                                            "type": "box",
+                                            "layout": "horizontal",
+                                            "spacing": "xs",
+                                            "alignItems": "center",
+                                            "contents": [
+                                                {
+                                                    "type": "text",
+                                                    "text": "沈靜30分鐘自動標註",
+                                                    "size": "sm",
+                                                    "color": "#FFFFFF",
+                                                    "weight": "bold",
+                                                    "flex": 0
+                                                },
+                                                {
+                                                    "type": "box",
+                                                    "layout": "vertical",
+                                                    "backgroundColor": "#E11D48",
+                                                    "cornerRadius": "3px",
+                                                    "paddingStart": "4px",
+                                                    "paddingEnd": "4px",
+                                                    "paddingTop": "1px",
+                                                    "paddingBottom": "1px",
+                                                    "contents": [
+                                                        {"type": "text", "text": "PRO", "size": "xxs", "color": "#FFFFFF", "weight": "bold"}
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "text",
+                                            "text": "無人認領自動發送提醒並啟動 🎲 輪盤指派！",
+                                            "size": "xxs",
+                                            "color": "#06B6D4",
+                                            "wrap": True,
+                                            "margin": "xs"
+                                        }
+                                    ]
+                                }
                             ]
                         },
+                        { "type": "separator", "color": "#2A1B4E" },
                         {
-                            "type": "text",
-                            "text": "期末輸入 /export 產出互評鐵證",
-                            "size": "sm",
-                            "color": "#FFFFFF",
-                            "gravity": "center",
-                            "wrap": True,
-                            "flex": 1,
-                            "weight": "bold"
+                            "type": "box",
+                            "layout": "horizontal",
+                            "spacing": "md",
+                            "alignItems": "flex-start",
+                            "contents": [
+                                {
+                                    "type": "box",
+                                    "layout": "vertical",
+                                    "width": "26px",
+                                    "height": "26px",
+                                    "cornerRadius": "13px",
+                                    "backgroundColor": "#9333EA",
+                                    "justifyContent": "center",
+                                    "alignItems": "center",
+                                    "contents": [
+                                        { "type": "text", "text": "4", "size": "xs", "weight": "bold", "color": "#FFFFFF", "align": "center" }
+                                    ]
+                                },
+                                {
+                                    "type": "box",
+                                    "layout": "vertical",
+                                    "flex": 1,
+                                    "contents": [
+                                        {
+                                            "type": "text",
+                                            "text": "期末輸入 /export 產出互評鐵證",
+                                            "size": "sm",
+                                            "color": "#FFFFFF",
+                                            "weight": "bold"
+                                        },
+                                        {
+                                            "type": "text",
+                                            "text": "匯出完整小組紀錄與個人貢獻度 PDF 分析報告",
+                                            "size": "xxs",
+                                            "color": "#94A3B8",
+                                            "wrap": True,
+                                            "margin": "xs"
+                                        }
+                                    ]
+                                }
+                            ]
                         }
                     ]
                 }
@@ -1385,7 +1417,7 @@ def create_welcome_guide_flex() -> FlexMessage:
                     "color": "#E11D48",
                     "action": {
                         "type": "message",
-                        "label": "升級 PRO 方案",
+                        "label": "了解 PRO 專案",
                         "text": "/升級方案"
                     }
                 }
@@ -1526,6 +1558,25 @@ def create_upgrade_plan_flex() -> FlexMessage:
                             "color": "#FFFFFF",
                             "margin": "sm",
                             "wrap": True
+                        },
+                        {
+                            "type": "box",
+                            "layout": "vertical",
+                            "backgroundColor": "#06C755",
+                            "cornerRadius": "6px",
+                            "paddingVertical": "8px",
+                            "alignItems": "center",
+                            "justifyContent": "center",
+                            "margin": "md",
+                            "contents": [
+                                {
+                                    "type": "text",
+                                    "text": "LINE Pay 立即升級 NT$ 49",
+                                    "size": "xs",
+                                    "color": "#FFFFFF",
+                                    "weight": "bold"
+                                }
+                            ]
                         }
                     ]
                 },
@@ -1565,6 +1616,25 @@ def create_upgrade_plan_flex() -> FlexMessage:
                             "color": "#F3E8FF",
                             "margin": "sm",
                             "wrap": True
+                        },
+                        {
+                            "type": "box",
+                            "layout": "vertical",
+                            "backgroundColor": "#06C755",
+                            "cornerRadius": "6px",
+                            "paddingVertical": "8px",
+                            "alignItems": "center",
+                            "justifyContent": "center",
+                            "margin": "md",
+                            "contents": [
+                                {
+                                    "type": "text",
+                                    "text": "LINE Pay 立即升級 NT$ 99",
+                                    "size": "xs",
+                                    "color": "#FFFFFF",
+                                    "weight": "bold"
+                                }
+                            ]
                         }
                     ]
                 }
@@ -1573,19 +1643,15 @@ def create_upgrade_plan_flex() -> FlexMessage:
         "footer": {
             "type": "box",
             "layout": "vertical",
-            "paddingAll": "12px",
+            "paddingAll": "10px",
             "backgroundColor": "#160F29",
             "contents": [
                 {
-                    "type": "button",
-                    "style": "primary",
-                    "color": "#E11D48",
-                    "height": "sm",
-                    "action": {
-                        "type": "message",
-                        "label": "立即諮詢升級",
-                        "text": "/諮詢升級"
-                    }
+                    "type": "text",
+                    "text": "LINE Pay 線上支付建置中，暫未開放點擊付費",
+                    "size": "xxs",
+                    "color": "#94A3B8",
+                    "align": "center"
                 }
             ]
         }

@@ -51,9 +51,9 @@ def health_check():
 @app.get("/version")
 def get_version():
     return {
-        "version": "1.9.15",
-        "build": "welcome-step3-oneline-and-plan-group-scope",
-        "description": "第3步沈靜30分鐘自動標註單行呈現附PRO標籤，升級方案釐清單群組與多群組範圍"
+        "version": "1.9.16",
+        "build": "align-1234-and-linepay-placeholder-buttons",
+        "description": "新手指南1234步驟完美垂直對齊、底部改為了解PRO專案，升級方案新增LINE Pay付費按鈕佔位"
     }
 
 
