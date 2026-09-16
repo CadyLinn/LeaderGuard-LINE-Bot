@@ -123,8 +123,17 @@ def main():
         except Exception as e:
             print(f"清理舊選單時略過: {e}")
 
-        print("正在產生莫蘭迪黑白灰三格 Rich Menu 圖片...")
-        img_bytes = create_rich_menu_image()
+        # 優先讀取高品質設計圖檔
+        asset_img_path = os.path.join(os.path.dirname(__file__), "..", "assets", "rich_menu_2500x1686.jpg")
+        if os.path.exists(asset_img_path):
+            print(f"發現高解析度設計圖檔：{asset_img_path}，使用此圖檔上傳...")
+            with open(asset_img_path, "rb") as f:
+                img_bytes = f.read()
+            content_type = "image/jpeg"
+        else:
+            print("未找到靜態圖檔，動態產生深空暗黑三格 Rich Menu 圖片...")
+            img_bytes = create_rich_menu_image()
+            content_type = "image/png"
 
         print("正在註冊新的現代深空暗黑三格 Rich Menu 設定...")
         rich_menu_req = RichMenuRequest(
@@ -159,7 +168,7 @@ def main():
         messaging_blob_api.set_rich_menu_image(
             rich_menu_id=rich_menu_id,
             body=img_bytes,
-            _headers={"Content-Type": "image/png"}
+            _headers={"Content-Type": content_type}
         )
         print("圖片上傳成功！")
 
