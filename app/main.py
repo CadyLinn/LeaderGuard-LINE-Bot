@@ -51,9 +51,9 @@ def health_check():
 @app.get("/version")
 def get_version():
     return {
-        "version": "1.9.13",
-        "build": "upgrade-plan-student-pricing",
-        "description": "升級方案全面落實學生定價模式：NT$49專案包（手搖價）、NT$99學期Pass（便當價）"
+        "version": "1.9.14",
+        "build": "new-richmenu-applied",
+        "description": "全面套用用戶新增之高解析度 Rich Menu 圖文選單並上傳設為全體預設"
     }
 
 
