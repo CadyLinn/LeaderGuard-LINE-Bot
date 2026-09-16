@@ -6,6 +6,7 @@ from app.services.firebase_service import (
     record_task,
     list_tasks,
     claim_task,
+    delete_task,
     get_group_members,
     assign_roulette_task,
     get_unassigned_members,
@@ -16,6 +17,7 @@ from app.utils.flex_templates import (
     create_help_flex,
     create_task_created_flex,
     create_task_list_flex,
+    create_task_delete_flex,
     create_roulette_flex,
     create_preset_tasks_carousel,
     create_welcome_guide_flex,
@@ -177,6 +179,58 @@ def handle_user_command(user_text: str, group_id: str, user_id: str, user_name: 
         
         task_id = record_task(target_group, title, description, user_id)
         return [create_task_created_flex(task_id, title, description, user_name)]
+
+    # 5.5 刪除任務：/task 刪除 [編號/名稱] 或 /任務 刪除 [編號/名稱] 或 /刪除 [編號/名稱]
+    task_del_prefixes = (
+        "/task 刪除", "/task delete", "/task del", "/task rm",
+        "/任務 刪除", "/任務 delete", "/任務 del",
+        "/刪除任務", "/刪除工作", "任務 刪除", "task delete"
+    )
+    matched_task_del = None
+    for pfx in task_del_prefixes:
+        if text.lower().startswith(pfx):
+            matched_task_del = pfx
+            break
+
+    is_standalone_del = False
+    del_arg = ""
+    if matched_task_del:
+        del_arg = text[len(matched_task_del):].strip()
+    elif text.lower().startswith("/刪除") or text.lower().startswith("/delete") or text.lower().startswith("/del"):
+        parts = text.split(maxsplit=1)
+        if parts[0].lower() in ["/刪除", "/delete", "/del"]:
+            is_standalone_del = True
+            del_arg = parts[1].strip() if len(parts) > 1 else ""
+
+    if matched_task_del or is_standalone_del:
+        if not del_arg:
+            tasks = list_tasks(target_group)
+            if not tasks:
+                return [TextMessage(text="目前群組內沒有任何工作，無需刪除。", quick_reply=get_main_quick_reply())]
+            return [create_task_delete_flex(tasks)]
+
+        success, deleted_task = delete_task(target_group, del_arg)
+        if success:
+            d_id = deleted_task.get("id", del_arg)
+            d_title = deleted_task.get("title", "")
+            remaining_tasks = list_tasks(target_group)
+            msg = f"已成功刪除工作：【{d_id}】{d_title}。"
+            if remaining_tasks:
+                return [
+                    TextMessage(text=f"{msg}\n以下為目前小組最新工作清單：", quick_reply=get_main_quick_reply()),
+                    create_task_list_flex(remaining_tasks)
+                ]
+            else:
+                return [
+                    TextMessage(text=f"{msg}\n目前群組內已無任何待辦工作，如需分工可點選下方「常用分工範本」或「自訂新增工作」。", quick_reply=get_main_quick_reply())
+                ]
+        else:
+            return [
+                TextMessage(
+                    text=f"找不到符合「{del_arg}」的工作，請確認編號是否正確（例如 T001）。\n可輸入「/task 刪除」開啟刪除清單直接點選按鈕。",
+                    quick_reply=get_main_quick_reply()
+                )
+            ]
 
     # 6. 任務清單：/task 清單、/任務 清單、/tasks 或 /任務
     if text.lower() in [

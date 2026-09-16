@@ -453,18 +453,38 @@ def create_main_menu_flex() -> FlexMessage:
                             ]
                         },
                         {
-                            "type": "button",
-                            "action": {
-                                "type": "postback",
-                                "label": "自訂新增工作",
-                                "data": "action=prompt_custom_task",
-                                "inputOption": "openKeyboard",
-                                "fillInText": "/任務 新增 "
-                            },
-                            "style": "primary",
-                            "color": "#3730A3",
-                            "height": "sm",
-                            "margin": "sm"
+                            "type": "box",
+                            "layout": "horizontal",
+                            "spacing": "sm",
+                            "margin": "sm",
+                            "contents": [
+                                {
+                                    "type": "button",
+                                    "action": {
+                                        "type": "postback",
+                                        "label": "自訂新增工作",
+                                        "data": "action=prompt_custom_task",
+                                        "inputOption": "openKeyboard",
+                                        "fillInText": "/任務 新增 "
+                                    },
+                                    "style": "primary",
+                                    "color": "#3730A3",
+                                    "height": "sm",
+                                    "flex": 1
+                                },
+                                {
+                                    "type": "button",
+                                    "action": {
+                                        "type": "message",
+                                        "label": "刪除工作",
+                                        "text": "/task 刪除"
+                                    },
+                                    "style": "primary",
+                                    "color": "#475569",
+                                    "height": "sm",
+                                    "flex": 1
+                                }
+                            ]
                         }
                     ]
                 },
@@ -592,6 +612,7 @@ def create_help_flex() -> FlexMessage:
         ("查看工作", "/任務 清單", "/tasks"),
         ("認領工作", "/認領 [編號]", "/claim"),
         ("自訂任務", "/任務 新增", "/task add"),
+        ("刪除工作", "/任務 刪除", "/task delete"),
         ("🎲 命運抽籤", "/抽籤", "/roulette"),
         ("幽靈組員", "/成員 新增", "/member add"),
         ("組員名冊", "/成員", "/member"),
@@ -978,17 +999,37 @@ def create_task_list_flex(tasks: list) -> FlexMessage:
 
         footer_buttons = [
             {
-                "type": "button",
-                "action": {
-                    "type": "postback",
-                    "label": "自訂新增工作",
-                    "data": "action=prompt_custom_task",
-                    "inputOption": "openKeyboard",
-                    "fillInText": "/任務 新增 "
-                },
-                "style": "primary",
-                "color": "#3730A3",
-                "height": "sm"
+                "type": "box",
+                "layout": "horizontal",
+                "spacing": "sm",
+                "contents": [
+                    {
+                        "type": "button",
+                        "action": {
+                            "type": "postback",
+                            "label": "自訂新增工作",
+                            "data": "action=prompt_custom_task",
+                            "inputOption": "openKeyboard",
+                            "fillInText": "/任務 新增 "
+                        },
+                        "style": "primary",
+                        "color": "#3730A3",
+                        "height": "sm",
+                        "flex": 1
+                    },
+                    {
+                        "type": "button",
+                        "action": {
+                            "type": "message",
+                            "label": "刪除工作",
+                            "text": "/task 刪除"
+                        },
+                        "style": "primary",
+                        "color": "#475569",
+                        "height": "sm",
+                        "flex": 1
+                    }
+                ]
             },
             {
                 "type": "button",
@@ -1075,6 +1116,165 @@ def create_task_list_flex(tasks: list) -> FlexMessage:
         quick_reply=get_main_quick_reply()
     )
 
+def create_task_delete_flex(tasks: list) -> FlexMessage:
+    """工作刪除管理卡片（列出所有工作，點選紅色刪除按鈕即可刪除該項目）"""
+    if not tasks:
+        bubble = {
+            "type": "bubble",
+            "size": "giga",
+            "header": {
+                "type": "box",
+                "layout": "vertical",
+                "backgroundColor": "#160F29",
+                "paddingAll": "16px",
+                "contents": [
+                    {"type": "text", "text": "【小組工作管理】", "size": "xs", "color": "#F43F5E", "weight": "bold"},
+                    {"type": "text", "text": "目前沒有任何工作可刪除", "weight": "bold", "color": "#FFFFFF", "size": "md", "margin": "xs"}
+                ]
+            },
+            "body": {
+                "type": "box",
+                "layout": "vertical",
+                "paddingAll": "16px",
+                "backgroundColor": "#100B1E",
+                "contents": [
+                    {"type": "text", "text": "目前小組清單中尚無任何專案工作。", "size": "sm", "color": "#9CA3AF", "align": "center"}
+                ]
+            },
+            "footer": {
+                "type": "box",
+                "layout": "vertical",
+                "paddingAll": "12px",
+                "backgroundColor": "#160F29",
+                "contents": [
+                    {
+                        "type": "button",
+                        "action": {"type": "message", "label": "返回任務清單", "text": "/task 清單"},
+                        "style": "primary",
+                        "color": "#3730A3",
+                        "height": "sm"
+                    }
+                ]
+            }
+        }
+        return FlexMessage(
+            alt_text="小組工作管理・刪除工作",
+            contents=FlexContainer.from_dict(bubble),
+            quick_reply=get_main_quick_reply()
+        )
+
+    item_boxes = []
+    for t in tasks[:10]:
+        task_id = t.get("id", "T000")
+        title = t.get("title", "")
+        is_pending = (t.get("status") == "pending")
+        status_text = "尚未認領" if is_pending else f"負責人：{t.get('assignee_name', '組員')}"
+        status_color = "#F43F5E" if is_pending else "#06B6D4"
+
+        item_boxes.append({
+            "type": "box",
+            "layout": "horizontal",
+            "margin": "md",
+            "alignItems": "center",
+            "backgroundColor": "#1E1636",
+            "borderColor": "#4C1D95",
+            "borderWidth": "1px",
+            "cornerRadius": "8px",
+            "paddingAll": "10px",
+            "contents": [
+                {
+                    "type": "box",
+                    "layout": "vertical",
+                    "flex": 8,
+                    "contents": [
+                        {
+                            "type": "text",
+                            "text": f"[{task_id}] {title}",
+                            "size": "sm",
+                            "weight": "bold",
+                            "color": "#FFFFFF",
+                            "wrap": True
+                        },
+                        {
+                            "type": "text",
+                            "text": status_text,
+                            "size": "xxs",
+                            "color": status_color,
+                            "weight": "bold",
+                            "margin": "xs"
+                        }
+                    ]
+                },
+                {
+                    "type": "button",
+                    "action": {
+                        "type": "message",
+                        "label": "刪除",
+                        "text": f"/task 刪除 {task_id}"
+                    },
+                    "style": "primary",
+                    "color": "#DC2626",
+                    "height": "sm",
+                    "flex": 3
+                }
+            ]
+        })
+
+    bubble = {
+        "type": "bubble",
+        "size": "giga",
+        "header": {
+            "type": "box",
+            "layout": "vertical",
+            "backgroundColor": "#160F29",
+            "paddingAll": "16px",
+            "contents": [
+                {
+                    "type": "box",
+                    "layout": "horizontal",
+                    "contents": [
+                        {"type": "text", "text": "【小組工作管理】", "size": "xs", "color": "#F43F5E", "weight": "bold"},
+                        {"type": "text", "text": f"共 {len(tasks)} 項", "size": "xs", "color": "#06B6D4", "align": "end", "weight": "bold"}
+                    ]
+                },
+                {"type": "text", "text": "點選「刪除」即可移除工作", "weight": "bold", "color": "#FFFFFF", "size": "md", "margin": "xs"}
+            ]
+        },
+        "body": {
+            "type": "box",
+            "layout": "vertical",
+            "spacing": "xs",
+            "paddingAll": "12px",
+            "backgroundColor": "#100B1E",
+            "contents": item_boxes
+        },
+        "footer": {
+            "type": "box",
+            "layout": "vertical",
+            "paddingAll": "12px",
+            "backgroundColor": "#160F29",
+            "contents": [
+                {
+                    "type": "button",
+                    "action": {
+                        "type": "message",
+                        "label": "返回任務清單",
+                        "text": "/task 清單"
+                    },
+                    "style": "primary",
+                    "color": "#3730A3",
+                    "height": "sm"
+                }
+            ]
+        }
+    }
+
+    return FlexMessage(
+        alt_text="小組工作管理・刪除工作",
+        contents=FlexContainer.from_dict(bubble),
+        quick_reply=get_main_quick_reply()
+    )
+
 def create_roulette_flex(task_id: str, task_title: str, victim_name: str) -> FlexMessage:
     """🎲 隨機抽籤結果卡片（命運輪盤風格）"""
     bubble = {
@@ -1133,7 +1333,7 @@ def create_roulette_flex(task_id: str, task_title: str, victim_name: str) -> Fle
                         {"type": "separator", "color": "#4C1D95", "margin": "md"},
                         {
                             "type": "text",
-                            "text": f"扛下重任：【{task_id}】{task_title}",
+                            "text": f"【{task_id}】{task_title}",
                             "size": "sm",
                             "color": "#FFFFFF",
                             "wrap": True,

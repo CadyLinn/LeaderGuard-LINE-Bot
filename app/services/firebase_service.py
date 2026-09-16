@@ -311,6 +311,57 @@ def claim_task(task_id: str, user_id: str, user_name: str = None):
 
     return success, task_title
 
+def delete_task(group_id: str, task_identifier: str):
+    """刪除指定任務（支援任務 ID 如 T001、數字 1、或名稱關鍵字比對）"""
+    database = get_db()
+    task_identifier = task_identifier.strip()
+    if not task_identifier:
+        return False, None
+
+    target_task = None
+    target_id = task_identifier.upper()
+    if target_id.isdigit():
+        target_id = f"T{int(target_id):03d}"
+
+    # 先以 ID 比對本地記憶體
+    for t in _memory_tasks:
+        if t.get("group_id") == group_id and t.get("id", "").upper() == target_id:
+            target_task = t
+            break
+
+    # 若無 ID 吻合，嘗試以標題比對
+    if not target_task:
+        ident_lower = task_identifier.lower()
+        for t in _memory_tasks:
+            if t.get("group_id") == group_id:
+                t_title = t.get("title", "").lower()
+                if ident_lower == t_title or ident_lower in t_title or t_title in ident_lower:
+                    target_task = t
+                    break
+
+    # 若記憶體中找到，先移除
+    if target_task:
+        _memory_tasks.remove(target_task)
+        _save_local_data()
+
+    # Firestore 刪除同步
+    if database:
+        try:
+            del_id = target_task.get("id") if target_task else target_id
+            doc_ref = database.collection("tasks").document(del_id)
+            doc = doc_ref.get()
+            if doc.exists and doc.to_dict().get("group_id") == group_id:
+                if not target_task:
+                    target_task = doc.to_dict()
+                    target_task["id"] = doc.id
+                doc_ref.delete()
+        except Exception as e:
+            logger.error(f"Firestore 刪除任務失敗: {e}")
+
+    return (target_task is not None), target_task
+
+
+
 def assign_roulette_task(group_id: str, chosen_user_id: str, chosen_user_name: str):
     """死鬥輪盤隨機將待認領任務指派給指定成員"""
     pending_tasks = list_tasks(group_id, status="pending")

@@ -51,9 +51,9 @@ def health_check():
 @app.get("/version")
 def get_version():
     return {
-        "version": "1.9.26",
-        "build": "smart-deduplication-batch-and-single-task-create",
-        "description": "一鍵全套分工智慧排重，自動識別並跳過已建立之簡報、口頭、文獻、書面等同類項目"
+        "version": "1.9.27",
+        "build": "task-delete-support-and-clean-roulette-text",
+        "description": "支援工作刪除選單與指令，抽籤結果刪除扛下重任"
     }
 
 
