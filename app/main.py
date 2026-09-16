@@ -51,9 +51,9 @@ def health_check():
 @app.get("/version")
 def get_version():
     return {
-        "version": "1.9.0",
-        "build": "pop-comic-clean-v9",
-        "description": "全新美漫波普風格（純中英文、無日文、無狀聲詞贅字）、高對比三格圖文選單與三大 Hero 插圖"
+        "version": "1.9.1",
+        "build": "pop-comic-nohands-v10",
+        "description": "小組功能選單（Rich Menu）去手化純物件版、官方帳號1對1私聊停用 Quick Reply"
     }
 
 

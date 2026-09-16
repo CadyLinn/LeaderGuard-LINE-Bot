@@ -84,12 +84,16 @@ def handle_follow(event):
             "感謝您加入好友！"
         )
 
+        welcome_flex = create_welcome_guide_flex()
+        if hasattr(welcome_flex, "quick_reply"):
+            welcome_flex.quick_reply = None
+
         line_bot_api.reply_message_with_http_info(
             ReplyMessageRequest(
                 reply_token=event.reply_token,
                 messages=[
                     TextMessage(text=greeting_text),
-                    create_welcome_guide_flex()
+                    welcome_flex
                 ]
             )
         )
@@ -166,6 +170,11 @@ def handle_message(event):
         )
 
         if reply_messages:
+            # 使用者與官方帳號的 1 對 1 聊天室不顯示 quick reply（底部已有 Rich Menu 圖文選單）
+            if not group_id:
+                for msg in reply_messages:
+                    if hasattr(msg, "quick_reply"):
+                        msg.quick_reply = None
             try:
                 line_bot_api.reply_message_with_http_info(
                     ReplyMessageRequest(
@@ -176,12 +185,15 @@ def handle_message(event):
             except Exception as reply_err:
                 logger.error(f"LINE 回覆訊息失敗: {reply_err}")
         elif not group_id:
-            # 僅在「一對一私聊」且非特定指令時，直接回傳主選單 Flex 卡片與快捷按鈕列
+            # 僅在「一對一私聊」且非特定指令時，直接回傳主選單 Flex 卡片（官方帳號聊天室不帶 quick reply）
             try:
+                menu_flex = create_main_menu_flex()
+                if hasattr(menu_flex, "quick_reply"):
+                    menu_flex.quick_reply = None
                 line_bot_api.reply_message_with_http_info(
                     ReplyMessageRequest(
                         reply_token=event.reply_token,
-                        messages=[create_main_menu_flex()]
+                        messages=[menu_flex]
                     )
                 )
             except Exception as reply_err:
