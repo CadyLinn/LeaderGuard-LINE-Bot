@@ -430,29 +430,30 @@ def create_main_menu_flex() -> FlexMessage:
 
 
 def create_help_flex() -> FlexMessage:
-    """操作指南 Flex 卡片"""
+    """操作指南 Flex 卡片（文字精簡不截斷，尺寸設為 giga）"""
     bubble = {
         "type": "bubble",
-        "size": "mega",
+        "size": "giga",
         "header": {
             "type": "box",
             "layout": "vertical",
             "backgroundColor": "#1E293B",
-            "paddingAll": "20px",
+            "paddingAll": "16px",
             "contents": [
                 {
                     "type": "text",
                     "text": "組長保險・常用指令說明",
                     "weight": "bold",
                     "color": "#F8FAFC",
-                    "size": "lg"
+                    "size": "md"
                 },
                 {
                     "type": "text",
-                    "text": "專案溝通不尷尬，工作認領與進度一次搞定",
+                    "text": "專案分工與進度追蹤指南",
                     "color": "#94A3B8",
                     "size": "xs",
-                    "margin": "sm"
+                    "margin": "xs",
+                    "wrap": True
                 }
             ]
         },
@@ -460,6 +461,7 @@ def create_help_flex() -> FlexMessage:
             "type": "box",
             "layout": "vertical",
             "spacing": "md",
+            "paddingAll": "16px",
             "contents": [
                 {
                     "type": "box",
@@ -469,10 +471,10 @@ def create_help_flex() -> FlexMessage:
                     "cornerRadius": "8px",
                     "contents": [
                         {"type": "text", "text": "任務建立與認領", "weight": "bold", "size": "sm", "color": "#0F172A"},
-                        {"type": "text", "text": "• /task 範本：瀏覽常見專案工作一鍵建立", "size": "xs", "color": "#0284C7", "weight": "bold", "margin": "xs"},
-                        {"type": "text", "text": "• /task 新增 [名稱] [說明]：自訂待辦工作", "size": "xs", "color": "#475569"},
-                        {"type": "text", "text": "• /task 清單：查看目前大家的進度（附一鍵認領）", "size": "xs", "color": "#475569"},
-                        {"type": "text", "text": "• /claim [任務編號]：主動認領負責項目", "size": "xs", "color": "#475569"}
+                        {"type": "text", "text": "• /task 範本：常用工作一鍵建立", "size": "xs", "color": "#0284C7", "weight": "bold", "margin": "xs", "wrap": True},
+                        {"type": "text", "text": "• /task 新增 [名稱]：自訂任務", "size": "xs", "color": "#475569", "margin": "xs", "wrap": True},
+                        {"type": "text", "text": "• /task 清單：查看進度與認領", "size": "xs", "color": "#475569", "margin": "xs", "wrap": True},
+                        {"type": "text", "text": "• /claim [編號]：認領指定任務", "size": "xs", "color": "#475569", "margin": "xs", "wrap": True}
                     ]
                 },
                 {
@@ -483,9 +485,9 @@ def create_help_flex() -> FlexMessage:
                     "cornerRadius": "8px",
                     "contents": [
                         {"type": "text", "text": "🎲 抽籤分工與名冊", "weight": "bold", "size": "sm", "color": "#991B1B"},
-                        {"type": "text", "text": "• /roulette 或 /抽籤：優先抽無任務組員", "size": "xs", "color": "#B91C1C", "margin": "xs"},
-                        {"type": "text", "text": "• /member 新增 [名字1] [名字2]：加入幽靈組員", "size": "xs", "color": "#B91C1C"},
-                        {"type": "text", "text": "• /member：查看名冊與各自工作現況", "size": "xs", "color": "#B91C1C"}
+                        {"type": "text", "text": "• /roulette：優先抽無任務組員", "size": "xs", "color": "#B91C1C", "margin": "xs", "wrap": True},
+                        {"type": "text", "text": "• /member 新增 [名字]：手動加入組員", "size": "xs", "color": "#B91C1C", "margin": "xs", "wrap": True},
+                        {"type": "text", "text": "• /member：查看成員分工現況", "size": "xs", "color": "#B91C1C", "margin": "xs", "wrap": True}
                     ]
                 },
                 {
@@ -495,8 +497,8 @@ def create_help_flex() -> FlexMessage:
                     "paddingAll": "12px",
                     "cornerRadius": "8px",
                     "contents": [
-                        {"type": "text", "text": "貢獻度與狀態", "weight": "bold", "size": "sm", "color": "#065F46"},
-                        {"type": "text", "text": "• /status：查看群組目前已認領與未認領件數", "size": "xs", "color": "#047857", "margin": "xs"}
+                        {"type": "text", "text": "進度狀態", "weight": "bold", "size": "sm", "color": "#065F46"},
+                        {"type": "text", "text": "• /status：查看各項任務認領狀況", "size": "xs", "color": "#047857", "margin": "xs", "wrap": True}
                     ]
                 }
             ]
