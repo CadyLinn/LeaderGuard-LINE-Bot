@@ -1301,27 +1301,26 @@ def create_welcome_guide_flex() -> FlexMessage:
                                 {
                                     "type": "box",
                                     "layout": "horizontal",
-                                    "spacing": "sm",
+                                    "spacing": "xs",
                                     "alignItems": "center",
                                     "contents": [
                                         {
                                             "type": "text",
-                                            "text": "沈靜30分鐘\n自動標註",
+                                            "text": "沈靜30分鐘自動標註",
                                             "size": "sm",
                                             "color": "#FFFFFF",
                                             "weight": "bold",
-                                            "wrap": True,
-                                            "flex": 1
+                                            "flex": 0
                                         },
                                         {
                                             "type": "box",
                                             "layout": "vertical",
                                             "backgroundColor": "#E11D48",
-                                            "cornerRadius": "4px",
-                                            "paddingStart": "6px",
-                                            "paddingEnd": "6px",
-                                            "paddingTop": "2px",
-                                            "paddingBottom": "2px",
+                                            "cornerRadius": "3px",
+                                            "paddingStart": "4px",
+                                            "paddingEnd": "4px",
+                                            "paddingTop": "1px",
+                                            "paddingBottom": "1px",
                                             "contents": [
                                                 {"type": "text", "text": "PRO", "size": "xxs", "color": "#FFFFFF", "weight": "bold"}
                                             ]
@@ -1522,7 +1521,7 @@ def create_upgrade_plan_flex() -> FlexMessage:
                         },
                         {
                             "type": "text",
-                            "text": "• 一杯手搖飲價格，4 人小組平攤每人約 12 元\n• 匯出完整《小組貢獻度分析 PDF 報告》（期中／期末結算）\n• 30 分鐘沉寂偵測與自動標註催繳\n• 🎲 死鬥抽籤輪盤（超時未認領自動強制指派）\n• LIFF 任務點擊查閱時間戳記紀錄（已讀精準追蹤）\n• 單一專案有效 120 天（完整覆蓋一學期，無忘記退訂焦慮）",
+                            "text": "• 僅限單一專案群組使用（有效 120 天）\n• 一杯手搖飲價格，4 人小組平攤每人約 12 元\n• 匯出完整《小組貢獻度分析 PDF 報告》（期中／期末結算）\n• 30 分鐘沉寂偵測與自動標註催繳\n• 🎲 死鬥抽籤輪盤（超時未認領自動強制指派）\n• LIFF 任務點擊查閱時間戳記紀錄（已讀精準追蹤）",
                             "size": "xs",
                             "color": "#FFFFFF",
                             "margin": "sm",
@@ -1561,7 +1560,7 @@ def create_upgrade_plan_flex() -> FlexMessage:
                         },
                         {
                             "type": "text",
-                            "text": "• 一個便當錢，支援最多 4 個群組同時使用（有效 180 天）\n• 解鎖「毒舌嘴替／嚴格教授」AI 人格包\n• 適合修多門專案課、同時身兼多組組長的繁忙同學",
+                            "text": "• 支援多個專案群組（最多 4 個群組同時使用，有效 180 天）\n• 一個便當錢，全學期多群組無限暢用\n• 解鎖「毒舌嘴替／嚴格教授」AI 人格包\n• 適合修多門專案課、同時身兼多組組長的同學",
                             "size": "xs",
                             "color": "#F3E8FF",
                             "margin": "sm",

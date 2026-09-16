@@ -51,9 +51,9 @@ def health_check():
 @app.get("/version")
 def get_version():
     return {
-        "version": "1.9.14",
-        "build": "new-richmenu-applied",
-        "description": "全面套用用戶新增之高解析度 Rich Menu 圖文選單並上傳設為全體預設"
+        "version": "1.9.15",
+        "build": "welcome-step3-oneline-and-plan-group-scope",
+        "description": "第3步沈靜30分鐘自動標註單行呈現附PRO標籤，升級方案釐清單群組與多群組範圍"
     }
 
 
