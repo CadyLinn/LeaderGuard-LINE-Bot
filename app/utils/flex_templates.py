@@ -430,7 +430,35 @@ def create_main_menu_flex() -> FlexMessage:
 
 
 def create_help_flex() -> FlexMessage:
-    """操作指南 Flex 卡片（文字精簡不截斷，尺寸設為 giga）"""
+    """操作指南 Flex 卡片（精簡表格化設計，中英文雙語對照，尺寸設為 giga）"""
+    table_data = [
+        ("挑選範本", "/任務 範本", "/task", "#0F766E"),
+        ("查看工作", "/任務 清單", "/tasks", "#0284C7"),
+        ("認領工作", "/認領 [編號]", "/claim", "#2563EB"),
+        ("自訂任務", "/任務 新增", "/task add", "#475569"),
+        ("🎲 抽籤分工", "/抽籤", "/roulette", "#DC2626"),
+        ("加幽靈組員", "/成員 新增", "/member add", "#D97706"),
+        ("組員名冊", "/成員", "/member", "#475569"),
+        ("專案進度", "/狀態", "/status", "#059669")
+    ]
+
+    rows = []
+    for idx, (func, cn, en, tag_color) in enumerate(table_data):
+        bg_color = "#FFFFFF" if idx % 2 == 0 else "#F8FAFC"
+        rows.append({
+            "type": "box",
+            "layout": "horizontal",
+            "backgroundColor": bg_color,
+            "paddingVertical": "8px",
+            "paddingHorizontal": "10px",
+            "alignItems": "center",
+            "contents": [
+                {"type": "text", "text": func, "size": "xs", "weight": "bold", "color": "#0F172A", "flex": 3, "wrap": True},
+                {"type": "text", "text": cn, "size": "xs", "weight": "bold", "color": tag_color, "flex": 4, "wrap": True},
+                {"type": "text", "text": en, "size": "xs", "color": "#64748B", "flex": 3, "wrap": True}
+            ]
+        })
+
     bubble = {
         "type": "bubble",
         "size": "giga",
@@ -442,15 +470,15 @@ def create_help_flex() -> FlexMessage:
             "contents": [
                 {
                     "type": "text",
-                    "text": "組長保險・常用指令說明",
+                    "text": "常用指令說明",
                     "weight": "bold",
                     "color": "#F8FAFC",
                     "size": "md"
                 },
                 {
                     "type": "text",
-                    "text": "專案分工與進度追蹤指南",
-                    "color": "#94A3B8",
+                    "text": "指令前加「/」，輸入中文或英文都可以！",
+                    "color": "#38BDF8",
                     "size": "xs",
                     "margin": "xs",
                     "wrap": True
@@ -460,46 +488,42 @@ def create_help_flex() -> FlexMessage:
         "body": {
             "type": "box",
             "layout": "vertical",
-            "spacing": "md",
-            "paddingAll": "16px",
+            "paddingAll": "12px",
             "contents": [
                 {
                     "type": "box",
-                    "layout": "vertical",
-                    "backgroundColor": "#F8FAFC",
-                    "paddingAll": "12px",
-                    "cornerRadius": "8px",
+                    "layout": "horizontal",
+                    "backgroundColor": "#0F172A",
+                    "paddingVertical": "8px",
+                    "paddingHorizontal": "10px",
+                    "cornerRadius": "4px",
                     "contents": [
-                        {"type": "text", "text": "任務建立與認領（中英文皆可）", "weight": "bold", "size": "sm", "color": "#0F172A"},
-                        {"type": "text", "text": "• /task 範本 或 /任務 範本：快速建立範本", "size": "xs", "color": "#0284C7", "weight": "bold", "margin": "xs", "wrap": True},
-                        {"type": "text", "text": "• /task 新增 或 /任務 新增 [名稱]：自訂任務", "size": "xs", "color": "#475569", "margin": "xs", "wrap": True},
-                        {"type": "text", "text": "• /task 清單 或 /任務 清單：查看進度與認領", "size": "xs", "color": "#475569", "margin": "xs", "wrap": True},
-                        {"type": "text", "text": "• /claim 或 /認領 [編號]：認領指定任務", "size": "xs", "color": "#475569", "margin": "xs", "wrap": True}
+                        {"type": "text", "text": "你想做的事", "weight": "bold", "size": "xs", "color": "#FFFFFF", "flex": 3},
+                        {"type": "text", "text": "中文指令（推薦）", "weight": "bold", "size": "xs", "color": "#38BDF8", "flex": 4},
+                        {"type": "text", "text": "英文指令", "weight": "bold", "size": "xs", "color": "#CBD5E1", "flex": 3}
                     ]
                 },
                 {
                     "type": "box",
                     "layout": "vertical",
-                    "backgroundColor": "#FEF2F2",
-                    "paddingAll": "12px",
-                    "cornerRadius": "8px",
-                    "contents": [
-                        {"type": "text", "text": "🎲 抽籤分工與名冊", "weight": "bold", "size": "sm", "color": "#991B1B"},
-                        {"type": "text", "text": "• /roulette 或 /抽籤：優先抽無任務組員", "size": "xs", "color": "#B91C1C", "margin": "xs", "wrap": True},
-                        {"type": "text", "text": "• /member 新增 或 /成員 新增 [名字]：手動加入組員", "size": "xs", "color": "#B91C1C", "margin": "xs", "wrap": True},
-                        {"type": "text", "text": "• /member 或 /成員：查看成員分工現況", "size": "xs", "color": "#B91C1C", "margin": "xs", "wrap": True}
-                    ]
+                    "margin": "xs",
+                    "contents": rows
                 },
                 {
                     "type": "box",
                     "layout": "vertical",
-                    "backgroundColor": "#ECFDF5",
-                    "paddingAll": "12px",
-                    "cornerRadius": "8px",
+                    "margin": "md",
+                    "paddingAll": "10px",
+                    "backgroundColor": "#F1F5F9",
+                    "cornerRadius": "6px",
                     "contents": [
-                        {"type": "text", "text": "進度狀態與指南", "weight": "bold", "size": "sm", "color": "#065F46"},
-                        {"type": "text", "text": "• /status 或 /狀態：查看各項任務認領狀況", "size": "xs", "color": "#047857", "margin": "xs", "wrap": True},
-                        {"type": "text", "text": "• /常用指令說明 或 /help：隨時查看本說明", "size": "xs", "color": "#047857", "margin": "xs", "wrap": True}
+                        {
+                            "type": "text",
+                            "text": "• 認領範例：/認領 T001（或 /claim T001）\n• 幽靈組員：/成員 新增 小明 小華\n• 抽籤機制：🎲 系統優先抽尚未分配任務的人",
+                            "size": "xxs",
+                            "color": "#475569",
+                            "wrap": True
+                        }
                     ]
                 }
             ]
