@@ -51,9 +51,9 @@ def health_check():
 @app.get("/version")
 def get_version():
     return {
-        "version": "1.9.5",
-        "build": "all-heroes-v2026",
-        "description": "全面套用用戶提供之新手入門指引、指令說明、pro升級方案三張全新高品質設計Hero圖，獨立URL破除快取"
+        "version": "1.9.6",
+        "build": "welcome-guide-single-invite-btn",
+        "description": "新手入門指引卡片底端精簡為單一聚焦行動按鈕：立即召喚進群組"
     }
 
 
