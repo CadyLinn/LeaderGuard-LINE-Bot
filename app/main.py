@@ -51,9 +51,9 @@ def health_check():
 @app.get("/version")
 def get_version():
     return {
-        "version": "1.9.21",
-        "build": "fate-roulette-rename-and-clean-upgrade-header",
-        "description": "死鬥輪盤全面更名為命運抽籤，升級方案移除安心定價與壞人文字"
+        "version": "1.9.22",
+        "build": "quick-reply-fate-roulette-complete-sync",
+        "description": "任務分工與清單旁的Quick Reply全面同步為命運抽籤，全文字訊息常態附掛最新快捷列"
     }
 
 

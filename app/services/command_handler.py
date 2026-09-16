@@ -128,7 +128,8 @@ def handle_user_command(user_text: str, group_id: str, user_id: str, user_name: 
         parts = re.split(r"\s+", content, maxsplit=1)
         if not parts or not parts[0]:
             return [TextMessage(
-                text="指令格式：\n• /task 新增 [任務名稱] [補充說明(選填)]\n• /任務 新增 [任務名稱] [補充說明(選填)]\n\n例如：\n/任務 新增 製作問卷 負責設計 Google 表單並回收數據"
+                text="指令格式：\n• /task 新增 [任務名稱] [補充說明(選填)]\n• /任務 新增 [任務名稱] [補充說明(選填)]\n\n例如：\n/任務 新增 製作問卷 負責設計 Google 表單並回收數據",
+                quick_reply=get_main_quick_reply()
             )]
         
         title = parts[0]
@@ -151,14 +152,14 @@ def handle_user_command(user_text: str, group_id: str, user_id: str, user_name: 
     if claim_match and (text.startswith("/") or text.lower().startswith("claim") or text.startswith("認領") or text.startswith("我負責")):
         arg = claim_match.group(1).strip()
         if not arg:
-            return [TextMessage(text="請輸入要認領的任務編號，例如：/claim T001 或 /認領 T001")]
+            return [TextMessage(text="請輸入要認領的任務編號，例如：/claim T001 或 /認領 T001", quick_reply=get_main_quick_reply())]
         
         task_id = arg.split()[0].upper()
         success, title = claim_task(task_id, user_id, user_name)
         if success:
-            return [TextMessage(text=f"認領完成！\n【{task_id}】{title}\n由「{user_name}」負責。\n已記錄認領時間與進度，期末互評有憑有據。")]
+            return [TextMessage(text=f"認領完成！\n【{task_id}】{title}\n由「{user_name}」負責。\n已記錄認領時間與進度，期末互評有憑有據。", quick_reply=get_main_quick_reply())]
         else:
-            return [TextMessage(text=f"找不到待認領的任務「{task_id}」，或這項工作已經有人負責了。")]
+            return [TextMessage(text=f"找不到待認領的任務「{task_id}」，或這項工作已經有人負責了。", quick_reply=get_main_quick_reply())]
 
     # 8. 隨機抽籤分工：/roulette 或 /抽籤 或 /輪盤（僅抽還沒有工作任務的人）
     if text.lower() in [
@@ -169,11 +170,11 @@ def handle_user_command(user_text: str, group_id: str, user_id: str, user_name: 
         
         # 情況 A：尚未建立任何任務
         if not all_tasks:
-            return [TextMessage(text="目前還沒有建立任何任務，請先點選「常用分工範本」或使用「/任務 新增」建立工作後再進行抽籤。")]
+            return [TextMessage(text="目前還沒有建立任何任務，請先點選「常用分工範本」或使用「/任務 新增」建立工作後再進行抽籤。", quick_reply=get_main_quick_reply())]
         
         # 情況 B：所有任務皆已被認領
         if not pending_tasks:
-            return [TextMessage(text="目前所有任務都已經有人負責了，不需要抽籤。")]
+            return [TextMessage(text="目前所有任務都已經有人負責了，不需要抽籤。", quick_reply=get_main_quick_reply())]
             
         # 情況 C：優先從「尚未有任何任務」的人選中抽籤
         if free_members:
@@ -196,7 +197,7 @@ def handle_user_command(user_text: str, group_id: str, user_id: str, user_name: 
             f"待認領任務：{pending_count} 件\n"
             f"進行中任務：{claimed_count} 件\n\n"
             f"輸入「/task 清單」或「/任務 清單」查看詳細項目\n"
-            f"輸入「/roulette」或「/抽籤」隨機抽籤分配未認領工作"
+            f"輸入「/命運抽籤」或「/roulette」隨機抽籤分配未認領工作"
         )
         return [TextMessage(text=status_msg, quick_reply=get_main_quick_reply())]
 
@@ -234,7 +235,7 @@ def handle_user_command(user_text: str, group_id: str, user_id: str, user_name: 
             lines.append(f"\n【尚未指派工作之組員】：\n{', '.join(free_names)}")
             
         lines.append("\n本紀錄由組長保險自動存證，可用於期末互評與成果報告依據。")
-        return [TextMessage(text="\n".join(lines))]
+        return [TextMessage(text="\n".join(lines), quick_reply=get_main_quick_reply())]
 
     # 10. 手動新增成員名單：/member 新增 或 /成員 新增 [名字1] [名字2]...
     member_add_prefixes = (
@@ -253,7 +254,8 @@ def handle_user_command(user_text: str, group_id: str, user_id: str, user_name: 
         names_str = text[len(matched_member_add):].strip()
         if not names_str:
             return [TextMessage(
-                text="指令格式：\n• /member 新增 [組員1] [組員2] ...\n• /成員 新增 [組員1] [組員2] ...\n\n例如：\n/成員 新增 小明 小華 阿美\n\n（適合直接將未發言的組員加入抽籤池）"
+                text="指令格式：\n• /member 新增 [組員1] [組員2] ...\n• /成員 新增 [組員1] [組員2] ...\n\n例如：\n/成員 新增 小明 小華 阿美\n\n（適合直接將未發言的組員加入抽籤池）",
+                quick_reply=get_main_quick_reply()
             )]
         
         names = [n.strip() for n in re.split(r"[,，\s]+", names_str) if n.strip()]
@@ -263,9 +265,9 @@ def handle_user_command(user_text: str, group_id: str, user_id: str, user_name: 
                 added.append(name)
                 
         if added:
-            return [TextMessage(text=f"已將 {len(added)} 位成員加入群組抽籤名冊：\n{', '.join(added)}\n\n未指派任務時將優先納入隨機抽籤池。")]
+            return [TextMessage(text=f"已將 {len(added)} 位成員加入群組抽籤名冊：\n{', '.join(added)}\n\n未指派任務時將優先納入隨機抽籤池。", quick_reply=get_main_quick_reply())]
         else:
-            return [TextMessage(text="未能成功解析成員名稱，請確認輸入格式。")]
+            return [TextMessage(text="未能成功解析成員名稱，請確認輸入格式。", quick_reply=get_main_quick_reply())]
 
     # 11. 查看群組成員名冊與狀態：/member、/成員、/組員 或 /名單
     if text.lower() in [
@@ -277,7 +279,7 @@ def handle_user_command(user_text: str, group_id: str, user_id: str, user_name: 
     ]:
         free_members, all_members, all_tasks, _ = get_unassigned_members(target_group)
         if not all_members:
-            return [TextMessage(text="目前群組名冊尚無成員。\n組員可在群內發言、傳貼圖，或由組長輸入：\n/成員 新增 小明 小華 阿美")]
+            return [TextMessage(text="目前群組名冊尚無成員。\n組員可在群內發言、傳貼圖，或由組長輸入：\n/成員 新增 小明 小華 阿美", quick_reply=get_main_quick_reply())]
             
         task_map = {}
         for t in all_tasks:
@@ -295,11 +297,11 @@ def handle_user_command(user_text: str, group_id: str, user_id: str, user_name: 
                 lines.append(f"• {uname}：尚未分配任務（抽籤候選）")
                 
         lines.append("\n若有名單遺漏，可由組長使用：\n/member 新增 或 /成員 新增 [名字1] [名字2]")
-        return [TextMessage(text="\n".join(lines))]
+        return [TextMessage(text="\n".join(lines), quick_reply=get_main_quick_reply())]
 
     # 12. 成員手動簽到：/checkin、/簽到 或 /報到
     if text.lower() in ["/checkin", "/簽到", "/報到", "checkin", "簽到", "報到", "+1"]:
-        return [TextMessage(text=f"「{user_name}」簽到成功！已將您登記至小組名冊。")]
+        return [TextMessage(text=f"「{user_name}」簽到成功！已將您登記至小組名冊。", quick_reply=get_main_quick_reply())]
 
     # 非指令，回傳 None
     return None

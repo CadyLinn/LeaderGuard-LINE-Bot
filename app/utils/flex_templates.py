@@ -15,7 +15,7 @@ def get_main_quick_reply() -> QuickReply:
     return QuickReply(items=[
         QuickReplyItem(action=MessageAction(label="任務分工", text="/選單")),
         QuickReplyItem(action=MessageAction(label="任務清單", text="/task 清單")),
-        QuickReplyItem(action=MessageAction(label="🎲 命運抽籤", text="/roulette")),
+        QuickReplyItem(action=MessageAction(label="🎲 命運抽籤", text="/命運抽籤")),
         QuickReplyItem(action=MessageAction(label="專案進度", text="/status")),
         QuickReplyItem(action=MessageAction(label="指令說明", text="/常用指令說明")),
     ])
@@ -498,7 +498,7 @@ def create_main_menu_flex() -> FlexMessage:
                             "action": {
                                 "type": "message",
                                 "label": "🎲 啟動命運抽籤",
-                                "text": "/roulette"
+                                "text": "/命運抽籤"
                             },
                             "style": "primary",
                             "color": "#E11D48",
@@ -1008,7 +1008,7 @@ def create_task_list_flex(tasks: list) -> FlexMessage:
                 "action": {
                     "type": "message",
                     "label": "🎲 啟動命運抽籤未認領工作",
-                    "text": "/roulette"
+                    "text": "/命運抽籤"
                 },
                 "style": "primary",
                 "color": "#E11D48",
