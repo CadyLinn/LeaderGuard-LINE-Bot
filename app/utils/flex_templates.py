@@ -11,12 +11,12 @@ from linebot.v3.messaging import (
 BASE_URL = os.getenv("BASE_URL", "https://leaderguard-line-bot.onrender.com").rstrip("/")
 
 def get_main_quick_reply() -> QuickReply:
-    """聊天室底部的常駐快捷按鈕列（JoJo 狂氣波普風）"""
+    """聊天室底部的常駐快捷按鈕列"""
     return QuickReply(items=[
         QuickReplyItem(action=MessageAction(label="任務分工", text="/選單")),
         QuickReplyItem(action=MessageAction(label="任務清單", text="/task 清單")),
         QuickReplyItem(action=MessageAction(label="🎲 死鬥輪盤", text="/roulette")),
-        QuickReplyItem(action=MessageAction(label="升級方案", text="/升級方案")),
+        QuickReplyItem(action=MessageAction(label="專案進度", text="/status")),
         QuickReplyItem(action=MessageAction(label="指令說明", text="/常用指令說明")),
     ])
 
@@ -355,7 +355,7 @@ def create_preset_tasks_carousel() -> FlexMessage:
     )
 
 def create_main_menu_flex() -> FlexMessage:
-    """小組功能主選單卡片（JoJo 波普風：高對比、鮮明按鈕、Apple HIG 清晰規範）"""
+    """小組功能主選單卡片（簡潔現代風：高對比、鮮明按鈕）"""
     bubble = {
         "type": "bubble",
         "size": "giga",
@@ -369,8 +369,8 @@ def create_main_menu_flex() -> FlexMessage:
                     "type": "box",
                     "layout": "horizontal",
                     "contents": [
-                        {"type": "text", "text": "【組長保險・已讀不回終結者】", "weight": "bold", "color": "#FDE047", "size": "sm"},
-                        {"type": "text", "text": "ACTIVE", "weight": "bold", "color": "#F43F5E", "size": "sm", "align": "end"}
+                        {"type": "text", "text": "組長保險 LEADERGUARD", "weight": "bold", "color": "#FDE047", "size": "xs", "letterSpacing": "1px"},
+                        {"type": "text", "text": "ACTIVE", "weight": "bold", "color": "#06B6D4", "size": "xs", "align": "end"}
                     ]
                 },
                 {
@@ -383,11 +383,10 @@ def create_main_menu_flex() -> FlexMessage:
                 },
                 {
                     "type": "text",
-                    "text": "組長不必親自催進度，系統自動透明追蹤！",
-                    "color": "#06B6D4",
+                    "text": "專案進度自動透明追蹤，輕鬆分工不當工具人",
+                    "color": "#94A3B8",
                     "size": "xs",
-                    "margin": "sm",
-                    "wrap": True
+                    "margin": "xs"
                 }
             ]
         },
@@ -410,14 +409,14 @@ def create_main_menu_flex() -> FlexMessage:
                     "contents": [
                         {
                             "type": "text",
-                            "text": "💥 專案工作分工（標準範本）",
+                            "text": "專案工作分工",
                             "weight": "bold",
                             "size": "sm",
                             "color": "#06B6D4"
                         },
                         {
                             "type": "text",
-                            "text": "簡報、報告、文獻調研全套範本，點選一鍵發起，立刻認領責任！",
+                            "text": "標準工作範本一鍵發起，清楚記錄每位成員責任",
                             "size": "xs",
                             "color": "#F3E8FF",
                             "margin": "xs",
@@ -457,7 +456,7 @@ def create_main_menu_flex() -> FlexMessage:
                             "type": "button",
                             "action": {
                                 "type": "postback",
-                                "label": "➕ 自訂新增工作",
+                                "label": "自訂新增工作",
                                 "data": "action=prompt_custom_task",
                                 "inputOption": "openKeyboard",
                                 "fillInText": "/任務 新增 "
@@ -469,7 +468,7 @@ def create_main_menu_flex() -> FlexMessage:
                         }
                     ]
                 },
-                # 區塊 2：死鬥輪盤抽籤
+                # 區塊 2：命運抽籤輪盤
                 {
                     "type": "box",
                     "layout": "vertical",
@@ -477,7 +476,7 @@ def create_main_menu_flex() -> FlexMessage:
                     "paddingAll": "14px",
                     "cornerRadius": "8px",
                     "borderColor": "#F43F5E",
-                    "borderWidth": "2px",
+                    "borderWidth": "1.5px",
                     "contents": [
                         {
                             "type": "text",
@@ -488,7 +487,7 @@ def create_main_menu_flex() -> FlexMessage:
                         },
                         {
                             "type": "text",
-                            "text": "沒人認領的工作？交給命運輪盤！系統優先抽尚未負責者！",
+                            "text": "工作沒人認領？交給輪盤抽籤，優先抽尚未負責之組員",
                             "size": "xs",
                             "color": "#F3E8FF",
                             "margin": "xs",
@@ -498,7 +497,7 @@ def create_main_menu_flex() -> FlexMessage:
                             "type": "button",
                             "action": {
                                 "type": "message",
-                                "label": "🎲 啟動命運死鬥輪盤",
+                                "label": "🎲 啟動命運抽籤輪盤",
                                 "text": "/roulette"
                             },
                             "style": "primary",
@@ -508,7 +507,7 @@ def create_main_menu_flex() -> FlexMessage:
                         }
                     ]
                 },
-                # 區塊 3：進度狀態與指南
+                # 區塊 3：進度追蹤與期末結算
                 {
                     "type": "box",
                     "layout": "vertical",
@@ -520,10 +519,18 @@ def create_main_menu_flex() -> FlexMessage:
                     "contents": [
                         {
                             "type": "text",
-                            "text": "📜 專案審判現況與指令秘笈",
+                            "text": "進度追蹤與結算",
                             "weight": "bold",
                             "size": "sm",
                             "color": "#FDE047"
+                        },
+                        {
+                            "type": "text",
+                            "text": "即時掌握小組完成度，隨時產出完整專案紀錄",
+                            "size": "xs",
+                            "color": "#F3E8FF",
+                            "margin": "xs",
+                            "wrap": True
                         },
                         {
                             "type": "box",
@@ -546,14 +553,26 @@ def create_main_menu_flex() -> FlexMessage:
                                     "type": "button",
                                     "action": {
                                         "type": "message",
-                                        "label": "指令手冊",
-                                        "text": "/常用指令說明"
+                                        "label": "匯出紀錄",
+                                        "text": "/export"
                                     },
                                     "style": "primary",
-                                    "color": "#E11D48",
+                                    "color": "#9333EA",
                                     "height": "sm"
                                 }
                             ]
+                        },
+                        {
+                            "type": "button",
+                            "action": {
+                                "type": "message",
+                                "label": "指令手冊",
+                                "text": "/常用指令說明"
+                            },
+                            "style": "secondary",
+                            "color": "#2D224D",
+                            "height": "sm",
+                            "margin": "sm"
                         }
                     ]
                 }

@@ -51,9 +51,9 @@ def health_check():
 @app.get("/version")
 def get_version():
     return {
-        "version": "1.9.19",
-        "build": "add-180-days-validity-and-trim-free-plan",
-        "description": "組長躺平pass標註有效180天，基礎免費版移除永久免費文字"
+        "version": "1.9.20",
+        "build": "group-main-menu-redesign-and-clean-quick-reply",
+        "description": "群組內神隊友功能選單現代化重構移除多餘emoji，Quick Reply移除升級方案"
     }
 
 
