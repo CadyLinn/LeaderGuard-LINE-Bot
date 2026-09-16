@@ -51,9 +51,9 @@ def health_check():
 @app.get("/version")
 def get_version():
     return {
-        "version": "1.9.9",
-        "build": "step1-highlight-and-pro-btn",
-        "description": "新手入門第1步驟「把我邀請進小組群組」獨立卡框高亮強調，4步驟底端配置可點擊「升級 PRO 方案」按鈕"
+        "version": "1.9.10",
+        "build": "welcome-guide-wording-refine",
+        "description": "移除emoji、點擊「群組」加引號，第3步改為「沈寂 30 分鐘自動標註」並配置PRO升級按鈕"
     }
 
 

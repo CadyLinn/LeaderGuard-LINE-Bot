@@ -1235,7 +1235,7 @@ def create_welcome_guide_flex() -> FlexMessage:
                         },
                         {
                             "type": "text",
-                            "text": "👉 點擊群組右上角「≡」>「邀請」將我加入，立刻啟用專案協作！",
+                            "text": "點擊「群組」右上角「≡」>「邀請」將我加入，立刻啟用專案協作！",
                             "size": "xs",
                             "color": "#E2E8F0",
                             "wrap": True,
@@ -1306,7 +1306,7 @@ def create_welcome_guide_flex() -> FlexMessage:
                                     "contents": [
                                         {
                                             "type": "text",
-                                            "text": "沉寂 30 分鐘自動溫柔催繳",
+                                            "text": "沈寂 30 分鐘自動標註",
                                             "size": "sm",
                                             "color": "#FFFFFF",
                                             "weight": "bold",
@@ -1330,7 +1330,7 @@ def create_welcome_guide_flex() -> FlexMessage:
                                 },
                                 {
                                     "type": "text",
-                                    "text": "※ PRO 版本專屬：無人認領將發送提醒並啟動輪盤指派！",
+                                    "text": "PRO 版本專屬：無人認領將發送提醒並啟動輪盤指派！",
                                     "size": "xxs",
                                     "color": "#06B6D4",
                                     "wrap": True,
