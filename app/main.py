@@ -51,9 +51,9 @@ def health_check():
 @app.get("/version")
 def get_version():
     return {
-        "version": "1.9.22",
-        "build": "quick-reply-fate-roulette-complete-sync",
-        "description": "任務分工與清單旁的Quick Reply全面同步為命運抽籤，全文字訊息常態附掛最新快捷列"
+        "version": "1.9.23",
+        "build": "group-welcome-and-menu-contrast-redesign",
+        "description": "入群歡迎文案俐落現代化，主選單按鈕徹底根除黑字看不清問題並升級高對比色彩"
     }
 
 

@@ -418,7 +418,7 @@ def create_main_menu_flex() -> FlexMessage:
                             "type": "text",
                             "text": "標準工作範本一鍵發起，清楚記錄每位成員責任",
                             "size": "xs",
-                            "color": "#F3E8FF",
+                            "color": "#E2E8F0",
                             "margin": "xs",
                             "wrap": True
                         },
@@ -461,8 +461,8 @@ def create_main_menu_flex() -> FlexMessage:
                                 "inputOption": "openKeyboard",
                                 "fillInText": "/任務 新增 "
                             },
-                            "style": "secondary",
-                            "color": "#2D224D",
+                            "style": "primary",
+                            "color": "#3730A3",
                             "height": "sm",
                             "margin": "sm"
                         }
@@ -489,7 +489,7 @@ def create_main_menu_flex() -> FlexMessage:
                             "type": "text",
                             "text": "工作沒人認領？交給命運抽籤，優先抽尚未負責之組員",
                             "size": "xs",
-                            "color": "#F3E8FF",
+                            "color": "#E2E8F0",
                             "margin": "xs",
                             "wrap": True
                         },
@@ -528,7 +528,7 @@ def create_main_menu_flex() -> FlexMessage:
                             "type": "text",
                             "text": "即時掌握小組完成度，隨時產出完整專案紀錄",
                             "size": "xs",
-                            "color": "#F3E8FF",
+                            "color": "#E2E8F0",
                             "margin": "xs",
                             "wrap": True
                         },
@@ -569,8 +569,8 @@ def create_main_menu_flex() -> FlexMessage:
                                 "label": "指令手冊",
                                 "text": "/常用指令說明"
                             },
-                            "style": "secondary",
-                            "color": "#2D224D",
+                            "style": "primary",
+                            "color": "#334155",
                             "height": "sm",
                             "margin": "sm"
                         }
@@ -715,7 +715,7 @@ def create_help_flex() -> FlexMessage:
                     "type": "button",
                     "action": {
                         "type": "postback",
-                        "label": "➕ 點此自訂新增工作",
+                        "label": "自訂新增工作",
                         "data": "action=prompt_custom_task",
                         "inputOption": "openKeyboard",
                         "fillInText": "/任務 新增 "
@@ -981,13 +981,13 @@ def create_task_list_flex(tasks: list) -> FlexMessage:
                 "type": "button",
                 "action": {
                     "type": "postback",
-                    "label": "➕ 自訂新增工作",
+                    "label": "自訂新增工作",
                     "data": "action=prompt_custom_task",
                     "inputOption": "openKeyboard",
                     "fillInText": "/任務 新增 "
                 },
-                "style": "secondary",
-                "color": "#2D224D",
+                "style": "primary",
+                "color": "#3730A3",
                 "height": "sm"
             },
             {
