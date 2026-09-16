@@ -52,8 +52,8 @@ def health_check():
 def get_version():
     return {
         "version": "1.9.19",
-        "build": "add-180-days-validity-to-semester-pass",
-        "description": "組長躺平pass補充標註（有效 180 天）"
+        "build": "add-180-days-validity-and-trim-free-plan",
+        "description": "組長躺平pass標註有效180天，基礎免費版移除永久免費文字"
     }
 
 

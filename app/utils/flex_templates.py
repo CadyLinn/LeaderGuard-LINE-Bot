@@ -1463,7 +1463,7 @@ def create_upgrade_plan_flex() -> FlexMessage:
                         },
                         {
                             "type": "text",
-                            "text": "• 基礎任務建立與自訂項目\n• 溫和版超時提醒通知\n• 🎲 基礎隨機抽籤分配\n• 單一群組上限 1 個專案（永久免費）",
+                            "text": "• 基礎任務建立與自訂項目\n• 溫和版超時提醒通知\n• 🎲 基礎隨機抽籤分配\n• 單一群組上限 1 個專案",
                             "size": "xs",
                             "color": "#F3E8FF",
                             "margin": "sm",
