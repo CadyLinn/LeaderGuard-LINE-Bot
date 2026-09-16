@@ -40,7 +40,7 @@ def _save_local_data():
                 "tasks": _memory_tasks,
                 "groups": _memory_groups,
                 "members": _memory_members
-            }, f, ensure_ascii=False, indent=2)
+            }, f, ensure_ascii=False, indent=2, default=str)
     except Exception as e:
         logger.error(f"儲存本地暫存資料失敗: {e}")
 
@@ -127,7 +127,7 @@ def record_member_activity(group_id: str, user_id: str, user_name: str = None, m
         _memory_members[group_id] = {}
     _memory_members[group_id][user_id] = {
         "user_name": user_name or "組員",
-        "last_seen": datetime.now()
+        "last_seen": datetime.now().isoformat()
     }
     
     _memory_groups[group_id] = {

@@ -41,3 +41,12 @@ def health_check():
         "service": "LeaderGuard LINE Bot"
     }
 
+@app.get("/version")
+def get_version():
+    return {
+        "version": "1.2.0",
+        "build": "table-help-and-rich-menu-v2",
+        "description": "支援中英文雙語指令與表格化常用指令說明"
+    }
+
+
