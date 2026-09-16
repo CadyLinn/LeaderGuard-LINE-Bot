@@ -1342,18 +1342,33 @@ def create_welcome_guide_flex() -> FlexMessage:
                     "type": "button",
                     "style": "primary",
                     "height": "sm",
-                    "color": "#E11D48",
-                    "action": manual_action
+                    "color": "#0891B2",
+                    "action": {
+                        "type": "message",
+                        "label": "指令說明",
+                        "text": "/常用指令說明"
+                    }
                 },
                 {
                     "type": "button",
                     "style": "primary",
                     "height": "sm",
-                    "color": "#0891B2",
+                    "color": "#059669",
                     "action": {
                         "type": "uri",
-                        "label": "立即召喚進群組",
+                        "label": "立即加入群組",
                         "uri": group_invite_url
+                    }
+                },
+                {
+                    "type": "button",
+                    "style": "primary",
+                    "height": "sm",
+                    "color": "#E11D48",
+                    "action": {
+                        "type": "message",
+                        "label": "升級方案",
+                        "text": "/升級方案"
                     }
                 }
             ],

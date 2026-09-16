@@ -78,10 +78,17 @@ def handle_follow(event):
         except Exception:
             pass
 
+        account_name = "組長保險"
+        try:
+            bot_info = line_bot_api.get_bot_info()
+            if bot_info and bot_info.display_name:
+                account_name = bot_info.display_name
+        except Exception:
+            account_name = "組長保險"
+
         greeting_text = (
             f"{user_name}您好！\n"
-            "我是組長保險，\n"
-            "感謝您加入好友！"
+            f"我是{account_name}，感謝您加入好友！"
         )
 
         welcome_flex = create_welcome_guide_flex()

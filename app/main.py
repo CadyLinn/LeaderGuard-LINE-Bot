@@ -51,9 +51,9 @@ def health_check():
 @app.get("/version")
 def get_version():
     return {
-        "version": "1.9.1",
-        "build": "pop-comic-nohands-v10",
-        "description": "小組功能選單（Rich Menu）去手化純物件版、官方帳號1對1私聊停用 Quick Reply"
+        "version": "1.9.2",
+        "build": "welcome-trio-buttons-v11",
+        "description": "好友加入問候語格式優化、入門指引卡片底端整合三按鈕（指令說明、立即加入群組、升級方案）"
     }
 
 
