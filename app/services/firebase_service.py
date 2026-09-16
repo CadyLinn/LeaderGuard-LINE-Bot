@@ -1,6 +1,8 @@
 import os
+import json
 import logging
 import random
+import threading
 from datetime import datetime
 import firebase_admin
 from firebase_admin import credentials, firestore
@@ -8,17 +10,49 @@ from firebase_admin import credentials, firestore
 logger = logging.getLogger("leaderguard.firebase")
 
 db = None
+_firebase_initialized = False
 
-# 本機/離線測試用的記憶體暫存 (在 serviceAccountKey.json 尚未備妥時自動無縫墊檔)
+DATA_FILE = os.path.join(os.path.dirname(__file__), "..", "..", "data", "local_storage.json")
+
+# 本機/離線測試用的記憶體暫存 (具備本地 JSON 檔案永續保存機制)
 _memory_tasks = []
 _memory_groups = {}
 _memory_members = {}
 
+def _load_local_data():
+    global _memory_tasks, _memory_groups, _memory_members
+    try:
+        if os.path.exists(DATA_FILE):
+            with open(DATA_FILE, "r", encoding="utf-8") as f:
+                data = json.load(f)
+                _memory_tasks = data.get("tasks", [])
+                _memory_groups = data.get("groups", {})
+                _memory_members = data.get("members", {})
+                logger.info(f"已自本地檔案載入 {len(_memory_tasks)} 筆任務、{len(_memory_members)} 群組紀錄")
+    except Exception as e:
+        logger.error(f"讀取本地暫存資料失敗: {e}")
+
+def _save_local_data():
+    try:
+        os.makedirs(os.path.dirname(DATA_FILE), exist_ok=True)
+        with open(DATA_FILE, "w", encoding="utf-8") as f:
+            json.dump({
+                "tasks": _memory_tasks,
+                "groups": _memory_groups,
+                "members": _memory_members
+            }, f, ensure_ascii=False, indent=2)
+    except Exception as e:
+        logger.error(f"儲存本地暫存資料失敗: {e}")
+
+# 模組載入時自動讀取已儲存任務與成員
+_load_local_data()
+
 def init_firebase():
-    """初始化 Firebase Admin SDK（具備連線檢驗與防卡死機制）"""
-    global db
-    if db is not None:
+    """初始化 Firebase Admin SDK（具備嚴格 1 秒連線檢驗與防卡死機制）"""
+    global db, _firebase_initialized
+    if _firebase_initialized:
         return db
+    _firebase_initialized = True
 
     cred_json = os.getenv("FIREBASE_CREDENTIALS_JSON")
     cred_path = os.getenv("FIREBASE_CREDENTIALS_PATH", "serviceAccountKey.json")
@@ -26,7 +60,6 @@ def init_firebase():
     cred = None
     if cred_json:
         try:
-            import json
             cred_dict = json.loads(cred_json)
             cred = credentials.Certificate(cred_dict)
             logger.info("使用環境變數 FIREBASE_CREDENTIALS_JSON 憑證載入 Firebase")
@@ -44,30 +77,38 @@ def init_firebase():
             if not firebase_admin._apps:
                 firebase_admin.initialize_app(cred)
             test_client = firestore.client()
-            # 進行 2 秒超時快速健康檢查，確認 Firestore API 是否已在 Firebase 後台啟用
-            try:
-                test_client.collection("_health_check").limit(1).get(timeout=2)
+            
+            # 使用獨立守護線程進行 1 秒防卡死連線檢查
+            check_ok = [False]
+            def _check():
+                try:
+                    test_client.collection("_health_check").limit(1).get()
+                    check_ok[0] = True
+                except Exception:
+                    check_ok[0] = False
+
+            th = threading.Thread(target=_check, daemon=True)
+            th.start()
+            th.join(timeout=1.0)
+
+            if check_ok[0]:
                 db = test_client
-                logger.info("✅ Firebase Firestore 成功連線並通過驗證！")
-            except Exception as conn_err:
-                logger.warning(
-                    f"⚠️ Firebase 專案尚未在 Firebase Console 啟用 Firestore Database！"
-                    f"錯誤訊息: {conn_err}。\n"
-                    "👉 系統已自動切換為「本地記憶體高速模式」，確保 LINE Bot 訊息絕不卡頓或逾時！"
-                )
+                logger.info("Firebase Firestore 成功連線並通過驗證！")
+            else:
+                logger.warning("Firebase Firestore 未啟用或連線超時，自動切換至「本地高效永續模式」！")
                 db = None
         except Exception as e:
             logger.error(f"Firebase 初始化失敗: {e}")
             db = None
     else:
-        logger.warning(f"尚未配置 Firebase 憑證，啟用「本地記憶體模式」確保功能順暢運作！")
+        logger.warning("尚未配置 Firebase 憑證，啟用「本地高效永續模式」確保功能順暢運作！")
         db = None
         
     return db
 
 def get_db():
-    global db
-    if db is None:
+    global db, _firebase_initialized
+    if not _firebase_initialized:
         init_firebase()
     return db
 
@@ -90,10 +131,11 @@ def record_member_activity(group_id: str, user_id: str, user_name: str = None, m
     }
     
     _memory_groups[group_id] = {
-        "last_active_at": datetime.now(),
+        "last_active_at": datetime.now().isoformat(),
         "last_message": message_text,
         "last_sender_id": user_id
     }
+    _save_local_data()
 
     if not database:
         return
@@ -153,9 +195,10 @@ def add_manual_member(group_id: str, member_name: str):
         _memory_members[group_id] = {}
     _memory_members[group_id][user_id] = {
         "user_name": member_name,
-        "last_seen": datetime.now(),
+        "last_seen": datetime.now().isoformat(),
         "is_manual": True
     }
+    _save_local_data()
     
     if database:
         try:
@@ -189,6 +232,7 @@ def record_task(group_id: str, title: str, description: str, creator_id: str):
         "created_at": datetime.now().strftime("%m/%d %H:%M")
     }
     _memory_tasks.append(task_dict)
+    _save_local_data()
 
     if database:
         try:
@@ -246,6 +290,7 @@ def claim_task(task_id: str, user_id: str, user_name: str = None):
             t["assignee_name"] = user_name or "組員"
             task_title = t["title"]
             success = True
+            _save_local_data()
             break
 
     if database:
@@ -282,6 +327,7 @@ def assign_roulette_task(group_id: str, chosen_user_id: str, chosen_user_name: s
             t["status"] = "claimed"
             t["assignee_id"] = chosen_user_id
             t["assignee_name"] = chosen_user_name
+            _save_local_data()
             break
             
     if database:

@@ -155,19 +155,6 @@ def handle_message(event):
             message_text=user_text
         )
 
-        # 嘗試調用 LINE 官方群組成員 API（若為認證官方帳號藍盾/綠盾，可自動一次同步全員名冊）
-        if group_id:
-            try:
-                resp = line_bot_api.get_group_members_ids(group_id)
-                for mid in getattr(resp, "member_ids", []):
-                    try:
-                        m_profile = line_bot_api.get_group_member_profile(group_id, mid)
-                        record_member_activity(group_id=target_group, user_id=mid, user_name=m_profile.display_name)
-                    except Exception:
-                        pass
-            except Exception:
-                pass
-
         # 解析並處理指令
         reply_messages = handle_user_command(
             user_text=user_text,
@@ -177,20 +164,26 @@ def handle_message(event):
         )
 
         if reply_messages:
-            line_bot_api.reply_message_with_http_info(
-                ReplyMessageRequest(
-                    reply_token=event.reply_token,
-                    messages=reply_messages
+            try:
+                line_bot_api.reply_message_with_http_info(
+                    ReplyMessageRequest(
+                        reply_token=event.reply_token,
+                        messages=reply_messages
+                    )
                 )
-            )
+            except Exception as reply_err:
+                logger.error(f"LINE 回覆訊息失敗: {reply_err}")
         elif not group_id:
             # 僅在「一對一私聊」且非特定指令時，直接回傳主選單 Flex 卡片與快捷按鈕列
-            line_bot_api.reply_message_with_http_info(
-                ReplyMessageRequest(
-                    reply_token=event.reply_token,
-                    messages=[create_main_menu_flex()]
+            try:
+                line_bot_api.reply_message_with_http_info(
+                    ReplyMessageRequest(
+                        reply_token=event.reply_token,
+                        messages=[create_main_menu_flex()]
+                    )
                 )
-            )
+            except Exception as reply_err:
+                logger.error(f"LINE 回覆私聊主選單失敗: {reply_err}")
 
 @handler.add(MessageEvent, message=(StickerMessageContent, ImageMessageContent))
 def handle_media_message(event):
