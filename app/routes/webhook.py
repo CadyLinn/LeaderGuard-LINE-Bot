@@ -18,7 +18,8 @@ from linebot.v3.webhooks import (
     ImageMessageContent,
     JoinEvent,
     MemberJoinedEvent,
-    FollowEvent
+    FollowEvent,
+    PostbackEvent
 )
 from app.utils.flex_templates import create_help_flex, create_main_menu_flex
 
@@ -227,4 +228,13 @@ def handle_member_joined(event):
                 except Exception:
                     user_name = "組員"
                 record_member_activity(group_id, user_id, user_name)
+
+@handler.add(PostbackEvent)
+def handle_postback(event):
+    """處理按鈕 Postback 事件（如自訂新增任務鍵盤喚起）"""
+    data = getattr(event.postback, "data", "")
+    logger.info(f"收到 Postback 事件: {data}")
+    # LINE 客戶端已透過 inputOption='openKeyboard' 自動在使用者輸入框帶入「/任務 新增 」
+    # 此處靜默完成即可，無須回覆避免在聊天室洗版
+
 

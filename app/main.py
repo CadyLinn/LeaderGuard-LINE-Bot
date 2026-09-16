@@ -44,9 +44,9 @@ def health_check():
 @app.get("/version")
 def get_version():
     return {
-        "version": "1.2.0",
-        "build": "table-help-and-rich-menu-v2",
-        "description": "支援中英文雙語指令與表格化常用指令說明"
+        "version": "1.3.0",
+        "build": "custom-task-openkeyboard-v3",
+        "description": "支援一鍵自動帶入自訂任務輸入框與去推薦字樣"
     }
 
 

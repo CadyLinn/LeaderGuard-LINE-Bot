@@ -229,6 +229,50 @@ def create_preset_tasks_carousel() -> FlexMessage:
                     }
                 ]
             }
+        },
+        # 卡片 6：自訂其他工作
+        {
+            "type": "bubble",
+            "size": "mega",
+            "header": {
+                "type": "box",
+                "layout": "vertical",
+                "backgroundColor": "#0F766E",
+                "paddingAll": "16px",
+                "contents": [
+                    {"type": "text", "text": "➕ 自訂其他工作", "weight": "bold", "color": "#FFFFFF", "size": "md"}
+                ]
+            },
+            "body": {
+                "type": "box",
+                "layout": "vertical",
+                "spacing": "sm",
+                "paddingAll": "16px",
+                "contents": [
+                    {"type": "text", "text": "不限於現有範本", "weight": "bold", "size": "sm", "color": "#0F172A"},
+                    {"type": "text", "text": "點選下方按鈕，對話框會自動帶入指令，直接輸入工作名稱即可！", "size": "xs", "color": "#64748B", "wrap": True}
+                ]
+            },
+            "footer": {
+                "type": "box",
+                "layout": "vertical",
+                "paddingAll": "12px",
+                "contents": [
+                    {
+                        "type": "button",
+                        "action": {
+                            "type": "postback",
+                            "label": "點我自訂輸入工作",
+                            "data": "action=prompt_custom_task",
+                            "inputOption": "openKeyboard",
+                            "fillInText": "/任務 新增 "
+                        },
+                        "style": "primary",
+                        "color": "#0F766E",
+                        "height": "sm"
+                    }
+                ]
+            }
         }
     ]
 
@@ -330,6 +374,19 @@ def create_main_menu_flex() -> FlexMessage:
                                     "height": "sm"
                                 }
                             ]
+                        },
+                        {
+                            "type": "button",
+                            "action": {
+                                "type": "postback",
+                                "label": "➕ 自訂新增工作",
+                                "data": "action=prompt_custom_task",
+                                "inputOption": "openKeyboard",
+                                "fillInText": "/任務 新增 "
+                            },
+                            "style": "secondary",
+                            "height": "sm",
+                            "margin": "sm"
                         }
                     ]
                 },
@@ -499,7 +556,7 @@ def create_help_flex() -> FlexMessage:
                     "cornerRadius": "4px",
                     "contents": [
                         {"type": "text", "text": "你想做的事", "weight": "bold", "size": "xs", "color": "#FFFFFF", "flex": 3},
-                        {"type": "text", "text": "中文指令（推薦）", "weight": "bold", "size": "xs", "color": "#38BDF8", "flex": 4},
+                        {"type": "text", "text": "中文指令", "weight": "bold", "size": "xs", "color": "#38BDF8", "flex": 4},
                         {"type": "text", "text": "英文指令", "weight": "bold", "size": "xs", "color": "#CBD5E1", "flex": 3}
                     ]
                 },
@@ -525,6 +582,26 @@ def create_help_flex() -> FlexMessage:
                             "wrap": True
                         }
                     ]
+                }
+            ]
+        },
+        "footer": {
+            "type": "box",
+            "layout": "vertical",
+            "paddingAll": "12px",
+            "contents": [
+                {
+                    "type": "button",
+                    "action": {
+                        "type": "postback",
+                        "label": "➕ 點此自訂新增工作",
+                        "data": "action=prompt_custom_task",
+                        "inputOption": "openKeyboard",
+                        "fillInText": "/任務 新增 "
+                    },
+                    "style": "primary",
+                    "color": "#0F766E",
+                    "height": "sm"
                 }
             ]
         }
@@ -634,17 +711,30 @@ def create_task_list_flex(tasks: list) -> FlexMessage:
         footer_box = {
             "type": "box",
             "layout": "vertical",
+            "spacing": "sm",
             "paddingAll": "12px",
             "contents": [
                 {
                     "type": "button",
                     "action": {
-                        "type": "message",
-                        "label": "瀏覽分工範本",
-                        "text": "/task 範本"
+                        "type": "postback",
+                        "label": "➕ 自訂新增工作",
+                        "data": "action=prompt_custom_task",
+                        "inputOption": "openKeyboard",
+                        "fillInText": "/任務 新增 "
                     },
                     "style": "primary",
                     "color": "#0F766E",
+                    "height": "sm"
+                },
+                {
+                    "type": "button",
+                    "action": {
+                        "type": "message",
+                        "label": "瀏覽常用範本",
+                        "text": "/task 範本"
+                    },
+                    "style": "secondary",
                     "height": "sm"
                 }
             ]
@@ -748,8 +838,20 @@ def create_task_list_flex(tasks: list) -> FlexMessage:
             {
                 "type": "button",
                 "action": {
+                    "type": "postback",
+                    "label": "➕ 自訂新增工作",
+                    "data": "action=prompt_custom_task",
+                    "inputOption": "openKeyboard",
+                    "fillInText": "/任務 新增 "
+                },
+                "style": "secondary",
+                "height": "sm"
+            },
+            {
+                "type": "button",
+                "action": {
                     "type": "message",
-                    "label": "新增分工範本",
+                    "label": "常用分工範本",
                     "text": "/task 範本"
                 },
                 "style": "secondary",
