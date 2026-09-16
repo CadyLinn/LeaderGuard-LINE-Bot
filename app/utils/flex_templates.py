@@ -37,8 +37,8 @@ def create_preset_tasks_carousel() -> FlexMessage:
                         "type": "box",
                         "layout": "horizontal",
                         "contents": [
-                            {"type": "text", "text": "【替身能力】", "size": "xxs", "color": "#06B6D4", "weight": "bold"},
-                            {"type": "text", "text": "ゴゴゴ", "size": "xxs", "color": "#F43F5E", "align": "end", "weight": "bold"}
+                            {"type": "text", "text": "【專業分工】", "size": "xxs", "color": "#06B6D4", "weight": "bold"},
+                            {"type": "text", "text": "HOT", "size": "xxs", "color": "#F43F5E", "align": "end", "weight": "bold"}
                         ]
                     },
                     {"type": "text", "text": "簡報製作與美編", "weight": "bold", "color": "#FFFFFF", "size": "md", "margin": "xs"}
@@ -53,8 +53,8 @@ def create_preset_tasks_carousel() -> FlexMessage:
                 "borderColor": "#06B6D4",
                 "borderWidth": "1px",
                 "contents": [
-                    {"type": "text", "text": "使命覺悟：", "weight": "bold", "size": "xs", "color": "#FDE047"},
-                    {"type": "text", "text": "• 統整組員文字與圖表\n• PPT / Canva 視覺暴擊美化\n• 彙整報告講稿備忘錄", "size": "xs", "color": "#F3E8FF", "wrap": True}
+                    {"type": "text", "text": "核心職責：", "weight": "bold", "size": "xs", "color": "#FDE047"},
+                    {"type": "text", "text": "• 統整組員文字與圖表\n• PPT / Canva 視覺專業美化\n• 彙整報告講稿備忘錄", "size": "xs", "color": "#F3E8FF", "wrap": True}
                 ]
             },
             "footer": {
@@ -67,7 +67,7 @@ def create_preset_tasks_carousel() -> FlexMessage:
                         "type": "button",
                         "action": {
                             "type": "message",
-                            "label": "發動替身：建立任務",
+                            "label": "認領責任：建立任務",
                             "text": "/task 新增 簡報製作與美化 負責PPT視覺美編與排版"
                         },
                         "style": "primary",
@@ -91,8 +91,8 @@ def create_preset_tasks_carousel() -> FlexMessage:
                         "type": "box",
                         "layout": "horizontal",
                         "contents": [
-                            {"type": "text", "text": "【替身能力】", "size": "xxs", "color": "#06B6D4", "weight": "bold"},
-                            {"type": "text", "text": "ドドド", "size": "xxs", "color": "#FDE047", "align": "end", "weight": "bold"}
+                            {"type": "text", "text": "【專業分工】", "size": "xxs", "color": "#06B6D4", "weight": "bold"},
+                            {"type": "text", "text": "FOCUS", "size": "xxs", "color": "#FDE047", "align": "end", "weight": "bold"}
                         ]
                     },
                     {"type": "text", "text": "上台口頭報告", "weight": "bold", "color": "#FFFFFF", "size": "md", "margin": "xs"}
@@ -107,8 +107,8 @@ def create_preset_tasks_carousel() -> FlexMessage:
                 "borderColor": "#F43F5E",
                 "borderWidth": "1px",
                 "contents": [
-                    {"type": "text", "text": "使命覺悟：", "weight": "bold", "size": "xs", "color": "#FDE047"},
-                    {"type": "text", "text": "• 掌握專案全脈絡\n• 代表小組霸氣發表\n• 現場教授提問強勢應對", "size": "xs", "color": "#F3E8FF", "wrap": True}
+                    {"type": "text", "text": "核心職責：", "weight": "bold", "size": "xs", "color": "#FDE047"},
+                    {"type": "text", "text": "• 掌握專案全脈絡\n• 代表小組自信發表\n• 現場教授提問沉著應對", "size": "xs", "color": "#F3E8FF", "wrap": True}
                 ]
             },
             "footer": {
@@ -121,7 +121,7 @@ def create_preset_tasks_carousel() -> FlexMessage:
                         "type": "button",
                         "action": {
                             "type": "message",
-                            "label": "發動替身：建立任務",
+                            "label": "認領責任：建立任務",
                             "text": "/task 新增 上台口頭報告 負責掌握專案脈絡並代表口頭發表"
                         },
                         "style": "primary",
@@ -145,8 +145,8 @@ def create_preset_tasks_carousel() -> FlexMessage:
                         "type": "box",
                         "layout": "horizontal",
                         "contents": [
-                            {"type": "text", "text": "【替身能力】", "size": "xxs", "color": "#06B6D4", "weight": "bold"},
-                            {"type": "text", "text": "ズキューン", "size": "xxs", "color": "#06B6D4", "align": "end", "weight": "bold"}
+                            {"type": "text", "text": "【專業分工】", "size": "xxs", "color": "#06B6D4", "weight": "bold"},
+                            {"type": "text", "text": "KEY", "size": "xxs", "color": "#06B6D4", "align": "end", "weight": "bold"}
                         ]
                     },
                     {"type": "text", "text": "文獻查證與資料蒐集", "weight": "bold", "color": "#FFFFFF", "size": "md", "margin": "xs"}
@@ -161,8 +161,8 @@ def create_preset_tasks_carousel() -> FlexMessage:
                 "borderColor": "#06B6D4",
                 "borderWidth": "1px",
                 "contents": [
-                    {"type": "text", "text": "使命覺悟：", "weight": "bold", "size": "xs", "color": "#FDE047"},
-                    {"type": "text", "text": "• 前期專案主題地毯式調研\n• 相關文獻與真實案例查證\n• 數據統整與來源鐵證", "size": "xs", "color": "#F3E8FF", "wrap": True}
+                    {"type": "text", "text": "核心職責：", "weight": "bold", "size": "xs", "color": "#FDE047"},
+                    {"type": "text", "text": "• 前期專案主題地毯式調研\n• 相關文獻與真實案例查證\n• 數據統整與來源佐證", "size": "xs", "color": "#F3E8FF", "wrap": True}
                 ]
             },
             "footer": {
@@ -175,7 +175,7 @@ def create_preset_tasks_carousel() -> FlexMessage:
                         "type": "button",
                         "action": {
                             "type": "message",
-                            "label": "發動替身：建立任務",
+                            "label": "認領責任：建立任務",
                             "text": "/task 新增 文獻查證與資料蒐集 負責前期調研、文獻查證與數據整理"
                         },
                         "style": "primary",
@@ -199,8 +199,8 @@ def create_preset_tasks_carousel() -> FlexMessage:
                         "type": "box",
                         "layout": "horizontal",
                         "contents": [
-                            {"type": "text", "text": "【替身能力】", "size": "xxs", "color": "#06B6D4", "weight": "bold"},
-                            {"type": "text", "text": "WRYYYY", "size": "xxs", "color": "#FDE047", "align": "end", "weight": "bold"}
+                            {"type": "text", "text": "【專業分工】", "size": "xxs", "color": "#06B6D4", "weight": "bold"},
+                            {"type": "text", "text": "CORE", "size": "xxs", "color": "#FDE047", "align": "end", "weight": "bold"}
                         ]
                     },
                     {"type": "text", "text": "書面報告撰寫統整", "weight": "bold", "color": "#FFFFFF", "size": "md", "margin": "xs"}
@@ -215,8 +215,8 @@ def create_preset_tasks_carousel() -> FlexMessage:
                 "borderColor": "#F43F5E",
                 "borderWidth": "1px",
                 "contents": [
-                    {"type": "text", "text": "使命覺悟：", "weight": "bold", "size": "xs", "color": "#FDE047"},
-                    {"type": "text", "text": "• 彙整各章節文字與圖表\n• 校對格式排版與文獻引用\n• 產出完美無瑕期末正式報告", "size": "xs", "color": "#F3E8FF", "wrap": True}
+                    {"type": "text", "text": "核心職責：", "weight": "bold", "size": "xs", "color": "#FDE047"},
+                    {"type": "text", "text": "• 彙整各章節文字與圖表\n• 校對格式排版與文獻引用\n• 產出完整清晰期末正式報告", "size": "xs", "color": "#F3E8FF", "wrap": True}
                 ]
             },
             "footer": {
@@ -229,7 +229,7 @@ def create_preset_tasks_carousel() -> FlexMessage:
                         "type": "button",
                         "action": {
                             "type": "message",
-                            "label": "發動替身：建立任務",
+                            "label": "認領責任：建立任務",
                             "text": "/task 新增 書面報告撰寫統整 負責期末書面Word/PDF格式與內容校對"
                         },
                         "style": "primary",
@@ -239,7 +239,7 @@ def create_preset_tasks_carousel() -> FlexMessage:
                 ]
             }
         },
-        # 卡片 5：一鍵批次建立全套（黃金精神狂暴卡）
+        # 卡片 5：一鍵批次建立全套（神級效率分工卡）
         {
             "type": "bubble",
             "size": "mega",
@@ -255,11 +255,11 @@ def create_preset_tasks_carousel() -> FlexMessage:
                         "type": "box",
                         "layout": "horizontal",
                         "contents": [
-                            {"type": "text", "text": "【黃金之風】", "size": "xxs", "color": "#FDE047", "weight": "bold"},
-                            {"type": "text", "text": "オラオラ！", "size": "xxs", "color": "#06B6D4", "align": "end", "weight": "bold"}
+                            {"type": "text", "text": "【效率神技】", "size": "xxs", "color": "#FDE047", "weight": "bold"},
+                            {"type": "text", "text": "ALL IN ONE", "size": "xxs", "color": "#06B6D4", "align": "end", "weight": "bold"}
                         ]
                     },
-                    {"type": "text", "text": "一鍵全套分工連擊！", "weight": "bold", "color": "#FDE047", "size": "md", "margin": "xs"}
+                    {"type": "text", "text": "一鍵全套分工建立！", "weight": "bold", "color": "#FDE047", "size": "md", "margin": "xs"}
                 ]
             },
             "body": {
@@ -269,8 +269,8 @@ def create_preset_tasks_carousel() -> FlexMessage:
                 "paddingAll": "16px",
                 "backgroundColor": "#1E1636",
                 "contents": [
-                    {"type": "text", "text": "組長無想轉生首選", "weight": "bold", "size": "sm", "color": "#06B6D4"},
-                    {"type": "text", "text": "一次召喚 4 大標準分工（簡報、報告、調研、書面），誰敢已讀不回？直接認領！", "size": "xs", "color": "#F3E8FF", "wrap": True}
+                    {"type": "text", "text": "小組長必備效率神器", "weight": "bold", "size": "sm", "color": "#06B6D4"},
+                    {"type": "text", "text": "一次建立 4 大標準分工（簡報、報告、調研、書面），責任清楚、拒絕摸魚！", "size": "xs", "color": "#F3E8FF", "wrap": True}
                 ]
             },
             "footer": {
@@ -303,7 +303,7 @@ def create_preset_tasks_carousel() -> FlexMessage:
                 "backgroundColor": "#160F29",
                 "paddingAll": "16px",
                 "contents": [
-                    {"type": "text", "text": "➕ 自訂專屬替身工作", "weight": "bold", "color": "#FFFFFF", "size": "md"}
+                    {"type": "text", "text": "➕ 自訂專屬小組任務", "weight": "bold", "color": "#FFFFFF", "size": "md"}
                 ]
             },
             "body": {
@@ -315,7 +315,7 @@ def create_preset_tasks_carousel() -> FlexMessage:
                 "borderColor": "#06B6D4",
                 "borderWidth": "1px",
                 "contents": [
-                    {"type": "text", "text": "だが断る！（但是我拒絕侷限）", "weight": "bold", "size": "sm", "color": "#FDE047"},
+                    {"type": "text", "text": "拒絕摸魚！（自訂全新任務）", "weight": "bold", "size": "sm", "color": "#FDE047"},
                     {"type": "text", "text": "點擊下方按鈕，對話框會自動帶入指令，由你親手命名全新任務！", "size": "xs", "color": "#F3E8FF", "wrap": True}
                 ]
             },
@@ -349,7 +349,7 @@ def create_preset_tasks_carousel() -> FlexMessage:
     }
 
     return FlexMessage(
-        alt_text="小組專案常用分工範本（JoJo 波普版）",
+        alt_text="小組專案常用分工範本（波普美漫版）",
         contents=FlexContainer.from_dict(carousel),
         quick_reply=get_main_quick_reply()
     )
@@ -369,13 +369,13 @@ def create_main_menu_flex() -> FlexMessage:
                     "type": "box",
                     "layout": "horizontal",
                     "contents": [
-                        {"type": "text", "text": "【組長保險・已讀不回審判庭】", "weight": "bold", "color": "#FDE047", "size": "sm"},
-                        {"type": "text", "text": "ゴゴゴ", "weight": "bold", "color": "#F43F5E", "size": "sm", "align": "end"}
+                        {"type": "text", "text": "【組長保險・已讀不回終結者】", "weight": "bold", "color": "#FDE047", "size": "sm"},
+                        {"type": "text", "text": "ACTIVE", "weight": "bold", "color": "#F43F5E", "size": "sm", "align": "end"}
                     ]
                 },
                 {
                     "type": "text",
-                    "text": "小組協作・替身使者功能選單",
+                    "text": "小組協作・神隊友功能選單",
                     "weight": "bold",
                     "color": "#FFFFFF",
                     "size": "lg",
@@ -383,7 +383,7 @@ def create_main_menu_flex() -> FlexMessage:
                 },
                 {
                     "type": "text",
-                    "text": "組長不必親自追殺進度，這就是命運的裁判！",
+                    "text": "組長不必親自催進度，系統自動透明追蹤！",
                     "color": "#06B6D4",
                     "size": "xs",
                     "margin": "sm",
@@ -410,7 +410,7 @@ def create_main_menu_flex() -> FlexMessage:
                     "contents": [
                         {
                             "type": "text",
-                            "text": "💥 專案工作分工（連擊召喚）",
+                            "text": "💥 專案工作分工（標準範本）",
                             "weight": "bold",
                             "size": "sm",
                             "color": "#06B6D4"
@@ -481,14 +481,14 @@ def create_main_menu_flex() -> FlexMessage:
                     "contents": [
                         {
                             "type": "text",
-                            "text": "🎲 死鬥輪盤・命運抽籤",
+                            "text": "🎲 命運輪盤・隨機抽籤",
                             "weight": "bold",
                             "size": "sm",
                             "color": "#F43F5E"
                         },
                         {
                             "type": "text",
-                            "text": "沒人認領的工作？這就是替身使者的命運！系統優先抽尚未負責者！",
+                            "text": "沒人認領的工作？交給命運輪盤！系統優先抽尚未負責者！",
                             "size": "xs",
                             "color": "#F3E8FF",
                             "margin": "xs",
@@ -616,13 +616,13 @@ def create_help_flex() -> FlexMessage:
                     "type": "box",
                     "layout": "horizontal",
                     "contents": [
-                        {"type": "text", "text": "【替身指令全集中】", "size": "xs", "color": "#FDE047", "weight": "bold"},
-                        {"type": "text", "text": "ドドド…", "size": "xs", "color": "#F43F5E", "align": "end", "weight": "bold"}
+                        {"type": "text", "text": "【指令速查指南】", "size": "xs", "color": "#FDE047", "weight": "bold"},
+                        {"type": "text", "text": "GUIDE", "size": "xs", "color": "#F43F5E", "align": "end", "weight": "bold"}
                     ]
                 },
                 {
                     "type": "text",
-                    "text": "常用指令說明・秘笈",
+                    "text": "常用指令說明・速查手冊",
                     "weight": "bold",
                     "color": "#FFFFFF",
                     "size": "md",
@@ -729,8 +729,8 @@ def create_task_created_flex(task_id: str, title: str, description: str, creator
                     "type": "box",
                     "layout": "horizontal",
                     "contents": [
-                        {"type": "text", "text": "【新任務登場】", "size": "xs", "color": "#06B6D4", "weight": "bold"},
-                        {"type": "text", "text": "ズキューン", "size": "xs", "color": "#FDE047", "align": "end", "weight": "bold"}
+                        {"type": "text", "text": "【新任務建立】", "size": "xs", "color": "#06B6D4", "weight": "bold"},
+                        {"type": "text", "text": "NEW", "size": "xs", "color": "#FDE047", "align": "end", "weight": "bold"}
                     ]
                 },
                 {
@@ -770,7 +770,7 @@ def create_task_created_flex(task_id: str, title: str, description: str, creator
                     "type": "box",
                     "layout": "horizontal",
                     "contents": [
-                        {"type": "text", "text": "指派召喚者", "size": "xs", "color": "#06B6D4"},
+                        {"type": "text", "text": "任務發起人", "size": "xs", "color": "#06B6D4"},
                         {"type": "text", "text": creator_name, "size": "xs", "color": "#FFFFFF", "align": "end", "weight": "bold"}
                     ]
                 },
@@ -779,7 +779,7 @@ def create_task_created_flex(task_id: str, title: str, description: str, creator
                     "layout": "horizontal",
                     "contents": [
                         {"type": "text", "text": "當前狀態", "size": "xs", "color": "#06B6D4"},
-                        {"type": "text", "text": "待認領（命運等待中）", "size": "xs", "color": "#F43F5E", "align": "end", "weight": "bold"}
+                        {"type": "text", "text": "待認領（尚未認領）", "size": "xs", "color": "#F43F5E", "align": "end", "weight": "bold"}
                     ]
                 }
             ]
@@ -890,7 +890,7 @@ def create_task_list_flex(tasks: list) -> FlexMessage:
                                 },
                                 {
                                     "type": "text",
-                                    "text": "尚未認領（ゴゴゴ…）",
+                                    "text": "尚未認領（待認領）",
                                     "size": "xxs",
                                     "color": "#F43F5E",
                                     "weight": "bold"
@@ -1020,7 +1020,7 @@ def create_task_list_flex(tasks: list) -> FlexMessage:
                     "layout": "horizontal",
                     "contents": [
                         {"type": "text", "text": "【工作存證現況】", "size": "xs", "color": "#06B6D4", "weight": "bold"},
-                        {"type": "text", "text": "ゴゴゴ", "size": "xs", "color": "#F43F5E", "align": "end", "weight": "bold"}
+                        {"type": "text", "text": "STATUS", "size": "xs", "color": "#F43F5E", "align": "end", "weight": "bold"}
                     ]
                 },
                 {
@@ -1033,7 +1033,7 @@ def create_task_list_flex(tasks: list) -> FlexMessage:
                 },
                 {
                     "type": "text",
-                    "text": "誰在做事、誰在摸魚，全都逃不過替身之眼！",
+                    "text": "分工進度透明公開，誰在付出全都清楚記錄！",
                     "color": "#FDE047",
                     "size": "xs",
                     "margin": "xs",
@@ -1057,7 +1057,7 @@ def create_task_list_flex(tasks: list) -> FlexMessage:
     )
 
 def create_roulette_flex(task_id: str, task_title: str, victim_name: str) -> FlexMessage:
-    """🎲 隨機抽籤結果卡片（JoJo 命運死鬥輪盤風格）"""
+    """🎲 隨機抽籤結果卡片（命運輪盤風格）"""
     bubble = {
         "type": "bubble",
         "size": "mega",
@@ -1071,8 +1071,8 @@ def create_roulette_flex(task_id: str, task_title: str, victim_name: str) -> Fle
                     "type": "box",
                     "layout": "horizontal",
                     "contents": [
-                        {"type": "text", "text": "🎲 死鬥輪盤裁決", "size": "xs", "color": "#FDE047", "weight": "bold"},
-                        {"type": "text", "text": "オラオラ！", "size": "xs", "color": "#06B6D4", "align": "end", "weight": "bold"}
+                        {"type": "text", "text": "🎲 命運輪盤抽籤", "size": "xs", "color": "#FDE047", "weight": "bold"},
+                        {"type": "text", "text": "LUCKY", "size": "xs", "color": "#06B6D4", "align": "end", "weight": "bold"}
                     ]
                 },
                 {"type": "text", "text": "這就是命運的安排！", "weight": "bold", "color": "#FFFFFF", "size": "md", "align": "center", "margin": "xs"}
@@ -1096,7 +1096,7 @@ def create_roulette_flex(task_id: str, task_title: str, victim_name: str) -> Fle
                     "contents": [
                         {
                             "type": "text",
-                            "text": "命運選中的替身使者：",
+                            "text": "命運選中的天選隊友：",
                             "size": "xs",
                             "color": "#06B6D4",
                             "align": "center"
@@ -1123,7 +1123,7 @@ def create_roulette_flex(task_id: str, task_title: str, victim_name: str) -> Fle
                         },
                         {
                             "type": "text",
-                            "text": "覺悟吧！逃避是沒有用的，全組都在看著你！",
+                            "text": "天選之人！這項任務就交給你了，全組看好你！",
                             "size": "xs",
                             "color": "#F43F5E",
                             "align": "center",
@@ -1172,13 +1172,13 @@ def create_welcome_guide_flex() -> FlexMessage:
                     "type": "box",
                     "layout": "horizontal",
                     "contents": [
-                        {"type": "text", "text": "【組長保險指南】", "size": "xs", "weight": "bold", "color": "#FDE047"},
-                        {"type": "text", "text": "ドドド…", "size": "xs", "weight": "bold", "color": "#06B6D4", "align": "end"}
+                        {"type": "text", "text": "【新手入門指引】", "size": "xs", "weight": "bold", "color": "#FDE047"},
+                        {"type": "text", "text": "START", "size": "xs", "weight": "bold", "color": "#06B6D4", "align": "end"}
                     ]
                 },
                 {
                     "type": "text",
-                    "text": "4 步驟開啟替身審判！",
+                    "text": "4 步驟告別組長噩夢！",
                     "size": "xl",
                     "weight": "bold",
                     "color": "#FFFFFF",
@@ -1213,7 +1213,7 @@ def create_welcome_guide_flex() -> FlexMessage:
                         },
                         {
                             "type": "text",
-                            "text": "把我召喚進小組群組！",
+                            "text": "把我邀請進小組群組！",
                             "size": "sm",
                             "color": "#FFFFFF",
                             "gravity": "center",
@@ -1244,7 +1244,7 @@ def create_welcome_guide_flex() -> FlexMessage:
                         },
                         {
                             "type": "text",
-                            "text": "輸入 /assign 發起連擊分工",
+                            "text": "輸入 /assign 快速發起分工",
                             "size": "sm",
                             "color": "#FFFFFF",
                             "gravity": "center",
@@ -1280,7 +1280,7 @@ def create_welcome_guide_flex() -> FlexMessage:
                             "contents": [
                                 {
                                     "type": "text",
-                                    "text": "沉寂 30 分鐘自動替身催繳",
+                                    "text": "沉寂 30 分鐘自動溫柔催繳",
                                     "size": "sm",
                                     "color": "#FFFFFF",
                                     "weight": "bold",
@@ -1288,7 +1288,7 @@ def create_welcome_guide_flex() -> FlexMessage:
                                 },
                                 {
                                     "type": "text",
-                                    "text": "無人認領將公告並發動死鬥輪盤隨機指派！",
+                                    "text": "無人認領將發送提醒並啟動輪盤指派！",
                                     "size": "xxs",
                                     "color": "#06B6D4",
                                     "wrap": True,
@@ -1389,8 +1389,8 @@ def create_upgrade_plan_flex() -> FlexMessage:
                     "type": "box",
                     "layout": "horizontal",
                     "contents": [
-                        {"type": "text", "text": "【黃金覺悟】", "size": "xs", "color": "#FDE047", "weight": "bold"},
-                        {"type": "text", "text": "WRYYYY", "size": "xs", "color": "#06B6D4", "align": "end", "weight": "bold"}
+                        {"type": "text", "text": "【進階升級】", "size": "xs", "color": "#FDE047", "weight": "bold"},
+                        {"type": "text", "text": "PRO PLAN", "size": "xs", "color": "#06B6D4", "align": "end", "weight": "bold"}
                     ]
                 },
                 {
@@ -1403,7 +1403,7 @@ def create_upgrade_plan_flex() -> FlexMessage:
                 },
                 {
                     "type": "text",
-                    "text": "全面解鎖進階替身催繳能力與期末互評防護罩",
+                    "text": "全面解鎖進階自動催繳能力與期末互評防護罩",
                     "color": "#06B6D4",
                     "size": "xs",
                     "margin": "xs",
@@ -1449,7 +1449,7 @@ def create_upgrade_plan_flex() -> FlexMessage:
                         },
                         {
                             "type": "text",
-                            "text": "• 4 大標準分工範本與自訂任務\n• 🎲 死鬥輪盤隨機抽籤（優先鎖定無任務者）\n• 本地資料存證與小組成員名冊",
+                            "text": "• 4 大標準分工範本與自訂任務\n• 🎲 命運輪盤隨機抽籤（優先鎖定無任務者）\n• 本地資料存證與小組成員名冊",
                             "size": "xs",
                             "color": "#F3E8FF",
                             "margin": "sm",
@@ -1498,7 +1498,7 @@ def create_upgrade_plan_flex() -> FlexMessage:
                 },
                 {
                     "type": "text",
-                    "text": "不想再當組長冤大頭？升級 Pro 讓替身自動幫你主持公道！",
+                    "text": "不想再當組長冤大頭？升級 Pro 讓系統自動幫你主持公道！",
                     "size": "xxs",
                     "color": "#F43F5E",
                     "align": "center",

@@ -51,9 +51,9 @@ def health_check():
 @app.get("/version")
 def get_version():
     return {
-        "version": "1.8.0",
-        "build": "jojo-trio-heroes-v8",
-        "description": "JoJo 風格使用手冊、指令說明與升級方案三大卡片配圖與三格選單"
+        "version": "1.9.0",
+        "build": "pop-comic-clean-v9",
+        "description": "全新美漫波普風格（純中英文、無日文、無狀聲詞贅字）、高對比三格圖文選單與三大 Hero 插圖"
     }
 
 
