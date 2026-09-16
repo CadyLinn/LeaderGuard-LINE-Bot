@@ -1203,11 +1203,12 @@ def create_welcome_guide_flex() -> FlexMessage:
                     "paddingAll": "12px",
                     "spacing": "xs",
                     "contents": [
+                        # Step 1
                         {
                             "type": "box",
                             "layout": "horizontal",
                             "spacing": "md",
-                            "alignItems": "flex-start",
+                            "alignItems": "center",
                             "contents": [
                                 {
                                     "type": "box",
@@ -1223,35 +1224,22 @@ def create_welcome_guide_flex() -> FlexMessage:
                                     ]
                                 },
                                 {
-                                    "type": "box",
-                                    "layout": "vertical",
-                                    "flex": 1,
-                                    "contents": [
-                                        {
-                                            "type": "text",
-                                            "text": "把我邀請進「群組」！",
-                                            "size": "sm",
-                                            "color": "#FDE047",
-                                            "weight": "bold"
-                                        },
-                                        {
-                                            "type": "text",
-                                            "text": "點右上角「≡」>「邀請」加入小組群組",
-                                            "size": "xxs",
-                                            "color": "#E2E8F0",
-                                            "wrap": True,
-                                            "margin": "xs"
-                                        }
-                                    ]
+                                    "type": "text",
+                                    "text": "把我加進「群組」",
+                                    "size": "sm",
+                                    "color": "#FDE047",
+                                    "weight": "bold",
+                                    "flex": 1
                                 }
                             ]
                         },
                         { "type": "separator", "color": "#2A1B4E" },
+                        # Step 2
                         {
                             "type": "box",
                             "layout": "horizontal",
                             "spacing": "md",
-                            "alignItems": "flex-start",
+                            "alignItems": "center",
                             "contents": [
                                 {
                                     "type": "box",
@@ -1267,35 +1255,22 @@ def create_welcome_guide_flex() -> FlexMessage:
                                     ]
                                 },
                                 {
-                                    "type": "box",
-                                    "layout": "vertical",
-                                    "flex": 1,
-                                    "contents": [
-                                        {
-                                            "type": "text",
-                                            "text": "輸入 /assign 快速發起分工",
-                                            "size": "sm",
-                                            "color": "#FFFFFF",
-                                            "weight": "bold"
-                                        },
-                                        {
-                                            "type": "text",
-                                            "text": "選擇小組任務範本或自訂分工指派組員",
-                                            "size": "xxs",
-                                            "color": "#94A3B8",
-                                            "wrap": True,
-                                            "margin": "xs"
-                                        }
-                                    ]
+                                    "type": "text",
+                                    "text": "輸入 /assign 發起分工",
+                                    "size": "sm",
+                                    "color": "#FFFFFF",
+                                    "weight": "bold",
+                                    "flex": 1
                                 }
                             ]
                         },
                         { "type": "separator", "color": "#2A1B4E" },
+                        # Step 3
                         {
                             "type": "box",
                             "layout": "horizontal",
                             "spacing": "md",
-                            "alignItems": "flex-start",
+                            "alignItems": "center",
                             "contents": [
                                 {
                                     "type": "box",
@@ -1312,56 +1287,43 @@ def create_welcome_guide_flex() -> FlexMessage:
                                 },
                                 {
                                     "type": "box",
-                                    "layout": "vertical",
+                                    "layout": "horizontal",
+                                    "spacing": "xs",
+                                    "alignItems": "center",
                                     "flex": 1,
                                     "contents": [
                                         {
-                                            "type": "box",
-                                            "layout": "horizontal",
-                                            "spacing": "xs",
-                                            "alignItems": "center",
-                                            "contents": [
-                                                {
-                                                    "type": "text",
-                                                    "text": "沈靜30分鐘自動標註",
-                                                    "size": "sm",
-                                                    "color": "#FFFFFF",
-                                                    "weight": "bold",
-                                                    "flex": 0
-                                                },
-                                                {
-                                                    "type": "box",
-                                                    "layout": "vertical",
-                                                    "backgroundColor": "#E11D48",
-                                                    "cornerRadius": "3px",
-                                                    "paddingStart": "4px",
-                                                    "paddingEnd": "4px",
-                                                    "paddingTop": "1px",
-                                                    "paddingBottom": "1px",
-                                                    "contents": [
-                                                        {"type": "text", "text": "PRO", "size": "xxs", "color": "#FFFFFF", "weight": "bold"}
-                                                    ]
-                                                }
-                                            ]
+                                            "type": "text",
+                                            "text": "沈靜30分鐘自動標註",
+                                            "size": "sm",
+                                            "color": "#FFFFFF",
+                                            "weight": "bold",
+                                            "flex": 0
                                         },
                                         {
-                                            "type": "text",
-                                            "text": "無人認領自動發送提醒並啟動 🎲 輪盤指派！",
-                                            "size": "xxs",
-                                            "color": "#06B6D4",
-                                            "wrap": True,
-                                            "margin": "xs"
+                                            "type": "box",
+                                            "layout": "vertical",
+                                            "backgroundColor": "#E11D48",
+                                            "cornerRadius": "3px",
+                                            "paddingStart": "4px",
+                                            "paddingEnd": "4px",
+                                            "paddingTop": "1px",
+                                            "paddingBottom": "1px",
+                                            "contents": [
+                                                {"type": "text", "text": "PRO", "size": "xxs", "color": "#FFFFFF", "weight": "bold"}
+                                            ]
                                         }
                                     ]
                                 }
                             ]
                         },
                         { "type": "separator", "color": "#2A1B4E" },
+                        # Step 4
                         {
                             "type": "box",
                             "layout": "horizontal",
                             "spacing": "md",
-                            "alignItems": "flex-start",
+                            "alignItems": "center",
                             "contents": [
                                 {
                                     "type": "box",
@@ -1377,26 +1339,12 @@ def create_welcome_guide_flex() -> FlexMessage:
                                     ]
                                 },
                                 {
-                                    "type": "box",
-                                    "layout": "vertical",
-                                    "flex": 1,
-                                    "contents": [
-                                        {
-                                            "type": "text",
-                                            "text": "期末輸入 /export 產出互評鐵證",
-                                            "size": "sm",
-                                            "color": "#FFFFFF",
-                                            "weight": "bold"
-                                        },
-                                        {
-                                            "type": "text",
-                                            "text": "匯出完整小組紀錄與個人貢獻度 PDF 分析報告",
-                                            "size": "xxs",
-                                            "color": "#94A3B8",
-                                            "wrap": True,
-                                            "margin": "xs"
-                                        }
-                                    ]
+                                    "type": "text",
+                                    "text": "輸入 /export 匯出鐵證",
+                                    "size": "sm",
+                                    "color": "#FFFFFF",
+                                    "weight": "bold",
+                                    "flex": 1
                                 }
                             ]
                         }
@@ -1537,7 +1485,7 @@ def create_upgrade_plan_flex() -> FlexMessage:
                             "layout": "horizontal",
                             "alignItems": "center",
                             "contents": [
-                                {"type": "text", "text": "專案保險單次包 (PRO)", "weight": "bold", "size": "sm", "color": "#FDE047", "flex": 1},
+                                {"type": "text", "text": "保險單次包", "weight": "bold", "size": "sm", "color": "#FDE047", "flex": 1},
                                 {
                                     "type": "box",
                                     "layout": "vertical",
@@ -1553,7 +1501,7 @@ def create_upgrade_plan_flex() -> FlexMessage:
                         },
                         {
                             "type": "text",
-                            "text": "• 僅限單一專案群組使用（有效 120 天）\n• 一杯手搖飲價格，4 人小組平攤每人約 12 元\n• 匯出完整《小組貢獻度分析 PDF 報告》（期中／期末結算）\n• 30 分鐘沉寂偵測與自動標註催繳\n• 🎲 死鬥抽籤輪盤（超時未認領自動強制指派）\n• LIFF 任務點擊查閱時間戳記紀錄（已讀精準追蹤）",
+                            "text": "• 僅限單一專案群組使用（有效 120 天）\n• 一杯手搖飲價格，4 人小組平攤每人約 12 元\n• 匯出完整《小組貢獻度分析 PDF 報告》\n• 30 分鐘沉寂偵測與自動標註催繳\n• 🎲 死鬥抽籤輪盤（超時未認領自動強制指派）\n• LIFF 任務點擊查閱時間戳記紀錄（已讀精準追蹤）",
                             "size": "xs",
                             "color": "#FFFFFF",
                             "margin": "sm",
@@ -1595,7 +1543,7 @@ def create_upgrade_plan_flex() -> FlexMessage:
                             "layout": "horizontal",
                             "alignItems": "center",
                             "contents": [
-                                {"type": "text", "text": "學期組長躺平 Pass", "weight": "bold", "size": "sm", "color": "#38BDF8", "flex": 1},
+                                {"type": "text", "text": "組長躺平pass", "weight": "bold", "size": "sm", "color": "#38BDF8", "flex": 1},
                                 {
                                     "type": "box",
                                     "layout": "vertical",
@@ -1611,7 +1559,7 @@ def create_upgrade_plan_flex() -> FlexMessage:
                         },
                         {
                             "type": "text",
-                            "text": "• 支援多個專案群組（最多 4 個群組同時使用，有效 180 天）\n• 一個便當錢，全學期多群組無限暢用\n• 解鎖「毒舌嘴替／嚴格教授」AI 人格包\n• 適合修多門專案課、同時身兼多組組長的同學",
+                            "text": "• 可4個群組使用\n• 一個便當錢，全學期多群組無限暢用\n• 解鎖「毒舌嘴替／嚴格教授」AI 人格包\n• 適合修多門專案課、同時身兼多組組長的同學",
                             "size": "xs",
                             "color": "#F3E8FF",
                             "margin": "sm",

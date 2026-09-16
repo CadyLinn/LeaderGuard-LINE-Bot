@@ -51,9 +51,9 @@ def health_check():
 @app.get("/version")
 def get_version():
     return {
-        "version": "1.9.16",
-        "build": "align-1234-and-linepay-placeholder-buttons",
-        "description": "新手指南1234步驟完美垂直對齊、底部改為了解PRO專案，升級方案新增LINE Pay付費按鈕佔位"
+        "version": "1.9.17",
+        "build": "streamlined-welcome-and-clean-plan-titles",
+        "description": "新手指南極簡去蕪存菁提升體驗，升級方案更名為保險單次包與組長躺平pass並精簡文案"
     }
 
 
