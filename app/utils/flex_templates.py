@@ -8,6 +8,8 @@ from linebot.v3.messaging import (
     MessageAction
 )
 
+BASE_URL = os.getenv("BASE_URL", "https://leaderguard-line-bot.onrender.com").rstrip("/")
+
 def get_main_quick_reply() -> QuickReply:
     """聊天室底部的常駐快捷按鈕列（JoJo 狂氣波普風）"""
     return QuickReply(items=[
@@ -597,6 +599,13 @@ def create_help_flex() -> FlexMessage:
     bubble = {
         "type": "bubble",
         "size": "giga",
+        "hero": {
+            "type": "image",
+            "url": f"{BASE_URL}/assets/hero_command.jpg",
+            "size": "full",
+            "aspectRatio": "20:13",
+            "aspectMode": "cover"
+        },
         "header": {
             "type": "box",
             "layout": "vertical",
@@ -1146,6 +1155,13 @@ def create_welcome_guide_flex() -> FlexMessage:
     bubble = {
         "type": "bubble",
         "size": "mega",
+        "hero": {
+            "type": "image",
+            "url": f"{BASE_URL}/assets/hero_guide.jpg",
+            "size": "full",
+            "aspectRatio": "20:13",
+            "aspectMode": "cover"
+        },
         "header": {
             "type": "box",
             "layout": "vertical",
@@ -1356,6 +1372,13 @@ def create_upgrade_plan_flex() -> FlexMessage:
     bubble = {
         "type": "bubble",
         "size": "giga",
+        "hero": {
+            "type": "image",
+            "url": f"{BASE_URL}/assets/hero_upgrade.jpg",
+            "size": "full",
+            "aspectRatio": "20:13",
+            "aspectMode": "cover"
+        },
         "header": {
             "type": "box",
             "layout": "vertical",

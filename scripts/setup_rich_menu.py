@@ -135,22 +135,22 @@ def main():
             img_bytes = create_rich_menu_image()
             content_type = "image/png"
 
-        print("正在註冊新的現代深空暗黑三格 Rich Menu 設定...")
+        print("正在註冊新的 JoJo 瘋狂鑽石三格 Rich Menu 設定...")
         rich_menu_req = RichMenuRequest(
             size=RichMenuSize(width=2500, height=1686),
             selected=True,
-            name="LeaderGuard_ModernSlate_Menu",
+            name="LeaderGuard_JoJoPop_Menu",
             chat_bar_text="小組功能選單",
             areas=[
-                # 左 1：指令說明 (/常用指令說明)
+                # 左 1：使用手冊 (/使用手冊)
                 RichMenuArea(
                     bounds=RichMenuBounds(x=0, y=0, width=833, height=1686),
-                    action=MessageAction(text="/常用指令說明")
+                    action=MessageAction(text="/使用手冊")
                 ),
-                # 中 2：任務分工 (/選單)
+                # 中 2：指令說明 (/常用指令說明)
                 RichMenuArea(
                     bounds=RichMenuBounds(x=833, y=0, width=834, height=1686),
-                    action=MessageAction(text="/選單")
+                    action=MessageAction(text="/常用指令說明")
                 ),
                 # 右 3：升級方案 (/升級方案)
                 RichMenuArea(

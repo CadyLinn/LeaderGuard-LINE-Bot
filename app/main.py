@@ -23,6 +23,13 @@ async def startup_event():
     logger.info("LeaderGuard LINE Bot 伺服器啟動中...")
     init_firebase()
 
+import os
+from fastapi.staticfiles import StaticFiles
+
+# 掛載靜態資源目錄（供 LINE Flex 卡片引用高品質圖檔）
+if os.path.exists("assets"):
+    app.mount("/assets", StaticFiles(directory="assets"), name="assets")
+
 # 註冊路由
 app.include_router(webhook.router)
 
@@ -44,9 +51,9 @@ def health_check():
 @app.get("/version")
 def get_version():
     return {
-        "version": "1.7.0",
-        "build": "jojo-pop-art-v7",
-        "description": "JoJo 瘋狂鑽石波普搞怪風與符合 Apple HIG 高對比按鈕"
+        "version": "1.8.0",
+        "build": "jojo-trio-heroes-v8",
+        "description": "JoJo 風格使用手冊、指令說明與升級方案三大卡片配圖與三格選單"
     }
 
 
