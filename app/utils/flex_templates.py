@@ -601,7 +601,7 @@ def create_help_flex() -> FlexMessage:
         "size": "giga",
         "hero": {
             "type": "image",
-            "url": f"{BASE_URL}/assets/hero_command.jpg",
+            "url": f"{BASE_URL}/assets/hero_command_v2026.jpg",
             "size": "full",
             "aspectRatio": "20:13",
             "aspectMode": "cover"
@@ -1157,7 +1157,7 @@ def create_welcome_guide_flex() -> FlexMessage:
         "size": "mega",
         "hero": {
             "type": "image",
-            "url": f"{BASE_URL}/assets/hero_guide_go_v13.jpg",
+            "url": f"{BASE_URL}/assets/hero_guide_v2026.jpg",
             "size": "full",
             "aspectRatio": "20:13",
             "aspectMode": "cover"
@@ -1389,7 +1389,7 @@ def create_upgrade_plan_flex() -> FlexMessage:
         "size": "giga",
         "hero": {
             "type": "image",
-            "url": f"{BASE_URL}/assets/hero_upgrade.jpg",
+            "url": f"{BASE_URL}/assets/hero_upgrade_v2026.jpg",
             "size": "full",
             "aspectRatio": "20:13",
             "aspectMode": "cover"
