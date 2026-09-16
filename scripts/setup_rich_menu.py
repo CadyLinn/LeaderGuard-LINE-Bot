@@ -19,10 +19,10 @@ load_dotenv()
 ACCESS_TOKEN = os.getenv("LINE_CHANNEL_ACCESS_TOKEN", "")
 
 def create_rich_menu_image():
-    """繪製 2500x1686 質感的莫蘭迪黑白灰三格 Rich Menu 圖片"""
+    """繪製 2500x1686 現代極簡深空暗黑（Modern Slate & Indigo）三格 Rich Menu 圖片"""
     width = 2500
     height = 1686
-    image = Image.new("RGB", (width, height), color="#18181B")
+    image = Image.new("RGB", (width, height), color="#0B0F19")
     draw = ImageDraw.Draw(image)
 
     # 尋找中文字型
@@ -40,36 +40,45 @@ def create_rich_menu_image():
     title_font = ImageFont.truetype(font_path, 88) if font_path else ImageFont.load_default()
     subtitle_font = ImageFont.truetype(font_path, 42) if font_path else ImageFont.load_default()
 
-    # 三個直欄區域定義（莫蘭迪黑白灰質感）
+    # 三個直欄區域定義（現代極簡深空暗黑與冰川冷藍微光）
     col_w = (width - 40 * 4) // 3  # (2500 - 160) // 3 = 780
     grid_configs = [
         {
             "rect": (40, 40, 40 + col_w, height - 40),
-            "bg": "#27272A",
-            "border": "#3F3F46",
+            "bg": "#111827",
+            "border": "#1F2937",
             "title": "指令說明",
-            "subtitle": "常用指令與速查表"
+            "subtitle": "常用指令與速查表",
+            "title_color": "#F9FAFB",
+            "sub_color": "#9CA3AF",
+            "border_width": 4
         },
         {
             "rect": (40 * 2 + col_w, 40, 40 * 2 + col_w * 2, height - 40),
-            "bg": "#3F3F46",
-            "border": "#71717A",
+            "bg": "#0F172A",
+            "border": "#38BDF8",
             "title": "任務分工",
-            "subtitle": "工作發起、認領與抽籤"
+            "subtitle": "工作發起・認領・抽籤",
+            "title_color": "#38BDF8",
+            "sub_color": "#BAE6FD",
+            "border_width": 8
         },
         {
             "rect": (40 * 3 + col_w * 2, 40, width - 40, height - 40),
-            "bg": "#27272A",
-            "border": "#3F3F46",
+            "bg": "#111827",
+            "border": "#1F2937",
             "title": "升級方案",
-            "subtitle": "進階催繳與專案管理"
+            "subtitle": "進階催繳與專案管理",
+            "title_color": "#F9FAFB",
+            "sub_color": "#9CA3AF",
+            "border_width": 4
         }
     ]
 
     for item in grid_configs:
         x1, y1, x2, y2 = item["rect"]
         # 繪製圓角卡片
-        draw.rounded_rectangle([x1, y1, x2, y2], radius=40, fill=item["bg"], outline=item["border"], width=6)
+        draw.rounded_rectangle([x1, y1, x2, y2], radius=40, fill=item["bg"], outline=item["border"], width=item.get("border_width", 6))
         
         cx = (x1 + x2) // 2
         cy = (y1 + y2) // 2
@@ -78,12 +87,12 @@ def create_rich_menu_image():
         t_bbox = draw.textbbox((0, 0), item["title"], font=title_font)
         tw = t_bbox[2] - t_bbox[0]
         th = t_bbox[3] - t_bbox[1]
-        draw.text((cx - tw // 2, cy - th - 30), item["title"], fill="#FFFFFF", font=title_font)
+        draw.text((cx - tw // 2, cy - th - 30), item["title"], fill=item.get("title_color", "#FFFFFF"), font=title_font)
 
         # 副標題
         s_bbox = draw.textbbox((0, 0), item["subtitle"], font=subtitle_font)
         sw = s_bbox[2] - s_bbox[0]
-        draw.text((cx - sw // 2, cy + 30), item["subtitle"], fill="#D4D4D8", font=subtitle_font)
+        draw.text((cx - sw // 2, cy + 30), item["subtitle"], fill=item.get("sub_color", "#9CA3AF"), font=subtitle_font)
 
     img_byte_arr = BytesIO()
     image.save(img_byte_arr, format="PNG")
@@ -117,11 +126,11 @@ def main():
         print("正在產生莫蘭迪黑白灰三格 Rich Menu 圖片...")
         img_bytes = create_rich_menu_image()
 
-        print("正在註冊新的三格 Rich Menu 設定...")
+        print("正在註冊新的現代深空暗黑三格 Rich Menu 設定...")
         rich_menu_req = RichMenuRequest(
             size=RichMenuSize(width=2500, height=1686),
             selected=True,
-            name="LeaderGuard_Morandi_3Grid_Menu",
+            name="LeaderGuard_ModernSlate_Menu",
             chat_bar_text="小組功能選單",
             areas=[
                 # 左 1：指令說明 (/常用指令說明)

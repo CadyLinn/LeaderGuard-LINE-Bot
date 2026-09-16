@@ -44,9 +44,9 @@ def health_check():
 @app.get("/version")
 def get_version():
     return {
-        "version": "1.5.0",
-        "build": "morandi-3grid-upgrade-v5",
-        "description": "全面套用莫蘭迪黑白灰配色、三格圖文選單與升級方案卡片"
+        "version": "1.6.0",
+        "build": "modern-slate-indigo-v6",
+        "description": "全面升級現代極簡深空暗黑與冰川冷藍配色（Modern Slate & Indigo）"
     }
 
 
