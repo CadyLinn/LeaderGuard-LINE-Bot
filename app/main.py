@@ -51,9 +51,9 @@ def health_check():
 @app.get("/version")
 def get_version():
     return {
-        "version": "1.9.18",
-        "build": "pro-badge-compact-and-trim-drink-line",
-        "description": "新手指南PRO標籤增加間距並設定flex:0收斂寬度，保險單次包移除一杯手搖飲價格行"
+        "version": "1.9.19",
+        "build": "add-180-days-validity-to-semester-pass",
+        "description": "組長躺平pass補充標註（有效 180 天）"
     }
 
 
