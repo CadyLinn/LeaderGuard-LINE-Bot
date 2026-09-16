@@ -51,9 +51,9 @@ def health_check():
 @app.get("/version")
 def get_version():
     return {
-        "version": "1.9.23",
-        "build": "group-welcome-and-menu-contrast-redesign",
-        "description": "入群歡迎文案俐落現代化，主選單按鈕徹底根除黑字看不清問題並升級高對比色彩"
+        "version": "1.9.24",
+        "build": "roulette-card-text-wrap-no-truncation",
+        "description": "命運抽籤結果卡片天選之人鼓勵語設定wrap換行，徹底解決手機端被截斷省略成...問題"
     }
 
 

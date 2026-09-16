@@ -1147,7 +1147,8 @@ def create_roulette_flex(task_id: str, task_title: str, victim_name: str) -> Fle
                             "color": "#F43F5E",
                             "align": "center",
                             "margin": "sm",
-                            "weight": "bold"
+                            "weight": "bold",
+                            "wrap": True
                         }
                     ]
                 }
