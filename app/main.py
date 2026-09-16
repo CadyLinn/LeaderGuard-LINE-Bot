@@ -51,9 +51,9 @@ def health_check():
 @app.get("/version")
 def get_version():
     return {
-        "version": "1.9.3",
-        "build": "welcome-hero-go-v12",
-        "description": "更新新手入門指引Hero圖為用戶指定GO閃電指手圖，去除冗餘API請求加速加好友即時響應"
+        "version": "1.9.4",
+        "build": "welcome-hero-go-v13",
+        "description": "換用全新 URL hero_guide_go_v13.jpg 強制刷新 LINE 端快取，確保顯示青藍電光指手 GO! 圖"
     }
 
 
