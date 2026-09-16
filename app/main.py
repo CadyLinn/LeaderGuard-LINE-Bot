@@ -51,9 +51,9 @@ def health_check():
 @app.get("/version")
 def get_version():
     return {
-        "version": "1.9.11",
-        "build": "upgrade-plan-readme-sync-and-step3-break",
-        "description": "第3步換行「沈靜30分鐘\\n自動標註」，升級方案嚴格依據README.md分層收費重構且無emoji（僅保留骰子）"
+        "version": "1.9.12",
+        "build": "upgrade-plan-pro-only",
+        "description": "升級方案卡片精簡為免費版與尊榮PRO方案雙層對比，移除個人專案包"
     }
 
 

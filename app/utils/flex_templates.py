@@ -1483,7 +1483,7 @@ def create_upgrade_plan_flex() -> FlexMessage:
                         },
                         {
                             "type": "text",
-                            "text": "• 基礎任務建立與指派\n• 溫和版超時提醒\n• 🎲 基礎隨機抽籤分配\n• 單一群組上限 1 個專案",
+                            "text": "• 基礎任務建立與自訂項目\n• 溫和版超時提醒通知\n• 🎲 基礎隨機抽籤分配\n• 單一群組上限 1 個專案",
                             "size": "xs",
                             "color": "#F3E8FF",
                             "margin": "sm",
@@ -1491,46 +1491,7 @@ def create_upgrade_plan_flex() -> FlexMessage:
                         }
                     ]
                 },
-                # 方案 2：個人專案包
-                {
-                    "type": "box",
-                    "layout": "vertical",
-                    "backgroundColor": "#1E1636",
-                    "paddingAll": "14px",
-                    "cornerRadius": "8px",
-                    "borderColor": "#0891B2",
-                    "borderWidth": "1px",
-                    "contents": [
-                        {
-                            "type": "box",
-                            "layout": "horizontal",
-                            "alignItems": "center",
-                            "contents": [
-                                {"type": "text", "text": "個人專案包", "weight": "bold", "size": "sm", "color": "#38BDF8", "flex": 1},
-                                {
-                                    "type": "box",
-                                    "layout": "vertical",
-                                    "backgroundColor": "#0C4A6E",
-                                    "paddingVertical": "2px",
-                                    "paddingHorizontal": "6px",
-                                    "cornerRadius": "4px",
-                                    "contents": [
-                                        {"type": "text", "text": "進階", "size": "xxs", "color": "#38BDF8", "weight": "bold"}
-                                    ]
-                                }
-                            ]
-                        },
-                        {
-                            "type": "text",
-                            "text": "• 解鎖「毒舌嘴替／嚴格教授」AI 人格包\n• 30 分鐘沉寂偵測與 Meme 警示通知\n• 🎲 死鬥抽籤輪盤（超時未認領強制指派）",
-                            "size": "xs",
-                            "color": "#F3E8FF",
-                            "margin": "sm",
-                            "wrap": True
-                        }
-                    ]
-                },
-                # 方案 3：呈堂證供專業版
+                # 方案 2：尊榮組長保險 PRO
                 {
                     "type": "box",
                     "layout": "vertical",
@@ -1545,7 +1506,7 @@ def create_upgrade_plan_flex() -> FlexMessage:
                             "layout": "horizontal",
                             "alignItems": "center",
                             "contents": [
-                                {"type": "text", "text": "呈堂證供專業版", "weight": "bold", "size": "sm", "color": "#FDE047", "flex": 1},
+                                {"type": "text", "text": "尊榮組長保險 PRO", "weight": "bold", "size": "sm", "color": "#FDE047", "flex": 1},
                                 {
                                     "type": "box",
                                     "layout": "vertical",
@@ -1561,7 +1522,7 @@ def create_upgrade_plan_flex() -> FlexMessage:
                         },
                         {
                             "type": "text",
-                            "text": "• 匯出完整《小組貢獻度分析 PDF 報告》（期中／期末結算）\n• LIFF 任務點擊查閱時間戳記紀錄（已讀精準追蹤）\n• 任務完成率與延遲時長量化指標，直接作為互評附錄提交教授",
+                            "text": "• 匯出完整《小組貢獻度分析 PDF 報告》（期中／期末結算）\n• 30 分鐘沉寂偵測與自動標註催繳\n• 🎲 死鬥抽籤輪盤（超時未認領自動強制指派）\n• LIFF 任務點擊查閱時間戳記紀錄（已讀精準追蹤）\n• 解鎖「毒舌嘴替／嚴格教授」AI 人格包\n• 客觀量化數據附錄，直接提交授課教授",
                             "size": "xs",
                             "color": "#FFFFFF",
                             "margin": "sm",
