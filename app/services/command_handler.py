@@ -44,10 +44,17 @@ def handle_user_command(user_text: str, group_id: str, user_id: str, user_name: 
     if text in MENU_KEYWORDS or text.lower() in ["/menu", "/start", "menu", "start"]:
         return [create_main_menu_flex()]
 
-    # 2. 說明指南指令（/help 或 /說明）
+    # 2. 常用指令說明指令（/常用指令說明、/help 或 /說明）
     if text.lower() in [
-        "/help", "help", "/說明", "說明", "/指令", "指令",
-        "/指令手冊", "指令手冊", "/幫助", "幫助", "/指南", "指南"
+        "/常用指令說明", "常用指令說明",
+        "/常用指令", "常用指令",
+        "/指令說明", "指令說明",
+        "/help", "help",
+        "/說明", "說明",
+        "/指令", "指令",
+        "/指令手冊", "指令手冊",
+        "/幫助", "幫助",
+        "/指南", "指南"
     ]:
         return [create_help_flex()]
 

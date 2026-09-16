@@ -46,8 +46,8 @@ def create_rich_menu_image():
             "rect": (20, 20, 1230, 823),
             "bg": "#1E293B",
             "border": "#38BDF8",
-            "title": "使用指南",
-            "subtitle": "查看所有功能與常用指令"
+            "title": "常用指令說明",
+            "subtitle": "查看小組功能與常用指令"
         },
         {
             "rect": (1270, 20, 2480, 823),
@@ -125,10 +125,10 @@ def main():
             name="LeaderGuard_Default_Menu",
             chat_bar_text="小組專案選單",
             areas=[
-                # 左上：指令手冊 (/help)
+                # 左上：常用指令說明 (/常用指令說明)
                 RichMenuArea(
                     bounds=RichMenuBounds(x=0, y=0, width=1250, height=843),
-                    action=MessageAction(text="/help")
+                    action=MessageAction(text="/常用指令說明")
                 ),
                 # 右上：發起任務範本 (/task 範本)
                 RichMenuArea(

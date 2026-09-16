@@ -14,7 +14,7 @@ def get_main_quick_reply() -> QuickReply:
         QuickReplyItem(action=MessageAction(label="任務清單", text="/task 清單")),
         QuickReplyItem(action=MessageAction(label="🎲 抽籤分工", text="/roulette")),
         QuickReplyItem(action=MessageAction(label="專案進度", text="/status")),
-        QuickReplyItem(action=MessageAction(label="使用指南", text="/help")),
+        QuickReplyItem(action=MessageAction(label="常用指令說明", text="/常用指令說明")),
     ])
 
 def create_preset_tasks_carousel() -> FlexMessage:
@@ -409,8 +409,8 @@ def create_main_menu_flex() -> FlexMessage:
                                     "type": "button",
                                     "action": {
                                         "type": "message",
-                                        "label": "指令說明",
-                                        "text": "/help"
+                                        "label": "常用指令說明",
+                                        "text": "/常用指令說明"
                                     },
                                     "style": "secondary",
                                     "height": "sm"
@@ -499,7 +499,7 @@ def create_help_flex() -> FlexMessage:
                     "contents": [
                         {"type": "text", "text": "進度狀態與指南", "weight": "bold", "size": "sm", "color": "#065F46"},
                         {"type": "text", "text": "• /status 或 /狀態：查看各項任務認領狀況", "size": "xs", "color": "#047857", "margin": "xs", "wrap": True},
-                        {"type": "text", "text": "• /help 或 /說明：隨時呼叫本說明手冊", "size": "xs", "color": "#047857", "margin": "xs", "wrap": True}
+                        {"type": "text", "text": "• /常用指令說明 或 /help：隨時查看本說明", "size": "xs", "color": "#047857", "margin": "xs", "wrap": True}
                     ]
                 }
             ]
