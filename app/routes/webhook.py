@@ -79,12 +79,6 @@ def handle_follow(event):
             pass
 
         account_name = "組長保險"
-        try:
-            bot_info = line_bot_api.get_bot_info()
-            if bot_info and bot_info.display_name:
-                account_name = bot_info.display_name
-        except Exception:
-            account_name = "組長保險"
 
         greeting_text = (
             f"{user_name}您好！\n"

@@ -51,9 +51,9 @@ def health_check():
 @app.get("/version")
 def get_version():
     return {
-        "version": "1.9.2",
-        "build": "welcome-trio-buttons-v11",
-        "description": "好友加入問候語格式優化、入門指引卡片底端整合三按鈕（指令說明、立即加入群組、升級方案）"
+        "version": "1.9.3",
+        "build": "welcome-hero-go-v12",
+        "description": "更新新手入門指引Hero圖為用戶指定GO閃電指手圖，去除冗餘API請求加速加好友即時響應"
     }
 
 
