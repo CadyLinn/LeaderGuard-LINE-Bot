@@ -1306,7 +1306,7 @@ def create_welcome_guide_flex() -> FlexMessage:
                                     "contents": [
                                         {
                                             "type": "text",
-                                            "text": "沈寂 30 分鐘自動標註",
+                                            "text": "沈靜30分鐘\n自動標註",
                                             "size": "sm",
                                             "color": "#FFFFFF",
                                             "weight": "bold",
@@ -1330,7 +1330,7 @@ def create_welcome_guide_flex() -> FlexMessage:
                                 },
                                 {
                                     "type": "text",
-                                    "text": "PRO 版本專屬：無人認領將發送提醒並啟動輪盤指派！",
+                                    "text": "PRO 版本專屬：無人認領將發送提醒並啟動 🎲 輪盤指派！",
                                     "size": "xxs",
                                     "color": "#06B6D4",
                                     "wrap": True,
@@ -1423,13 +1423,13 @@ def create_upgrade_plan_flex() -> FlexMessage:
                     "type": "box",
                     "layout": "horizontal",
                     "contents": [
-                        {"type": "text", "text": "【進階升級】", "size": "xs", "color": "#FDE047", "weight": "bold"},
-                        {"type": "text", "text": "PRO PLAN", "size": "xs", "color": "#06B6D4", "align": "end", "weight": "bold"}
+                        {"type": "text", "text": "【方案介紹】", "size": "xs", "color": "#FDE047", "weight": "bold"},
+                        {"type": "text", "text": "FREEMIUM", "size": "xs", "color": "#06B6D4", "align": "end", "weight": "bold"}
                     ]
                 },
                 {
                     "type": "text",
-                    "text": "組長保險・尊榮 Pro 升級方案",
+                    "text": "組長保險・方案介紹",
                     "weight": "bold",
                     "color": "#FFFFFF",
                     "size": "md",
@@ -1437,7 +1437,7 @@ def create_upgrade_plan_flex() -> FlexMessage:
                 },
                 {
                     "type": "text",
-                    "text": "全面解鎖進階自動催繳能力與期末互評防護罩",
+                    "text": "你不用當壞人，讓 AI 當法官；期中、期末算總帳，連呈堂證供都幫你準備好。",
                     "color": "#06B6D4",
                     "size": "xs",
                     "margin": "xs",
@@ -1483,7 +1483,7 @@ def create_upgrade_plan_flex() -> FlexMessage:
                         },
                         {
                             "type": "text",
-                            "text": "• 4 大標準分工範本與自訂任務\n• 🎲 命運輪盤隨機抽籤（優先鎖定無任務者）\n• 本地資料存證與小組成員名冊",
+                            "text": "• 基礎任務建立與指派\n• 溫和版超時提醒\n• 🎲 基礎隨機抽籤分配\n• 單一群組上限 1 個專案",
                             "size": "xs",
                             "color": "#F3E8FF",
                             "margin": "sm",
@@ -1491,7 +1491,46 @@ def create_upgrade_plan_flex() -> FlexMessage:
                         }
                     ]
                 },
-                # 方案 2：尊榮組長保險 Pro (高能特色卡)
+                # 方案 2：個人專案包
+                {
+                    "type": "box",
+                    "layout": "vertical",
+                    "backgroundColor": "#1E1636",
+                    "paddingAll": "14px",
+                    "cornerRadius": "8px",
+                    "borderColor": "#0891B2",
+                    "borderWidth": "1px",
+                    "contents": [
+                        {
+                            "type": "box",
+                            "layout": "horizontal",
+                            "alignItems": "center",
+                            "contents": [
+                                {"type": "text", "text": "個人專案包", "weight": "bold", "size": "sm", "color": "#38BDF8", "flex": 1},
+                                {
+                                    "type": "box",
+                                    "layout": "vertical",
+                                    "backgroundColor": "#0C4A6E",
+                                    "paddingVertical": "2px",
+                                    "paddingHorizontal": "6px",
+                                    "cornerRadius": "4px",
+                                    "contents": [
+                                        {"type": "text", "text": "進階", "size": "xxs", "color": "#38BDF8", "weight": "bold"}
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "text",
+                            "text": "• 解鎖「毒舌嘴替／嚴格教授」AI 人格包\n• 30 分鐘沉寂偵測與 Meme 警示通知\n• 🎲 死鬥抽籤輪盤（超時未認領強制指派）",
+                            "size": "xs",
+                            "color": "#F3E8FF",
+                            "margin": "sm",
+                            "wrap": True
+                        }
+                    ]
+                },
+                # 方案 3：呈堂證供專業版
                 {
                     "type": "box",
                     "layout": "vertical",
@@ -1506,7 +1545,7 @@ def create_upgrade_plan_flex() -> FlexMessage:
                             "layout": "horizontal",
                             "alignItems": "center",
                             "contents": [
-                                {"type": "text", "text": "🔥 尊榮組長保險 Pro", "weight": "bold", "size": "sm", "color": "#FDE047", "flex": 1},
+                                {"type": "text", "text": "呈堂證供專業版", "weight": "bold", "size": "sm", "color": "#FDE047", "flex": 1},
                                 {
                                     "type": "box",
                                     "layout": "vertical",
@@ -1522,22 +1561,13 @@ def create_upgrade_plan_flex() -> FlexMessage:
                         },
                         {
                             "type": "text",
-                            "text": "• 30 分鐘沉寂自動催繳與 LINE 警示彈幕通知\n• 小組期末專案互評與個人貢獻度 PDF 鐵證報表\n• Google Docs / Notion 雲端即時同步\n• 無上限多組專案與跨群協作支援",
+                            "text": "• 匯出完整《小組貢獻度分析 PDF 報告》（期中／期末結算）\n• LIFF 任務點擊查閱時間戳記紀錄（已讀精準追蹤）\n• 任務完成率與延遲時長量化指標，直接作為互評附錄提交教授",
                             "size": "xs",
                             "color": "#FFFFFF",
                             "margin": "sm",
                             "wrap": True
                         }
                     ]
-                },
-                {
-                    "type": "text",
-                    "text": "不想再當組長冤大頭？升級 Pro 讓系統自動幫你主持公道！",
-                    "size": "xxs",
-                    "color": "#F43F5E",
-                    "align": "center",
-                    "wrap": True,
-                    "weight": "bold"
                 }
             ]
         },
@@ -1554,7 +1584,7 @@ def create_upgrade_plan_flex() -> FlexMessage:
                     "height": "sm",
                     "action": {
                         "type": "message",
-                        "label": "了解方案 / 諮詢升級",
+                        "label": "諮詢升級方案",
                         "text": "/諮詢升級"
                     }
                 }

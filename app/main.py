@@ -51,9 +51,9 @@ def health_check():
 @app.get("/version")
 def get_version():
     return {
-        "version": "1.9.10",
-        "build": "welcome-guide-wording-refine",
-        "description": "移除emoji、點擊「群組」加引號，第3步改為「沈寂 30 分鐘自動標註」並配置PRO升級按鈕"
+        "version": "1.9.11",
+        "build": "upgrade-plan-readme-sync-and-step3-break",
+        "description": "第3步換行「沈靜30分鐘\\n自動標註」，升級方案嚴格依據README.md分層收費重構且無emoji（僅保留骰子）"
     }
 
 
