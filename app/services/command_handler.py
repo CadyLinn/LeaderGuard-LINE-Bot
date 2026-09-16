@@ -210,7 +210,7 @@ def handle_user_command(user_text: str, group_id: str, user_id: str, user_name: 
         pending_tasks = [t for t in tasks if t.get("status") == "pending"]
         
         lines = [
-            "📋【組長保險・小組期末分工成果報告】\n",
+            "【組長保險・小組期末分工成果報告】\n",
             f"專案任務總數：{len(tasks)} 件",
             f"已認領負責：{len(claimed_tasks)} 件",
             f"待認領工作：{len(pending_tasks)} 件\n",

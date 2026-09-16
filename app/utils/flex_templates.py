@@ -67,7 +67,7 @@ def create_preset_tasks_carousel() -> FlexMessage:
                         "type": "button",
                         "action": {
                             "type": "message",
-                            "label": "認領責任：建立任務",
+                            "label": "建立任務",
                             "text": "/task 新增 簡報製作與美化 負責PPT視覺美編與排版"
                         },
                         "style": "primary",
@@ -121,7 +121,7 @@ def create_preset_tasks_carousel() -> FlexMessage:
                         "type": "button",
                         "action": {
                             "type": "message",
-                            "label": "認領責任：建立任務",
+                            "label": "建立任務",
                             "text": "/task 新增 上台口頭報告 負責掌握專案脈絡並代表口頭發表"
                         },
                         "style": "primary",
@@ -175,7 +175,7 @@ def create_preset_tasks_carousel() -> FlexMessage:
                         "type": "button",
                         "action": {
                             "type": "message",
-                            "label": "認領責任：建立任務",
+                            "label": "建立任務",
                             "text": "/task 新增 文獻查證與資料蒐集 負責前期調研、文獻查證與數據整理"
                         },
                         "style": "primary",
@@ -229,7 +229,7 @@ def create_preset_tasks_carousel() -> FlexMessage:
                         "type": "button",
                         "action": {
                             "type": "message",
-                            "label": "認領責任：建立任務",
+                            "label": "建立任務",
                             "text": "/task 新增 書面報告撰寫統整 負責期末書面Word/PDF格式與內容校對"
                         },
                         "style": "primary",
@@ -283,7 +283,7 @@ def create_preset_tasks_carousel() -> FlexMessage:
                         "type": "button",
                         "action": {
                             "type": "message",
-                            "label": "⚡️ 一鍵全套分工建立",
+                            "label": "一鍵全套分工建立",
                             "text": "/task 批次建立"
                         },
                         "style": "primary",
@@ -303,7 +303,7 @@ def create_preset_tasks_carousel() -> FlexMessage:
                 "backgroundColor": "#160F29",
                 "paddingAll": "16px",
                 "contents": [
-                    {"type": "text", "text": "➕ 自訂專屬小組任務", "weight": "bold", "color": "#FFFFFF", "size": "md"}
+                    {"type": "text", "text": "自訂專屬小組任務", "weight": "bold", "color": "#FFFFFF", "size": "md"}
                 ]
             },
             "body": {
@@ -851,7 +851,7 @@ def create_task_list_flex(tasks: list) -> FlexMessage:
                     "type": "button",
                     "action": {
                         "type": "postback",
-                        "label": "➕ 自訂新增工作",
+                        "label": "自訂新增工作",
                         "data": "action=prompt_custom_task",
                         "inputOption": "openKeyboard",
                         "fillInText": "/任務 新增 "
@@ -964,7 +964,7 @@ def create_task_list_flex(tasks: list) -> FlexMessage:
                             "contents": [
                                 {
                                     "type": "text",
-                                    "text": f"👤 {assignee_name}",
+                                    "text": f"{assignee_name}",
                                     "size": "xs",
                                     "color": "#06B6D4",
                                     "align": "end",

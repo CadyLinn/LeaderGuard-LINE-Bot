@@ -51,9 +51,9 @@ def health_check():
 @app.get("/version")
 def get_version():
     return {
-        "version": "1.9.24",
-        "build": "roulette-card-text-wrap-no-truncation",
-        "description": "命運抽籤結果卡片天選之人鼓勵語設定wrap換行，徹底解決手機端被截斷省略成...問題"
+        "version": "1.9.25",
+        "build": "clean-template-buttons-and-strict-no-emoji",
+        "description": "任務範本按鈕刪除認領責任改為建立任務，嚴格清除全專案非骰子emoji"
     }
 
 
