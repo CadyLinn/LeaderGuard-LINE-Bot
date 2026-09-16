@@ -1,3 +1,4 @@
+import os
 import json
 from linebot.v3.messaging import (
     FlexMessage,
@@ -967,3 +968,220 @@ def create_roulette_flex(task_id: str, task_title: str, victim_name: str) -> Fle
         contents=FlexContainer.from_dict(bubble),
         quick_reply=get_main_quick_reply()
     )
+
+
+def create_welcome_guide_flex() -> FlexMessage:
+    """加入好友時發送的 4 步驟使用手冊 Flex 卡片"""
+    manual_url = os.getenv("MANUAL_URL", "")
+    group_invite_url = os.getenv("GROUP_INVITE_URL", "https://line.me/R/nv/recommendOA/@805yffpw")
+
+    # 查看完整教學按鈕設定（優先使用環境變數設定的網址，預設直接在 LINE 送出 /常用指令說明 叫出速查表）
+    manual_action = (
+        {"type": "uri", "label": "查看完整教學", "uri": manual_url}
+        if manual_url
+        else {"type": "message", "label": "查看完整教學", "text": "/常用指令說明"}
+    )
+
+    bubble = {
+        "type": "bubble",
+        "size": "mega",
+        "header": {
+            "type": "box",
+            "layout": "vertical",
+            "backgroundColor": "#10213D",
+            "paddingAll": "20px",
+            "contents": [
+                {
+                    "type": "text",
+                    "text": "使用手冊",
+                    "size": "sm",
+                    "weight": "bold",
+                    "color": "#C9A227"
+                },
+                {
+                    "type": "text",
+                    "text": "4 步驟開始使用",
+                    "size": "xl",
+                    "weight": "bold",
+                    "color": "#F5F1E6",
+                    "margin": "sm"
+                }
+            ]
+        },
+        "body": {
+            "type": "box",
+            "layout": "vertical",
+            "backgroundColor": "#F5F1E6",
+            "paddingAll": "20px",
+            "spacing": "md",
+            "contents": [
+                {
+                    "type": "box",
+                    "layout": "horizontal",
+                    "spacing": "md",
+                    "contents": [
+                        {
+                            "type": "box",
+                            "layout": "vertical",
+                            "width": "24px",
+                            "height": "24px",
+                            "cornerRadius": "12px",
+                            "backgroundColor": "#C9A227",
+                            "justifyContent": "center",
+                            "alignItems": "center",
+                            "contents": [
+                                { "type": "text", "text": "1", "size": "xs", "weight": "bold", "color": "#10213D", "align": "center" }
+                            ]
+                        },
+                        {
+                            "type": "text",
+                            "text": "把我拉進小組群組",
+                            "size": "sm",
+                            "color": "#1A1A1A",
+                            "gravity": "center",
+                            "wrap": True,
+                            "flex": 1
+                        }
+                    ]
+                },
+                { "type": "separator", "color": "#DDD8CC" },
+                {
+                    "type": "box",
+                    "layout": "horizontal",
+                    "spacing": "md",
+                    "contents": [
+                        {
+                            "type": "box",
+                            "layout": "vertical",
+                            "width": "24px",
+                            "height": "24px",
+                            "cornerRadius": "12px",
+                            "backgroundColor": "#C9A227",
+                            "justifyContent": "center",
+                            "alignItems": "center",
+                            "contents": [
+                                { "type": "text", "text": "2", "size": "xs", "weight": "bold", "color": "#10213D", "align": "center" }
+                            ]
+                        },
+                        {
+                            "type": "text",
+                            "text": "輸入 /assign 指派任務",
+                            "size": "sm",
+                            "color": "#1A1A1A",
+                            "gravity": "center",
+                            "wrap": True,
+                            "flex": 1
+                        }
+                    ]
+                },
+                { "type": "separator", "color": "#DDD8CC" },
+                {
+                    "type": "box",
+                    "layout": "horizontal",
+                    "spacing": "md",
+                    "contents": [
+                        {
+                            "type": "box",
+                            "layout": "vertical",
+                            "width": "24px",
+                            "height": "24px",
+                            "cornerRadius": "12px",
+                            "backgroundColor": "#7A1F2B",
+                            "justifyContent": "center",
+                            "alignItems": "center",
+                            "contents": [
+                                { "type": "text", "text": "3", "size": "xs", "weight": "bold", "color": "#F5F1E6", "align": "center" }
+                            ]
+                        },
+                        {
+                            "type": "box",
+                            "layout": "vertical",
+                            "flex": 1,
+                            "contents": [
+                                {
+                                    "type": "text",
+                                    "text": "沉寂 30 分鐘自動提醒",
+                                    "size": "sm",
+                                    "color": "#1A1A1A",
+                                    "wrap": True
+                                },
+                                {
+                                    "type": "text",
+                                    "text": "無人認領將公告並隨機指派",
+                                    "size": "xxs",
+                                    "color": "#8A6A6A",
+                                    "wrap": True,
+                                    "margin": "xs"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                { "type": "separator", "color": "#DDD8CC" },
+                {
+                    "type": "box",
+                    "layout": "horizontal",
+                    "spacing": "md",
+                    "contents": [
+                        {
+                            "type": "box",
+                            "layout": "vertical",
+                            "width": "24px",
+                            "height": "24px",
+                            "cornerRadius": "12px",
+                            "backgroundColor": "#C9A227",
+                            "justifyContent": "center",
+                            "alignItems": "center",
+                            "contents": [
+                                { "type": "text", "text": "4", "size": "xs", "weight": "bold", "color": "#10213D", "align": "center" }
+                            ]
+                        },
+                        {
+                            "type": "text",
+                            "text": "期末輸入 /export 匯出報告",
+                            "size": "sm",
+                            "color": "#1A1A1A",
+                            "gravity": "center",
+                            "wrap": True,
+                            "flex": 1
+                        }
+                    ]
+                }
+            ]
+        },
+        "footer": {
+            "type": "box",
+            "layout": "vertical",
+            "spacing": "sm",
+            "paddingAll": "12px",
+            "backgroundColor": "#F5F1E6",
+            "contents": [
+                {
+                    "type": "button",
+                    "style": "primary",
+                    "height": "sm",
+                    "color": "#10213D",
+                    "action": manual_action
+                },
+                {
+                    "type": "button",
+                    "style": "secondary",
+                    "height": "sm",
+                    "color": "#C9A227",
+                    "action": {
+                        "type": "uri",
+                        "label": "立即拉我進群組",
+                        "uri": group_invite_url
+                    }
+                }
+            ],
+            "flex": 0
+        }
+    }
+
+    return FlexMessage(
+        alt_text="組長保險 LeaderGuard - 4 步驟使用手冊",
+        contents=FlexContainer.from_dict(bubble),
+        quick_reply=get_main_quick_reply()
+    )
+

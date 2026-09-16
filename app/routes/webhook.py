@@ -21,7 +21,11 @@ from linebot.v3.webhooks import (
     FollowEvent,
     PostbackEvent
 )
-from app.utils.flex_templates import create_help_flex, create_main_menu_flex
+from app.utils.flex_templates import (
+    create_help_flex,
+    create_main_menu_flex,
+    create_welcome_guide_flex
+)
 
 load_dotenv()
 
@@ -61,7 +65,7 @@ async def line_webhook(request: Request, x_line_signature: str = Header(None)):
 
 @handler.add(FollowEvent)
 def handle_follow(event):
-    """當使用者將官方帳號加入好友時，自動傳送歡迎詞與指令選單說明卡片"""
+    """當使用者將官方帳號加入好友時，先傳送個人化問候語，接著傳送 4 步驟使用手冊 Flex 卡片"""
     user_id = getattr(event.source, "user_id", "unknown")
     logger.info(f"新好友加入: {user_id}")
     
@@ -74,21 +78,18 @@ def handle_follow(event):
         except Exception:
             pass
 
-        welcome_text = (
-            f"嗨 {user_name}！我是你的專案小幫手【組長保險】。\n\n"
-            "專案分工不用組長自己催到得罪人，我來幫大家管進度、做分工！\n\n"
-            "怎麼開始：\n"
-            "1. 把我邀請加入你們的「小組作業群組」。\n"
-            "2. 在群內發起工作讓組員認領，沒人認領還能一鍵隨機抽籤。\n"
-            "3. 點擊下方選單或隨時輸入「/help」查看常用指令。"
+        greeting_text = (
+            f"{user_name}您好！\n"
+            "我是組長保險，\n"
+            "感謝您加入好友！"
         )
 
         line_bot_api.reply_message_with_http_info(
             ReplyMessageRequest(
                 reply_token=event.reply_token,
                 messages=[
-                    TextMessage(text=welcome_text),
-                    create_main_menu_flex()
+                    TextMessage(text=greeting_text),
+                    create_welcome_guide_flex()
                 ]
             )
         )

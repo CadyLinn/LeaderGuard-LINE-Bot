@@ -18,6 +18,7 @@ from app.utils.flex_templates import (
     create_task_list_flex,
     create_roulette_flex,
     create_preset_tasks_carousel,
+    create_welcome_guide_flex,
     get_main_quick_reply
 )
 
@@ -58,8 +59,15 @@ def handle_user_command(user_text: str, group_id: str, user_id: str, user_name: 
     ]:
         return [create_help_flex()]
 
-    # 3. 常用小組分工範本輪播卡片（/task 範本 或 /任務 範本）
+    # 2.5 4 步驟使用手冊（/手冊、/使用手冊、/4步驟 或 /guide）
     if text.lower() in [
+        "/手冊", "手冊", "/使用手冊", "使用手冊", "/4步驟", "4步驟", "/guide", "guide"
+    ]:
+        return [create_welcome_guide_flex()]
+
+    # 3. 常用小組分工範本輪播卡片（/assign、/task 範本 或 /任務 範本）
+    if text.lower() in [
+        "/assign", "/指派", "/指派任務", "assign", "指派",
         "/task 範本", "/task template", "/template", "範本", "快速分工", "分工範本", "發起任務",
         "/任務 範本", "/任務 template", "/任務範本"
     ]:
@@ -173,6 +181,42 @@ def handle_user_command(user_text: str, group_id: str, user_id: str, user_name: 
             f"輸入「/roulette」或「/抽籤」隨機抽籤分配未認領工作"
         )
         return [TextMessage(text=status_msg, quick_reply=get_main_quick_reply())]
+
+    # 9.5 期末專案報告匯出：/export 或 /匯出
+    if text.lower() in ["/export", "/匯出", "/報告", "/結案報告", "export", "匯出"]:
+        tasks = list_tasks(target_group)
+        free_members, all_members, _, _ = get_unassigned_members(target_group)
+        
+        claimed_tasks = [t for t in tasks if t.get("status") == "claimed"]
+        pending_tasks = [t for t in tasks if t.get("status") == "pending"]
+        
+        lines = [
+            "📋【組長保險・小組期末分工成果報告】\n",
+            f"專案任務總數：{len(tasks)} 件",
+            f"已認領負責：{len(claimed_tasks)} 件",
+            f"待認領工作：{len(pending_tasks)} 件\n",
+            "【各組員負責項目與工作存證】"
+        ]
+        
+        member_tasks = {}
+        for t in claimed_tasks:
+            name = t.get("assignee_name", "組員")
+            member_tasks.setdefault(name, []).append(f"[{t.get('id', '')}] {t.get('title', '')}")
+            
+        if member_tasks:
+            for name, t_list in member_tasks.items():
+                lines.append(f"• {name}（共負責 {len(t_list)} 項）：")
+                for item in t_list:
+                    lines.append(f"   - {item}")
+        else:
+            lines.append("（目前尚無組員完成任務認領）")
+            
+        if free_members:
+            free_names = [m.get("user_name", "組員") for m in free_members]
+            lines.append(f"\n【尚未指派工作之組員】：\n{', '.join(free_names)}")
+            
+        lines.append("\n本紀錄由組長保險自動存證，可用於期末互評與成果報告依據。")
+        return [TextMessage(text="\n".join(lines))]
 
     # 10. 手動新增成員名單：/member 新增 或 /成員 新增 [名字1] [名字2]...
     member_add_prefixes = (

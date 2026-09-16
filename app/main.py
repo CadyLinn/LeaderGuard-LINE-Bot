@@ -44,9 +44,9 @@ def health_check():
 @app.get("/version")
 def get_version():
     return {
-        "version": "1.3.0",
-        "build": "custom-task-openkeyboard-v3",
-        "description": "支援一鍵自動帶入自訂任務輸入框與去推薦字樣"
+        "version": "1.4.0",
+        "build": "welcome-4steps-guide-v4",
+        "description": "支援加入好友個人化歡迎詞與4步驟使用手冊Flex卡片"
     }
 
 
