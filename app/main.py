@@ -51,9 +51,9 @@ def health_check():
 @app.get("/version")
 def get_version():
     return {
-        "version": "1.9.7",
-        "build": "welcome-guide-no-footer-button",
-        "description": "移除新手入門指引卡片底端的可點擊按鈕，卡片以純手冊導覽呈現"
+        "version": "1.9.8",
+        "build": "welcome-guide-step3-pro-tag",
+        "description": "新手入門指引卡片第3步驟「沉寂30分鐘自動溫柔催繳」加上 PRO 標籤與方案專屬備註說明"
     }
 
 

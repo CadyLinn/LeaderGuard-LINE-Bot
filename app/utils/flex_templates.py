@@ -1279,16 +1279,38 @@ def create_welcome_guide_flex() -> FlexMessage:
                             "flex": 1,
                             "contents": [
                                 {
-                                    "type": "text",
-                                    "text": "沉寂 30 分鐘自動溫柔催繳",
-                                    "size": "sm",
-                                    "color": "#FFFFFF",
-                                    "weight": "bold",
-                                    "wrap": True
+                                    "type": "box",
+                                    "layout": "horizontal",
+                                    "spacing": "sm",
+                                    "alignItems": "center",
+                                    "contents": [
+                                        {
+                                            "type": "text",
+                                            "text": "沉寂 30 分鐘自動溫柔催繳",
+                                            "size": "sm",
+                                            "color": "#FFFFFF",
+                                            "weight": "bold",
+                                            "wrap": True,
+                                            "flex": 1
+                                        },
+                                        {
+                                            "type": "box",
+                                            "layout": "vertical",
+                                            "backgroundColor": "#E11D48",
+                                            "cornerRadius": "4px",
+                                            "paddingStart": "6px",
+                                            "paddingEnd": "6px",
+                                            "paddingTop": "2px",
+                                            "paddingBottom": "2px",
+                                            "contents": [
+                                                {"type": "text", "text": "PRO", "size": "xxs", "color": "#FFFFFF", "weight": "bold"}
+                                            ]
+                                        }
+                                    ]
                                 },
                                 {
                                     "type": "text",
-                                    "text": "無人認領將發送提醒並啟動輪盤指派！",
+                                    "text": "※ PRO 版本專屬：無人認領將發送提醒並啟動輪盤指派！",
                                     "size": "xxs",
                                     "color": "#06B6D4",
                                     "wrap": True,
