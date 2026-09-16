@@ -15,7 +15,7 @@ def get_main_quick_reply() -> QuickReply:
     return QuickReply(items=[
         QuickReplyItem(action=MessageAction(label="任務分工", text="/選單")),
         QuickReplyItem(action=MessageAction(label="任務清單", text="/task 清單")),
-        QuickReplyItem(action=MessageAction(label="🎲 死鬥輪盤", text="/roulette")),
+        QuickReplyItem(action=MessageAction(label="🎲 命運抽籤", text="/roulette")),
         QuickReplyItem(action=MessageAction(label="專案進度", text="/status")),
         QuickReplyItem(action=MessageAction(label="指令說明", text="/常用指令說明")),
     ])
@@ -480,14 +480,14 @@ def create_main_menu_flex() -> FlexMessage:
                     "contents": [
                         {
                             "type": "text",
-                            "text": "🎲 命運輪盤・隨機抽籤",
+                            "text": "🎲 命運抽籤",
                             "weight": "bold",
                             "size": "sm",
                             "color": "#F43F5E"
                         },
                         {
                             "type": "text",
-                            "text": "工作沒人認領？交給輪盤抽籤，優先抽尚未負責之組員",
+                            "text": "工作沒人認領？交給命運抽籤，優先抽尚未負責之組員",
                             "size": "xs",
                             "color": "#F3E8FF",
                             "margin": "xs",
@@ -497,7 +497,7 @@ def create_main_menu_flex() -> FlexMessage:
                             "type": "button",
                             "action": {
                                 "type": "message",
-                                "label": "🎲 啟動命運抽籤輪盤",
+                                "label": "🎲 啟動命運抽籤",
                                 "text": "/roulette"
                             },
                             "style": "primary",
@@ -1007,7 +1007,7 @@ def create_task_list_flex(tasks: list) -> FlexMessage:
                 "type": "button",
                 "action": {
                     "type": "message",
-                    "label": "🎲 啟動輪盤抽籤未認領工作",
+                    "label": "🎲 啟動命運抽籤未認領工作",
                     "text": "/roulette"
                 },
                 "style": "primary",
@@ -1090,7 +1090,7 @@ def create_roulette_flex(task_id: str, task_title: str, victim_name: str) -> Fle
                     "type": "box",
                     "layout": "horizontal",
                     "contents": [
-                        {"type": "text", "text": "🎲 命運輪盤抽籤", "size": "xs", "color": "#FDE047", "weight": "bold"},
+                        {"type": "text", "text": "🎲 命運抽籤", "size": "xs", "color": "#FDE047", "weight": "bold"},
                         {"type": "text", "text": "LUCKY", "size": "xs", "color": "#06B6D4", "align": "end", "weight": "bold"}
                     ]
                 },
@@ -1422,25 +1422,17 @@ def create_upgrade_plan_flex() -> FlexMessage:
                     "type": "box",
                     "layout": "horizontal",
                     "contents": [
-                        {"type": "text", "text": "【學生安心定價】", "size": "xs", "color": "#FDE047", "weight": "bold"},
+                        {"type": "text", "text": "組長保險 LEADERGUARD", "size": "xs", "color": "#FDE047", "weight": "bold", "letterSpacing": "1px"},
                         {"type": "text", "text": "PRO PLAN", "size": "xs", "color": "#06B6D4", "align": "end", "weight": "bold"}
                     ]
                 },
                 {
                     "type": "text",
-                    "text": "組長保險・學生升級方案",
+                    "text": "組長保險・升級方案",
                     "weight": "bold",
                     "color": "#FFFFFF",
                     "size": "md",
                     "margin": "xs"
-                },
-                {
-                    "type": "text",
-                    "text": "你不用當壞人，讓 AI 當法官；一杯飲料錢，連呈堂證供都幫你準備好。",
-                    "color": "#06B6D4",
-                    "size": "xs",
-                    "margin": "xs",
-                    "wrap": True
                 }
             ]
         },
@@ -1521,7 +1513,7 @@ def create_upgrade_plan_flex() -> FlexMessage:
                         },
                         {
                             "type": "text",
-                            "text": "• 僅限單一專案群組使用（有效 120 天）\n• 匯出完整《小組貢獻度分析 PDF 報告》\n• 30 分鐘沉寂偵測與自動標註催繳\n• 🎲 死鬥抽籤輪盤（超時未認領自動強制指派）\n• LIFF 任務點擊查閱時間戳記紀錄（已讀精準追蹤）",
+                            "text": "• 僅限單一專案群組使用（有效 120 天）\n• 匯出完整《小組貢獻度分析 PDF 報告》\n• 30 分鐘沉寂偵測與自動標註催繳\n• 🎲 命運抽籤（超時未認領自動強制指派）\n• LIFF 任務點擊查閱時間戳記紀錄（已讀精準追蹤）",
                             "size": "xs",
                             "color": "#FFFFFF",
                             "margin": "sm",

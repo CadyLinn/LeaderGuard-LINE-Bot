@@ -162,8 +162,8 @@ def handle_user_command(user_text: str, group_id: str, user_id: str, user_name: 
 
     # 8. 隨機抽籤分工：/roulette 或 /抽籤 或 /輪盤（僅抽還沒有工作任務的人）
     if text.lower() in [
-        "/roulette", "/輪盤", "/抽籤", "/隨機分工", "/隨機抽籤", "/死鬥輪盤",
-        "roulette", "輪盤", "抽籤", "隨機分工", "隨機抽籤", "死鬥輪盤"
+        "/roulette", "/輪盤", "/抽籤", "/隨機分工", "/隨機抽籤", "/死鬥輪盤", "/命運抽籤",
+        "roulette", "輪盤", "抽籤", "隨機分工", "隨機抽籤", "死鬥輪盤", "命運抽籤"
     ]:
         free_members, all_members, all_tasks, pending_tasks = get_unassigned_members(target_group)
         

@@ -51,9 +51,9 @@ def health_check():
 @app.get("/version")
 def get_version():
     return {
-        "version": "1.9.20",
-        "build": "group-main-menu-redesign-and-clean-quick-reply",
-        "description": "群組內神隊友功能選單現代化重構移除多餘emoji，Quick Reply移除升級方案"
+        "version": "1.9.21",
+        "build": "fate-roulette-rename-and-clean-upgrade-header",
+        "description": "死鬥輪盤全面更名為命運抽籤，升級方案移除安心定價與壞人文字"
     }
 
 
