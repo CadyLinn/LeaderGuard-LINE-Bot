@@ -51,9 +51,9 @@ def health_check():
 @app.get("/version")
 def get_version():
     return {
-        "version": "1.9.17",
-        "build": "streamlined-welcome-and-clean-plan-titles",
-        "description": "新手指南極簡去蕪存菁提升體驗，升級方案更名為保險單次包與組長躺平pass並精簡文案"
+        "version": "1.9.18",
+        "build": "pro-badge-compact-and-trim-drink-line",
+        "description": "新手指南PRO標籤增加間距並設定flex:0收斂寬度，保險單次包移除一杯手搖飲價格行"
     }
 
 

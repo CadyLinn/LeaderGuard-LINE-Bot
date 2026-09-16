@@ -1288,7 +1288,7 @@ def create_welcome_guide_flex() -> FlexMessage:
                                 {
                                     "type": "box",
                                     "layout": "horizontal",
-                                    "spacing": "xs",
+                                    "spacing": "sm",
                                     "alignItems": "center",
                                     "flex": 1,
                                     "contents": [
@@ -1303,10 +1303,11 @@ def create_welcome_guide_flex() -> FlexMessage:
                                         {
                                             "type": "box",
                                             "layout": "vertical",
+                                            "flex": 0,
                                             "backgroundColor": "#E11D48",
                                             "cornerRadius": "3px",
-                                            "paddingStart": "4px",
-                                            "paddingEnd": "4px",
+                                            "paddingStart": "5px",
+                                            "paddingEnd": "5px",
                                             "paddingTop": "1px",
                                             "paddingBottom": "1px",
                                             "contents": [
@@ -1501,7 +1502,7 @@ def create_upgrade_plan_flex() -> FlexMessage:
                         },
                         {
                             "type": "text",
-                            "text": "• 僅限單一專案群組使用（有效 120 天）\n• 一杯手搖飲價格，4 人小組平攤每人約 12 元\n• 匯出完整《小組貢獻度分析 PDF 報告》\n• 30 分鐘沉寂偵測與自動標註催繳\n• 🎲 死鬥抽籤輪盤（超時未認領自動強制指派）\n• LIFF 任務點擊查閱時間戳記紀錄（已讀精準追蹤）",
+                            "text": "• 僅限單一專案群組使用（有效 120 天）\n• 匯出完整《小組貢獻度分析 PDF 報告》\n• 30 分鐘沉寂偵測與自動標註催繳\n• 🎲 死鬥抽籤輪盤（超時未認領自動強制指派）\n• LIFF 任務點擊查閱時間戳記紀錄（已讀精準追蹤）",
                             "size": "xs",
                             "color": "#FFFFFF",
                             "margin": "sm",
