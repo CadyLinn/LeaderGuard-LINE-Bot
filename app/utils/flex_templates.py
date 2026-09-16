@@ -1195,31 +1195,51 @@ def create_welcome_guide_flex() -> FlexMessage:
             "contents": [
                 {
                     "type": "box",
-                    "layout": "horizontal",
-                    "spacing": "md",
+                    "layout": "vertical",
+                    "backgroundColor": "#1E1435",
+                    "cornerRadius": "10px",
+                    "borderColor": "#06B6D4",
+                    "borderWidth": "2px",
+                    "paddingAll": "12px",
+                    "spacing": "xs",
                     "contents": [
                         {
                             "type": "box",
-                            "layout": "vertical",
-                            "width": "26px",
-                            "height": "26px",
-                            "cornerRadius": "13px",
-                            "backgroundColor": "#E11D48",
-                            "justifyContent": "center",
+                            "layout": "horizontal",
+                            "spacing": "md",
                             "alignItems": "center",
                             "contents": [
-                                { "type": "text", "text": "1", "size": "xs", "weight": "bold", "color": "#FFFFFF", "align": "center" }
+                                {
+                                    "type": "box",
+                                    "layout": "vertical",
+                                    "width": "28px",
+                                    "height": "28px",
+                                    "cornerRadius": "14px",
+                                    "backgroundColor": "#06B6D4",
+                                    "justifyContent": "center",
+                                    "alignItems": "center",
+                                    "contents": [
+                                        { "type": "text", "text": "1", "size": "sm", "weight": "bold", "color": "#100B1E", "align": "center" }
+                                    ]
+                                },
+                                {
+                                    "type": "text",
+                                    "text": "把我邀請進小組群組！",
+                                    "size": "md",
+                                    "color": "#FDE047",
+                                    "weight": "bold",
+                                    "wrap": True,
+                                    "flex": 1
+                                }
                             ]
                         },
                         {
                             "type": "text",
-                            "text": "把我邀請進小組群組！",
-                            "size": "sm",
-                            "color": "#FFFFFF",
-                            "gravity": "center",
+                            "text": "👉 點擊群組右上角「≡」>「邀請」將我加入，立刻啟用專案協作！",
+                            "size": "xs",
+                            "color": "#E2E8F0",
                             "wrap": True,
-                            "flex": 1,
-                            "weight": "bold"
+                            "margin": "xs"
                         }
                     ]
                 },
@@ -1352,6 +1372,26 @@ def create_welcome_guide_flex() -> FlexMessage:
                     ]
                 }
             ]
+        },
+        "footer": {
+            "type": "box",
+            "layout": "vertical",
+            "paddingAll": "12px",
+            "backgroundColor": "#160F29",
+            "contents": [
+                {
+                    "type": "button",
+                    "style": "primary",
+                    "height": "sm",
+                    "color": "#E11D48",
+                    "action": {
+                        "type": "message",
+                        "label": "升級 PRO 方案",
+                        "text": "/升級方案"
+                    }
+                }
+            ],
+            "flex": 0
         }
     }
 
