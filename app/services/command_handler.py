@@ -19,6 +19,7 @@ from app.utils.flex_templates import (
     create_roulette_flex,
     create_preset_tasks_carousel,
     create_welcome_guide_flex,
+    create_upgrade_plan_flex,
     get_main_quick_reply
 )
 
@@ -64,6 +65,17 @@ def handle_user_command(user_text: str, group_id: str, user_id: str, user_name: 
         "/手冊", "手冊", "/使用手冊", "使用手冊", "/4步驟", "4步驟", "/guide", "guide"
     ]:
         return [create_welcome_guide_flex()]
+
+    # 2.8 升級方案卡片（/升級方案、/升級、/upgrade 或 /方案）
+    if text.lower() in [
+        "/升級方案", "升級方案",
+        "/升級", "升級",
+        "/方案", "方案",
+        "/upgrade", "upgrade",
+        "/諮詢升級", "諮詢升級",
+        "/pro", "pro"
+    ]:
+        return [create_upgrade_plan_flex()]
 
     # 3. 常用小組分工範本輪播卡片（/assign、/task 範本 或 /任務 範本）
     if text.lower() in [

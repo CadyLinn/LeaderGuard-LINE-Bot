@@ -9,17 +9,17 @@ from linebot.v3.messaging import (
 )
 
 def get_main_quick_reply() -> QuickReply:
-    """聊天室底部的常駐快捷按鈕列"""
+    """聊天室底部的常駐快捷按鈕列（莫蘭迪極簡風）"""
     return QuickReply(items=[
-        QuickReplyItem(action=MessageAction(label="常用分工範本", text="/task 範本")),
+        QuickReplyItem(action=MessageAction(label="任務分工", text="/選單")),
         QuickReplyItem(action=MessageAction(label="任務清單", text="/task 清單")),
         QuickReplyItem(action=MessageAction(label="🎲 抽籤分工", text="/roulette")),
-        QuickReplyItem(action=MessageAction(label="專案進度", text="/status")),
-        QuickReplyItem(action=MessageAction(label="常用指令說明", text="/常用指令說明")),
+        QuickReplyItem(action=MessageAction(label="升級方案", text="/升級方案")),
+        QuickReplyItem(action=MessageAction(label="指令說明", text="/常用指令說明")),
     ])
 
 def create_preset_tasks_carousel() -> FlexMessage:
-    """常見小組專案工作範本輪播卡片（卡片尺寸設為 mega，文字精簡不截斷）"""
+    """常見小組專案工作範本輪播卡片（莫蘭迪黑白灰配色，mega 尺寸）"""
     carousel_contents = [
         # 卡片 1：簡報製作
         {
@@ -28,7 +28,7 @@ def create_preset_tasks_carousel() -> FlexMessage:
             "header": {
                 "type": "box",
                 "layout": "vertical",
-                "backgroundColor": "#0F766E",
+                "backgroundColor": "#27272A",
                 "paddingAll": "16px",
                 "contents": [
                     {"type": "text", "text": "簡報製作與美編", "weight": "bold", "color": "#FFFFFF", "size": "md"}
@@ -39,15 +39,17 @@ def create_preset_tasks_carousel() -> FlexMessage:
                 "layout": "vertical",
                 "spacing": "sm",
                 "paddingAll": "16px",
+                "backgroundColor": "#FFFFFF",
                 "contents": [
-                    {"type": "text", "text": "負責項目：", "weight": "bold", "size": "xs", "color": "#0F172A"},
-                    {"type": "text", "text": "• 統整組員文字與圖表\n• PPT / Canva 視覺美化\n• 彙整報告講稿備忘錄", "size": "xs", "color": "#64748B", "wrap": True}
+                    {"type": "text", "text": "負責項目：", "weight": "bold", "size": "xs", "color": "#18181B"},
+                    {"type": "text", "text": "• 統整組員文字與圖表\n• PPT / Canva 視覺美化\n• 彙整報告講稿備忘錄", "size": "xs", "color": "#71717A", "wrap": True}
                 ]
             },
             "footer": {
                 "type": "box",
                 "layout": "vertical",
                 "paddingAll": "12px",
+                "backgroundColor": "#F4F4F5",
                 "contents": [
                     {
                         "type": "button",
@@ -57,7 +59,7 @@ def create_preset_tasks_carousel() -> FlexMessage:
                             "text": "/task 新增 簡報製作與美化 負責PPT視覺美編與排版"
                         },
                         "style": "primary",
-                        "color": "#0F766E",
+                        "color": "#27272A",
                         "height": "sm"
                     }
                 ]
@@ -70,7 +72,7 @@ def create_preset_tasks_carousel() -> FlexMessage:
             "header": {
                 "type": "box",
                 "layout": "vertical",
-                "backgroundColor": "#0284C7",
+                "backgroundColor": "#3F3F46",
                 "paddingAll": "16px",
                 "contents": [
                     {"type": "text", "text": "上台口頭報告", "weight": "bold", "color": "#FFFFFF", "size": "md"}
@@ -81,15 +83,17 @@ def create_preset_tasks_carousel() -> FlexMessage:
                 "layout": "vertical",
                 "spacing": "sm",
                 "paddingAll": "16px",
+                "backgroundColor": "#FFFFFF",
                 "contents": [
-                    {"type": "text", "text": "負責項目：", "weight": "bold", "size": "xs", "color": "#0F172A"},
-                    {"type": "text", "text": "• 掌握專案架構脈絡\n• 代表小組上台發表\n• 現場提問 Q&A 應對", "size": "xs", "color": "#64748B", "wrap": True}
+                    {"type": "text", "text": "負責項目：", "weight": "bold", "size": "xs", "color": "#18181B"},
+                    {"type": "text", "text": "• 掌握專案架構脈絡\n• 代表小組上台發表\n• 現場提問 Q&A 應對", "size": "xs", "color": "#71717A", "wrap": True}
                 ]
             },
             "footer": {
                 "type": "box",
                 "layout": "vertical",
                 "paddingAll": "12px",
+                "backgroundColor": "#F4F4F5",
                 "contents": [
                     {
                         "type": "button",
@@ -99,7 +103,7 @@ def create_preset_tasks_carousel() -> FlexMessage:
                             "text": "/task 新增 上台口頭報告 負責掌握專案脈絡並代表口頭發表"
                         },
                         "style": "primary",
-                        "color": "#0284C7",
+                        "color": "#3F3F46",
                         "height": "sm"
                     }
                 ]
@@ -112,7 +116,7 @@ def create_preset_tasks_carousel() -> FlexMessage:
             "header": {
                 "type": "box",
                 "layout": "vertical",
-                "backgroundColor": "#7C3AED",
+                "backgroundColor": "#52525B",
                 "paddingAll": "16px",
                 "contents": [
                     {"type": "text", "text": "文獻查證與資料蒐集", "weight": "bold", "color": "#FFFFFF", "size": "md"}
@@ -123,15 +127,17 @@ def create_preset_tasks_carousel() -> FlexMessage:
                 "layout": "vertical",
                 "spacing": "sm",
                 "paddingAll": "16px",
+                "backgroundColor": "#FFFFFF",
                 "contents": [
-                    {"type": "text", "text": "負責項目：", "weight": "bold", "size": "xs", "color": "#0F172A"},
-                    {"type": "text", "text": "• 前期專案主題調研\n• 相關文獻與案例查證\n• 數據統整與來源驗證", "size": "xs", "color": "#64748B", "wrap": True}
+                    {"type": "text", "text": "負責項目：", "weight": "bold", "size": "xs", "color": "#18181B"},
+                    {"type": "text", "text": "• 前期專案主題調研\n• 相關文獻與案例查證\n• 數據統整與來源驗證", "size": "xs", "color": "#71717A", "wrap": True}
                 ]
             },
             "footer": {
                 "type": "box",
                 "layout": "vertical",
                 "paddingAll": "12px",
+                "backgroundColor": "#F4F4F5",
                 "contents": [
                     {
                         "type": "button",
@@ -141,7 +147,7 @@ def create_preset_tasks_carousel() -> FlexMessage:
                             "text": "/task 新增 文獻查證與資料蒐集 負責前期調研、文獻查證與數據整理"
                         },
                         "style": "primary",
-                        "color": "#7C3AED",
+                        "color": "#52525B",
                         "height": "sm"
                     }
                 ]
@@ -154,7 +160,7 @@ def create_preset_tasks_carousel() -> FlexMessage:
             "header": {
                 "type": "box",
                 "layout": "vertical",
-                "backgroundColor": "#D97706",
+                "backgroundColor": "#27272A",
                 "paddingAll": "16px",
                 "contents": [
                     {"type": "text", "text": "書面報告撰寫統整", "weight": "bold", "color": "#FFFFFF", "size": "md"}
@@ -165,15 +171,17 @@ def create_preset_tasks_carousel() -> FlexMessage:
                 "layout": "vertical",
                 "spacing": "sm",
                 "paddingAll": "16px",
+                "backgroundColor": "#FFFFFF",
                 "contents": [
-                    {"type": "text", "text": "負責項目：", "weight": "bold", "size": "xs", "color": "#0F172A"},
-                    {"type": "text", "text": "• 彙整各章節文字與圖表\n• 校對格式、目錄與文獻\n• 產出期末正式完整報告", "size": "xs", "color": "#64748B", "wrap": True}
+                    {"type": "text", "text": "負責項目：", "weight": "bold", "size": "xs", "color": "#18181B"},
+                    {"type": "text", "text": "• 彙整各章節文字與圖表\n• 校對格式、目錄與文獻\n• 產出期末正式完整報告", "size": "xs", "color": "#71717A", "wrap": True}
                 ]
             },
             "footer": {
                 "type": "box",
                 "layout": "vertical",
                 "paddingAll": "12px",
+                "backgroundColor": "#F4F4F5",
                 "contents": [
                     {
                         "type": "button",
@@ -183,7 +191,7 @@ def create_preset_tasks_carousel() -> FlexMessage:
                             "text": "/task 新增 書面報告撰寫統整 負責期末書面Word/PDF格式與內容校對"
                         },
                         "style": "primary",
-                        "color": "#D97706",
+                        "color": "#27272A",
                         "height": "sm"
                     }
                 ]
@@ -196,10 +204,10 @@ def create_preset_tasks_carousel() -> FlexMessage:
             "header": {
                 "type": "box",
                 "layout": "vertical",
-                "backgroundColor": "#1E293B",
+                "backgroundColor": "#18181B",
                 "paddingAll": "16px",
                 "contents": [
-                    {"type": "text", "text": "一鍵全套分工", "weight": "bold", "color": "#38BDF8", "size": "md"}
+                    {"type": "text", "text": "一鍵全套分工", "weight": "bold", "color": "#FFFFFF", "size": "md"}
                 ]
             },
             "body": {
@@ -207,15 +215,17 @@ def create_preset_tasks_carousel() -> FlexMessage:
                 "layout": "vertical",
                 "spacing": "sm",
                 "paddingAll": "16px",
+                "backgroundColor": "#FFFFFF",
                 "contents": [
-                    {"type": "text", "text": "組長省時首選", "weight": "bold", "size": "sm", "color": "#0F172A"},
-                    {"type": "text", "text": "一次建立以上 4 項小組標準分工（簡報、報告、資料、書面），全組立刻認領。", "size": "xs", "color": "#64748B", "wrap": True}
+                    {"type": "text", "text": "組長省時首選", "weight": "bold", "size": "sm", "color": "#18181B"},
+                    {"type": "text", "text": "一次建立以上 4 項小組標準分工（簡報、報告、資料、書面），全組立刻認領。", "size": "xs", "color": "#71717A", "wrap": True}
                 ]
             },
             "footer": {
                 "type": "box",
                 "layout": "vertical",
                 "paddingAll": "12px",
+                "backgroundColor": "#F4F4F5",
                 "contents": [
                     {
                         "type": "button",
@@ -225,7 +235,7 @@ def create_preset_tasks_carousel() -> FlexMessage:
                             "text": "/task 批次建立"
                         },
                         "style": "primary",
-                        "color": "#0284C7",
+                        "color": "#18181B",
                         "height": "sm"
                     }
                 ]
@@ -238,7 +248,7 @@ def create_preset_tasks_carousel() -> FlexMessage:
             "header": {
                 "type": "box",
                 "layout": "vertical",
-                "backgroundColor": "#0F766E",
+                "backgroundColor": "#3F3F46",
                 "paddingAll": "16px",
                 "contents": [
                     {"type": "text", "text": "➕ 自訂其他工作", "weight": "bold", "color": "#FFFFFF", "size": "md"}
@@ -249,15 +259,17 @@ def create_preset_tasks_carousel() -> FlexMessage:
                 "layout": "vertical",
                 "spacing": "sm",
                 "paddingAll": "16px",
+                "backgroundColor": "#FFFFFF",
                 "contents": [
-                    {"type": "text", "text": "不限於現有範本", "weight": "bold", "size": "sm", "color": "#0F172A"},
-                    {"type": "text", "text": "點選下方按鈕，對話框會自動帶入指令，直接輸入工作名稱即可！", "size": "xs", "color": "#64748B", "wrap": True}
+                    {"type": "text", "text": "不限於現有範本", "weight": "bold", "size": "sm", "color": "#18181B"},
+                    {"type": "text", "text": "點選下方按鈕，對話框會自動帶入指令，直接輸入工作名稱即可！", "size": "xs", "color": "#71717A", "wrap": True}
                 ]
             },
             "footer": {
                 "type": "box",
                 "layout": "vertical",
                 "paddingAll": "12px",
+                "backgroundColor": "#F4F4F5",
                 "contents": [
                     {
                         "type": "button",
@@ -269,7 +281,7 @@ def create_preset_tasks_carousel() -> FlexMessage:
                             "fillInText": "/任務 新增 "
                         },
                         "style": "primary",
-                        "color": "#0F766E",
+                        "color": "#3F3F46",
                         "height": "sm"
                     }
                 ]
@@ -288,29 +300,28 @@ def create_preset_tasks_carousel() -> FlexMessage:
         quick_reply=get_main_quick_reply()
     )
 
-
 def create_main_menu_flex() -> FlexMessage:
-    """小組功能主選單卡片（含一鍵點擊範本按鈕）"""
+    """小組功能主選單卡片（莫蘭迪黑白灰風格）"""
     bubble = {
         "type": "bubble",
-        "size": "mega",
+        "size": "giga",
         "header": {
             "type": "box",
             "layout": "vertical",
-            "backgroundColor": "#1E293B",
+            "backgroundColor": "#18181B",
             "paddingAll": "20px",
             "contents": [
                 {
                     "type": "text",
                     "text": "【組長保險】專案協作功能選單",
                     "weight": "bold",
-                    "color": "#F8FAFC",
-                    "size": "lg"
+                    "color": "#FFFFFF",
+                    "size": "md"
                 },
                 {
                     "type": "text",
                     "text": "組長不用自己催進度，分工與數據交給機器人處理",
-                    "color": "#94A3B8",
+                    "color": "#A1A1AA",
                     "size": "xs",
                     "margin": "sm",
                     "wrap": True
@@ -321,29 +332,31 @@ def create_main_menu_flex() -> FlexMessage:
             "type": "box",
             "layout": "vertical",
             "spacing": "md",
+            "backgroundColor": "#F4F4F5",
+            "paddingAll": "16px",
             "contents": [
-                # 區塊 1：常用分工範本
+                # 區塊 1：工作發起與認領
                 {
                     "type": "box",
                     "layout": "vertical",
-                    "backgroundColor": "#F8FAFC",
+                    "backgroundColor": "#FFFFFF",
                     "paddingAll": "14px",
-                    "cornerRadius": "10px",
-                    "borderColor": "#E2E8F0",
+                    "cornerRadius": "8px",
+                    "borderColor": "#E4E4E7",
                     "borderWidth": "1px",
                     "contents": [
                         {
                             "type": "text",
-                            "text": "專案工作分工（不用手打字）",
+                            "text": "專案工作分工",
                             "weight": "bold",
                             "size": "sm",
-                            "color": "#0F172A"
+                            "color": "#18181B"
                         },
                         {
                             "type": "text",
-                            "text": "內建簡報、上台報告、資料調研、書面統整等常見範本，點擊即可一鍵建立發起。",
+                            "text": "內建簡報、上台報告、資料調研等範本，點擊即可一鍵建立發起。",
                             "size": "xs",
-                            "color": "#64748B",
+                            "color": "#71717A",
                             "margin": "xs",
                             "wrap": True
                         },
@@ -361,7 +374,7 @@ def create_main_menu_flex() -> FlexMessage:
                                         "text": "/task 範本"
                                     },
                                     "style": "primary",
-                                    "color": "#0F766E",
+                                    "color": "#27272A",
                                     "height": "sm"
                                 },
                                 {
@@ -395,10 +408,10 @@ def create_main_menu_flex() -> FlexMessage:
                 {
                     "type": "box",
                     "layout": "vertical",
-                    "backgroundColor": "#FEF2F2",
+                    "backgroundColor": "#FFFFFF",
                     "paddingAll": "14px",
-                    "cornerRadius": "10px",
-                    "borderColor": "#FECACA",
+                    "cornerRadius": "8px",
+                    "borderColor": "#E4E4E7",
                     "borderWidth": "1px",
                     "contents": [
                         {
@@ -406,13 +419,13 @@ def create_main_menu_flex() -> FlexMessage:
                             "text": "🎲 隨機抽籤分工",
                             "weight": "bold",
                             "size": "sm",
-                            "color": "#991B1B"
+                            "color": "#18181B"
                         },
                         {
                             "type": "text",
                             "text": "卡關沒人認領的工作？直接交給系統隨機抽籤，公平省事。",
                             "size": "xs",
-                            "color": "#B91C1C",
+                            "color": "#71717A",
                             "margin": "xs",
                             "wrap": True
                         },
@@ -424,7 +437,7 @@ def create_main_menu_flex() -> FlexMessage:
                                 "text": "/roulette"
                             },
                             "style": "primary",
-                            "color": "#DC2626",
+                            "color": "#3F3F46",
                             "margin": "md",
                             "height": "sm"
                         }
@@ -434,10 +447,10 @@ def create_main_menu_flex() -> FlexMessage:
                 {
                     "type": "box",
                     "layout": "vertical",
-                    "backgroundColor": "#F1F5F9",
+                    "backgroundColor": "#FFFFFF",
                     "paddingAll": "14px",
-                    "cornerRadius": "10px",
-                    "borderColor": "#CBD5E1",
+                    "cornerRadius": "8px",
+                    "borderColor": "#E4E4E7",
                     "borderWidth": "1px",
                     "contents": [
                         {
@@ -445,7 +458,7 @@ def create_main_menu_flex() -> FlexMessage:
                             "text": "專案狀況與說明",
                             "weight": "bold",
                             "size": "sm",
-                            "color": "#334155"
+                            "color": "#18181B"
                         },
                         {
                             "type": "box",
@@ -486,23 +499,22 @@ def create_main_menu_flex() -> FlexMessage:
         quick_reply=get_main_quick_reply()
     )
 
-
 def create_help_flex() -> FlexMessage:
-    """操作指南 Flex 卡片（精簡表格化設計，中英文雙語對照，尺寸設為 giga）"""
+    """操作指南 Flex 卡片（莫蘭迪黑白灰表格化設計，尺寸設為 giga）"""
     table_data = [
-        ("挑選範本", "/任務 範本", "/task", "#0F766E"),
-        ("查看工作", "/任務 清單", "/tasks", "#0284C7"),
-        ("認領工作", "/認領 [編號]", "/claim", "#2563EB"),
-        ("自訂任務", "/任務 新增", "/task add", "#475569"),
-        ("🎲 抽籤分工", "/抽籤", "/roulette", "#DC2626"),
-        ("加幽靈組員", "/成員 新增", "/member add", "#D97706"),
-        ("組員名冊", "/成員", "/member", "#475569"),
-        ("專案進度", "/狀態", "/status", "#059669")
+        ("挑選範本", "/任務 範本", "/task"),
+        ("查看工作", "/任務 清單", "/tasks"),
+        ("認領工作", "/認領 [編號]", "/claim"),
+        ("自訂任務", "/任務 新增", "/task add"),
+        ("🎲 抽籤分工", "/抽籤", "/roulette"),
+        ("加幽靈組員", "/成員 新增", "/member add"),
+        ("組員名冊", "/成員", "/member"),
+        ("專案進度", "/狀態", "/status")
     ]
 
     rows = []
-    for idx, (func, cn, en, tag_color) in enumerate(table_data):
-        bg_color = "#FFFFFF" if idx % 2 == 0 else "#F8FAFC"
+    for idx, (func, cn, en) in enumerate(table_data):
+        bg_color = "#FFFFFF" if idx % 2 == 0 else "#F4F4F5"
         rows.append({
             "type": "box",
             "layout": "horizontal",
@@ -511,9 +523,9 @@ def create_help_flex() -> FlexMessage:
             "paddingHorizontal": "10px",
             "alignItems": "center",
             "contents": [
-                {"type": "text", "text": func, "size": "xs", "weight": "bold", "color": "#0F172A", "flex": 3, "wrap": True},
-                {"type": "text", "text": cn, "size": "xs", "weight": "bold", "color": tag_color, "flex": 4, "wrap": True},
-                {"type": "text", "text": en, "size": "xs", "color": "#64748B", "flex": 3, "wrap": True}
+                {"type": "text", "text": func, "size": "xs", "weight": "bold", "color": "#18181B", "flex": 3, "wrap": True},
+                {"type": "text", "text": cn, "size": "xs", "weight": "bold", "color": "#27272A", "flex": 4, "wrap": True},
+                {"type": "text", "text": en, "size": "xs", "color": "#71717A", "flex": 3, "wrap": True}
             ]
         })
 
@@ -523,20 +535,20 @@ def create_help_flex() -> FlexMessage:
         "header": {
             "type": "box",
             "layout": "vertical",
-            "backgroundColor": "#1E293B",
+            "backgroundColor": "#18181B",
             "paddingAll": "16px",
             "contents": [
                 {
                     "type": "text",
                     "text": "常用指令說明",
                     "weight": "bold",
-                    "color": "#F8FAFC",
+                    "color": "#FFFFFF",
                     "size": "md"
                 },
                 {
                     "type": "text",
                     "text": "指令前加「/」，輸入中文或英文都可以！",
-                    "color": "#38BDF8",
+                    "color": "#A1A1AA",
                     "size": "xs",
                     "margin": "xs",
                     "wrap": True
@@ -547,18 +559,19 @@ def create_help_flex() -> FlexMessage:
             "type": "box",
             "layout": "vertical",
             "paddingAll": "12px",
+            "backgroundColor": "#F4F4F5",
             "contents": [
                 {
                     "type": "box",
                     "layout": "horizontal",
-                    "backgroundColor": "#0F172A",
+                    "backgroundColor": "#27272A",
                     "paddingVertical": "8px",
                     "paddingHorizontal": "10px",
                     "cornerRadius": "4px",
                     "contents": [
                         {"type": "text", "text": "你想做的事", "weight": "bold", "size": "xs", "color": "#FFFFFF", "flex": 3},
-                        {"type": "text", "text": "中文指令", "weight": "bold", "size": "xs", "color": "#38BDF8", "flex": 4},
-                        {"type": "text", "text": "英文指令", "weight": "bold", "size": "xs", "color": "#CBD5E1", "flex": 3}
+                        {"type": "text", "text": "中文指令", "weight": "bold", "size": "xs", "color": "#D4D4D8", "flex": 4},
+                        {"type": "text", "text": "英文指令", "weight": "bold", "size": "xs", "color": "#A1A1AA", "flex": 3}
                     ]
                 },
                 {
@@ -572,14 +585,14 @@ def create_help_flex() -> FlexMessage:
                     "layout": "vertical",
                     "margin": "md",
                     "paddingAll": "10px",
-                    "backgroundColor": "#F1F5F9",
+                    "backgroundColor": "#E4E4E7",
                     "cornerRadius": "6px",
                     "contents": [
                         {
                             "type": "text",
                             "text": "• 認領範例：/認領 T001（或 /claim T001）\n• 幽靈組員：/成員 新增 小明 小華\n• 抽籤機制：🎲 系統優先抽尚未分配任務的人",
                             "size": "xxs",
-                            "color": "#475569",
+                            "color": "#52525B",
                             "wrap": True
                         }
                     ]
@@ -590,6 +603,7 @@ def create_help_flex() -> FlexMessage:
             "type": "box",
             "layout": "vertical",
             "paddingAll": "12px",
+            "backgroundColor": "#F4F4F5",
             "contents": [
                 {
                     "type": "button",
@@ -601,7 +615,7 @@ def create_help_flex() -> FlexMessage:
                         "fillInText": "/任務 新增 "
                     },
                     "style": "primary",
-                    "color": "#0F766E",
+                    "color": "#27272A",
                     "height": "sm"
                 }
             ]
@@ -613,16 +627,15 @@ def create_help_flex() -> FlexMessage:
         quick_reply=get_main_quick_reply()
     )
 
-
 def create_task_created_flex(task_id: str, title: str, description: str, creator_name: str) -> FlexMessage:
-    """任務建立成功通知卡片（精簡標籤與版面）"""
+    """任務建立成功通知卡片（莫蘭迪黑白灰風格）"""
     bubble = {
         "type": "bubble",
         "size": "mega",
         "header": {
             "type": "box",
             "layout": "vertical",
-            "backgroundColor": "#0F766E",
+            "backgroundColor": "#27272A",
             "paddingAll": "16px",
             "contents": [
                 {
@@ -639,36 +652,39 @@ def create_task_created_flex(task_id: str, title: str, description: str, creator
             "layout": "vertical",
             "spacing": "md",
             "paddingAll": "16px",
+            "backgroundColor": "#FFFFFF",
             "contents": [
                 {
                     "type": "text",
                     "text": f"【{task_id}】{title}",
                     "weight": "bold",
                     "size": "md",
+                    "color": "#18181B",
                     "wrap": True
                 },
                 {
                     "type": "text",
                     "text": description if description else "（無補充說明）",
                     "size": "xs",
-                    "color": "#64748B",
+                    "color": "#71717A",
                     "wrap": True
                 },
-                {"type": "separator"},
+                {"type": "separator", "color": "#E4E4E7"},
                 {
                     "type": "box",
                     "layout": "horizontal",
                     "contents": [
-                        {"type": "text", "text": "發起人", "size": "xs", "color": "#94A3B8"},
-                        {"type": "text", "text": creator_name, "size": "xs", "color": "#334155", "align": "end", "wrap": True}
+                        {"type": "text", "text": "建立者", "size": "xs", "color": "#A1A1AA"},
+                        {"type": "text", "text": creator_name, "size": "xs", "color": "#18181B", "align": "end", "weight": "bold"}
                     ]
                 },
                 {
-                    "type": "text",
-                    "text": "請組員主動認領，若無人認領可點選抽籤隨機分工。",
-                    "size": "xs",
-                    "color": "#EA580C",
-                    "wrap": True
+                    "type": "box",
+                    "layout": "horizontal",
+                    "contents": [
+                        {"type": "text", "text": "狀態", "size": "xs", "color": "#A1A1AA"},
+                        {"type": "text", "text": "待認領", "size": "xs", "color": "#52525B", "align": "end", "weight": "bold"}
+                    ]
                 }
             ]
         },
@@ -676,6 +692,7 @@ def create_task_created_flex(task_id: str, title: str, description: str, creator
             "type": "box",
             "layout": "vertical",
             "paddingAll": "12px",
+            "backgroundColor": "#F4F4F5",
             "contents": [
                 {
                     "type": "button",
@@ -685,7 +702,7 @@ def create_task_created_flex(task_id: str, title: str, description: str, creator
                         "text": f"/claim {task_id}"
                     },
                     "style": "primary",
-                    "color": "#0F766E",
+                    "color": "#27272A",
                     "height": "sm"
                 }
             ]
@@ -697,15 +714,14 @@ def create_task_created_flex(task_id: str, title: str, description: str, creator
         quick_reply=get_main_quick_reply()
     )
 
-
 def create_task_list_flex(tasks: list) -> FlexMessage:
-    """任務清單卡片（使用 giga 寬版尺寸與簡潔按鈕，確保字體絕不截斷）"""
+    """任務清單卡片（莫蘭迪黑白灰風格，giga 寬版尺寸）"""
     if not tasks:
         item_boxes = [{
             "type": "text",
             "text": "目前這組還沒有任何待辦任務，大家可以輕鬆一下！",
             "size": "sm",
-            "color": "#64748B",
+            "color": "#71717A",
             "align": "center",
             "margin": "lg"
         }]
@@ -714,6 +730,7 @@ def create_task_list_flex(tasks: list) -> FlexMessage:
             "layout": "vertical",
             "spacing": "sm",
             "paddingAll": "12px",
+            "backgroundColor": "#F4F4F5",
             "contents": [
                 {
                     "type": "button",
@@ -725,7 +742,7 @@ def create_task_list_flex(tasks: list) -> FlexMessage:
                         "fillInText": "/任務 新增 "
                     },
                     "style": "primary",
-                    "color": "#0F766E",
+                    "color": "#27272A",
                     "height": "sm"
                 },
                 {
@@ -743,14 +760,13 @@ def create_task_list_flex(tasks: list) -> FlexMessage:
     else:
         item_boxes = []
         has_pending = False
-        for t in tasks[:8]:  # 最多顯示 8 筆完整條目
+        for t in tasks[:8]:
             is_pending = (t.get("status") == "pending")
             task_id = t.get("id", "T000")
             title = t.get("title", "")
             
             if is_pending:
                 has_pending = True
-                # 待認領：提供 2 字「認領」按鈕，左邊 flex 8，右邊 flex 3，絕不裁切
                 item_boxes.append({
                     "type": "box",
                     "layout": "horizontal",
@@ -767,14 +783,14 @@ def create_task_list_flex(tasks: list) -> FlexMessage:
                                     "text": f"[{task_id}] {title}",
                                     "size": "sm",
                                     "weight": "bold",
-                                    "color": "#0F172A",
+                                    "color": "#18181B",
                                     "wrap": True
                                 },
                                 {
                                     "type": "text",
                                     "text": "尚未認領",
                                     "size": "xxs",
-                                    "color": "#EA580C"
+                                    "color": "#71717A"
                                 }
                             ]
                         },
@@ -786,14 +802,13 @@ def create_task_list_flex(tasks: list) -> FlexMessage:
                                 "text": f"/claim {task_id}"
                             },
                             "style": "primary",
-                            "color": "#0F766E",
+                            "color": "#27272A",
                             "height": "sm",
                             "flex": 3
                         }
                     ]
                 })
             else:
-                # 已認領：顯示負責人
                 assignee_name = t.get("assignee_name", "組員")
                 item_boxes.append({
                     "type": "box",
@@ -810,7 +825,7 @@ def create_task_list_flex(tasks: list) -> FlexMessage:
                                     "type": "text",
                                     "text": f"[{task_id}] {title}",
                                     "size": "sm",
-                                    "color": "#475569",
+                                    "color": "#71717A",
                                     "wrap": True
                                 }
                             ]
@@ -824,7 +839,7 @@ def create_task_list_flex(tasks: list) -> FlexMessage:
                                     "type": "text",
                                     "text": assignee_name,
                                     "size": "xs",
-                                    "color": "#0F766E",
+                                    "color": "#18181B",
                                     "align": "end",
                                     "weight": "bold",
                                     "wrap": True
@@ -834,7 +849,6 @@ def create_task_list_flex(tasks: list) -> FlexMessage:
                     ]
                 })
 
-        # 底部操作按鈕
         footer_buttons = [
             {
                 "type": "button",
@@ -868,7 +882,7 @@ def create_task_list_flex(tasks: list) -> FlexMessage:
                     "text": "/roulette"
                 },
                 "style": "primary",
-                "color": "#DC2626",
+                "color": "#3F3F46",
                 "height": "sm",
                 "margin": "sm"
             })
@@ -878,6 +892,7 @@ def create_task_list_flex(tasks: list) -> FlexMessage:
             "layout": "vertical",
             "spacing": "sm",
             "paddingAll": "12px",
+            "backgroundColor": "#F4F4F5",
             "contents": footer_buttons
         }
 
@@ -887,36 +902,50 @@ def create_task_list_flex(tasks: list) -> FlexMessage:
         "header": {
             "type": "box",
             "layout": "vertical",
-            "backgroundColor": "#334155",
+            "backgroundColor": "#18181B",
             "paddingAll": "16px",
             "contents": [
-                {"type": "text", "text": "小組工作清單與認領現況", "weight": "bold", "color": "#FFFFFF", "size": "md"}
+                {
+                    "type": "text",
+                    "text": "小組工作清單",
+                    "weight": "bold",
+                    "color": "#FFFFFF",
+                    "size": "md"
+                },
+                {
+                    "type": "text",
+                    "text": "即時掌握每項工作負責進度",
+                    "color": "#A1A1AA",
+                    "size": "xs",
+                    "margin": "xs",
+                    "wrap": True
+                }
             ]
         },
         "body": {
             "type": "box",
             "layout": "vertical",
             "paddingAll": "16px",
+            "backgroundColor": "#FFFFFF",
             "contents": item_boxes
         },
         "footer": footer_box
     }
     return FlexMessage(
-        alt_text="小組工作清單與認領現況",
+        alt_text="小組專案任務清單",
         contents=FlexContainer.from_dict(bubble),
         quick_reply=get_main_quick_reply()
     )
 
-
 def create_roulette_flex(task_id: str, task_title: str, victim_name: str) -> FlexMessage:
-    """隨機指派抽籤卡片（文字精簡置中）"""
+    """🎲 隨機抽籤結果卡片（莫蘭迪黑白灰極簡風格）"""
     bubble = {
         "type": "bubble",
         "size": "mega",
         "header": {
             "type": "box",
             "layout": "vertical",
-            "backgroundColor": "#0284C7",
+            "backgroundColor": "#18181B",
             "paddingAll": "16px",
             "contents": [
                 {"type": "text", "text": "🎲 抽籤分工結果", "weight": "bold", "color": "#FFFFFF", "size": "md", "align": "center"}
@@ -927,12 +956,13 @@ def create_roulette_flex(task_id: str, task_title: str, victim_name: str) -> Fle
             "layout": "vertical",
             "spacing": "md",
             "paddingAll": "16px",
+            "backgroundColor": "#FFFFFF",
             "contents": [
                 {
                     "type": "text",
                     "text": "由你負責：",
                     "size": "xs",
-                    "color": "#64748B",
+                    "color": "#71717A",
                     "align": "center"
                 },
                 {
@@ -940,16 +970,16 @@ def create_roulette_flex(task_id: str, task_title: str, victim_name: str) -> Fle
                     "text": victim_name,
                     "weight": "bold",
                     "size": "xl",
-                    "color": "#0284C7",
+                    "color": "#18181B",
                     "align": "center",
                     "wrap": True
                 },
-                {"type": "separator"},
+                {"type": "separator", "color": "#E4E4E7"},
                 {
                     "type": "text",
                     "text": f"抽籤任務：【{task_id}】{task_title}",
                     "size": "sm",
-                    "color": "#334155",
+                    "color": "#27272A",
                     "wrap": True,
                     "weight": "bold"
                 },
@@ -957,7 +987,7 @@ def create_roulette_flex(task_id: str, task_title: str, victim_name: str) -> Fle
                     "type": "text",
                     "text": "辛苦了！有問題隨時在群組討論。",
                     "size": "xs",
-                    "color": "#64748B",
+                    "color": "#71717A",
                     "align": "center"
                 }
             ]
@@ -969,13 +999,11 @@ def create_roulette_flex(task_id: str, task_title: str, victim_name: str) -> Fle
         quick_reply=get_main_quick_reply()
     )
 
-
 def create_welcome_guide_flex() -> FlexMessage:
-    """加入好友時發送的 4 步驟使用手冊 Flex 卡片"""
+    """加入好友時發送的 4 步驟使用手冊 Flex 卡片（莫蘭迪黑白灰高質感配色）"""
     manual_url = os.getenv("MANUAL_URL", "")
     group_invite_url = os.getenv("GROUP_INVITE_URL", "https://line.me/R/nv/recommendOA/@805yffpw")
 
-    # 查看完整教學按鈕設定（優先使用環境變數設定的網址，預設直接在 LINE 送出 /常用指令說明 叫出速查表）
     manual_action = (
         {"type": "uri", "label": "查看完整教學", "uri": manual_url}
         if manual_url
@@ -988,7 +1016,7 @@ def create_welcome_guide_flex() -> FlexMessage:
         "header": {
             "type": "box",
             "layout": "vertical",
-            "backgroundColor": "#10213D",
+            "backgroundColor": "#18181B",
             "paddingAll": "20px",
             "contents": [
                 {
@@ -996,14 +1024,14 @@ def create_welcome_guide_flex() -> FlexMessage:
                     "text": "使用手冊",
                     "size": "sm",
                     "weight": "bold",
-                    "color": "#C9A227"
+                    "color": "#A1A1AA"
                 },
                 {
                     "type": "text",
                     "text": "4 步驟開始使用",
                     "size": "xl",
                     "weight": "bold",
-                    "color": "#F5F1E6",
+                    "color": "#FFFFFF",
                     "margin": "sm"
                 }
             ]
@@ -1011,7 +1039,7 @@ def create_welcome_guide_flex() -> FlexMessage:
         "body": {
             "type": "box",
             "layout": "vertical",
-            "backgroundColor": "#F5F1E6",
+            "backgroundColor": "#F4F4F5",
             "paddingAll": "20px",
             "spacing": "md",
             "contents": [
@@ -1026,25 +1054,25 @@ def create_welcome_guide_flex() -> FlexMessage:
                             "width": "24px",
                             "height": "24px",
                             "cornerRadius": "12px",
-                            "backgroundColor": "#C9A227",
+                            "backgroundColor": "#27272A",
                             "justifyContent": "center",
                             "alignItems": "center",
                             "contents": [
-                                { "type": "text", "text": "1", "size": "xs", "weight": "bold", "color": "#10213D", "align": "center" }
+                                { "type": "text", "text": "1", "size": "xs", "weight": "bold", "color": "#FFFFFF", "align": "center" }
                             ]
                         },
                         {
                             "type": "text",
                             "text": "把我拉進小組群組",
                             "size": "sm",
-                            "color": "#1A1A1A",
+                            "color": "#18181B",
                             "gravity": "center",
                             "wrap": True,
                             "flex": 1
                         }
                     ]
                 },
-                { "type": "separator", "color": "#DDD8CC" },
+                { "type": "separator", "color": "#E4E4E7" },
                 {
                     "type": "box",
                     "layout": "horizontal",
@@ -1056,25 +1084,25 @@ def create_welcome_guide_flex() -> FlexMessage:
                             "width": "24px",
                             "height": "24px",
                             "cornerRadius": "12px",
-                            "backgroundColor": "#C9A227",
+                            "backgroundColor": "#27272A",
                             "justifyContent": "center",
                             "alignItems": "center",
                             "contents": [
-                                { "type": "text", "text": "2", "size": "xs", "weight": "bold", "color": "#10213D", "align": "center" }
+                                { "type": "text", "text": "2", "size": "xs", "weight": "bold", "color": "#FFFFFF", "align": "center" }
                             ]
                         },
                         {
                             "type": "text",
                             "text": "輸入 /assign 指派任務",
                             "size": "sm",
-                            "color": "#1A1A1A",
+                            "color": "#18181B",
                             "gravity": "center",
                             "wrap": True,
                             "flex": 1
                         }
                     ]
                 },
-                { "type": "separator", "color": "#DDD8CC" },
+                { "type": "separator", "color": "#E4E4E7" },
                 {
                     "type": "box",
                     "layout": "horizontal",
@@ -1086,11 +1114,11 @@ def create_welcome_guide_flex() -> FlexMessage:
                             "width": "24px",
                             "height": "24px",
                             "cornerRadius": "12px",
-                            "backgroundColor": "#7A1F2B",
+                            "backgroundColor": "#52525B",
                             "justifyContent": "center",
                             "alignItems": "center",
                             "contents": [
-                                { "type": "text", "text": "3", "size": "xs", "weight": "bold", "color": "#F5F1E6", "align": "center" }
+                                { "type": "text", "text": "3", "size": "xs", "weight": "bold", "color": "#FFFFFF", "align": "center" }
                             ]
                         },
                         {
@@ -1102,14 +1130,14 @@ def create_welcome_guide_flex() -> FlexMessage:
                                     "type": "text",
                                     "text": "沉寂 30 分鐘自動提醒",
                                     "size": "sm",
-                                    "color": "#1A1A1A",
+                                    "color": "#18181B",
                                     "wrap": True
                                 },
                                 {
                                     "type": "text",
                                     "text": "無人認領將公告並隨機指派",
                                     "size": "xxs",
-                                    "color": "#8A6A6A",
+                                    "color": "#71717A",
                                     "wrap": True,
                                     "margin": "xs"
                                 }
@@ -1117,7 +1145,7 @@ def create_welcome_guide_flex() -> FlexMessage:
                         }
                     ]
                 },
-                { "type": "separator", "color": "#DDD8CC" },
+                { "type": "separator", "color": "#E4E4E7" },
                 {
                     "type": "box",
                     "layout": "horizontal",
@@ -1129,18 +1157,18 @@ def create_welcome_guide_flex() -> FlexMessage:
                             "width": "24px",
                             "height": "24px",
                             "cornerRadius": "12px",
-                            "backgroundColor": "#C9A227",
+                            "backgroundColor": "#27272A",
                             "justifyContent": "center",
                             "alignItems": "center",
                             "contents": [
-                                { "type": "text", "text": "4", "size": "xs", "weight": "bold", "color": "#10213D", "align": "center" }
+                                { "type": "text", "text": "4", "size": "xs", "weight": "bold", "color": "#FFFFFF", "align": "center" }
                             ]
                         },
                         {
                             "type": "text",
                             "text": "期末輸入 /export 匯出報告",
                             "size": "sm",
-                            "color": "#1A1A1A",
+                            "color": "#18181B",
                             "gravity": "center",
                             "wrap": True,
                             "flex": 1
@@ -1154,20 +1182,20 @@ def create_welcome_guide_flex() -> FlexMessage:
             "layout": "vertical",
             "spacing": "sm",
             "paddingAll": "12px",
-            "backgroundColor": "#F5F1E6",
+            "backgroundColor": "#F4F4F5",
             "contents": [
                 {
                     "type": "button",
                     "style": "primary",
                     "height": "sm",
-                    "color": "#10213D",
+                    "color": "#18181B",
                     "action": manual_action
                 },
                 {
                     "type": "button",
                     "style": "secondary",
                     "height": "sm",
-                    "color": "#C9A227",
+                    "color": "#52525B",
                     "action": {
                         "type": "uri",
                         "label": "立即拉我進群組",
@@ -1185,3 +1213,151 @@ def create_welcome_guide_flex() -> FlexMessage:
         quick_reply=get_main_quick_reply()
     )
 
+def create_upgrade_plan_flex() -> FlexMessage:
+    """升級方案卡片（莫蘭迪黑白灰質感設計）"""
+    bubble = {
+        "type": "bubble",
+        "size": "giga",
+        "header": {
+            "type": "box",
+            "layout": "vertical",
+            "backgroundColor": "#18181B",
+            "paddingAll": "20px",
+            "contents": [
+                {
+                    "type": "text",
+                    "text": "組長保險・升級方案",
+                    "weight": "bold",
+                    "color": "#FFFFFF",
+                    "size": "md"
+                },
+                {
+                    "type": "text",
+                    "text": "全面解鎖進階小組專案協作與催繳保障",
+                    "color": "#A1A1AA",
+                    "size": "xs",
+                    "margin": "xs",
+                    "wrap": True
+                }
+            ]
+        },
+        "body": {
+            "type": "box",
+            "layout": "vertical",
+            "paddingAll": "16px",
+            "spacing": "md",
+            "backgroundColor": "#F4F4F5",
+            "contents": [
+                # 方案 1：免費版
+                {
+                    "type": "box",
+                    "layout": "vertical",
+                    "backgroundColor": "#FFFFFF",
+                    "paddingAll": "14px",
+                    "cornerRadius": "8px",
+                    "borderColor": "#E4E4E7",
+                    "borderWidth": "1px",
+                    "contents": [
+                        {
+                            "type": "box",
+                            "layout": "horizontal",
+                            "alignItems": "center",
+                            "contents": [
+                                {"type": "text", "text": "基礎免費版", "weight": "bold", "size": "sm", "color": "#18181B", "flex": 1},
+                                {
+                                    "type": "box",
+                                    "layout": "vertical",
+                                    "backgroundColor": "#E4E4E7",
+                                    "paddingVertical": "2px",
+                                    "paddingHorizontal": "6px",
+                                    "cornerRadius": "4px",
+                                    "contents": [
+                                        {"type": "text", "text": "使用中", "size": "xxs", "color": "#52525B", "weight": "bold"}
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "text",
+                            "text": "• 4 大標準工作範本與自訂任務\n• 🎲 隨機抽籤（優先指派無任務者）\n• 本地資料永續保存與成員名冊",
+                            "size": "xs",
+                            "color": "#71717A",
+                            "margin": "sm",
+                            "wrap": True
+                        }
+                    ]
+                },
+                # 方案 2：專業版 Pro
+                {
+                    "type": "box",
+                    "layout": "vertical",
+                    "backgroundColor": "#FFFFFF",
+                    "paddingAll": "14px",
+                    "cornerRadius": "8px",
+                    "borderColor": "#27272A",
+                    "borderWidth": "2px",
+                    "contents": [
+                        {
+                            "type": "box",
+                            "layout": "horizontal",
+                            "alignItems": "center",
+                            "contents": [
+                                {"type": "text", "text": "尊榮組長保險 Pro", "weight": "bold", "size": "sm", "color": "#18181B", "flex": 1},
+                                {
+                                    "type": "box",
+                                    "layout": "vertical",
+                                    "backgroundColor": "#18181B",
+                                    "paddingVertical": "2px",
+                                    "paddingHorizontal": "6px",
+                                    "cornerRadius": "4px",
+                                    "contents": [
+                                        {"type": "text", "text": "PRO", "size": "xxs", "color": "#FFFFFF", "weight": "bold"}
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "text",
+                            "text": "• 30 分鐘沉寂自動催繳與 LINE 警示通知\n• 小組期末專案互評與個人貢獻度 PDF 報表\n• Google Docs / Notion 雲端即時同步\n• 無上限多組專案與跨群協作支援",
+                            "size": "xs",
+                            "color": "#27272A",
+                            "margin": "sm",
+                            "wrap": True
+                        }
+                    ]
+                },
+                {
+                    "type": "text",
+                    "text": "專案組員不想再當冤大頭？升級 Pro 讓全自動保險為您護航！",
+                    "size": "xxs",
+                    "color": "#71717A",
+                    "align": "center",
+                    "wrap": True
+                }
+            ]
+        },
+        "footer": {
+            "type": "box",
+            "layout": "vertical",
+            "paddingAll": "12px",
+            "backgroundColor": "#F4F4F5",
+            "contents": [
+                {
+                    "type": "button",
+                    "style": "primary",
+                    "color": "#18181B",
+                    "height": "sm",
+                    "action": {
+                        "type": "message",
+                        "label": "了解方案 / 諮詢升級",
+                        "text": "/諮詢升級"
+                    }
+                }
+            ]
+        }
+    }
+    return FlexMessage(
+        alt_text="組長保險・升級方案",
+        contents=FlexContainer.from_dict(bubble),
+        quick_reply=get_main_quick_reply()
+    )
