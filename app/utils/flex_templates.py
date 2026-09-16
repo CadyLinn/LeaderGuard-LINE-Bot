@@ -470,11 +470,11 @@ def create_help_flex() -> FlexMessage:
                     "paddingAll": "12px",
                     "cornerRadius": "8px",
                     "contents": [
-                        {"type": "text", "text": "任務建立與認領", "weight": "bold", "size": "sm", "color": "#0F172A"},
-                        {"type": "text", "text": "• /task 範本：常用工作一鍵建立", "size": "xs", "color": "#0284C7", "weight": "bold", "margin": "xs", "wrap": True},
-                        {"type": "text", "text": "• /task 新增 [名稱]：自訂任務", "size": "xs", "color": "#475569", "margin": "xs", "wrap": True},
-                        {"type": "text", "text": "• /task 清單：查看進度與認領", "size": "xs", "color": "#475569", "margin": "xs", "wrap": True},
-                        {"type": "text", "text": "• /claim [編號]：認領指定任務", "size": "xs", "color": "#475569", "margin": "xs", "wrap": True}
+                        {"type": "text", "text": "任務建立與認領（中英文皆可）", "weight": "bold", "size": "sm", "color": "#0F172A"},
+                        {"type": "text", "text": "• /task 範本 或 /任務 範本：快速建立範本", "size": "xs", "color": "#0284C7", "weight": "bold", "margin": "xs", "wrap": True},
+                        {"type": "text", "text": "• /task 新增 或 /任務 新增 [名稱]：自訂任務", "size": "xs", "color": "#475569", "margin": "xs", "wrap": True},
+                        {"type": "text", "text": "• /task 清單 或 /任務 清單：查看進度與認領", "size": "xs", "color": "#475569", "margin": "xs", "wrap": True},
+                        {"type": "text", "text": "• /claim 或 /認領 [編號]：認領指定任務", "size": "xs", "color": "#475569", "margin": "xs", "wrap": True}
                     ]
                 },
                 {
@@ -485,9 +485,9 @@ def create_help_flex() -> FlexMessage:
                     "cornerRadius": "8px",
                     "contents": [
                         {"type": "text", "text": "🎲 抽籤分工與名冊", "weight": "bold", "size": "sm", "color": "#991B1B"},
-                        {"type": "text", "text": "• /roulette：優先抽無任務組員", "size": "xs", "color": "#B91C1C", "margin": "xs", "wrap": True},
-                        {"type": "text", "text": "• /member 新增 [名字]：手動加入組員", "size": "xs", "color": "#B91C1C", "margin": "xs", "wrap": True},
-                        {"type": "text", "text": "• /member：查看成員分工現況", "size": "xs", "color": "#B91C1C", "margin": "xs", "wrap": True}
+                        {"type": "text", "text": "• /roulette 或 /抽籤：優先抽無任務組員", "size": "xs", "color": "#B91C1C", "margin": "xs", "wrap": True},
+                        {"type": "text", "text": "• /member 新增 或 /成員 新增 [名字]：手動加入組員", "size": "xs", "color": "#B91C1C", "margin": "xs", "wrap": True},
+                        {"type": "text", "text": "• /member 或 /成員：查看成員分工現況", "size": "xs", "color": "#B91C1C", "margin": "xs", "wrap": True}
                     ]
                 },
                 {
@@ -497,8 +497,9 @@ def create_help_flex() -> FlexMessage:
                     "paddingAll": "12px",
                     "cornerRadius": "8px",
                     "contents": [
-                        {"type": "text", "text": "進度狀態", "weight": "bold", "size": "sm", "color": "#065F46"},
-                        {"type": "text", "text": "• /status：查看各項任務認領狀況", "size": "xs", "color": "#047857", "margin": "xs", "wrap": True}
+                        {"type": "text", "text": "進度狀態與指南", "weight": "bold", "size": "sm", "color": "#065F46"},
+                        {"type": "text", "text": "• /status 或 /狀態：查看各項任務認領狀況", "size": "xs", "color": "#047857", "margin": "xs", "wrap": True},
+                        {"type": "text", "text": "• /help 或 /說明：隨時呼叫本說明手冊", "size": "xs", "color": "#047857", "margin": "xs", "wrap": True}
                     ]
                 }
             ]
