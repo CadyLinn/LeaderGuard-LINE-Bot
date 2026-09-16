@@ -44,9 +44,9 @@ def health_check():
 @app.get("/version")
 def get_version():
     return {
-        "version": "1.6.0",
-        "build": "modern-slate-indigo-v6",
-        "description": "全面升級現代極簡深空暗黑與冰川冷藍配色（Modern Slate & Indigo）"
+        "version": "1.7.0",
+        "build": "jojo-pop-art-v7",
+        "description": "JoJo 瘋狂鑽石波普搞怪風與符合 Apple HIG 高對比按鈕"
     }
 
 
