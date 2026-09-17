@@ -53,9 +53,9 @@ from app.routes.webhook import recent_webhook_logs
 @app.get("/version")
 def get_version():
     return {
-        "version": "1.9.33",
-        "build": "add-custom-invite-hero-image-and-update-recommend-button",
-        "description": "生成並啟用全新加群專屬Hero圖，更新一鍵推薦給朋友按鈕"
+        "version": "1.9.34",
+        "build": "clean-hero-image-parallel-height-remove-slack-copy",
+        "description": "重繪純淨無文字專屬Hero封面，左右兩卡高度平行對齊，刪除擺平摸魚文案"
     }
 
 @app.get("/api/logs")

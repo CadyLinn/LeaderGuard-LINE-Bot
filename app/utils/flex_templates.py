@@ -775,7 +775,7 @@ def create_help_flex() -> FlexMessage:
     )
 
 def create_invite_group_bubble() -> dict:
-    """立即把組長保險加入群組 Bubble 卡片字典（JoJo 美學、Apple HIG 規範）"""
+    """立即把組長保險加入群組 Bubble 卡片字典（JoJo 美學、Apple HIG 規範，高度與左側指令表完美平行對齊）"""
     return {
         "type": "bubble",
         "size": "giga",
@@ -814,7 +814,7 @@ def create_invite_group_bubble() -> dict:
                 },
                 {
                     "type": "text",
-                    "text": "進駐大學專案群組，自動追蹤進度、分配工作、擺平摸魚！",
+                    "text": "進駐大學專案群組，自動追蹤進度、公平分配工作！",
                     "color": "#06B6D4",
                     "size": "xs",
                     "margin": "xs",
@@ -827,133 +827,141 @@ def create_invite_group_bubble() -> dict:
             "layout": "vertical",
             "paddingAll": "12px",
             "backgroundColor": "#100B1E",
-            "spacing": "sm",
+            "spacing": "xs",
             "contents": [
+                # 區塊標題 1：加入 3 步驟
+                {
+                    "type": "box",
+                    "layout": "horizontal",
+                    "backgroundColor": "#2A0845",
+                    "borderColor": "#FDE047",
+                    "borderWidth": "1px",
+                    "paddingVertical": "6px",
+                    "paddingHorizontal": "10px",
+                    "cornerRadius": "4px",
+                    "contents": [
+                        {"type": "text", "text": "邀請進群 3 步驟", "weight": "bold", "size": "xs", "color": "#FDE047", "flex": 1}
+                    ]
+                },
                 # 步驟 1
                 {
                     "type": "box",
                     "layout": "horizontal",
-                    "spacing": "md",
-                    "alignItems": "center",
                     "backgroundColor": "#1E1636",
-                    "paddingAll": "10px",
-                    "cornerRadius": "6px",
+                    "paddingVertical": "6px",
+                    "paddingHorizontal": "10px",
+                    "alignItems": "center",
                     "action": {
                         "type": "message",
                         "text": "/如何加入群組"
                     },
                     "contents": [
-                        {
-                            "type": "box",
-                            "layout": "vertical",
-                            "width": "24px",
-                            "height": "24px",
-                            "cornerRadius": "12px",
-                            "backgroundColor": "#0891B2",
-                            "justifyContent": "center",
-                            "alignItems": "center",
-                            "contents": [
-                                {"type": "text", "text": "1", "size": "xs", "weight": "bold", "color": "#FFFFFF", "align": "center"}
-                            ]
-                        },
-                        {
-                            "type": "text",
-                            "text": "點群組進入專案小組聊天室",
-                            "size": "xs",
-                            "color": "#FFFFFF",
-                            "weight": "bold",
-                            "flex": 1
-                        }
+                        {"type": "text", "text": "步驟 1", "size": "xs", "weight": "bold", "color": "#06B6D4", "flex": 2},
+                        {"type": "text", "text": "開啟專案小組 LINE 聊天室", "size": "xs", "color": "#FFFFFF", "flex": 6, "wrap": True}
                     ]
                 },
                 # 步驟 2
                 {
                     "type": "box",
                     "layout": "horizontal",
-                    "spacing": "md",
+                    "backgroundColor": "#160F29",
+                    "paddingVertical": "6px",
+                    "paddingHorizontal": "10px",
                     "alignItems": "center",
-                    "backgroundColor": "#1E1636",
-                    "paddingAll": "10px",
-                    "cornerRadius": "6px",
                     "action": {
                         "type": "message",
                         "text": "/如何加入群組"
                     },
                     "contents": [
-                        {
-                            "type": "box",
-                            "layout": "vertical",
-                            "width": "24px",
-                            "height": "24px",
-                            "cornerRadius": "12px",
-                            "backgroundColor": "#E11D48",
-                            "justifyContent": "center",
-                            "alignItems": "center",
-                            "contents": [
-                                {"type": "text", "text": "2", "size": "xs", "weight": "bold", "color": "#FFFFFF", "align": "center"}
-                            ]
-                        },
-                        {
-                            "type": "text",
-                            "text": "點右上角選單（≡）> 點「邀請」",
-                            "size": "xs",
-                            "color": "#FFFFFF",
-                            "weight": "bold",
-                            "flex": 1
-                        }
+                        {"type": "text", "text": "步驟 2", "size": "xs", "weight": "bold", "color": "#FDE047", "flex": 2},
+                        {"type": "text", "text": "點選右上角選單（≡）>「邀請」", "size": "xs", "color": "#FFFFFF", "flex": 6, "wrap": True}
                     ]
                 },
                 # 步驟 3
                 {
                     "type": "box",
                     "layout": "horizontal",
-                    "spacing": "md",
-                    "alignItems": "center",
                     "backgroundColor": "#1E1636",
-                    "paddingAll": "10px",
-                    "cornerRadius": "6px",
+                    "paddingVertical": "6px",
+                    "paddingHorizontal": "10px",
+                    "alignItems": "center",
                     "action": {
                         "type": "message",
                         "text": "/如何加入群組"
                     },
                     "contents": [
-                        {
-                            "type": "box",
-                            "layout": "vertical",
-                            "width": "24px",
-                            "height": "24px",
-                            "cornerRadius": "12px",
-                            "backgroundColor": "#FDE047",
-                            "justifyContent": "center",
-                            "alignItems": "center",
-                            "contents": [
-                                {"type": "text", "text": "3", "size": "xs", "weight": "bold", "color": "#160F29", "align": "center"}
-                            ]
-                        },
-                        {
-                            "type": "text",
-                            "text": "搜尋「組長保險」並勾選邀請入群",
-                            "size": "xs",
-                            "color": "#FFFFFF",
-                            "weight": "bold",
-                            "flex": 1
-                        }
+                        {"type": "text", "text": "步驟 3", "size": "xs", "weight": "bold", "color": "#F43F5E", "flex": 2},
+                        {"type": "text", "text": "搜尋「組長保險」並勾選邀請入群", "size": "xs", "color": "#FFFFFF", "flex": 6, "wrap": True}
                     ]
                 },
-                # 小提醒區塊
+                # 區塊標題 2：進群功能
+                {
+                    "type": "box",
+                    "layout": "horizontal",
+                    "backgroundColor": "#2A0845",
+                    "borderColor": "#06B6D4",
+                    "borderWidth": "1px",
+                    "paddingVertical": "6px",
+                    "paddingHorizontal": "10px",
+                    "cornerRadius": "4px",
+                    "margin": "xs",
+                    "contents": [
+                        {"type": "text", "text": "進群立即解鎖 3 大功能", "weight": "bold", "size": "xs", "color": "#06B6D4", "flex": 1}
+                    ]
+                },
+                # 功能 1
+                {
+                    "type": "box",
+                    "layout": "horizontal",
+                    "backgroundColor": "#1E1636",
+                    "paddingVertical": "6px",
+                    "paddingHorizontal": "10px",
+                    "alignItems": "center",
+                    "contents": [
+                        {"type": "text", "text": "任務範本", "size": "xs", "weight": "bold", "color": "#FFFFFF", "flex": 2},
+                        {"type": "text", "text": "輸入 /task 範本 一鍵建立四大分工", "size": "xs", "color": "#06B6D4", "flex": 6, "wrap": True}
+                    ]
+                },
+                # 功能 2
+                {
+                    "type": "box",
+                    "layout": "horizontal",
+                    "backgroundColor": "#160F29",
+                    "paddingVertical": "6px",
+                    "paddingHorizontal": "10px",
+                    "alignItems": "center",
+                    "contents": [
+                        {"type": "text", "text": "🎲 命運抽籤", "size": "xs", "weight": "bold", "color": "#FFFFFF", "flex": 2},
+                        {"type": "text", "text": "沒人認領的工作交給命運之輪指派", "size": "xs", "color": "#FDE047", "flex": 6, "wrap": True}
+                    ]
+                },
+                # 功能 3
+                {
+                    "type": "box",
+                    "layout": "horizontal",
+                    "backgroundColor": "#1E1636",
+                    "paddingVertical": "6px",
+                    "paddingHorizontal": "10px",
+                    "alignItems": "center",
+                    "contents": [
+                        {"type": "text", "text": "進度掌控", "size": "xs", "weight": "bold", "color": "#FFFFFF", "flex": 2},
+                        {"type": "text", "text": "輸入 /status 隨時檢視各組員進度", "size": "xs", "color": "#06B6D4", "flex": 6, "wrap": True}
+                    ]
+                },
+                # 底部小提醒（與 Card 1 結構一致）
                 {
                     "type": "box",
                     "layout": "vertical",
-                    "margin": "xs",
+                    "margin": "md",
                     "paddingAll": "10px",
-                    "backgroundColor": "#160F29",
+                    "backgroundColor": "#1E1636",
                     "borderColor": "#06B6D4",
                     "borderWidth": "1px",
                     "cornerRadius": "6px",
                     "contents": [
                         {
                             "type": "text",
-                            "text": "• 進群後輸入「/選單」或「/tasks」喚起管理中心\n• 工作沒人認領？輸入「/抽籤」交給 🎲 命運抽籤",
+                            "text": "• 推薦分享：點擊下方「一鍵推薦給朋友」直接挑選好友或群組\n• 啟用指令：進群後輸入「/選單」即可開始小組協作管理\n• 指令說明：如需查看完整說明可隨時輸入「/如何加入群組」",
                             "size": "xxs",
                             "color": "#F3E8FF",
                             "wrap": True
