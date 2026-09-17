@@ -61,6 +61,12 @@ async def line_webhook(request: Request, x_line_signature: str = Header(None)):
     body = await request.body()
     body_str = body.decode("utf-8")
 
+    record_webhook_log({
+        "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+        "event": "raw_webhook_received",
+        "body_preview": body_str[:300]
+    })
+
     try:
         handler.handle(body_str, x_line_signature)
     except InvalidSignatureError:
@@ -83,6 +89,15 @@ def handle_follow(event):
     user_id = getattr(event.source, "user_id", "unknown")
     logger.info(f"新好友加入: {user_id}")
     
+    log_entry = {
+        "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+        "event": "follow_event",
+        "user_id": user_id,
+        "reply_status": "pending",
+        "error": None
+    }
+    record_webhook_log(log_entry)
+
     with ApiClient(configuration) as api_client:
         line_bot_api = MessagingApi(api_client)
         user_name = "同學"
@@ -103,15 +118,21 @@ def handle_follow(event):
         if hasattr(welcome_flex, "quick_reply"):
             welcome_flex.quick_reply = None
 
-        line_bot_api.reply_message_with_http_info(
-            ReplyMessageRequest(
-                reply_token=event.reply_token,
-                messages=[
-                    TextMessage(text=greeting_text),
-                    welcome_flex
-                ]
+        try:
+            line_bot_api.reply_message_with_http_info(
+                ReplyMessageRequest(
+                    reply_token=event.reply_token,
+                    messages=[
+                        TextMessage(text=greeting_text),
+                        welcome_flex
+                    ]
+                )
             )
-        )
+            log_entry["reply_status"] = "success"
+        except Exception as reply_err:
+            logger.error(f"回覆加入好友訊息失敗: {reply_err}")
+            log_entry["reply_status"] = "failed"
+            log_entry["error"] = str(reply_err)
 
 @handler.add(JoinEvent)
 def handle_join(event):
