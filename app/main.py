@@ -48,12 +48,22 @@ def health_check():
         "service": "LeaderGuard LINE Bot"
     }
 
+from app.routes.webhook import recent_webhook_logs
+
 @app.get("/version")
 def get_version():
     return {
-        "version": "1.9.27",
-        "build": "task-delete-support-and-clean-roulette-text",
-        "description": "支援工作刪除選單與指令，抽籤結果刪除扛下重任"
+        "version": "1.9.28",
+        "build": "restore-private-chat-quick-reply-and-add-diagnostics",
+        "description": "恢復官方帳號個人聊天室之快捷指令選項，啟用即時日誌診斷"
     }
+
+@app.get("/api/logs")
+def get_webhook_logs():
+    return {
+        "total_events": len(recent_webhook_logs),
+        "logs": list(reversed(recent_webhook_logs))
+    }
+
 
 

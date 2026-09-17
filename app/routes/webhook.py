@@ -1,3 +1,4 @@
+from datetime import datetime
 import os
 import logging
 from dotenv import load_dotenv
@@ -42,6 +43,14 @@ if not channel_secret:
 configuration = Configuration(access_token=channel_access_token)
 handler = WebhookHandler(channel_secret)
 
+# 記憶體即時 Webhook 執行日誌（供診斷個人聊天室與群組收發狀態）
+recent_webhook_logs = []
+
+def record_webhook_log(entry: dict):
+    recent_webhook_logs.append(entry)
+    if len(recent_webhook_logs) > 50:
+        recent_webhook_logs.pop(0)
+
 @router.post("")
 async def line_webhook(request: Request, x_line_signature: str = Header(None)):
     """接收 LINE Messaging API 的 Webhook 請求"""
@@ -59,6 +68,11 @@ async def line_webhook(request: Request, x_line_signature: str = Header(None)):
         raise HTTPException(status_code=400, detail="Invalid signature. Check your channel secret.")
     except Exception as e:
         logger.error(f"處理 Webhook 事件時發生未預期錯誤: {e}")
+        record_webhook_log({
+            "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+            "event": "webhook_exception",
+            "error": str(e)
+        })
         return "ERROR"
 
     return "OK"
@@ -86,8 +100,6 @@ def handle_follow(event):
         )
 
         welcome_flex = create_welcome_guide_flex()
-        if hasattr(welcome_flex, "quick_reply"):
-            welcome_flex.quick_reply = None
 
         line_bot_api.reply_message_with_http_info(
             ReplyMessageRequest(
@@ -154,13 +166,26 @@ def handle_message(event):
         logger.info(f"收到訊息 [來自: {user_name}({user_id}), 群組: {group_id}]: {user_text}")
 
         # 記錄發言活躍時間與成員名單
-        target_group = group_id or "default_group"
+        target_group = group_id or f"user_{user_id}"
         record_member_activity(
             group_id=target_group,
             user_id=user_id,
             user_name=user_name,
             message_text=user_text
         )
+
+        log_entry = {
+            "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+            "source_type": getattr(event.source, "type", "user" if not group_id else "group"),
+            "user_id": user_id,
+            "user_name": user_name,
+            "group_id": group_id,
+            "user_text": user_text,
+            "reply_status": "pending",
+            "reply_count": 0,
+            "error": None
+        }
+        record_webhook_log(log_entry)
 
         # 解析並處理指令
         reply_messages = handle_user_command(
@@ -171,11 +196,6 @@ def handle_message(event):
         )
 
         if reply_messages:
-            # 使用者與官方帳號的 1 對 1 聊天室不顯示 quick reply（底部已有 Rich Menu 圖文選單）
-            if not group_id:
-                for msg in reply_messages:
-                    if hasattr(msg, "quick_reply"):
-                        msg.quick_reply = None
             try:
                 line_bot_api.reply_message_with_http_info(
                     ReplyMessageRequest(
@@ -183,22 +203,28 @@ def handle_message(event):
                         messages=reply_messages
                     )
                 )
+                log_entry["reply_status"] = "success"
+                log_entry["reply_count"] = len(reply_messages)
             except Exception as reply_err:
                 logger.error(f"LINE 回覆訊息失敗: {reply_err}")
+                log_entry["reply_status"] = "failed"
+                log_entry["error"] = str(reply_err)
         elif not group_id:
-            # 僅在「一對一私聊」且非特定指令時，直接回傳主選單 Flex 卡片（官方帳號聊天室不帶 quick reply）
+            # 僅在「一對一私聊」且非特定指令時，直接回傳主選單 Flex 卡片（包含完整常駐快捷按鈕列）
             try:
                 menu_flex = create_main_menu_flex()
-                if hasattr(menu_flex, "quick_reply"):
-                    menu_flex.quick_reply = None
                 line_bot_api.reply_message_with_http_info(
                     ReplyMessageRequest(
                         reply_token=event.reply_token,
                         messages=[menu_flex]
                     )
                 )
+                log_entry["reply_status"] = "success_fallback_menu"
+                log_entry["reply_count"] = 1
             except Exception as reply_err:
                 logger.error(f"LINE 回覆私聊主選單失敗: {reply_err}")
+                log_entry["reply_status"] = "failed_fallback_menu"
+                log_entry["error"] = str(reply_err)
 
 @handler.add(MessageEvent, message=(StickerMessageContent, ImageMessageContent))
 def handle_media_message(event):
