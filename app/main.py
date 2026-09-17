@@ -53,9 +53,9 @@ from app.routes.webhook import recent_webhook_logs
 @app.get("/version")
 def get_version():
     return {
-        "version": "1.9.31",
-        "build": "add-command-guide-button-to-4step-card",
-        "description": "4 步驟新手入門卡片之了解 PRO 專案上方新增指令說明按鈕"
+        "version": "1.9.32",
+        "build": "add-invite-group-guide-carousel-card",
+        "description": "指令說明新增立即把組長保險加入群組圖卡與點擊步驟文字說明"
     }
 
 @app.get("/api/logs")

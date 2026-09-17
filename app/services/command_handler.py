@@ -22,10 +22,31 @@ from app.utils.flex_templates import (
     create_preset_tasks_carousel,
     create_welcome_guide_flex,
     create_upgrade_plan_flex,
+    create_invite_group_flex,
     get_main_quick_reply
 )
 
 logger = logging.getLogger("leaderguard.command")
+
+def get_invite_group_guide_text() -> str:
+    """產生引導用戶將組長保險加入小組群組的文字說明（完全禁止非 🎲 之 emoji）"""
+    return (
+        "【如何將「組長保險」加入小組群組】\n\n"
+        "只要簡單 3 步驟，即可將「組長保險」邀請進報告群組，全面防堵組員已讀不回與期末擺爛：\n\n"
+        "1. 開啟 LINE 小組群組\n"
+        "點群組聊天室，進入您的大學報告或專案小組群組。\n\n"
+        "2. 點擊右上角選單（≡）> 點選「邀請」\n"
+        "點群組右上角的選單按鈕（≡ 三條線），進入群組功能頁後點選「邀請」圖示。\n\n"
+        "3. 搜尋並加入「組長保險」\n"
+        "在好友清單搜尋欄輸入「組長保險」，勾選後點擊右上角「邀請」，機器人就會立即進駐群組！\n\n"
+        "―――\n"
+        "【進群後的第一步】\n"
+        "• 輸入「/選單」：隨時喚起小組專案管理中心\n"
+        "• 輸入「/task 範本」：一鍵建立簡報、報告、調研、書面 4 大分工\n"
+        "• 輸入「/抽籤」：沒人認領的工作，交給 🎲 命運抽籤公平指派\n\n"
+        "若要快速推薦給組員，也可直接轉傳官方帳號連結：\n"
+        "https://line.me/R/nv/recommendOA/@805yffpw"
+    )
 
 # 常見觸發主選單的問候與指令詞
 MENU_KEYWORDS = {
@@ -62,6 +83,32 @@ def handle_user_command(user_text: str, group_id: str, user_id: str, user_name: 
         "/指南", "指南"
     ]:
         return [create_help_flex()]
+
+    # 2.2 如何將組長保險加入群組說明（文字教學說明）
+    if text.lower() in [
+        "/如何加入群組", "如何加入群組",
+        "/加入群組說明", "加入群組說明",
+        "/加入群組教學", "加入群組教學",
+        "/加入群組", "加入群組",
+        "/加到群組", "加到群組",
+        "/邀請", "邀請",
+        "/邀請機器人", "邀請機器人",
+        "/邀請教學", "邀請教學",
+        "/加群步驟", "加群步驟",
+        "/加群教學", "加群教學",
+        "/加群", "加群",
+        "/拉進群組", "拉進群組",
+        "/邀進群組", "邀進群組"
+    ]:
+        return [TextMessage(text=get_invite_group_guide_text())]
+
+    # 2.3 立即把組長保險加入群組圖卡
+    if text.lower() in [
+        "/加入群組圖卡", "加入群組圖卡",
+        "/加群圖卡", "加群圖卡",
+        "/邀請圖卡", "邀請圖卡"
+    ]:
+        return [create_invite_group_flex()]
 
     # 2.5 4 步驟使用手冊（/手冊、/使用手冊、/4步驟 或 /guide）
     if text.lower() in [
