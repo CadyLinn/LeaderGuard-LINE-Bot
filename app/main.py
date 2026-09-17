@@ -53,9 +53,9 @@ from app.routes.webhook import recent_webhook_logs
 @app.get("/version")
 def get_version():
     return {
-        "version": "1.9.35",
-        "build": "jojo-hero-image-and-exact-header-table-symmetry-alignment",
-        "description": "重繪極致 JoJo 風格 Hero 圖，圖上文字與整卡大小 100% 鏡像對齊"
+        "version": "1.9.36",
+        "build": "jojo-add-hero-and-123-minimalist-card",
+        "description": "重繪 JoJo 爆發風格 ADD! 專屬 Hero 圖，改回 123 簡約風清晰版面"
     }
 
 @app.get("/api/logs")

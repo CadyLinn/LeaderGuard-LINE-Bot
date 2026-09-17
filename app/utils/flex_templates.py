@@ -775,36 +775,7 @@ def create_help_flex() -> FlexMessage:
     )
 
 def create_invite_group_bubble() -> dict:
-    """立即把組長保險加入群組 Bubble 卡片字典（JoJo 漫畫風格表格化速查表，與左卡規格高度 100% 鏡像平行對齊）"""
-    table_data = [
-        ("步驟 1", "開啟小組群組", "進入小組聊天室"),
-        ("步驟 2", "點擊右上選單", "點擊「≡」三條線"),
-        ("步驟 3", "點選邀請成員", "點群組功能「邀請」"),
-        ("步驟 4", "搜尋組長保險", "輸入「組長保險」"),
-        ("步驟 5", "確認加入群組", "勾選並發送邀請"),
-        ("發起分工", "/task 範本", "一鍵建立四大分工"),
-        ("🎲 命運抽籤", "/命運抽籤", "沒人認領公平指派"),
-        ("進度追蹤", "/status", "查看專案完成狀態"),
-        ("匯出記錄", "/export", "產出完整分工明細")
-    ]
-
-    invite_rows = []
-    for idx, (step, act, desc) in enumerate(table_data):
-        bg_color = "#1E1636" if idx % 2 == 0 else "#160F29"
-        invite_rows.append({
-            "type": "box",
-            "layout": "horizontal",
-            "backgroundColor": bg_color,
-            "paddingVertical": "8px",
-            "paddingHorizontal": "10px",
-            "alignItems": "center",
-            "contents": [
-                {"type": "text", "text": step, "size": "xs", "weight": "bold", "color": "#FFFFFF", "flex": 3, "wrap": True},
-                {"type": "text", "text": act, "size": "xs", "weight": "bold", "color": "#06B6D4", "flex": 4, "wrap": True},
-                {"type": "text", "text": desc, "size": "xs", "color": "#FDE047", "flex": 3, "wrap": True}
-            ]
-        })
-
+    """立即把組長保險加入群組 Bubble 卡片字典（123 簡約風，步驟清晰、圖上文字完美對齊）"""
     return {
         "type": "bubble",
         "size": "giga",
@@ -854,36 +825,136 @@ def create_invite_group_bubble() -> dict:
         "body": {
             "type": "box",
             "layout": "vertical",
-            "paddingAll": "12px",
+            "paddingAll": "14px",
             "backgroundColor": "#100B1E",
+            "spacing": "md",
             "contents": [
+                # 步驟 1
                 {
                     "type": "box",
                     "layout": "horizontal",
-                    "backgroundColor": "#2A0845",
-                    "borderColor": "#FDE047",
+                    "spacing": "md",
+                    "alignItems": "center",
+                    "backgroundColor": "#1E1636",
+                    "borderColor": "#06B6D4",
                     "borderWidth": "1px",
-                    "paddingVertical": "8px",
-                    "paddingHorizontal": "10px",
-                    "cornerRadius": "4px",
+                    "paddingAll": "12px",
+                    "cornerRadius": "8px",
+                    "action": {
+                        "type": "message",
+                        "text": "/如何加入群組"
+                    },
                     "contents": [
-                        {"type": "text", "text": "加群步驟", "weight": "bold", "size": "xs", "color": "#FDE047", "flex": 3},
-                        {"type": "text", "text": "操作動作", "weight": "bold", "size": "xs", "color": "#06B6D4", "flex": 4},
-                        {"type": "text", "text": "詳細指引", "weight": "bold", "size": "xs", "color": "#F3E8FF", "flex": 3}
+                        {
+                            "type": "box",
+                            "layout": "vertical",
+                            "width": "28px",
+                            "height": "28px",
+                            "cornerRadius": "14px",
+                            "backgroundColor": "#06B6D4",
+                            "justifyContent": "center",
+                            "alignItems": "center",
+                            "contents": [
+                                {"type": "text", "text": "1", "size": "sm", "weight": "bold", "color": "#160F29", "align": "center"}
+                            ]
+                        },
+                        {
+                            "type": "box",
+                            "layout": "vertical",
+                            "flex": 1,
+                            "contents": [
+                                {"type": "text", "text": "開啟專案小組聊天室", "size": "sm", "weight": "bold", "color": "#FFFFFF"},
+                                {"type": "text", "text": "進入您的大學報告或專案分工群組", "size": "xxs", "color": "#94A3B8", "margin": "xs"}
+                            ]
+                        }
                     ]
                 },
+                # 步驟 2
                 {
                     "type": "box",
-                    "layout": "vertical",
-                    "margin": "xs",
-                    "contents": invite_rows
-                },
-                {
-                    "type": "box",
-                    "layout": "vertical",
-                    "margin": "md",
-                    "paddingAll": "10px",
+                    "layout": "horizontal",
+                    "spacing": "md",
+                    "alignItems": "center",
                     "backgroundColor": "#1E1636",
+                    "borderColor": "#FDE047",
+                    "borderWidth": "1px",
+                    "paddingAll": "12px",
+                    "cornerRadius": "8px",
+                    "action": {
+                        "type": "message",
+                        "text": "/如何加入群組"
+                    },
+                    "contents": [
+                        {
+                            "type": "box",
+                            "layout": "vertical",
+                            "width": "28px",
+                            "height": "28px",
+                            "cornerRadius": "14px",
+                            "backgroundColor": "#FDE047",
+                            "justifyContent": "center",
+                            "alignItems": "center",
+                            "contents": [
+                                {"type": "text", "text": "2", "size": "sm", "weight": "bold", "color": "#160F29", "align": "center"}
+                            ]
+                        },
+                        {
+                            "type": "box",
+                            "layout": "vertical",
+                            "flex": 1,
+                            "contents": [
+                                {"type": "text", "text": "點選右上角選單（≡）>「邀請」", "size": "sm", "weight": "bold", "color": "#FFFFFF"},
+                                {"type": "text", "text": "進入群組設定功能頁，點擊「邀請」圖示", "size": "xxs", "color": "#94A3B8", "margin": "xs"}
+                            ]
+                        }
+                    ]
+                },
+                # 步驟 3
+                {
+                    "type": "box",
+                    "layout": "horizontal",
+                    "spacing": "md",
+                    "alignItems": "center",
+                    "backgroundColor": "#1E1636",
+                    "borderColor": "#F43F5E",
+                    "borderWidth": "1px",
+                    "paddingAll": "12px",
+                    "cornerRadius": "8px",
+                    "action": {
+                        "type": "message",
+                        "text": "/如何加入群組"
+                    },
+                    "contents": [
+                        {
+                            "type": "box",
+                            "layout": "vertical",
+                            "width": "28px",
+                            "height": "28px",
+                            "cornerRadius": "14px",
+                            "backgroundColor": "#F43F5E",
+                            "justifyContent": "center",
+                            "alignItems": "center",
+                            "contents": [
+                                {"type": "text", "text": "3", "size": "sm", "weight": "bold", "color": "#FFFFFF", "align": "center"}
+                            ]
+                        },
+                        {
+                            "type": "box",
+                            "layout": "vertical",
+                            "flex": 1,
+                            "contents": [
+                                {"type": "text", "text": "搜尋「組長保險」並勾選加入", "size": "sm", "weight": "bold", "color": "#FFFFFF"},
+                                {"type": "text", "text": "勾選機器人並點擊邀請，立即進駐群組！", "size": "xxs", "color": "#94A3B8", "margin": "xs"}
+                            ]
+                        }
+                    ]
+                },
+                # 底部小提醒（簡潔清爽）
+                {
+                    "type": "box",
+                    "layout": "vertical",
+                    "paddingAll": "10px",
+                    "backgroundColor": "#160F29",
                     "borderColor": "#06B6D4",
                     "borderWidth": "1px",
                     "cornerRadius": "6px",
