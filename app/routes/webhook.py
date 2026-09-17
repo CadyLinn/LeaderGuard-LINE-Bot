@@ -100,6 +100,8 @@ def handle_follow(event):
         )
 
         welcome_flex = create_welcome_guide_flex()
+        if hasattr(welcome_flex, "quick_reply"):
+            welcome_flex.quick_reply = None
 
         line_bot_api.reply_message_with_http_info(
             ReplyMessageRequest(
@@ -196,6 +198,11 @@ def handle_message(event):
         )
 
         if reply_messages:
+            # 個人聊天室不顯示 quick reply，保持底部圖文選單（Rich Menu）清爽不被覆蓋
+            if not group_id:
+                for msg in reply_messages:
+                    if hasattr(msg, "quick_reply"):
+                        msg.quick_reply = None
             try:
                 line_bot_api.reply_message_with_http_info(
                     ReplyMessageRequest(
@@ -210,9 +217,11 @@ def handle_message(event):
                 log_entry["reply_status"] = "failed"
                 log_entry["error"] = str(reply_err)
         elif not group_id:
-            # 僅在「一對一私聊」且非特定指令時，直接回傳主選單 Flex 卡片（包含完整常駐快捷按鈕列）
+            # 僅在「一對一私聊」且非特定指令時，直接回傳主選單 Flex 卡片（個人聊天室不帶 quick reply）
             try:
                 menu_flex = create_main_menu_flex()
+                if hasattr(menu_flex, "quick_reply"):
+                    menu_flex.quick_reply = None
                 line_bot_api.reply_message_with_http_info(
                     ReplyMessageRequest(
                         reply_token=event.reply_token,

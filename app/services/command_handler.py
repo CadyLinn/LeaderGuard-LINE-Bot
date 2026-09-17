@@ -57,6 +57,7 @@ def handle_user_command(user_text: str, group_id: str, user_id: str, user_name: 
         "/說明", "說明",
         "/指令", "指令",
         "/指令手冊", "指令手冊",
+        "/輸入指令", "輸入指令",
         "/幫助", "幫助",
         "/指南", "指南"
     ]:

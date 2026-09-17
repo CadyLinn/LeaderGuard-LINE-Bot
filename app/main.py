@@ -53,9 +53,9 @@ from app.routes.webhook import recent_webhook_logs
 @app.get("/version")
 def get_version():
     return {
-        "version": "1.9.28",
-        "build": "restore-private-chat-quick-reply-and-add-diagnostics",
-        "description": "恢復官方帳號個人聊天室之快捷指令選項，啟用即時日誌診斷"
+        "version": "1.9.29",
+        "build": "disable-quick-reply-in-private-chat",
+        "description": "個人聊天室禁用 quick_reply 維持圖文選單清爽，群組正常顯示快捷鍵"
     }
 
 @app.get("/api/logs")
