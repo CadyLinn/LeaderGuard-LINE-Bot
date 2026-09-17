@@ -53,9 +53,9 @@ from app.routes.webhook import recent_webhook_logs
 @app.get("/version")
 def get_version():
     return {
-        "version": "1.9.30",
-        "build": "robust-follow-logging-and-raw-webhook-diagnostics",
-        "description": "強化好友加入事件處理與原始 Webhook 監控日誌"
+        "version": "1.9.31",
+        "build": "add-command-guide-button-to-4step-card",
+        "description": "4 步驟新手入門卡片之了解 PRO 專案上方新增指令說明按鈕"
     }
 
 @app.get("/api/logs")
