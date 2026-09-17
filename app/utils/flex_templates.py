@@ -775,7 +775,36 @@ def create_help_flex() -> FlexMessage:
     )
 
 def create_invite_group_bubble() -> dict:
-    """立即把組長保險加入群組 Bubble 卡片字典（JoJo 美學、Apple HIG 規範，高度與左側指令表完美平行對齊）"""
+    """立即把組長保險加入群組 Bubble 卡片字典（JoJo 漫畫風格表格化速查表，與左卡規格高度 100% 鏡像平行對齊）"""
+    table_data = [
+        ("步驟 1", "開啟小組群組", "進入小組聊天室"),
+        ("步驟 2", "點擊右上選單", "點擊「≡」三條線"),
+        ("步驟 3", "點選邀請成員", "點群組功能「邀請」"),
+        ("步驟 4", "搜尋組長保險", "輸入「組長保險」"),
+        ("步驟 5", "確認加入群組", "勾選並發送邀請"),
+        ("發起分工", "/task 範本", "一鍵建立四大分工"),
+        ("🎲 命運抽籤", "/命運抽籤", "沒人認領公平指派"),
+        ("進度追蹤", "/status", "查看專案完成狀態"),
+        ("匯出記錄", "/export", "產出完整分工明細")
+    ]
+
+    invite_rows = []
+    for idx, (step, act, desc) in enumerate(table_data):
+        bg_color = "#1E1636" if idx % 2 == 0 else "#160F29"
+        invite_rows.append({
+            "type": "box",
+            "layout": "horizontal",
+            "backgroundColor": bg_color,
+            "paddingVertical": "8px",
+            "paddingHorizontal": "10px",
+            "alignItems": "center",
+            "contents": [
+                {"type": "text", "text": step, "size": "xs", "weight": "bold", "color": "#FFFFFF", "flex": 3, "wrap": True},
+                {"type": "text", "text": act, "size": "xs", "weight": "bold", "color": "#06B6D4", "flex": 4, "wrap": True},
+                {"type": "text", "text": desc, "size": "xs", "color": "#FDE047", "flex": 3, "wrap": True}
+            ]
+        })
+
     return {
         "type": "bubble",
         "size": "giga",
@@ -800,8 +829,8 @@ def create_invite_group_bubble() -> dict:
                     "type": "box",
                     "layout": "horizontal",
                     "contents": [
-                        {"type": "text", "text": "【小組連線・防雷神隊友】", "size": "xs", "color": "#FDE047", "weight": "bold"},
-                        {"type": "text", "text": "INVITE", "size": "xs", "color": "#06B6D4", "align": "end", "weight": "bold"}
+                        {"type": "text", "text": "【加群操作指南】", "size": "xs", "color": "#FDE047", "weight": "bold"},
+                        {"type": "text", "text": "INVITE", "size": "xs", "color": "#F43F5E", "align": "end", "weight": "bold"}
                     ]
                 },
                 {
@@ -814,7 +843,7 @@ def create_invite_group_bubble() -> dict:
                 },
                 {
                     "type": "text",
-                    "text": "進駐大學專案群組，自動追蹤進度、公平分配工作！",
+                    "text": "進駐大學專案群組，自動追蹤進度、公平分工！",
                     "color": "#06B6D4",
                     "size": "xs",
                     "margin": "xs",
@@ -827,128 +856,28 @@ def create_invite_group_bubble() -> dict:
             "layout": "vertical",
             "paddingAll": "12px",
             "backgroundColor": "#100B1E",
-            "spacing": "xs",
             "contents": [
-                # 區塊標題 1：加入 3 步驟
                 {
                     "type": "box",
                     "layout": "horizontal",
                     "backgroundColor": "#2A0845",
                     "borderColor": "#FDE047",
                     "borderWidth": "1px",
-                    "paddingVertical": "6px",
+                    "paddingVertical": "8px",
                     "paddingHorizontal": "10px",
                     "cornerRadius": "4px",
                     "contents": [
-                        {"type": "text", "text": "邀請進群 3 步驟", "weight": "bold", "size": "xs", "color": "#FDE047", "flex": 1}
+                        {"type": "text", "text": "加群步驟", "weight": "bold", "size": "xs", "color": "#FDE047", "flex": 3},
+                        {"type": "text", "text": "操作動作", "weight": "bold", "size": "xs", "color": "#06B6D4", "flex": 4},
+                        {"type": "text", "text": "詳細指引", "weight": "bold", "size": "xs", "color": "#F3E8FF", "flex": 3}
                     ]
                 },
-                # 步驟 1
                 {
                     "type": "box",
-                    "layout": "horizontal",
-                    "backgroundColor": "#1E1636",
-                    "paddingVertical": "6px",
-                    "paddingHorizontal": "10px",
-                    "alignItems": "center",
-                    "action": {
-                        "type": "message",
-                        "text": "/如何加入群組"
-                    },
-                    "contents": [
-                        {"type": "text", "text": "步驟 1", "size": "xs", "weight": "bold", "color": "#06B6D4", "flex": 2},
-                        {"type": "text", "text": "開啟專案小組 LINE 聊天室", "size": "xs", "color": "#FFFFFF", "flex": 6, "wrap": True}
-                    ]
-                },
-                # 步驟 2
-                {
-                    "type": "box",
-                    "layout": "horizontal",
-                    "backgroundColor": "#160F29",
-                    "paddingVertical": "6px",
-                    "paddingHorizontal": "10px",
-                    "alignItems": "center",
-                    "action": {
-                        "type": "message",
-                        "text": "/如何加入群組"
-                    },
-                    "contents": [
-                        {"type": "text", "text": "步驟 2", "size": "xs", "weight": "bold", "color": "#FDE047", "flex": 2},
-                        {"type": "text", "text": "點選右上角選單（≡）>「邀請」", "size": "xs", "color": "#FFFFFF", "flex": 6, "wrap": True}
-                    ]
-                },
-                # 步驟 3
-                {
-                    "type": "box",
-                    "layout": "horizontal",
-                    "backgroundColor": "#1E1636",
-                    "paddingVertical": "6px",
-                    "paddingHorizontal": "10px",
-                    "alignItems": "center",
-                    "action": {
-                        "type": "message",
-                        "text": "/如何加入群組"
-                    },
-                    "contents": [
-                        {"type": "text", "text": "步驟 3", "size": "xs", "weight": "bold", "color": "#F43F5E", "flex": 2},
-                        {"type": "text", "text": "搜尋「組長保險」並勾選邀請入群", "size": "xs", "color": "#FFFFFF", "flex": 6, "wrap": True}
-                    ]
-                },
-                # 區塊標題 2：進群功能
-                {
-                    "type": "box",
-                    "layout": "horizontal",
-                    "backgroundColor": "#2A0845",
-                    "borderColor": "#06B6D4",
-                    "borderWidth": "1px",
-                    "paddingVertical": "6px",
-                    "paddingHorizontal": "10px",
-                    "cornerRadius": "4px",
+                    "layout": "vertical",
                     "margin": "xs",
-                    "contents": [
-                        {"type": "text", "text": "進群立即解鎖 3 大功能", "weight": "bold", "size": "xs", "color": "#06B6D4", "flex": 1}
-                    ]
+                    "contents": invite_rows
                 },
-                # 功能 1
-                {
-                    "type": "box",
-                    "layout": "horizontal",
-                    "backgroundColor": "#1E1636",
-                    "paddingVertical": "6px",
-                    "paddingHorizontal": "10px",
-                    "alignItems": "center",
-                    "contents": [
-                        {"type": "text", "text": "任務範本", "size": "xs", "weight": "bold", "color": "#FFFFFF", "flex": 2},
-                        {"type": "text", "text": "輸入 /task 範本 一鍵建立四大分工", "size": "xs", "color": "#06B6D4", "flex": 6, "wrap": True}
-                    ]
-                },
-                # 功能 2
-                {
-                    "type": "box",
-                    "layout": "horizontal",
-                    "backgroundColor": "#160F29",
-                    "paddingVertical": "6px",
-                    "paddingHorizontal": "10px",
-                    "alignItems": "center",
-                    "contents": [
-                        {"type": "text", "text": "🎲 命運抽籤", "size": "xs", "weight": "bold", "color": "#FFFFFF", "flex": 2},
-                        {"type": "text", "text": "沒人認領的工作交給命運之輪指派", "size": "xs", "color": "#FDE047", "flex": 6, "wrap": True}
-                    ]
-                },
-                # 功能 3
-                {
-                    "type": "box",
-                    "layout": "horizontal",
-                    "backgroundColor": "#1E1636",
-                    "paddingVertical": "6px",
-                    "paddingHorizontal": "10px",
-                    "alignItems": "center",
-                    "contents": [
-                        {"type": "text", "text": "進度掌控", "size": "xs", "weight": "bold", "color": "#FFFFFF", "flex": 2},
-                        {"type": "text", "text": "輸入 /status 隨時檢視各組員進度", "size": "xs", "color": "#06B6D4", "flex": 6, "wrap": True}
-                    ]
-                },
-                # 底部小提醒（與 Card 1 結構一致）
                 {
                     "type": "box",
                     "layout": "vertical",

@@ -53,9 +53,9 @@ from app.routes.webhook import recent_webhook_logs
 @app.get("/version")
 def get_version():
     return {
-        "version": "1.9.34",
-        "build": "clean-hero-image-parallel-height-remove-slack-copy",
-        "description": "重繪純淨無文字專屬Hero封面，左右兩卡高度平行對齊，刪除擺平摸魚文案"
+        "version": "1.9.35",
+        "build": "jojo-hero-image-and-exact-header-table-symmetry-alignment",
+        "description": "重繪極致 JoJo 風格 Hero 圖，圖上文字與整卡大小 100% 鏡像對齊"
     }
 
 @app.get("/api/logs")
