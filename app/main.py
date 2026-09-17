@@ -53,9 +53,9 @@ from app.routes.webhook import recent_webhook_logs
 @app.get("/version")
 def get_version():
     return {
-        "version": "1.9.32",
-        "build": "add-invite-group-guide-carousel-card",
-        "description": "指令說明新增立即把組長保險加入群組圖卡與點擊步驟文字說明"
+        "version": "1.9.33",
+        "build": "add-custom-invite-hero-image-and-update-recommend-button",
+        "description": "生成並啟用全新加群專屬Hero圖，更新一鍵推薦給朋友按鈕"
     }
 
 @app.get("/api/logs")

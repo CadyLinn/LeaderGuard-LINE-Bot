@@ -781,7 +781,7 @@ def create_invite_group_bubble() -> dict:
         "size": "giga",
         "hero": {
             "type": "image",
-            "url": f"{BASE_URL}/assets/hero_guide_v2026.jpg",
+            "url": f"{BASE_URL}/assets/hero_invite_v2026.jpg",
             "size": "full",
             "aspectRatio": "20:13",
             "aspectMode": "cover",
@@ -984,7 +984,7 @@ def create_invite_group_bubble() -> dict:
                     "type": "button",
                     "action": {
                         "type": "uri",
-                        "label": "一鍵推薦邀請到群組",
+                        "label": "一鍵推薦給朋友",
                         "uri": "https://line.me/R/nv/recommendOA/@805yffpw"
                     },
                     "style": "primary",
