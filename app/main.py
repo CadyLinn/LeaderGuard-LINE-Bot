@@ -53,9 +53,9 @@ from app.routes.webhook import recent_webhook_logs
 @app.get("/version")
 def get_version():
     return {
-        "version": "1.9.37",
-        "build": "bust-line-image-cache-with-hero-invite-add-v2",
-        "description": "更新全新 Hero 圖片路徑 hero_invite_add_v2.jpg 徹底突破 LINE 快取限制"
+        "version": "1.9.38",
+        "build": "clean-pop-art-add-hero-without-japanese-123-style",
+        "description": "生成無日文純正美漫 ADD! 封面，維持 123 簡約風，更新路徑 hero_invite_add_v3.jpg"
     }
 
 @app.get("/api/logs")

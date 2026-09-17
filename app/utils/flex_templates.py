@@ -781,7 +781,7 @@ def create_invite_group_bubble() -> dict:
         "size": "giga",
         "hero": {
             "type": "image",
-            "url": f"{BASE_URL}/assets/hero_invite_add_v2.jpg",
+            "url": f"{BASE_URL}/assets/hero_invite_add_v3.jpg",
             "size": "full",
             "aspectRatio": "20:13",
             "aspectMode": "cover",
