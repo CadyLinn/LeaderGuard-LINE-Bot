@@ -577,7 +577,7 @@ def create_main_menu_flex() -> FlexMessage:
                                         "text": "/export"
                                     },
                                     "style": "primary",
-                                    "color": "#6366F1",
+                                    "color": "#0284C7",
                                     "height": "sm"
                                 }
                             ]
@@ -590,7 +590,7 @@ def create_main_menu_flex() -> FlexMessage:
                                 "text": "/常用指令說明"
                             },
                             "style": "primary",
-                            "color": "#334155",
+                            "color": "#0284C7",
                             "height": "sm",
                             "margin": "sm"
                         }
@@ -754,7 +754,7 @@ def create_help_flex() -> FlexMessage:
                         "fillInText": "/任務 新增 "
                     },
                     "style": "primary",
-                    "color": "#E11D48",
+                    "color": "#D97706",
                     "height": "sm"
                 }
             ]
@@ -996,7 +996,7 @@ def create_invite_group_bubble() -> dict:
                         "uri": "https://line.me/R/nv/recommendOA/@805yffpw"
                     },
                     "style": "primary",
-                    "color": "#E11D48",
+                    "color": "#D97706",
                     "height": "sm"
                 }
             ]
@@ -1135,7 +1135,7 @@ def create_task_list_flex(tasks: list) -> FlexMessage:
                         "fillInText": "/任務 新增 "
                     },
                     "style": "primary",
-                    "color": "#E11D48",
+                    "color": "#D97706",
                     "height": "sm"
                 },
                 {
@@ -1996,7 +1996,7 @@ def create_upgrade_plan_flex() -> FlexMessage:
                         {
                             "type": "box",
                             "layout": "vertical",
-                            "backgroundColor": "#06C755",
+                            "backgroundColor": "#D97706",
                             "cornerRadius": "6px",
                             "paddingVertical": "8px",
                             "alignItems": "center",
@@ -2054,7 +2054,7 @@ def create_upgrade_plan_flex() -> FlexMessage:
                         {
                             "type": "box",
                             "layout": "vertical",
-                            "backgroundColor": "#06C755",
+                            "backgroundColor": "#0284C7",
                             "cornerRadius": "6px",
                             "paddingVertical": "8px",
                             "alignItems": "center",
