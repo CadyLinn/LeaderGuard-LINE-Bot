@@ -54,8 +54,8 @@ from app.routes.webhook import recent_webhook_logs
 def get_version():
     return {
         "version": "1.10.1",
-        "build": "academy-guardian-buttons-text-refactor",
-        "description": "更新 Flex Message 按鈕配色、文案調性，並升級四步驟啟動組長保險"
+        "build": "academy-guardian-button-and-text-color-polish",
+        "description": "將 Flex Message 之按鈕與文字全面統一為符合學院守護者視覺之電能青藍、學院金與鋼鐵銀白配色"
     }
 
 @app.get("/api/logs")
