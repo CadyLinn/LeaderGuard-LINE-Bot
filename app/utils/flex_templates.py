@@ -1996,7 +1996,7 @@ def create_upgrade_plan_flex() -> FlexMessage:
                         {
                             "type": "box",
                             "layout": "vertical",
-                            "backgroundColor": "#D97706",
+                            "backgroundColor": "#06C755",
                             "cornerRadius": "6px",
                             "paddingVertical": "8px",
                             "alignItems": "center",
@@ -2054,7 +2054,7 @@ def create_upgrade_plan_flex() -> FlexMessage:
                         {
                             "type": "box",
                             "layout": "vertical",
-                            "backgroundColor": "#0284C7",
+                            "backgroundColor": "#06C755",
                             "cornerRadius": "6px",
                             "paddingVertical": "8px",
                             "alignItems": "center",

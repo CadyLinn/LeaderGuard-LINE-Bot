@@ -53,9 +53,9 @@ from app.routes.webhook import recent_webhook_logs
 @app.get("/version")
 def get_version():
     return {
-        "version": "1.10.2",
-        "build": "comprehensive-flex-button-color-system",
-        "description": "徹底統一全系統所有 Flex Message 之按鈕色彩：電能青藍 (#0284C7)、學院黃金 (#D97706)、守護赤紅 (#E11D48)，無一遺漏"
+        "version": "1.10.3",
+        "build": "line-pay-brand-green-buttons",
+        "description": "保持 LINE Pay 官方標準品牌綠 (#06C755)，其餘 Flex 按鈕統一為學院守護者電能青藍與學院金"
     }
 
 @app.get("/api/logs")
