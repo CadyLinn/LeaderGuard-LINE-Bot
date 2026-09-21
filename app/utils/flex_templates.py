@@ -1087,7 +1087,7 @@ def create_task_created_flex(task_id: str, title: str, description: str, creator
             "type": "image",
             "url": f"{BASE_URL}/assets/hero_assigned_guardian.jpg",
             "size": "full",
-            "aspectRatio": "20:13",
+            "aspectRatio": "16:9",
             "aspectMode": "cover",
             "action": {
                 "type": "message",

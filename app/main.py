@@ -53,9 +53,9 @@ from app.routes.webhook import recent_webhook_logs
 @app.get("/version")
 def get_version():
     return {
-        "version": "1.10.9",
-        "build": "update-follow-greeting-welcome-copy",
-        "description": "更新加好友歡迎訊息為功能特色與專案痛點引導文案"
+        "version": "1.10.10",
+        "build": "task-created-16-9-image-update",
+        "description": "更新小組工作正式指派卡片圖片為學院守護者領導出擊並改為16:9比例"
     }
 
 @app.get("/api/logs")
