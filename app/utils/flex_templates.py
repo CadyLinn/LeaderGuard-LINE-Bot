@@ -577,7 +577,7 @@ def create_main_menu_flex() -> FlexMessage:
                                         "text": "/export"
                                     },
                                     "style": "primary",
-                                    "color": "#0284C7",
+                                    "color": "#6366F1",
                                     "height": "sm"
                                 }
                             ]
@@ -590,7 +590,7 @@ def create_main_menu_flex() -> FlexMessage:
                                 "text": "/常用指令說明"
                             },
                             "style": "primary",
-                            "color": "#0284C7",
+                            "color": "#334155",
                             "height": "sm",
                             "margin": "sm"
                         }
@@ -656,7 +656,6 @@ def create_help_flex() -> FlexMessage:
                     "type": "box",
                     "layout": "horizontal",
                     "contents": [
-                        {"type": "text", "text": "【專案守護指令】", "size": "xs", "color": "#FBBF24", "weight": "bold"},
                         {"type": "text", "text": "GUIDE", "size": "xs", "color": "#F43F5E", "align": "end", "weight": "bold"}
                     ]
                 },
@@ -754,7 +753,7 @@ def create_help_flex() -> FlexMessage:
                         "fillInText": "/任務 新增 "
                     },
                     "style": "primary",
-                    "color": "#D97706",
+                    "color": "#E11D48",
                     "height": "sm"
                 }
             ]
@@ -800,7 +799,6 @@ def create_invite_group_bubble() -> dict:
                     "type": "box",
                     "layout": "horizontal",
                     "contents": [
-                        {"type": "text", "text": "【學院戰隊加群】", "size": "xs", "color": "#FBBF24", "weight": "bold"},
                         {"type": "text", "text": "INVITE", "size": "xs", "color": "#F43F5E", "align": "end", "weight": "bold"}
                     ]
                 },
@@ -996,7 +994,7 @@ def create_invite_group_bubble() -> dict:
                         "uri": "https://line.me/R/nv/recommendOA/@805yffpw"
                     },
                     "style": "primary",
-                    "color": "#D97706",
+                    "color": "#E11D48",
                     "height": "sm"
                 }
             ]
@@ -1135,7 +1133,7 @@ def create_task_list_flex(tasks: list) -> FlexMessage:
                         "fillInText": "/任務 新增 "
                     },
                     "style": "primary",
-                    "color": "#D97706",
+                    "color": "#E11D48",
                     "height": "sm"
                 },
                 {
@@ -1649,13 +1647,13 @@ def create_welcome_guide_flex() -> FlexMessage:
                     "type": "box",
                     "layout": "horizontal",
                     "contents": [
-                        {"type": "text", "text": "【守護者新手指南】", "size": "xs", "weight": "bold", "color": "#FBBF24"},
+                    
                         {"type": "text", "text": "START", "size": "xs", "weight": "bold", "color": "#38BDF8", "align": "end"}
                     ]
                 },
                 {
                     "type": "text",
-                    "text": "4 步驟啟動專案守護！",
+                    "text": "4 步驟啟動小組保險！",
                     "size": "xl",
                     "weight": "bold",
                     "color": "#FFFFFF",

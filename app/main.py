@@ -53,9 +53,9 @@ from app.routes.webhook import recent_webhook_logs
 @app.get("/version")
 def get_version():
     return {
-        "version": "1.10.3",
-        "build": "line-pay-brand-green-buttons",
-        "description": "保持 LINE Pay 官方標準品牌綠 (#06C755)，其餘 Flex 按鈕統一為學院守護者電能青藍與學院金"
+        "version": "1.10.4",
+        "build": "user-layout-and-copy-refinements",
+        "description": "簡化指令卡片頂部標籤，標題調整為「4 步驟啟動小組保險！」，維護使用者自訂色彩與指令"
     }
 
 @app.get("/api/logs")
