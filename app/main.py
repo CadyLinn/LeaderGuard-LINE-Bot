@@ -53,9 +53,9 @@ from app.routes.webhook import recent_webhook_logs
 @app.get("/version")
 def get_version():
     return {
-        "version": "1.10.8",
-        "build": "roster-management-and-roulette-enhancements",
-        "description": "新增「/組員」組長預先登記全體名單功能、支援「/抽籤 名單」直接抽籤與單人名冊提示引導"
+        "version": "1.10.9",
+        "build": "update-follow-greeting-welcome-copy",
+        "description": "更新加好友歡迎訊息為功能特色與專案痛點引導文案"
     }
 
 @app.get("/api/logs")

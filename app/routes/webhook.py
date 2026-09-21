@@ -111,7 +111,13 @@ def handle_follow(event):
 
         greeting_text = (
             f"{user_name}您好！\n"
-            f"我是{account_name}，感謝您加入好友！"
+            f"我是{account_name} 專案協作小幫手，感謝您加入好友！\n\n"
+            f"組長保險專為大學報告與小組專案打造，提供三大核心功能：\n\n"
+            f"1. 任務透明指派：一鍵建立分工，自動追蹤進度\n"
+            f"2. 🎲 命運抽籤：未認領工作隨機輪抽，公平不重複\n"
+            f"3. 期末工作存證：詳細紀錄組員付出，互評評分有憑有據\n\n"
+            f"🚀 開始使用：\n"
+            f"只要將【組長保險】邀請加入您的小組 LINE 群組，進群後輸入「/選單」即可立刻發起協作分工！"
         )
 
         welcome_flex = create_welcome_guide_flex()
