@@ -112,7 +112,9 @@ def handle_user_command(user_text: str, group_id: str, user_id: str, user_name: 
 
     # 2.5 4 步驟使用手冊（/手冊、/使用手冊、/4步驟 或 /guide）
     if text.lower() in [
-        "/手冊", "手冊", "/使用手冊", "使用手冊", "/4步驟", "4步驟", "/guide", "guide"
+        "/手冊", "手冊", "/使用手冊", "使用手冊", "/4步驟", "4步驟",
+        "/四步驟啟動組長保險", "四步驟啟動組長保險", "/4步驟啟動組長保險", "4步驟啟動組長保險",
+        "/guide", "guide"
     ]:
         return [create_welcome_guide_flex()]
 
