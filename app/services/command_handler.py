@@ -10,7 +10,9 @@ from app.services.firebase_service import (
     get_group_members,
     assign_roulette_task,
     get_unassigned_members,
-    add_manual_member
+    add_manual_member,
+    set_manual_members,
+    clear_manual_members
 )
 from app.utils.flex_templates import (
     create_main_menu_flex,
@@ -303,11 +305,29 @@ def handle_user_command(user_text: str, group_id: str, user_id: str, user_name: 
         else:
             return [TextMessage(text=f"找不到待認領的任務「{task_id}」，或這項工作已經有人負責了。", quick_reply=get_main_quick_reply())]
 
-    # 8. 隨機抽籤分工：/roulette 或 /抽籤 或 /輪盤（僅抽還沒有工作任務的人）
-    if text.lower() in [
+    # 8. 隨機抽籤分工：/roulette 或 /抽籤 或 /輪盤（支援附加名單，例如 /抽籤 小明 小華 小美）
+    roulette_prefixes = [
         "/roulette", "/輪盤", "/抽籤", "/隨機分工", "/隨機抽籤", "/死鬥輪盤", "/命運抽籤",
         "roulette", "輪盤", "抽籤", "隨機分工", "隨機抽籤", "死鬥輪盤", "命運抽籤"
-    ]:
+    ]
+    is_roulette_cmd = False
+    roulette_arg = ""
+    for r_pfx in roulette_prefixes:
+        if text.lower() == r_pfx:
+            is_roulette_cmd = True
+            break
+        elif text.lower().startswith(r_pfx + " ") or text.lower().startswith(r_pfx + "：") or text.lower().startswith(r_pfx + ":"):
+            is_roulette_cmd = True
+            roulette_arg = text[len(r_pfx):].strip(" ：:")
+            break
+
+    if is_roulette_cmd:
+        # 若抽籤指令直接附帶了組員名單，例如「/抽籤 小明, 小華, 小美」，自動將其登記為群組名冊
+        if roulette_arg:
+            inline_names = [n.strip() for n in re.split(r"[,，、\s\n]+", roulette_arg) if n.strip()]
+            if inline_names:
+                set_manual_members(target_group, inline_names, replace=True)
+
         free_members, all_members, all_tasks, pending_tasks = get_unassigned_members(target_group)
         
         # 情況 A：尚未建立任何任務
@@ -327,7 +347,20 @@ def handle_user_command(user_text: str, group_id: str, user_id: str, user_name: 
             victim = {"user_id": user_id, "user_name": user_name}
 
         task_id, task_title = assign_roulette_task(target_group, victim["user_id"], victim["user_name"])
-        return [create_roulette_flex(task_id, task_title, victim["user_name"])]
+        roulette_card = create_roulette_flex(task_id, task_title, victim["user_name"])
+
+        # 如果已知組員只有 1 人（即傳訊息的人），額外附上溫馨提示教學，讓組長知道如何設定名單
+        if len(all_members) <= 1:
+            notice_text = (
+                "💡 組長抽籤小提示：\n"
+                "目前群組名冊只有您 1 人，因此每次抽籤都會抽中傳訊息的人。\n\n"
+                "組長可直接在群組發送：\n"
+                "「/組員 姓名1, 姓名2, 姓名3, 姓名4」\n"
+                "登記全體組員姓名後，下次抽籤就會在全體組員中公平抽出！"
+            )
+            return [roulette_card, TextMessage(text=notice_text, quick_reply=get_main_quick_reply())]
+
+        return [roulette_card]
 
     # 9. 當前群組狀態：/status 或 /狀態 或 /進度
     if text.lower() in ["/status", "/狀態", "/進度", "status", "狀態", "進度"]:
@@ -379,37 +412,72 @@ def handle_user_command(user_text: str, group_id: str, user_id: str, user_name: 
         lines.append("\n本紀錄由組長保險自動存證，可用於期末互評與成果報告依據。")
         return [TextMessage(text="\n".join(lines), quick_reply=get_main_quick_reply())]
 
-    # 10. 手動新增成員名單：/member 新增 或 /成員 新增 [名字1] [名字2]...
-    member_add_prefixes = (
-        "/member 新增", "/member add",
-        "/成員 新增", "/成員 add",
-        "/組員 新增", "/名單 新增",
-        "member add", "成員 新增"
+    # 10. 清空手動登記組員名冊：/組員 清空、/清空名單、/清空組員
+    if text.lower() in [
+        "/組員 清空", "/成員 清空", "/名單 清空",
+        "/清空組員", "/清空名單", "/清空成員",
+        "組員 清空", "清空組員", "清空名單"
+    ]:
+        removed = clear_manual_members(target_group)
+        return [TextMessage(
+            text=(
+                "【小組成員名冊已清空】\n\n"
+                f"已清除先前登記的手動組員名單（共 {removed} 筆）。\n"
+                "組長可隨時輸入：\n"
+                "「/組員 姓名1, 姓名2, 姓名3...」\n"
+                "重新登記全體組員！"
+            ),
+            quick_reply=get_main_quick_reply()
+        )]
+
+    # 10.5 設定/新增成員名單：支援「/組員 小明, 小華, 小美」、「/設定組員 小明 小華」或「/組員 新增 小明」
+    member_set_prefixes = (
+        "/組員", "/成員", "/名單",
+        "/設定組員", "/設定名單", "/組員名單",
+        "/member", "/members"
     )
-    matched_member_add = None
-    for pfx in member_add_prefixes:
-        if text.startswith(pfx):
-            matched_member_add = pfx
+    matched_set_prefix = None
+    for pfx in member_set_prefixes:
+        if text.startswith(pfx + " ") or text.startswith(pfx + "：") or text.startswith(pfx + ":") or text.startswith(pfx + "\n"):
+            matched_set_prefix = pfx
             break
 
-    if matched_member_add:
-        names_str = text[len(matched_member_add):].strip()
-        if not names_str:
+    if matched_set_prefix:
+        raw_args = text[len(matched_set_prefix):].strip(" ：:\n\t")
+        # 判斷是否帶有「新增」關鍵字
+        is_append = False
+        if re.match(r"^(新增|add)\b", raw_args, re.I):
+            is_append = True
+            raw_args = re.sub(r"^(新增|add)\s*", "", raw_args, flags=re.I).strip()
+            
+        names = [n.strip() for n in re.split(r"[,，、\s\n]+", raw_args) if n.strip()]
+        if not names:
             return [TextMessage(
-                text="指令格式：\n• /member 新增 [組員1] [組員2] ...\n• /成員 新增 [組員1] [組員2] ...\n\n例如：\n/成員 新增 小明 小華 阿美\n\n（適合直接將未發言的組員加入抽籤池）",
+                text=(
+                    "【組長登記組員名單教學】\n\n"
+                    "指令範例：\n"
+                    "• /組員 小明, 小華, 小美, 大寶\n"
+                    "• /組員 小明 小華 小美 大寶\n"
+                    "• /組員 小明、小華、小美、大寶\n\n"
+                    "登記後輸入「/命運抽籤」即可在全體名冊中公平抽籤分配任務！"
+                ),
                 quick_reply=get_main_quick_reply()
             )]
+            
+        added = set_manual_members(target_group, names, replace=(not is_append))
+        all_members = get_group_members(target_group)
         
-        names = [n.strip() for n in re.split(r"[,，\s]+", names_str) if n.strip()]
-        added = []
-        for name in names:
-            if add_manual_member(target_group, name):
-                added.append(name)
-                
-        if added:
-            return [TextMessage(text=f"已將 {len(added)} 位成員加入群組抽籤名冊：\n{', '.join(added)}\n\n未指派任務時將優先納入隨機抽籤池。", quick_reply=get_main_quick_reply())]
-        else:
-            return [TextMessage(text="未能成功解析成員名稱，請確認輸入格式。", quick_reply=get_main_quick_reply())]
+        member_list_str = "\n".join([f"{idx+1}. {m['user_name']}" for idx, m in enumerate(all_members)])
+        reply_msg = (
+            f"【小組成員名冊設定完成】\n\n"
+            f"已成功登記 {len(all_members)} 位組員：\n"
+            f"{member_list_str}\n\n"
+            f"💡 抽籤指引：\n"
+            f"• 現在輸入「/命運抽籤」即可在全體名冊中公平隨機抽籤！\n"
+            f"• 系統會優先抽尚未有工作的組員，公平不重複。\n"
+            f"• 輸入「/組員」可隨時檢視名冊，輸入「/組員 清空」可重新設定名單。"
+        )
+        return [TextMessage(text=reply_msg, quick_reply=get_main_quick_reply())]
 
     # 11. 查看群組成員名冊與狀態：/member、/成員、/組員 或 /名單
     if text.lower() in [
@@ -421,24 +489,43 @@ def handle_user_command(user_text: str, group_id: str, user_id: str, user_name: 
     ]:
         free_members, all_members, all_tasks, _ = get_unassigned_members(target_group)
         if not all_members:
-            return [TextMessage(text="目前群組名冊尚無成員。\n組員可在群內發言、傳貼圖，或由組長輸入：\n/成員 新增 小明 小華 阿美", quick_reply=get_main_quick_reply())]
+            return [TextMessage(
+                text=(
+                    "【小組成員名冊】\n"
+                    "目前群組尚未登記組員名單。\n\n"
+                    "💡 組長登記組員教學：\n"
+                    "直接在群組發送：\n"
+                    "「/組員 姓名1, 姓名2, 姓名3...」\n\n"
+                    "例如：\n"
+                    "/組員 小明, 小華, 小美, 大寶\n\n"
+                    "登記後輸入「/命運抽籤」就會從全體組員中公平抽籤，杜絕每次只抽到傳訊息的人！"
+                ),
+                quick_reply=get_main_quick_reply()
+            )]
             
         task_map = {}
         for t in all_tasks:
-            if t.get("status") == "claimed" and t.get("assignee_id"):
+            if t.get("status") == "claimed" and t.get("assignee_name"):
+                task_map[t["assignee_name"]] = t.get("title", "")
+            elif t.get("status") == "claimed" and t.get("assignee_id"):
                 task_map[t["assignee_id"]] = t.get("title", "")
 
-    # 11 (cont). 組合名冊顯示文字
         lines = ["【小組成員與任務現況】"]
         for m in all_members:
             uid = m.get("user_id", "")
             uname = m.get("user_name", "組員")
-            if uid in task_map:
+            if uname in task_map:
+                lines.append(f"• {uname}：負責「{task_map[uname]}」")
+            elif uid in task_map:
                 lines.append(f"• {uname}：負責「{task_map[uid]}」")
             else:
                 lines.append(f"• {uname}：尚未分配任務（抽籤候選）")
                 
-        lines.append("\n若有名單遺漏，可由組長使用：\n/member 新增 或 /成員 新增 [名字1] [名字2]")
+        if len(all_members) <= 1:
+            lines.append("\n💡 提示：目前名冊只有 1 人，組長可輸入「/組員 姓名1, 姓名2, 姓名3」一次登記全體組員，抽籤更公平精準！")
+        else:
+            lines.append("\n• 輸入「/命運抽籤」：隨機抽籤分配未認領工作\n• 輸入「/組員 清空」：重設成員名冊")
+            
         return [TextMessage(text="\n".join(lines), quick_reply=get_main_quick_reply())]
 
     # 12. 成員手動簽到：/checkin、/簽到 或 /報到

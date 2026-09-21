@@ -53,9 +53,9 @@ from app.routes.webhook import recent_webhook_logs
 @app.get("/version")
 def get_version():
     return {
-        "version": "1.10.7",
-        "build": "clean-card-headers-and-tags",
-        "description": "簡化各卡片頂部標籤，移除多餘前綴字樣，保持極簡視覺"
+        "version": "1.10.8",
+        "build": "roster-management-and-roulette-enhancements",
+        "description": "新增「/組員」組長預先登記全體名單功能、支援「/抽籤 名單」直接抽籤與單人名冊提示引導"
     }
 
 @app.get("/api/logs")

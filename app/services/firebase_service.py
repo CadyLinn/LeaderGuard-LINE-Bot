@@ -213,6 +213,70 @@ def add_manual_member(group_id: str, member_name: str):
             
     return True
 
+def set_manual_members(group_id: str, member_names: list, replace: bool = False) -> list:
+    """
+    批次設定群組成員名冊（可一次輸入多個姓名，若 replace=True 則先清空先前的手動登記組員）
+    回傳：成功加入的名冊姓名列表
+    """
+    database = get_db()
+    if group_id not in _memory_members:
+        _memory_members[group_id] = {}
+        
+    if replace:
+        manual_keys = [uid for uid, d in _memory_members[group_id].items() if d.get("is_manual")]
+        for uid in manual_keys:
+            del _memory_members[group_id][uid]
+            if database:
+                try:
+                    database.collection("groups").document(group_id).collection("members").document(uid).delete()
+                except Exception:
+                    pass
+            
+    added_names = []
+    for name in member_names:
+        clean_name = name.strip()
+        if not clean_name:
+            continue
+        user_id = f"manual_{clean_name}"
+        _memory_members[group_id][user_id] = {
+            "user_name": clean_name,
+            "last_seen": datetime.now().isoformat(),
+            "is_manual": True
+        }
+        added_names.append(clean_name)
+        
+        if database:
+            try:
+                member_ref = database.collection("groups").document(group_id).collection("members").document(user_id)
+                member_ref.set({
+                    "user_name": clean_name,
+                    "last_seen": firestore.SERVER_TIMESTAMP,
+                    "is_manual": True
+                }, merge=True)
+            except Exception as e:
+                logger.error(f"批次新增手動成員 {clean_name} 失敗: {e}")
+                
+    _save_local_data()
+    return added_names
+
+def clear_manual_members(group_id: str) -> int:
+    """清空群組中手動登記的成員名冊"""
+    database = get_db()
+    removed_count = 0
+    if group_id in _memory_members:
+        manual_keys = [uid for uid, d in _memory_members[group_id].items() if d.get("is_manual")]
+        removed_count = len(manual_keys)
+        for uid in manual_keys:
+            del _memory_members[group_id][uid]
+            if database:
+                try:
+                    database.collection("groups").document(group_id).collection("members").document(uid).delete()
+                except Exception:
+                    pass
+                    
+    _save_local_data()
+    return removed_count
+
 # --- 任務管理 ---
 
 def record_task(group_id: str, title: str, description: str, creator_id: str):
@@ -412,6 +476,13 @@ def get_unassigned_members(group_id: str):
         t["assignee_id"] for t in all_tasks 
         if t.get("status") == "claimed" and t.get("assignee_id")
     }
+    assigned_user_names = {
+        t["assignee_name"] for t in all_tasks
+        if t.get("status") == "claimed" and t.get("assignee_name")
+    }
     
-    free_members = [m for m in all_members if m["user_id"] not in assigned_user_ids]
+    free_members = [
+        m for m in all_members 
+        if m.get("user_id") not in assigned_user_ids and m.get("user_name") not in assigned_user_names
+    ]
     return free_members, all_members, all_tasks, pending_tasks

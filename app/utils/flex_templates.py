@@ -518,23 +518,45 @@ def create_main_menu_flex() -> FlexMessage:
                         },
                         {
                             "type": "text",
-                            "text": "工作沒人認領？交給命運抽籤，優先抽尚未負責之組員",
+                            "text": "工作沒人認領？組長可先登記全體組員姓名，再啟動公平輪抽！",
                             "size": "xs",
                             "color": "#E2E8F0",
                             "margin": "xs",
                             "wrap": True
                         },
                         {
-                            "type": "button",
-                            "action": {
-                                "type": "message",
-                                "label": "🎲 啟動命運抽籤",
-                                "text": "/命運抽籤"
-                            },
-                            "style": "primary",
-                            "color": "#D97706",
+                            "type": "box",
+                            "layout": "horizontal",
+                            "spacing": "sm",
                             "margin": "md",
-                            "height": "sm"
+                            "contents": [
+                                {
+                                    "type": "button",
+                                    "action": {
+                                        "type": "message",
+                                        "label": "🎲 啟動抽籤",
+                                        "text": "/命運抽籤"
+                                    },
+                                    "style": "primary",
+                                    "color": "#D97706",
+                                    "height": "sm",
+                                    "flex": 1
+                                },
+                                {
+                                    "type": "button",
+                                    "action": {
+                                        "type": "postback",
+                                        "label": "登記組員名單",
+                                        "data": "action=prompt_set_members",
+                                        "inputOption": "openKeyboard",
+                                        "fillInText": "/組員 "
+                                    },
+                                    "style": "primary",
+                                    "color": "#0284C7",
+                                    "height": "sm",
+                                    "flex": 1
+                                }
+                            ]
                         }
                     ]
                 },
@@ -623,10 +645,10 @@ def create_help_flex() -> FlexMessage:
         ("查看工作", "/任務 清單", "/tasks"),
         ("認領工作", "/認領 [編號]", "/claim"),
         ("自訂任務", "/任務 新增", "/task add"),
+        ("登記組員", "/組員 姓名1 姓名2", "/member"),
+        ("組員名冊", "/組員", "/member list"),
+        ("🎲 命運抽籤", "/抽籤 或 /抽籤 名單", "/roulette"),
         ("刪除工作", "/任務 刪除", "/task delete"),
-        ("🎲 命運抽籤", "/抽籤", "/roulette"),
-        ("幽靈組員", "/成員 新增", "/member add"),
-        ("組員名冊", "/成員", "/member"),
         ("專案進度", "/狀態", "/status")
     ]
 
