@@ -53,9 +53,9 @@ from app.routes.webhook import recent_webhook_logs
 @app.get("/version")
 def get_version():
     return {
-        "version": "1.9.38",
-        "build": "clean-pop-art-add-hero-without-japanese-123-style",
-        "description": "生成無日文純正美漫 ADD! 封面，維持 123 簡約風，更新路徑 hero_invite_add_v3.jpg"
+        "version": "1.10.0",
+        "build": "academy-tech-guardian-redesign",
+        "description": "全新學院守護者風格：依據頭貼重構 Rich Menu 與全套 Flex Message 封面圖片、深海軍藍色調與守護者文案"
     }
 
 @app.get("/api/logs")

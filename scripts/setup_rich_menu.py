@@ -135,11 +135,11 @@ def main():
             img_bytes = create_rich_menu_image()
             content_type = "image/png"
 
-        print("正在註冊新的 JoJo 瘋狂鑽石三格 Rich Menu 設定...")
+        print("正在註冊新的學院守護者科技三格 Rich Menu 設定...")
         rich_menu_req = RichMenuRequest(
             size=RichMenuSize(width=2500, height=1686),
             selected=True,
-            name="LeaderGuard_JoJoPop_Menu",
+            name="LeaderGuard_Guardian_Menu",
             chat_bar_text="小組功能選單",
             areas=[
                 # 左 1：使用手冊 (/使用手冊)
@@ -174,7 +174,7 @@ def main():
 
         print("正在設為預設 Rich Menu（全體使用者可見）...")
         messaging_api.set_default_rich_menu(rich_menu_id)
-        print("三格莫蘭迪 Rich Menu 圖文選單已成功設定完成並生效！")
+        print("學院守護者 Rich Menu 圖文選單已成功設定完成並生效！")
 
 if __name__ == "__main__":
     main()
