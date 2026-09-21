@@ -53,9 +53,9 @@ from app.routes.webhook import recent_webhook_logs
 @app.get("/version")
 def get_version():
     return {
-        "version": "1.10.5",
-        "build": "invite-group-card-visual-and-color-upgrade",
-        "description": "升級加進群組 Flex Message 視覺配色與按鈕色彩，加入步驟精美圖解與一鍵分享功能"
+        "version": "1.10.6",
+        "build": "group-menu-tasklist-assigned-hero-images",
+        "description": "為群組功能選單（ACTIVE）、小組專案責任清單與正式指派通知新增專屬 Hero 圖片"
     }
 
 @app.get("/api/logs")

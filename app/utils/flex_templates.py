@@ -355,10 +355,21 @@ def create_preset_tasks_carousel() -> FlexMessage:
     )
 
 def create_main_menu_flex() -> FlexMessage:
-    """小組功能主選單卡片（簡潔現代風：高對比、鮮明按鈕）"""
+    """小組功能主選單卡片（簡潔現代風：高對比、鮮明按鈕、學院守護者專屬圖鑑）"""
     bubble = {
         "type": "bubble",
         "size": "giga",
+        "hero": {
+            "type": "image",
+            "url": f"{BASE_URL}/assets/hero_menu_guardian.jpg",
+            "size": "full",
+            "aspectRatio": "20:13",
+            "aspectMode": "cover",
+            "action": {
+                "type": "message",
+                "text": "/選單"
+            }
+        },
         "header": {
             "type": "box",
             "layout": "vertical",
@@ -1046,10 +1057,21 @@ def create_invite_group_flex() -> FlexMessage:
     )
 
 def create_task_created_flex(task_id: str, title: str, description: str, creator_name: str) -> FlexMessage:
-    """任務建立成功通知卡片（學院守護者登場風格）"""
+    """任務建立成功通知卡片（學院守護者登場風格，指派圖像存證）"""
     bubble = {
         "type": "bubble",
         "size": "mega",
+        "hero": {
+            "type": "image",
+            "url": f"{BASE_URL}/assets/hero_assigned_guardian.jpg",
+            "size": "full",
+            "aspectRatio": "20:13",
+            "aspectMode": "cover",
+            "action": {
+                "type": "message",
+                "text": "/task 清單"
+            }
+        },
         "header": {
             "type": "box",
             "layout": "vertical",
@@ -1360,6 +1382,17 @@ def create_task_list_flex(tasks: list) -> FlexMessage:
     bubble = {
         "type": "bubble",
         "size": "giga",
+        "hero": {
+            "type": "image",
+            "url": f"{BASE_URL}/assets/hero_tasklist_guardian.jpg",
+            "size": "full",
+            "aspectRatio": "20:13",
+            "aspectMode": "cover",
+            "action": {
+                "type": "message",
+                "text": "/task 清單"
+            }
+        },
         "header": {
             "type": "box",
             "layout": "vertical",
@@ -1371,7 +1404,7 @@ def create_task_list_flex(tasks: list) -> FlexMessage:
                     "layout": "horizontal",
                     "contents": [
                         {"type": "text", "text": "【工作存證現況】", "size": "xs", "color": "#38BDF8", "weight": "bold"},
-                        {"type": "text", "text": "STATUS", "size": "xs", "color": "#F43F5E", "align": "end", "weight": "bold"}
+                        {"type": "text", "text": "STATUS", "size": "xs", "color": "#38BDF8", "align": "end", "weight": "bold"}
                     ]
                 },
                 {
