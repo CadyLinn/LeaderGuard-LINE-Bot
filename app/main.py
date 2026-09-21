@@ -53,9 +53,9 @@ from app.routes.webhook import recent_webhook_logs
 @app.get("/version")
 def get_version():
     return {
-        "version": "1.10.6",
-        "build": "group-menu-tasklist-assigned-hero-images",
-        "description": "為群組功能選單（ACTIVE）、小組專案責任清單與正式指派通知新增專屬 Hero 圖片"
+        "version": "1.10.7",
+        "build": "clean-card-headers-and-tags",
+        "description": "簡化各卡片頂部標籤，移除多餘前綴字樣，保持極簡視覺"
     }
 
 @app.get("/api/logs")

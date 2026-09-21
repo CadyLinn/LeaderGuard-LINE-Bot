@@ -37,7 +37,7 @@ def create_preset_tasks_carousel() -> FlexMessage:
                         "type": "box",
                         "layout": "horizontal",
                         "contents": [
-                            {"type": "text", "text": "【專業分工】", "size": "xxs", "color": "#38BDF8", "weight": "bold"},
+                           
                             {"type": "text", "text": "HOT", "size": "xxs", "color": "#F43F5E", "align": "end", "weight": "bold"}
                         ]
                     },
@@ -91,7 +91,7 @@ def create_preset_tasks_carousel() -> FlexMessage:
                         "type": "box",
                         "layout": "horizontal",
                         "contents": [
-                            {"type": "text", "text": "【專業分工】", "size": "xxs", "color": "#38BDF8", "weight": "bold"},
+                          
                             {"type": "text", "text": "FOCUS", "size": "xxs", "color": "#FBBF24", "align": "end", "weight": "bold"}
                         ]
                     },
@@ -145,7 +145,7 @@ def create_preset_tasks_carousel() -> FlexMessage:
                         "type": "box",
                         "layout": "horizontal",
                         "contents": [
-                            {"type": "text", "text": "【專業分工】", "size": "xxs", "color": "#38BDF8", "weight": "bold"},
+                          
                             {"type": "text", "text": "KEY", "size": "xxs", "color": "#38BDF8", "align": "end", "weight": "bold"}
                         ]
                     },
@@ -199,7 +199,7 @@ def create_preset_tasks_carousel() -> FlexMessage:
                         "type": "box",
                         "layout": "horizontal",
                         "contents": [
-                            {"type": "text", "text": "【專業分工】", "size": "xxs", "color": "#38BDF8", "weight": "bold"},
+                        
                             {"type": "text", "text": "CORE", "size": "xxs", "color": "#FBBF24", "align": "end", "weight": "bold"}
                         ]
                     },
@@ -380,7 +380,7 @@ def create_main_menu_flex() -> FlexMessage:
                     "type": "box",
                     "layout": "horizontal",
                     "contents": [
-                        {"type": "text", "text": "組長保險 LEADERGUARD", "weight": "bold", "color": "#FBBF24", "size": "xs", "letterSpacing": "1px"},
+                        
                         {"type": "text", "text": "ACTIVE", "weight": "bold", "color": "#38BDF8", "size": "xs", "align": "end"}
                     ]
                 },
@@ -1082,7 +1082,7 @@ def create_task_created_flex(task_id: str, title: str, description: str, creator
                     "type": "box",
                     "layout": "horizontal",
                     "contents": [
-                        {"type": "text", "text": "【學院任務建立】", "size": "xs", "color": "#38BDF8", "weight": "bold"},
+                      
                         {"type": "text", "text": "NEW", "size": "xs", "color": "#FBBF24", "align": "end", "weight": "bold"}
                     ]
                 },
@@ -1403,7 +1403,6 @@ def create_task_list_flex(tasks: list) -> FlexMessage:
                     "type": "box",
                     "layout": "horizontal",
                     "contents": [
-                        {"type": "text", "text": "【工作存證現況】", "size": "xs", "color": "#38BDF8", "weight": "bold"},
                         {"type": "text", "text": "STATUS", "size": "xs", "color": "#38BDF8", "align": "end", "weight": "bold"}
                     ]
                 },
@@ -1614,7 +1613,7 @@ def create_roulette_flex(task_id: str, task_title: str, victim_name: str) -> Fle
                     "type": "box",
                     "layout": "horizontal",
                     "contents": [
-                        {"type": "text", "text": "🎲 命運抽籤", "size": "xs", "color": "#FBBF24", "weight": "bold"},
+                   
                         {"type": "text", "text": "LUCKY", "size": "xs", "color": "#38BDF8", "align": "end", "weight": "bold"}
                     ]
                 },
