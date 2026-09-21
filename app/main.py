@@ -53,9 +53,9 @@ from app.routes.webhook import recent_webhook_logs
 @app.get("/version")
 def get_version():
     return {
-        "version": "1.10.4",
-        "build": "user-layout-and-copy-refinements",
-        "description": "簡化指令卡片頂部標籤，標題調整為「4 步驟啟動小組保險！」，維護使用者自訂色彩與指令"
+        "version": "1.10.5",
+        "build": "invite-group-card-visual-and-color-upgrade",
+        "description": "升級加進群組 Flex Message 視覺配色與按鈕色彩，加入步驟精美圖解與一鍵分享功能"
     }
 
 @app.get("/api/logs")

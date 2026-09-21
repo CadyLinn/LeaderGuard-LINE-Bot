@@ -521,7 +521,7 @@ def create_main_menu_flex() -> FlexMessage:
                                 "text": "/命運抽籤"
                             },
                             "style": "primary",
-                            "color": "#E11D48",
+                            "color": "#D97706",
                             "margin": "md",
                             "height": "sm"
                         }
@@ -753,7 +753,7 @@ def create_help_flex() -> FlexMessage:
                         "fillInText": "/任務 新增 "
                     },
                     "style": "primary",
-                    "color": "#E11D48",
+                    "color": "#D97706",
                     "height": "sm"
                 }
             ]
@@ -774,7 +774,7 @@ def create_help_flex() -> FlexMessage:
     )
 
 def create_invite_group_bubble() -> dict:
-    """立即把組長保險加入群組 Bubble 卡片字典（123 簡約風，步驟清晰、圖上文字完美對齊）"""
+    """立即把組長保險加入群組 Bubble 卡片字典（科技學院學院風，步驟附精美圖解、色彩鮮明）"""
     return {
         "type": "bubble",
         "size": "giga",
@@ -799,7 +799,7 @@ def create_invite_group_bubble() -> dict:
                     "type": "box",
                     "layout": "horizontal",
                     "contents": [
-                        {"type": "text", "text": "INVITE", "size": "xs", "color": "#F43F5E", "align": "end", "weight": "bold"}
+                        {"type": "text", "text": "INVITE GUIDE", "size": "xs", "color": "#38BDF8", "align": "end", "weight": "bold"}
                     ]
                 },
                 {
@@ -812,7 +812,7 @@ def create_invite_group_bubble() -> dict:
                 },
                 {
                     "type": "text",
-                    "text": "進駐小組專案聊天室，全體裝置連線、杜絕擺爛！",
+                    "text": "進駐小組專案聊天室，全體裝置連線・杜絕擺爛！",
                     "color": "#38BDF8",
                     "size": "xs",
                     "margin": "xs",
@@ -833,27 +833,23 @@ def create_invite_group_bubble() -> dict:
                     "layout": "horizontal",
                     "spacing": "md",
                     "alignItems": "center",
-                    "backgroundColor": "#1E293B",
-                    "borderColor": "#38BDF8",
+                    "backgroundColor": "#162032",
+                    "borderColor": "#0284C7",
                     "borderWidth": "1px",
-                    "paddingAll": "12px",
+                    "paddingAll": "10px",
                     "cornerRadius": "8px",
-                    "action": {
-                        "type": "message",
-                        "text": "/如何加入群組"
-                    },
                     "contents": [
                         {
                             "type": "box",
                             "layout": "vertical",
-                            "width": "28px",
-                            "height": "28px",
-                            "cornerRadius": "14px",
-                            "backgroundColor": "#38BDF8",
+                            "width": "26px",
+                            "height": "26px",
+                            "cornerRadius": "13px",
+                            "backgroundColor": "#0284C7",
                             "justifyContent": "center",
                             "alignItems": "center",
                             "contents": [
-                                {"type": "text", "text": "1", "size": "sm", "weight": "bold", "color": "#0F172A", "align": "center"}
+                                {"type": "text", "text": "1", "size": "xs", "weight": "bold", "color": "#FFFFFF", "align": "center"}
                             ]
                         },
                         {
@@ -864,6 +860,22 @@ def create_invite_group_bubble() -> dict:
                                 {"type": "text", "text": "開啟專案小組聊天室", "size": "sm", "weight": "bold", "color": "#FFFFFF"},
                                 {"type": "text", "text": "進入您的大學報告或專案分工群組", "size": "xxs", "color": "#94A3B8", "margin": "xs"}
                             ]
+                        },
+                        {
+                            "type": "box",
+                            "layout": "vertical",
+                            "width": "50px",
+                            "height": "50px",
+                            "cornerRadius": "8px",
+                            "contents": [
+                                {
+                                    "type": "image",
+                                    "url": f"{BASE_URL}/assets/step1_group.jpg",
+                                    "size": "full",
+                                    "aspectRatio": "1:1",
+                                    "aspectMode": "cover"
+                                }
+                            ]
                         }
                     ]
                 },
@@ -873,27 +885,23 @@ def create_invite_group_bubble() -> dict:
                     "layout": "horizontal",
                     "spacing": "md",
                     "alignItems": "center",
-                    "backgroundColor": "#1E293B",
-                    "borderColor": "#FBBF24",
+                    "backgroundColor": "#162032",
+                    "borderColor": "#D97706",
                     "borderWidth": "1px",
-                    "paddingAll": "12px",
+                    "paddingAll": "10px",
                     "cornerRadius": "8px",
-                    "action": {
-                        "type": "message",
-                        "text": "/如何加入群組"
-                    },
                     "contents": [
                         {
                             "type": "box",
                             "layout": "vertical",
-                            "width": "28px",
-                            "height": "28px",
-                            "cornerRadius": "14px",
-                            "backgroundColor": "#FBBF24",
+                            "width": "26px",
+                            "height": "26px",
+                            "cornerRadius": "13px",
+                            "backgroundColor": "#D97706",
                             "justifyContent": "center",
                             "alignItems": "center",
                             "contents": [
-                                {"type": "text", "text": "2", "size": "sm", "weight": "bold", "color": "#0F172A", "align": "center"}
+                                {"type": "text", "text": "2", "size": "xs", "weight": "bold", "color": "#FFFFFF", "align": "center"}
                             ]
                         },
                         {
@@ -904,6 +912,22 @@ def create_invite_group_bubble() -> dict:
                                 {"type": "text", "text": "點選右上角選單（≡）>「邀請」", "size": "sm", "weight": "bold", "color": "#FFFFFF"},
                                 {"type": "text", "text": "進入群組設定功能頁，點擊「邀請」圖示", "size": "xxs", "color": "#94A3B8", "margin": "xs"}
                             ]
+                        },
+                        {
+                            "type": "box",
+                            "layout": "vertical",
+                            "width": "50px",
+                            "height": "50px",
+                            "cornerRadius": "8px",
+                            "contents": [
+                                {
+                                    "type": "image",
+                                    "url": f"{BASE_URL}/assets/step2_invite.jpg",
+                                    "size": "full",
+                                    "aspectRatio": "1:1",
+                                    "aspectMode": "cover"
+                                }
+                            ]
                         }
                     ]
                 },
@@ -913,27 +937,23 @@ def create_invite_group_bubble() -> dict:
                     "layout": "horizontal",
                     "spacing": "md",
                     "alignItems": "center",
-                    "backgroundColor": "#1E293B",
-                    "borderColor": "#F43F5E",
+                    "backgroundColor": "#162032",
+                    "borderColor": "#38BDF8",
                     "borderWidth": "1px",
-                    "paddingAll": "12px",
+                    "paddingAll": "10px",
                     "cornerRadius": "8px",
-                    "action": {
-                        "type": "message",
-                        "text": "/如何加入群組"
-                    },
                     "contents": [
                         {
                             "type": "box",
                             "layout": "vertical",
-                            "width": "28px",
-                            "height": "28px",
-                            "cornerRadius": "14px",
-                            "backgroundColor": "#F43F5E",
+                            "width": "26px",
+                            "height": "26px",
+                            "cornerRadius": "13px",
+                            "backgroundColor": "#38BDF8",
                             "justifyContent": "center",
                             "alignItems": "center",
                             "contents": [
-                                {"type": "text", "text": "3", "size": "sm", "weight": "bold", "color": "#FFFFFF", "align": "center"}
+                                {"type": "text", "text": "3", "size": "xs", "weight": "bold", "color": "#0B132B", "align": "center"}
                             ]
                         },
                         {
@@ -944,6 +964,22 @@ def create_invite_group_bubble() -> dict:
                                 {"type": "text", "text": "搜尋「組長保險」並勾選加入", "size": "sm", "weight": "bold", "color": "#FFFFFF"},
                                 {"type": "text", "text": "勾選機器人並點擊邀請，立即進駐群組！", "size": "xxs", "color": "#94A3B8", "margin": "xs"}
                             ]
+                        },
+                        {
+                            "type": "box",
+                            "layout": "vertical",
+                            "width": "50px",
+                            "height": "50px",
+                            "cornerRadius": "8px",
+                            "contents": [
+                                {
+                                    "type": "image",
+                                    "url": f"{BASE_URL}/assets/step3_bot.jpg",
+                                    "size": "full",
+                                    "aspectRatio": "1:1",
+                                    "aspectMode": "cover"
+                                }
+                            ]
                         }
                     ]
                 },
@@ -953,15 +989,15 @@ def create_invite_group_bubble() -> dict:
                     "layout": "vertical",
                     "paddingAll": "10px",
                     "backgroundColor": "#0F172A",
-                    "borderColor": "#38BDF8",
+                    "borderColor": "#1E293B",
                     "borderWidth": "1px",
                     "cornerRadius": "6px",
                     "contents": [
                         {
                             "type": "text",
-                            "text": "• 推薦分享：點擊下方「一鍵推薦給朋友」直接挑選好友或群組\n• 啟用指令：進群後輸入「/選單」即可開始小組協作管理\n• 常用指令說明：如需查看完整說明可隨時輸入「/如何加入群組」",
+                            "text": "• 推薦分享：點擊下方「一鍵推薦給朋友」直接挑選好友或群組\n• 啟用指令：進群後輸入「/選單」即可開始小組協作管理\n• 常用指令說明：點擊下方「常用指令手冊」查看完整說明",
                             "size": "xxs",
-                            "color": "#E2E8F0",
+                            "color": "#94A3B8",
                             "wrap": True
                         }
                     ]
@@ -978,9 +1014,9 @@ def create_invite_group_bubble() -> dict:
                 {
                     "type": "button",
                     "action": {
-                        "type": "message",
-                        "label": "查看加入群組步驟說明",
-                        "text": "/如何加入群組"
+                        "type": "uri",
+                        "label": "一鍵推薦給朋友／邀請入群",
+                        "uri": "https://line.me/R/nv/recommendOA/@805yffpw"
                     },
                     "style": "primary",
                     "color": "#0284C7",
@@ -989,12 +1025,12 @@ def create_invite_group_bubble() -> dict:
                 {
                     "type": "button",
                     "action": {
-                        "type": "uri",
-                        "label": "一鍵推薦給朋友",
-                        "uri": "https://line.me/R/nv/recommendOA/@805yffpw"
+                        "type": "message",
+                        "label": "常用指令說明・速查手冊",
+                        "text": "/常用指令說明"
                     },
                     "style": "primary",
-                    "color": "#E11D48",
+                    "color": "#D97706",
                     "height": "sm"
                 }
             ]
@@ -1133,7 +1169,7 @@ def create_task_list_flex(tasks: list) -> FlexMessage:
                         "fillInText": "/任務 新增 "
                     },
                     "style": "primary",
-                    "color": "#E11D48",
+                    "color": "#D97706",
                     "height": "sm"
                 },
                 {
@@ -1307,7 +1343,7 @@ def create_task_list_flex(tasks: list) -> FlexMessage:
                     "text": "/命運抽籤"
                 },
                 "style": "primary",
-                "color": "#E11D48",
+                "color": "#D97706",
                 "height": "sm",
                 "margin": "sm"
             })
