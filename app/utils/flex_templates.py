@@ -16,8 +16,9 @@ def get_main_quick_reply() -> QuickReply:
         QuickReplyItem(action=MessageAction(label="任務分工", text="/選單")),
         QuickReplyItem(action=MessageAction(label="任務清單", text="/task 清單")),
         QuickReplyItem(action=MessageAction(label="🎲 命運抽籤", text="/命運抽籤")),
-        QuickReplyItem(action=MessageAction(label="專案進度", text="/status")),
-        QuickReplyItem(action=MessageAction(label="常用指令說明", text="/常用指令說明")),
+        QuickReplyItem(action=MessageAction(label="😈 AI 催繳", text="/催繳")),
+        QuickReplyItem(action=MessageAction(label="👑 PRO 升級", text="/體驗升級")),
+        QuickReplyItem(action=MessageAction(label="常用指令", text="/常用指令說明")),
     ])
 
 def create_preset_tasks_carousel() -> FlexMessage:
@@ -625,6 +626,77 @@ def create_main_menu_flex() -> FlexMessage:
                             "color": "#334155",
                             "height": "sm",
                             "margin": "sm"
+                        }
+                    ]
+                },
+                # 區塊 4：👑 PRO VIP 尊榮特權（競賽展示專區）
+                {
+                    "type": "box",
+                    "layout": "vertical",
+                    "backgroundColor": "#1E293B",
+                    "paddingAll": "14px",
+                    "cornerRadius": "8px",
+                    "borderColor": "#FBBF24",
+                    "borderWidth": "2px",
+                    "contents": [
+                        {
+                            "type": "box",
+                            "layout": "horizontal",
+                            "alignItems": "center",
+                            "contents": [
+                                {"type": "text", "text": "👑 PRO 尊榮特權", "weight": "bold", "size": "sm", "color": "#FBBF24", "flex": 1},
+                                {
+                                    "type": "box",
+                                    "layout": "vertical",
+                                    "backgroundColor": "#D97706",
+                                    "paddingVertical": "2px",
+                                    "paddingHorizontal": "6px",
+                                    "cornerRadius": "4px",
+                                    "contents": [
+                                        {"type": "text", "text": "DEMO 啟用", "size": "xxs", "color": "#FFFFFF", "weight": "bold"}
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type": "text",
+                            "text": "競賽專用特權：解鎖 AI 黑臉嘴替催繳、核彈級成果報告與強制抽籤",
+                            "size": "xs",
+                            "color": "#E2E8F0",
+                            "margin": "xs",
+                            "wrap": True
+                        },
+                        {
+                            "type": "box",
+                            "layout": "horizontal",
+                            "spacing": "sm",
+                            "margin": "md",
+                            "contents": [
+                                {
+                                    "type": "button",
+                                    "action": {
+                                        "type": "message",
+                                        "label": "😈 AI 黑臉催繳",
+                                        "text": "/催繳"
+                                    },
+                                    "style": "primary",
+                                    "color": "#E11D48",
+                                    "height": "sm",
+                                    "flex": 1
+                                },
+                                {
+                                    "type": "button",
+                                    "action": {
+                                        "type": "message",
+                                        "label": "👑 PRO 尊榮面板",
+                                        "text": "/體驗升級"
+                                    },
+                                    "style": "primary",
+                                    "color": "#D97706",
+                                    "height": "sm",
+                                    "flex": 1
+                                }
+                            ]
                         }
                     ]
                 }
@@ -2100,23 +2172,16 @@ def create_upgrade_plan_flex() -> FlexMessage:
                             "wrap": True
                         },
                         {
-                            "type": "box",
-                            "layout": "vertical",
-                            "backgroundColor": "#1E3A8A",
-                            "cornerRadius": "6px",
-                            "paddingVertical": "8px",
-                            "alignItems": "center",
-                            "justifyContent": "center",
-                            "margin": "md",
-                            "contents": [
-                                {
-                                    "type": "text",
-                                    "text": "已包含於全學期 Pass 權益",
-                                    "size": "xs",
-                                    "color": "#38BDF8",
-                                    "weight": "bold"
-                                }
-                            ]
+                            "type": "button",
+                            "action": {
+                                "type": "message",
+                                "label": "⚡ 體驗全學期 Pass 權益",
+                                "text": "/體驗升級"
+                            },
+                            "style": "primary",
+                            "color": "#1E3A8A",
+                            "height": "sm",
+                            "margin": "md"
                         }
                     ]
                 },
@@ -2176,23 +2241,270 @@ def create_upgrade_plan_flex() -> FlexMessage:
                             "wrap": True
                         },
                         {
+                            "type": "button",
+                            "action": {
+                                "type": "message",
+                                "label": "👑 點我立即體驗・解鎖 PRO 尊榮",
+                                "text": "/體驗升級"
+                            },
+                            "style": "primary",
+                            "color": "#D97706",
+                            "height": "sm",
+                            "margin": "md"
+                        }
+                    ]
+                }
+            ]
+        },
+        "footer": {
+            "type": "box",
+            "layout": "vertical",
+            "paddingAll": "12px",
+            "backgroundColor": "#0F172A",
+            "spacing": "sm",
+            "contents": [
+                {
+                    "type": "button",
+                    "action": {
+                        "type": "message",
+                        "label": "✨ 點擊一鍵升級・立即體驗全特點 ✨",
+                        "text": "/體驗升級"
+                    },
+                    "style": "primary",
+                    "color": "#D97706",
+                    "height": "sm"
+                },
+                {
+                    "type": "text",
+                    "text": "👑 競賽展示專用模式・點擊上方按鈕立即體驗升級效果",
+                    "size": "xxs",
+                    "color": "#FBBF24",
+                    "align": "center"
+                }
+            ]
+        }
+    }
+    return FlexMessage(
+        alt_text="組長保險・學院守護升級方案",
+        contents=FlexContainer.from_dict(bubble),
+        quick_reply=get_main_quick_reply()
+    )
+
+def create_upgrade_success_flex() -> FlexMessage:
+    """PRO VIP 升級成功與殺手級特點展示卡片（競賽展示專用高震撼視覺）"""
+    bubble = {
+        "type": "bubble",
+        "size": "mega",
+        "hero": {
+            "type": "image",
+            "url": f"{BASE_URL}/assets/hero_upgrade_guardian.jpg",
+            "size": "full",
+            "aspectRatio": "20:13",
+            "aspectMode": "cover"
+        },
+        "header": {
+            "type": "box",
+            "layout": "vertical",
+            "backgroundColor": "#0F172A",
+            "paddingAll": "20px",
+            "contents": [
+                {
+                    "type": "box",
+                    "layout": "horizontal",
+                    "contents": [
+                        {"type": "text", "text": "LEADERGUARD VIP", "size": "xs", "color": "#FBBF24", "weight": "bold", "letterSpacing": "1px"},
+                        {"type": "text", "text": "👑 PRO 解鎖成功", "size": "xs", "color": "#38BDF8", "align": "end", "weight": "bold"}
+                    ]
+                },
+                {
+                    "type": "text",
+                    "text": "🎉 恭喜組長！PRO 全學期尊榮權限已開通",
+                    "weight": "bold",
+                    "color": "#FFFFFF",
+                    "size": "md",
+                    "margin": "xs"
+                }
+            ]
+        },
+        "body": {
+            "type": "box",
+            "layout": "vertical",
+            "paddingAll": "16px",
+            "spacing": "md",
+            "backgroundColor": "#0B132B",
+            "contents": [
+                # VIP 認證徽章區
+                {
+                    "type": "box",
+                    "layout": "vertical",
+                    "backgroundColor": "#1E293B",
+                    "paddingAll": "12px",
+                    "cornerRadius": "8px",
+                    "borderColor": "#FBBF24",
+                    "borderWidth": "1.5px",
+                    "contents": [
+                        {
                             "type": "box",
-                            "layout": "vertical",
-                            "backgroundColor": "#D97706",
-                            "cornerRadius": "6px",
-                            "paddingVertical": "8px",
-                            "alignItems": "center",
-                            "justifyContent": "center",
-                            "margin": "md",
+                            "layout": "horizontal",
+                            "contents": [
+                                {"type": "text", "text": "👑 方案認證：", "size": "xs", "color": "#FBBF24", "weight": "bold"},
+                                {"type": "text", "text": "全學期組長躺平 Pass", "size": "xs", "color": "#FFFFFF", "weight": "bold", "flex": 1}
+                            ]
+                        },
+                        {
+                            "type": "box",
+                            "layout": "horizontal",
+                            "margin": "xs",
+                            "contents": [
+                                {"type": "text", "text": "🛡️ 專案守護：", "size": "xs", "color": "#38BDF8", "weight": "bold"},
+                                {"type": "text", "text": "最高防禦等級（杜絕甩鍋摸魚）", "size": "xs", "color": "#E2E8F0", "flex": 1}
+                            ]
+                        },
+                        {
+                            "type": "box",
+                            "layout": "horizontal",
+                            "margin": "xs",
+                            "contents": [
+                                {"type": "text", "text": "⚡ 權益天數：", "size": "xs", "color": "#10B981", "weight": "bold"},
+                                {"type": "text", "text": "180 天無限暢用（已核印時間戳記）", "size": "xs", "color": "#E2E8F0", "flex": 1}
+                            ]
+                        }
+                    ]
+                },
+                # 特點 1：AI 黑臉催繳
+                {
+                    "type": "box",
+                    "layout": "vertical",
+                    "backgroundColor": "#1E293B",
+                    "paddingAll": "12px",
+                    "cornerRadius": "8px",
+                    "borderColor": "#E11D48",
+                    "borderWidth": "1.5px",
+                    "contents": [
+                        {
+                            "type": "text",
+                            "text": "😈 競賽亮點 1：AI 毒舌嘴替／嚴格教授催繳",
+                            "weight": "bold",
+                            "size": "sm",
+                            "color": "#F43F5E"
+                        },
+                        {
+                            "type": "text",
+                            "text": "組長免當壞人！自動以辛辣幽默口吻催促裝死組員，或召喚教授高壓查核：",
+                            "size": "xs",
+                            "color": "#E2E8F0",
+                            "margin": "xs",
+                            "wrap": True
+                        },
+                        {
+                            "type": "box",
+                            "layout": "horizontal",
+                            "spacing": "sm",
+                            "margin": "sm",
                             "contents": [
                                 {
-                                    "type": "text",
-                                    "text": "👑 已開通全學期尊榮權限 (DEMO)",
-                                    "size": "xs",
-                                    "color": "#FFFFFF",
-                                    "weight": "bold"
+                                    "type": "button",
+                                    "action": {
+                                        "type": "message",
+                                        "label": "😈 試用毒舌嘴替",
+                                        "text": "/催繳 毒舌"
+                                    },
+                                    "style": "primary",
+                                    "color": "#E11D48",
+                                    "height": "sm",
+                                    "flex": 1
+                                },
+                                {
+                                    "type": "button",
+                                    "action": {
+                                        "type": "message",
+                                        "label": "🎓 試用嚴格教授",
+                                        "text": "/催繳 教授"
+                                    },
+                                    "style": "primary",
+                                    "color": "#0284C7",
+                                    "height": "sm",
+                                    "flex": 1
                                 }
                             ]
+                        }
+                    ]
+                },
+                # 特點 2：核彈級存證報告
+                {
+                    "type": "box",
+                    "layout": "vertical",
+                    "backgroundColor": "#1E293B",
+                    "paddingAll": "12px",
+                    "cornerRadius": "8px",
+                    "borderColor": "#38BDF8",
+                    "borderWidth": "1.5px",
+                    "contents": [
+                        {
+                            "type": "text",
+                            "text": "📑 競賽亮點 2：期末互評核彈級存證報告",
+                            "weight": "bold",
+                            "size": "sm",
+                            "color": "#38BDF8"
+                        },
+                        {
+                            "type": "text",
+                            "text": "具備時間戳記存證效力，清楚列出每位組員已讀、認領與未交付紀錄：",
+                            "size": "xs",
+                            "color": "#E2E8F0",
+                            "margin": "xs",
+                            "wrap": True
+                        },
+                        {
+                            "type": "button",
+                            "action": {
+                                "type": "message",
+                                "label": "📑 立即生成 PRO 存證報告",
+                                "text": "/export"
+                            },
+                            "style": "primary",
+                            "color": "#0284C7",
+                            "height": "sm",
+                            "margin": "sm"
+                        }
+                    ]
+                },
+                # 特點 3：命運輪盤
+                {
+                    "type": "box",
+                    "layout": "vertical",
+                    "backgroundColor": "#1E293B",
+                    "paddingAll": "12px",
+                    "cornerRadius": "8px",
+                    "borderColor": "#D97706",
+                    "borderWidth": "1.5px",
+                    "contents": [
+                        {
+                            "type": "text",
+                            "text": "🎲 競賽亮點 3：命運輪盤・超時強制抽籤",
+                            "weight": "bold",
+                            "size": "sm",
+                            "color": "#FBBF24"
+                        },
+                        {
+                            "type": "text",
+                            "text": "組員擺爛不選工作？系統直接啟動命運抽籤，強制把任務指派給組員！",
+                            "size": "xs",
+                            "color": "#E2E8F0",
+                            "margin": "xs",
+                            "wrap": True
+                        },
+                        {
+                            "type": "button",
+                            "action": {
+                                "type": "message",
+                                "label": "🎲 立即啟動命運強制抽籤",
+                                "text": "/命運抽籤"
+                            },
+                            "style": "primary",
+                            "color": "#D97706",
+                            "height": "sm",
+                            "margin": "sm"
                         }
                     ]
                 }
@@ -2205,17 +2517,177 @@ def create_upgrade_plan_flex() -> FlexMessage:
             "backgroundColor": "#0F172A",
             "contents": [
                 {
-                    "type": "text",
-                    "text": "👑 競賽展示專用模式・全功能已升級為頂級尊榮版（無限制完整體驗）",
-                    "size": "xxs",
-                    "color": "#FBBF24",
-                    "align": "center"
+                    "type": "button",
+                    "action": {
+                        "type": "message",
+                        "label": "📋 前往專案主功能選單",
+                        "text": "/選單"
+                    },
+                    "style": "primary",
+                    "color": "#334155",
+                    "height": "sm"
                 }
             ]
         }
     }
     return FlexMessage(
-        alt_text="組長保險・學院守護升級方案",
+        alt_text="🎉 恭喜組長！PRO 全學期尊榮權限已開通",
+        contents=FlexContainer.from_dict(bubble),
+        quick_reply=get_main_quick_reply()
+    )
+
+def create_ai_reminder_flex(pending_tasks: list = None, mode: str = "toxic") -> FlexMessage:
+    """AI 催繳黑臉卡片（支持 toxic 毒舌嘴替 與 professor 嚴格教授）"""
+    if pending_tasks is None:
+        pending_tasks = []
+
+    if mode == "professor":
+        title_text = "🎓【指導教授・專案稽核嚴肅廣播】"
+        title_color = "#38BDF8"
+        border_color = "#38BDF8"
+        sub_text = "⚡ 本群組受學術倫理與專案責任追蹤系統嚴格監管"
+        
+        if pending_tasks:
+            tasks_preview = "、".join([f"「{t.get('title', '未認領任務')}」" for t in pending_tasks[:3]])
+            speech = (
+                f"各位同學請注意：\n\n"
+                f"剛剛透過組長保險稽核後台查看本專案進度，發現尚有 {len(pending_tasks)} 項工作處於未認領停滯狀態（如 {tasks_preview}）。\n\n"
+                f"大學教育核心在於主動承擔與團隊紀律。若在今日內仍無人推進行動，本學期平時互評成績將直接依據系統時間戳記從實核扣，絕無寬貸。\n\n"
+                f"請各位同學在 30 分鐘內落實認領與回報，切勿心存僥倖。"
+            )
+        else:
+            speech = (
+                "各位同學請注意：\n\n"
+                "剛剛檢視本專案進度，目前所有工作項目雖已完成認領，但期末考評重點在於「實際交付成果與時間戳記」。\n\n"
+                "請各負責同學務必如期繳交進度，切勿將所有負擔推遲給組長統整。"
+            )
+    else:
+        # toxic 毒舌嘴替
+        title_text = "😈【AI 毒舌嘴替・黑臉催繳廣播】"
+        title_color = "#F43F5E"
+        border_color = "#F43F5E"
+        sub_text = "⚡ 組長保險 PRO 替身黑臉催繳系統啟動中"
+
+        if pending_tasks:
+            tasks_lines = "\n".join([f"• 🚨 {t.get('title', '專案工作')}" for t in pending_tasks[:4]])
+            speech = (
+                "各位親愛的組員醒醒～⏰\n\n"
+                "期末只剩沒幾天了，請問下面這幾項工作是會自己行光合作用生出來，還是有神仙半夜幫忙寫？\n\n"
+                f"【目前裸奔沒人認領的孤兒任務】：\n{tasks_lines}\n\n"
+                "組長已經幫大家把保險系統架好了，再繼續裝死已讀不回，期末互評打分數時，就別怪保險系統手滑打 0 分囉 🥰"
+            )
+        else:
+            speech = (
+                "各位親愛的組員～⏰\n\n"
+                "雖然大家名義上都認領了工作，但「已認領」不等於「已完工」好嗎？不要以為組長沒在看進度喔！\n\n"
+                "進度倒數計時中，請速速把檔案或草稿丟出來，不要逼組長召喚指導教授 😈"
+            )
+
+    bubble = {
+        "type": "bubble",
+        "size": "mega",
+        "header": {
+            "type": "box",
+            "layout": "vertical",
+            "backgroundColor": "#0F172A",
+            "paddingAll": "16px",
+            "contents": [
+                {
+                    "type": "text",
+                    "text": title_text,
+                    "weight": "bold",
+                    "size": "md",
+                    "color": title_color
+                },
+                {
+                    "type": "text",
+                    "text": sub_text,
+                    "size": "xxs",
+                    "color": "#94A3B8",
+                    "margin": "xs"
+                }
+            ]
+        },
+        "body": {
+            "type": "box",
+            "layout": "vertical",
+            "paddingAll": "16px",
+            "backgroundColor": "#0B132B",
+            "contents": [
+                {
+                    "type": "box",
+                    "layout": "vertical",
+                    "backgroundColor": "#1E293B",
+                    "paddingAll": "14px",
+                    "cornerRadius": "8px",
+                    "borderColor": border_color,
+                    "borderWidth": "1.5px",
+                    "contents": [
+                        {
+                            "type": "text",
+                            "text": speech,
+                            "size": "xs",
+                            "color": "#FFFFFF",
+                            "wrap": True
+                        }
+                    ]
+                },
+                {
+                    "type": "box",
+                    "layout": "horizontal",
+                    "spacing": "sm",
+                    "margin": "md",
+                    "contents": [
+                        {
+                            "type": "button",
+                            "action": {
+                                "type": "message",
+                                "label": "🙋‍♂️ 認領任務",
+                                "text": "/task 清單"
+                            },
+                            "style": "primary",
+                            "color": "#0284C7",
+                            "height": "sm",
+                            "flex": 1
+                        },
+                        {
+                            "type": "button",
+                            "action": {
+                                "type": "message",
+                                "label": "🎲 命運抽籤",
+                                "text": "/命運抽籤"
+                            },
+                            "style": "primary",
+                            "color": "#D97706",
+                            "height": "sm",
+                            "flex": 1
+                        }
+                    ]
+                }
+            ]
+        },
+        "footer": {
+            "type": "box",
+            "layout": "vertical",
+            "paddingAll": "10px",
+            "backgroundColor": "#0F172A",
+            "contents": [
+                {
+                    "type": "button",
+                    "action": {
+                        "type": "message",
+                        "label": "📑 查看存證報告",
+                        "text": "/export"
+                    },
+                    "style": "primary",
+                    "color": "#334155",
+                    "height": "sm"
+                }
+            ]
+        }
+    }
+    return FlexMessage(
+        alt_text=title_text,
         contents=FlexContainer.from_dict(bubble),
         quick_reply=get_main_quick_reply()
     )

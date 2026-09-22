@@ -24,6 +24,8 @@ from app.utils.flex_templates import (
     create_preset_tasks_carousel,
     create_welcome_guide_flex,
     create_upgrade_plan_flex,
+    create_upgrade_success_flex,
+    create_ai_reminder_flex,
     create_invite_group_flex,
     get_main_quick_reply
 )
@@ -122,7 +124,6 @@ def handle_user_command(user_text: str, group_id: str, user_id: str, user_name: 
     if text.lower() in [
         "/升級方案", "升級方案",
         "/升級", "升級",
-        "/立即升級", "立即升級",
         "/了解pro專案", "了解pro專案",
         "/了解pro方案", "了解pro方案",
         "/保險單次包", "保險單次包",
@@ -134,6 +135,26 @@ def handle_user_command(user_text: str, group_id: str, user_id: str, user_name: 
         "/pro", "pro"
     ]:
         return [create_upgrade_plan_flex()]
+
+    # 2.9 競賽 DEMO 一鍵體驗 PRO 尊榮升級（/體驗升級、/一鍵升級、/立即升級、/升級解鎖）
+    if text.lower() in [
+        "/體驗升級", "體驗升級",
+        "/一鍵升級", "一鍵升級",
+        "/立即升級", "立即升級",
+        "/升級體驗", "升級體驗",
+        "/升級解鎖", "升級解鎖",
+        "/解鎖pro", "解鎖pro",
+        "/pro解鎖", "pro解鎖",
+        "/體驗pro", "體驗pro"
+    ]:
+        return [create_upgrade_success_flex()]
+
+    # 2.95 AI 替身黑臉催繳廣播（/催繳、/催繳 毒舌、/催繳 教授）
+    if text.lower().startswith("/催繳") or text.lower().startswith("催繳") or text.lower() in ["/黑臉催繳", "黑臉催繳", "/毒舌催繳", "毒舌催繳", "/教授催繳", "教授催繳"]:
+        mode = "professor" if any(kw in text.lower() for kw in ["教授", "professor", "嚴格", "老師"]) else "toxic"
+        tasks = list_tasks(target_group)
+        pending_tasks = [t for t in tasks if t.get("status") == "pending"]
+        return [create_ai_reminder_flex(pending_tasks=pending_tasks, mode=mode)]
 
     # 3. 常用小組分工範本輪播卡片（/assign、/task 範本 或 /任務 範本）
     if text.lower() in [
