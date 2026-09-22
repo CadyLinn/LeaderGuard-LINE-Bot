@@ -380,8 +380,7 @@ def create_main_menu_flex() -> FlexMessage:
                     "type": "box",
                     "layout": "horizontal",
                     "contents": [
-                        
-                        {"type": "text", "text": "ACTIVE", "weight": "bold", "color": "#38BDF8", "size": "xs", "align": "end"}
+                        {"type": "text", "text": "👑 PRO 尊榮啟用中", "weight": "bold", "color": "#FBBF24", "size": "xs", "align": "end"}
                     ]
                 },
                 {
@@ -1986,7 +1985,7 @@ def create_upgrade_plan_flex() -> FlexMessage:
                     "layout": "horizontal",
                     "contents": [
                         {"type": "text", "text": "組長保險 LEADERGUARD", "size": "xs", "color": "#FBBF24", "weight": "bold", "letterSpacing": "1px"},
-                        {"type": "text", "text": "PRO PLAN", "size": "xs", "color": "#38BDF8", "align": "end", "weight": "bold"}
+                        {"type": "text", "text": "👑 PRO VIP 啟用中", "size": "xs", "color": "#FBBF24", "align": "end", "weight": "bold"}
                     ]
                 },
                 {
@@ -2025,12 +2024,12 @@ def create_upgrade_plan_flex() -> FlexMessage:
                                 {
                                     "type": "box",
                                     "layout": "vertical",
-                                    "backgroundColor": "#162032",
+                                    "backgroundColor": "#334155",
                                     "paddingVertical": "2px",
                                     "paddingHorizontal": "6px",
                                     "cornerRadius": "4px",
                                     "contents": [
-                                        {"type": "text", "text": "使用中", "size": "xxs", "color": "#38BDF8", "weight": "bold"}
+                                        {"type": "text", "text": "標準版", "size": "xxs", "color": "#94A3B8", "weight": "bold"}
                                     ]
                                 }
                             ]
@@ -2103,7 +2102,7 @@ def create_upgrade_plan_flex() -> FlexMessage:
                         {
                             "type": "box",
                             "layout": "vertical",
-                            "backgroundColor": "#06C755",
+                            "backgroundColor": "#1E3A8A",
                             "cornerRadius": "6px",
                             "paddingVertical": "8px",
                             "alignItems": "center",
@@ -2112,9 +2111,9 @@ def create_upgrade_plan_flex() -> FlexMessage:
                             "contents": [
                                 {
                                     "type": "text",
-                                    "text": "LINE Pay 立即升級 NT$ 49",
+                                    "text": "已包含於全學期 Pass 權益",
                                     "size": "xs",
-                                    "color": "#FFFFFF",
+                                    "color": "#38BDF8",
                                     "weight": "bold"
                                 }
                             ]
@@ -2158,12 +2157,12 @@ def create_upgrade_plan_flex() -> FlexMessage:
                                 {
                                     "type": "box",
                                     "layout": "vertical",
-                                    "backgroundColor": "#0C4A6E",
+                                    "backgroundColor": "#059669",
                                     "paddingVertical": "2px",
                                     "paddingHorizontal": "6px",
                                     "cornerRadius": "4px",
                                     "contents": [
-                                        {"type": "text", "text": "NT$ 99 / 學期", "size": "xxs", "color": "#38BDF8", "weight": "bold"}
+                                        {"type": "text", "text": "👑 DEMO 尊榮使用中", "size": "xxs", "color": "#FFFFFF", "weight": "bold"}
                                     ]
                                 }
                             ]
@@ -2179,7 +2178,7 @@ def create_upgrade_plan_flex() -> FlexMessage:
                         {
                             "type": "box",
                             "layout": "vertical",
-                            "backgroundColor": "#06C755",
+                            "backgroundColor": "#D97706",
                             "cornerRadius": "6px",
                             "paddingVertical": "8px",
                             "alignItems": "center",
@@ -2188,7 +2187,7 @@ def create_upgrade_plan_flex() -> FlexMessage:
                             "contents": [
                                 {
                                     "type": "text",
-                                    "text": "LINE Pay 立即升級 NT$ 99",
+                                    "text": "👑 已開通全學期尊榮權限 (DEMO)",
                                     "size": "xs",
                                     "color": "#FFFFFF",
                                     "weight": "bold"
@@ -2207,9 +2206,9 @@ def create_upgrade_plan_flex() -> FlexMessage:
             "contents": [
                 {
                     "type": "text",
-                    "text": "LINE Pay 線上支付建置中，暫未開放點擊付費",
+                    "text": "👑 競賽展示專用模式・全功能已升級為頂級尊榮版（無限制完整體驗）",
                     "size": "xxs",
-                    "color": "#94A3B8",
+                    "color": "#FBBF24",
                     "align": "center"
                 }
             ]

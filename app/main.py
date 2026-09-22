@@ -56,9 +56,9 @@ from app.routes.webhook import recent_webhook_logs
 @app.get("/version")
 def get_version():
     return {
-        "version": "1.10.17",
-        "build": "upgrade-plan-highlight-badges",
-        "description": "升級方案卡片新增熱銷組長首選與全學期解脫光環邊框，提升視覺吸引力"
+        "version": "1.10.18",
+        "build": "competition-demo-pro-mode",
+        "description": "全功能預設開啟競賽 DEMO 尊榮升級版 (PRO VIP Active)"
     }
 
 @app.get("/api/logs")

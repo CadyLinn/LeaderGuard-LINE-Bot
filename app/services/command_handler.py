@@ -385,7 +385,8 @@ def handle_user_command(user_text: str, group_id: str, user_id: str, user_name: 
         pending_tasks = [t for t in tasks if t.get("status") == "pending"]
         
         lines = [
-            "【組長保險・小組期末分工成果報告】\n",
+            "【🛡️ 組長保險 PRO 尊榮存證・期末分工成果報告】\n",
+            "認證狀態：👑 頂級尊榮保險已核印（具備時間戳記完整審核效力）",
             f"專案任務總數：{len(tasks)} 件",
             f"已認領負責：{len(claimed_tasks)} 件",
             f"待認領工作：{len(pending_tasks)} 件\n",
@@ -409,7 +410,7 @@ def handle_user_command(user_text: str, group_id: str, user_id: str, user_name: 
             free_names = [m.get("user_name", "組員") for m in free_members]
             lines.append(f"\n【尚未指派工作之組員】：\n{', '.join(free_names)}")
             
-        lines.append("\n本紀錄由組長保險自動存證，可用於期末互評與成果報告依據。")
+        lines.append("\n👑 本紀錄由組長保險 PRO 尊榮版自動存證，具備時間戳記與審核效力，可用於期末互評與成果報告依據。")
         return [TextMessage(text="\n".join(lines), quick_reply=get_main_quick_reply())]
 
     # 10. 清空手動登記組員名冊：/組員 清空、/清空名單、/清空組員
