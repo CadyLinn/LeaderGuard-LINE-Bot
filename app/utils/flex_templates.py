@@ -694,7 +694,7 @@ def create_help_flex() -> FlexMessage:
                 },
                 {
                     "type": "text",
-                    "text": "常用常用指令說明・速查手冊",
+                    "text": "常用指令說明・速查手冊",
                     "weight": "bold",
                     "color": "#FFFFFF",
                     "size": "md",
@@ -801,7 +801,7 @@ def create_help_flex() -> FlexMessage:
     }
 
     return FlexMessage(
-        alt_text="組長保險・常用常用指令說明與加入群組指南",
+        alt_text="組長保險・常用指令說明與加入群組指南",
         contents=FlexContainer.from_dict(carousel),
         quick_reply=get_main_quick_reply()
     )

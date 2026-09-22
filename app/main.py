@@ -56,9 +56,9 @@ from app.routes.webhook import recent_webhook_logs
 @app.get("/version")
 def get_version():
     return {
-        "version": "1.10.15",
-        "build": "support-webhook-callback-aliases",
-        "description": "全面支援 /webhook、/callback 與尾隨斜線路由別名，確保 LINE Webhook 暢通無阻"
+        "version": "1.10.16",
+        "build": "fix-command-guide-typo",
+        "description": "修正指令說明卡片中「常用常用指令」重複字樣之文案"
     }
 
 @app.get("/api/logs")
