@@ -53,9 +53,9 @@ from app.routes.webhook import recent_webhook_logs
 @app.get("/version")
 def get_version():
     return {
-        "version": "1.10.11",
-        "build": "task-created-16-9-ai-generated-image",
-        "description": "更新小組工作正式指派卡片為全新 AI 生成之 16:9 學院守護者任務指派認證插圖"
+        "version": "1.10.12",
+        "build": "task-created-full-image-fit",
+        "description": "更新小組工作正式指派卡片圖片為用戶提供的完整全景圖，並設定精確 2752:1536 fit 模式以保證全圖完整顯示不被切裁"
     }
 
 @app.get("/api/logs")
