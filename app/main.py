@@ -53,9 +53,9 @@ from app.routes.webhook import recent_webhook_logs
 @app.get("/version")
 def get_version():
     return {
-        "version": "1.10.12",
-        "build": "task-created-full-image-fit",
-        "description": "更新小組工作正式指派卡片圖片為用戶提供的完整全景圖，並設定精確 2752:1536 fit 模式以保證全圖完整顯示不被切裁"
+        "version": "1.10.13",
+        "build": "task-created-safe-area-framed-image",
+        "description": "更新小組工作正式指派卡片為自帶安全邊界與全息認證勳章之全新專屬 16:9 插圖，確保完整畫面不被裁切"
     }
 
 @app.get("/api/logs")

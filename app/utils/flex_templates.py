@@ -1087,9 +1087,9 @@ def create_task_created_flex(task_id: str, title: str, description: str, creator
             "type": "image",
             "url": f"{BASE_URL}/assets/hero_assigned_guardian.jpg",
             "size": "full",
-            "aspectRatio": "2752:1536",
+            "aspectRatio": "16:9",
             "aspectMode": "fit",
-            "backgroundColor": "#080F1E",
+            "backgroundColor": "#0B132B",
             "action": {
                 "type": "message",
                 "text": "/task 清單"
