@@ -56,9 +56,9 @@ from app.routes.webhook import recent_webhook_logs
 @app.get("/version")
 def get_version():
     return {
-        "version": "1.10.16",
-        "build": "fix-command-guide-typo",
-        "description": "修正指令說明卡片中「常用常用指令」重複字樣之文案"
+        "version": "1.10.17",
+        "build": "upgrade-plan-highlight-badges",
+        "description": "升級方案卡片新增熱銷組長首選與全學期解脫光環邊框，提升視覺吸引力"
     }
 
 @app.get("/api/logs")

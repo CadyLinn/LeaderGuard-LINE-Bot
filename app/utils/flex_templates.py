@@ -2037,7 +2037,7 @@ def create_upgrade_plan_flex() -> FlexMessage:
                         },
                         {
                             "type": "text",
-                            "text": "• 基礎任務建立與自訂項目\n• 溫和版超時提醒通知\n• 🎲 基礎隨機抽籤分配\n• 單一群組上限 1 個專案",
+                            "text": "• 基礎任務建立與自訂項目\n• 🎲 基礎隨機抽籤分配\n• 單一群組上限 1 個專案",
                             "size": "xs",
                             "color": "#E2E8F0",
                             "margin": "sm",
@@ -2052,9 +2052,27 @@ def create_upgrade_plan_flex() -> FlexMessage:
                     "backgroundColor": "#1E293B",
                     "paddingAll": "14px",
                     "cornerRadius": "8px",
-                    "borderColor": "#FBBF24",
-                    "borderWidth": "2px",
+                    "borderColor": "#F59E0B",
+                    "borderWidth": "1.5px",
                     "contents": [
+                        {
+                            "type": "box",
+                            "layout": "horizontal",
+                            "contents": [
+                                {
+                                    "type": "box",
+                                    "layout": "vertical",
+                                    "backgroundColor": "#D97706",
+                                    "paddingVertical": "2px",
+                                    "paddingHorizontal": "6px",
+                                    "cornerRadius": "4px",
+                                    "contents": [
+                                        {"type": "text", "text": "🔥 熱銷 87% 組長首選", "size": "xxs", "color": "#FFFFFF", "weight": "bold"}
+                                    ]
+                                }
+                            ],
+                            "marginBottom": "xs"
+                        },
                         {
                             "type": "box",
                             "layout": "horizontal",
@@ -2110,9 +2128,27 @@ def create_upgrade_plan_flex() -> FlexMessage:
                     "backgroundColor": "#1E293B",
                     "paddingAll": "14px",
                     "cornerRadius": "8px",
-                    "borderColor": "#0284C7",
-                    "borderWidth": "1px",
+                    "borderColor": "#FBBF24",
+                    "borderWidth": "2px",
                     "contents": [
+                        {
+                            "type": "box",
+                            "layout": "horizontal",
+                            "contents": [
+                                {
+                                    "type": "box",
+                                    "layout": "vertical",
+                                    "backgroundColor": "#F59E0B",
+                                    "paddingVertical": "2px",
+                                    "paddingHorizontal": "6px",
+                                    "cornerRadius": "4px",
+                                    "contents": [
+                                        {"type": "text", "text": "👑 性價比之王・全學期解脫", "size": "xxs", "color": "#0F172A", "weight": "bold"}
+                                    ]
+                                }
+                            ],
+                            "marginBottom": "xs"
+                        },
                         {
                             "type": "box",
                             "layout": "horizontal",
