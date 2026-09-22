@@ -53,9 +53,9 @@ from app.routes.webhook import recent_webhook_logs
 @app.get("/version")
 def get_version():
     return {
-        "version": "1.10.10",
-        "build": "task-created-16-9-image-update",
-        "description": "更新小組工作正式指派卡片圖片為學院守護者領導出擊並改為16:9比例"
+        "version": "1.10.11",
+        "build": "task-created-16-9-ai-generated-image",
+        "description": "更新小組工作正式指派卡片為全新 AI 生成之 16:9 學院守護者任務指派認證插圖"
     }
 
 @app.get("/api/logs")
