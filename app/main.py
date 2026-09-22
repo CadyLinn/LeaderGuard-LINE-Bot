@@ -30,8 +30,11 @@ from fastapi.staticfiles import StaticFiles
 if os.path.exists("assets"):
     app.mount("/assets", StaticFiles(directory="assets"), name="assets")
 
-# 註冊路由
+# 註冊路由（同時支援 /webhook、/callback 及其尾隨斜線路徑，防止 LINE Webhook 307 或 404）
 app.include_router(webhook.router)
+app.add_api_route("/webhook/", webhook.line_webhook, methods=["POST"])
+app.add_api_route("/callback", webhook.line_webhook, methods=["POST"])
+app.add_api_route("/callback/", webhook.line_webhook, methods=["POST"])
 
 @app.get("/")
 def read_root():
@@ -53,9 +56,9 @@ from app.routes.webhook import recent_webhook_logs
 @app.get("/version")
 def get_version():
     return {
-        "version": "1.10.14",
-        "build": "task-created-bust-cache-new-hero-url",
-        "description": "更換小組工作正式指派卡片之圖片網址為全新檔名 hero_task_assigned_v2026.jpg，徹底破解 LINE App 本地快取"
+        "version": "1.10.15",
+        "build": "support-webhook-callback-aliases",
+        "description": "全面支援 /webhook、/callback 與尾隨斜線路由別名，確保 LINE Webhook 暢通無阻"
     }
 
 @app.get("/api/logs")
