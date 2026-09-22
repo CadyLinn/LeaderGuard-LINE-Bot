@@ -53,9 +53,9 @@ from app.routes.webhook import recent_webhook_logs
 @app.get("/version")
 def get_version():
     return {
-        "version": "1.10.13",
-        "build": "task-created-safe-area-framed-image",
-        "description": "更新小組工作正式指派卡片為自帶安全邊界與全息認證勳章之全新專屬 16:9 插圖，確保完整畫面不被裁切"
+        "version": "1.10.14",
+        "build": "task-created-bust-cache-new-hero-url",
+        "description": "更換小組工作正式指派卡片之圖片網址為全新檔名 hero_task_assigned_v2026.jpg，徹底破解 LINE App 本地快取"
     }
 
 @app.get("/api/logs")

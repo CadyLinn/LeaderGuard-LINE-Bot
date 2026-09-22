@@ -1085,10 +1085,10 @@ def create_task_created_flex(task_id: str, title: str, description: str, creator
         "size": "mega",
         "hero": {
             "type": "image",
-            "url": f"{BASE_URL}/assets/hero_assigned_guardian.jpg",
+            "url": f"{BASE_URL}/assets/hero_task_assigned_v2026.jpg",
             "size": "full",
             "aspectRatio": "16:9",
-            "aspectMode": "fit",
+            "aspectMode": "cover",
             "backgroundColor": "#0B132B",
             "action": {
                 "type": "message",
