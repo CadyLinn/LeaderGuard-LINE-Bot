@@ -16,7 +16,8 @@ def get_main_quick_reply() -> QuickReply:
         QuickReplyItem(action=MessageAction(label="任務分工", text="/選單")),
         QuickReplyItem(action=MessageAction(label="任務清單", text="/task 清單")),
         QuickReplyItem(action=MessageAction(label="隨機分配", text="/抽籤")),
-        QuickReplyItem(action=MessageAction(label="進度提醒", text="/催繳")),
+        QuickReplyItem(action=MessageAction(label="開始會議", text="/開始會議")),
+        QuickReplyItem(action=MessageAction(label="結束會議", text="/結束會議")),
         QuickReplyItem(action=MessageAction(label="方案說明", text="/升級方案")),
         QuickReplyItem(action=MessageAction(label="常用指令", text="/常用指令說明")),
     ])
@@ -629,7 +630,7 @@ def create_main_menu_flex() -> FlexMessage:
                         }
                     ]
                 },
-                # 區塊 4：PRO 專業進階功能
+                # 區塊 4：PRO 專業會議記錄統整
                 {
                     "type": "box",
                     "layout": "vertical",
@@ -644,7 +645,7 @@ def create_main_menu_flex() -> FlexMessage:
                             "layout": "horizontal",
                             "alignItems": "center",
                             "contents": [
-                                {"type": "text", "text": "PRO 專業功能", "weight": "bold", "size": "sm", "color": "#38BDF8", "flex": 1},
+                                {"type": "text", "text": "PRO 會議記錄統整", "weight": "bold", "size": "sm", "color": "#38BDF8", "flex": 1},
                                 {
                                     "type": "box",
                                     "layout": "vertical",
@@ -660,7 +661,7 @@ def create_main_menu_flex() -> FlexMessage:
                         },
                         {
                             "type": "text",
-                            "text": "支援自動進度提醒、分工成果存證與隨機分配等工具。",
+                            "text": "群組討論自動記錄，由 AI 提煉會議摘要與待辦工作。",
                             "size": "xs",
                             "color": "#E2E8F0",
                             "margin": "xs",
@@ -676,8 +677,8 @@ def create_main_menu_flex() -> FlexMessage:
                                     "type": "button",
                                     "action": {
                                         "type": "message",
-                                        "label": "進度提醒",
-                                        "text": "/催繳"
+                                        "label": "開始會議",
+                                        "text": "/開始會議"
                                     },
                                     "style": "primary",
                                     "color": "#0284C7",
@@ -688,15 +689,27 @@ def create_main_menu_flex() -> FlexMessage:
                                     "type": "button",
                                     "action": {
                                         "type": "message",
-                                        "label": "方案說明",
-                                        "text": "/升級方案"
+                                        "label": "結束會議",
+                                        "text": "/結束會議"
                                     },
                                     "style": "primary",
-                                    "color": "#334155",
+                                    "color": "#D97706",
                                     "height": "sm",
                                     "flex": 1
                                 }
                             ]
+                        },
+                        {
+                            "type": "button",
+                            "action": {
+                                "type": "message",
+                                "label": "方案說明",
+                                "text": "/升級方案"
+                            },
+                            "style": "primary",
+                            "color": "#334155",
+                            "height": "sm",
+                            "margin": "sm"
                         }
                     ]
                 }
@@ -716,11 +729,12 @@ def create_help_flex() -> FlexMessage:
         ("查看工作", "/任務 清單", "/tasks"),
         ("認領工作", "/認領 [編號]", "/claim"),
         ("自訂任務", "/任務 新增", "/task add"),
-        ("登記組員", "/組員 姓名1 姓名2", "/member"),
-        ("組員名冊", "/組員", "/member list"),
+        ("開始會議", "/開始會議", "/start_meeting"),
+        ("結束會議", "/結束會議", "/end_meeting"),
         ("隨機分配", "/抽籤 或 /抽籤 名單", "/roulette"),
-        ("刪除工作", "/任務 刪除", "/task delete"),
-        ("專案進度", "/狀態", "/status")
+        ("登記組員", "/組員 姓名1 姓名2", "/member"),
+        ("專案進度", "/狀態", "/status"),
+        ("解鎖專業", "/解鎖會議", "/upgrade")
     ]
 
     rows = []
@@ -2034,7 +2048,7 @@ def create_welcome_guide_flex() -> FlexMessage:
     )
 
 def create_upgrade_plan_flex() -> FlexMessage:
-    """升級方案卡片（簡約現代、文字清晰不遮擋）"""
+    """升級方案卡片（簡約現代、聚焦會議記錄統整與解鎖）"""
     bubble = {
         "type": "bubble",
         "size": "mega",
@@ -2054,7 +2068,7 @@ def create_upgrade_plan_flex() -> FlexMessage:
                 },
                 {
                     "type": "text",
-                    "text": "方案功能說明",
+                    "text": "PRO 會議記錄方案",
                     "weight": "bold",
                     "color": "#FFFFFF",
                     "size": "md",
@@ -2062,7 +2076,7 @@ def create_upgrade_plan_flex() -> FlexMessage:
                 },
                 {
                     "type": "text",
-                    "text": "專案協作與進階管理功能",
+                    "text": "自動記錄群組討論，AI 統整會議重點與待辦清單",
                     "size": "xs",
                     "color": "#94A3B8",
                     "margin": "xs",
@@ -2091,7 +2105,7 @@ def create_upgrade_plan_flex() -> FlexMessage:
                             "layout": "horizontal",
                             "alignItems": "center",
                             "contents": [
-                                {"type": "text", "text": "PRO 專業版核心功能", "weight": "bold", "size": "sm", "color": "#38BDF8", "flex": 1},
+                                {"type": "text", "text": "PRO 會議統整核心功能", "weight": "bold", "size": "sm", "color": "#38BDF8", "flex": 1},
                                 {
                                     "type": "box",
                                     "layout": "vertical",
@@ -2108,7 +2122,7 @@ def create_upgrade_plan_flex() -> FlexMessage:
                         {"type": "separator", "color": "#334155", "margin": "sm"},
                         {
                             "type": "text",
-                            "text": "• 自動進度提醒通知（/催繳）\n• 小組分工成果存證報告（/export）\n• 任務隨機分配指派（/抽籤）\n• 多專案與多群組管理支援",
+                            "text": "• 輸入 /開始會議 自動記錄群組討論發言\n• 輸入 /結束會議 AI 提煉重點與待辦清單\n• 小組分工與期末成果存證報告（/export）\n• 支援多專案與多群組管理",
                             "size": "xs",
                             "color": "#FFFFFF",
                             "margin": "sm",
@@ -2117,7 +2131,7 @@ def create_upgrade_plan_flex() -> FlexMessage:
                         {"type": "separator", "color": "#334155", "margin": "sm"},
                         {
                             "type": "text",
-                            "text": "目前為競賽展示模式，功能皆可直接體驗。",
+                            "text": "目前為競賽展示模式，點擊下方即可直接解鎖體驗。",
                             "size": "xs",
                             "color": "#94A3B8",
                             "margin": "sm",
@@ -2138,8 +2152,8 @@ def create_upgrade_plan_flex() -> FlexMessage:
                     "type": "button",
                     "action": {
                         "type": "message",
-                        "label": "體驗專業版功能",
-                        "text": "/體驗升級"
+                        "label": "付款解鎖會議記錄功能",
+                        "text": "/解鎖會議"
                     },
                     "style": "primary",
                     "color": "#0284C7",
@@ -2166,7 +2180,7 @@ def create_upgrade_plan_flex() -> FlexMessage:
     )
 
 def create_upgrade_success_flex() -> FlexMessage:
-    """PRO 專業版啟用與快捷操作卡片（簡約洗鍊、字體清晰可見）"""
+    """PRO 專業版啟用與快捷操作卡片（簡約洗鍊、聚焦會議記錄功能）"""
     bubble = {
         "type": "bubble",
         "size": "mega",
@@ -2181,12 +2195,12 @@ def create_upgrade_success_flex() -> FlexMessage:
                     "layout": "horizontal",
                     "contents": [
                         {"type": "text", "text": "LEADERGUARD PRO", "size": "xs", "color": "#38BDF8", "weight": "bold"},
-                        {"type": "text", "text": "已啟用", "size": "xs", "color": "#10B981", "align": "end", "weight": "bold"}
+                        {"type": "text", "text": "已解鎖", "size": "xs", "color": "#10B981", "align": "end", "weight": "bold"}
                     ]
                 },
                 {
                     "type": "text",
-                    "text": "專業版功能已啟用",
+                    "text": "PRO 會議記錄功能已解鎖",
                     "weight": "bold",
                     "color": "#FFFFFF",
                     "size": "md",
@@ -2194,7 +2208,7 @@ def create_upgrade_success_flex() -> FlexMessage:
                 },
                 {
                     "type": "text",
-                    "text": "專案進階管理與存證工具已就緒，可直接點擊下方操作：",
+                    "text": "已開通群組對話記錄與 AI 智能統整權限，可直接點擊操作：",
                     "size": "xs",
                     "color": "#94A3B8",
                     "margin": "xs",
@@ -2218,7 +2232,7 @@ def create_upgrade_success_flex() -> FlexMessage:
                     "borderColor": "#38BDF8",
                     "borderWidth": "1px",
                     "contents": [
-                        # 項目 1：進度提醒
+                        # 項目 1：開始會議
                         {
                             "type": "box",
                             "layout": "horizontal",
@@ -2229,16 +2243,16 @@ def create_upgrade_success_flex() -> FlexMessage:
                                     "layout": "vertical",
                                     "flex": 7,
                                     "contents": [
-                                        {"type": "text", "text": "進度提醒通知", "weight": "bold", "size": "sm", "color": "#FFFFFF"},
-                                        {"type": "text", "text": "發布小組提醒通知", "size": "xs", "color": "#94A3B8", "margin": "xs", "wrap": True}
+                                        {"type": "text", "text": "開始會議記錄", "weight": "bold", "size": "sm", "color": "#FFFFFF"},
+                                        {"type": "text", "text": "啟動群組發言自動記錄", "size": "xs", "color": "#94A3B8", "margin": "xs", "wrap": True}
                                     ]
                                 },
                                 {
                                     "type": "button",
                                     "action": {
                                         "type": "message",
-                                        "label": "發送",
-                                        "text": "/催繳"
+                                        "label": "開始",
+                                        "text": "/開始會議"
                                     },
                                     "style": "primary",
                                     "color": "#0284C7",
@@ -2248,7 +2262,38 @@ def create_upgrade_success_flex() -> FlexMessage:
                             ]
                         },
                         {"type": "separator", "color": "#334155", "margin": "md"},
-                        # 項目 2：成果存證
+                        # 項目 2：結束會議
+                        {
+                            "type": "box",
+                            "layout": "horizontal",
+                            "alignItems": "center",
+                            "margin": "md",
+                            "contents": [
+                                {
+                                    "type": "box",
+                                    "layout": "vertical",
+                                    "flex": 7,
+                                    "contents": [
+                                        {"type": "text", "text": "結束會議統整", "weight": "bold", "size": "sm", "color": "#FFFFFF"},
+                                        {"type": "text", "text": "AI 提煉重點與待辦清單", "size": "xs", "color": "#94A3B8", "margin": "xs", "wrap": True}
+                                    ]
+                                },
+                                {
+                                    "type": "button",
+                                    "action": {
+                                        "type": "message",
+                                        "label": "結束",
+                                        "text": "/結束會議"
+                                    },
+                                    "style": "primary",
+                                    "color": "#D97706",
+                                    "height": "sm",
+                                    "flex": 3
+                                }
+                            ]
+                        },
+                        {"type": "separator", "color": "#334155", "margin": "md"},
+                        # 項目 3：成果存證
                         {
                             "type": "box",
                             "layout": "horizontal",
@@ -2273,37 +2318,6 @@ def create_upgrade_success_flex() -> FlexMessage:
                                     },
                                     "style": "primary",
                                     "color": "#0284C7",
-                                    "height": "sm",
-                                    "flex": 3
-                                }
-                            ]
-                        },
-                        {"type": "separator", "color": "#334155", "margin": "md"},
-                        # 項目 3：隨機分配
-                        {
-                            "type": "box",
-                            "layout": "horizontal",
-                            "alignItems": "center",
-                            "margin": "md",
-                            "contents": [
-                                {
-                                    "type": "box",
-                                    "layout": "vertical",
-                                    "flex": 7,
-                                    "contents": [
-                                        {"type": "text", "text": "隨機分配指派", "weight": "bold", "size": "sm", "color": "#FFFFFF"},
-                                        {"type": "text", "text": "系統指派未認領工作", "size": "xs", "color": "#94A3B8", "margin": "xs", "wrap": True}
-                                    ]
-                                },
-                                {
-                                    "type": "button",
-                                    "action": {
-                                        "type": "message",
-                                        "label": "抽籤",
-                                        "text": "/抽籤"
-                                    },
-                                    "style": "primary",
-                                    "color": "#D97706",
                                     "height": "sm",
                                     "flex": 3
                                 }
@@ -2334,7 +2348,294 @@ def create_upgrade_success_flex() -> FlexMessage:
         }
     }
     return FlexMessage(
-        alt_text="PRO 專業版功能已啟用",
+        alt_text="PRO 會議記錄功能已解鎖",
+        contents=FlexContainer.from_dict(bubble),
+        quick_reply=get_main_quick_reply()
+    )
+
+def create_meeting_active_flex(meeting_info: dict) -> FlexMessage:
+    """會議記錄進行中提示卡片（簡約洗鍊風格）"""
+    starter_name = meeting_info.get("starter_name", "組員")
+    start_time = meeting_info.get("start_time", "")
+
+    bubble = {
+        "type": "bubble",
+        "size": "mega",
+        "header": {
+            "type": "box",
+            "layout": "vertical",
+            "backgroundColor": "#0F172A",
+            "paddingAll": "16px",
+            "contents": [
+                {
+                    "type": "box",
+                    "layout": "horizontal",
+                    "contents": [
+                        {"type": "text", "text": "LEADERGUARD PRO", "size": "xs", "color": "#38BDF8", "weight": "bold"},
+                        {"type": "text", "text": "記錄中", "size": "xs", "color": "#10B981", "align": "end", "weight": "bold"}
+                    ]
+                },
+                {
+                    "type": "text",
+                    "text": "小組會議記錄中",
+                    "weight": "bold",
+                    "color": "#FFFFFF",
+                    "size": "md",
+                    "margin": "xs"
+                },
+                {
+                    "type": "text",
+                    "text": "群組成員發言已啟動自動記錄",
+                    "size": "xs",
+                    "color": "#94A3B8",
+                    "margin": "xs",
+                    "wrap": True
+                }
+            ]
+        },
+        "body": {
+            "type": "box",
+            "layout": "vertical",
+            "paddingAll": "16px",
+            "backgroundColor": "#0B132B",
+            "contents": [
+                {
+                    "type": "box",
+                    "layout": "vertical",
+                    "backgroundColor": "#1E293B",
+                    "paddingAll": "14px",
+                    "cornerRadius": "8px",
+                    "borderColor": "#38BDF8",
+                    "borderWidth": "1px",
+                    "contents": [
+                        {
+                            "type": "text",
+                            "text": f"發起成員：{starter_name}",
+                            "size": "xs",
+                            "color": "#E2E8F0",
+                            "weight": "bold"
+                        },
+                        {
+                            "type": "text",
+                            "text": f"開始時間：{start_time}",
+                            "size": "xs",
+                            "color": "#94A3B8",
+                            "margin": "xs"
+                        },
+                        {"type": "separator", "color": "#334155", "margin": "sm"},
+                        {
+                            "type": "text",
+                            "text": "提示：接下來群組成員之討論發言將自動記錄。討論完畢後，請點選下方按鈕或輸入「/結束會議」，系統將由 AI 提煉會議重點與待辦清單。",
+                            "size": "xs",
+                            "color": "#FFFFFF",
+                            "margin": "sm",
+                            "wrap": True
+                        }
+                    ]
+                }
+            ]
+        },
+        "footer": {
+            "type": "box",
+            "layout": "vertical",
+            "paddingAll": "12px",
+            "backgroundColor": "#0F172A",
+            "spacing": "sm",
+            "contents": [
+                {
+                    "type": "button",
+                    "action": {
+                        "type": "message",
+                        "label": "結束會議並由 AI 統整",
+                        "text": "/結束會議"
+                    },
+                    "style": "primary",
+                    "color": "#0284C7",
+                    "height": "sm"
+                },
+                {
+                    "type": "button",
+                    "action": {
+                        "type": "message",
+                        "label": "前往專案選單",
+                        "text": "/選單"
+                    },
+                    "style": "primary",
+                    "color": "#334155",
+                    "height": "sm"
+                }
+            ]
+        }
+    }
+    return FlexMessage(
+        alt_text="小組會議記錄中",
+        contents=FlexContainer.from_dict(bubble),
+        quick_reply=get_main_quick_reply()
+    )
+
+def create_meeting_summary_flex(summary_data: dict) -> FlexMessage:
+    """AI 會議記錄統整成果卡片（簡約洗鍊、資訊直觀清楚）"""
+    title = summary_data.get("title", "小組專案會議")
+    start_time = summary_data.get("start_time", "")
+    end_time = summary_data.get("end_time", "")
+    time_str = f"{start_time} ~ {end_time[-5:] if end_time else ''}"
+
+    summary_points = summary_data.get("summary_points", [])
+    decisions = summary_data.get("decisions", [])
+    action_items = summary_data.get("action_items", [])
+
+    body_contents = []
+
+    # 1. 討論重點
+    point_lines = "\n".join([f"• {p}" for p in summary_points]) if summary_points else "• 討論專案進度與工作規劃"
+    body_contents.append({
+        "type": "box",
+        "layout": "vertical",
+        "backgroundColor": "#1E293B",
+        "paddingAll": "12px",
+        "cornerRadius": "8px",
+        "borderColor": "#38BDF8",
+        "borderWidth": "1px",
+        "contents": [
+            {"type": "text", "text": "討論重點摘要", "weight": "bold", "size": "sm", "color": "#38BDF8"},
+            {"type": "separator", "color": "#334155", "margin": "xs"},
+            {"type": "text", "text": point_lines, "size": "xs", "color": "#FFFFFF", "margin": "sm", "wrap": True}
+        ]
+    })
+
+    # 2. 決議事項
+    if decisions:
+        decision_lines = "\n".join([f"• {d}" for d in decisions])
+        body_contents.append({
+            "type": "box",
+            "layout": "vertical",
+            "backgroundColor": "#1E293B",
+            "paddingAll": "12px",
+            "cornerRadius": "8px",
+            "borderColor": "#10B981",
+            "borderWidth": "1px",
+            "contents": [
+                {"type": "text", "text": "小組決議事項", "weight": "bold", "size": "sm", "color": "#10B981"},
+                {"type": "separator", "color": "#334155", "margin": "xs"},
+                {"type": "text", "text": decision_lines, "size": "xs", "color": "#FFFFFF", "margin": "sm", "wrap": True}
+            ]
+        })
+
+    # 3. 待辦工作與指派
+    if action_items:
+        action_lines = "\n".join([f"• {item.get('task', '')}（負責人：{item.get('assignee', '待認領')}）" for item in action_items])
+        body_contents.append({
+            "type": "box",
+            "layout": "vertical",
+            "backgroundColor": "#1E293B",
+            "paddingAll": "12px",
+            "cornerRadius": "8px",
+            "borderColor": "#FBBF24",
+            "borderWidth": "1px",
+            "contents": [
+                {"type": "text", "text": "待辦事項與指派", "weight": "bold", "size": "sm", "color": "#FBBF24"},
+                {"type": "separator", "color": "#334155", "margin": "xs"},
+                {"type": "text", "text": action_lines, "size": "xs", "color": "#FFFFFF", "margin": "sm", "wrap": True}
+            ]
+        })
+
+    bubble = {
+        "type": "bubble",
+        "size": "giga",
+        "header": {
+            "type": "box",
+            "layout": "vertical",
+            "backgroundColor": "#0F172A",
+            "paddingAll": "16px",
+            "contents": [
+                {
+                    "type": "box",
+                    "layout": "horizontal",
+                    "contents": [
+                        {"type": "text", "text": "LEADERGUARD PRO", "size": "xs", "color": "#38BDF8", "weight": "bold"},
+                        {"type": "text", "text": "AI 統整完成", "size": "xs", "color": "#10B981", "align": "end", "weight": "bold"}
+                    ]
+                },
+                {
+                    "type": "text",
+                    "text": title,
+                    "weight": "bold",
+                    "color": "#FFFFFF",
+                    "size": "md",
+                    "margin": "xs",
+                    "wrap": True
+                },
+                {
+                    "type": "text",
+                    "text": f"會議時間：{time_str}",
+                    "size": "xs",
+                    "color": "#94A3B8",
+                    "margin": "xs"
+                }
+            ]
+        },
+        "body": {
+            "type": "box",
+            "layout": "vertical",
+            "paddingAll": "16px",
+            "spacing": "md",
+            "backgroundColor": "#0B132B",
+            "contents": body_contents
+        },
+        "footer": {
+            "type": "box",
+            "layout": "vertical",
+            "paddingAll": "12px",
+            "backgroundColor": "#0F172A",
+            "spacing": "sm",
+            "contents": [
+                {
+                    "type": "box",
+                    "layout": "horizontal",
+                    "spacing": "sm",
+                    "contents": [
+                        {
+                            "type": "button",
+                            "action": {
+                                "type": "message",
+                                "label": "任務清單",
+                                "text": "/task 清單"
+                            },
+                            "style": "primary",
+                            "color": "#0284C7",
+                            "height": "sm",
+                            "flex": 1
+                        },
+                        {
+                            "type": "button",
+                            "action": {
+                                "type": "message",
+                                "label": "存證報告",
+                                "text": "/export"
+                            },
+                            "style": "primary",
+                            "color": "#0284C7",
+                            "height": "sm",
+                            "flex": 1
+                        }
+                    ]
+                },
+                {
+                    "type": "button",
+                    "action": {
+                        "type": "message",
+                        "label": "前往專案主選單",
+                        "text": "/選單"
+                    },
+                    "style": "primary",
+                    "color": "#334155",
+                    "height": "sm"
+                }
+            ]
+        }
+    }
+    return FlexMessage(
+        alt_text=f"AI 會議記錄統整・{title}",
         contents=FlexContainer.from_dict(bubble),
         quick_reply=get_main_quick_reply()
     )

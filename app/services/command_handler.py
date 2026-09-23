@@ -14,6 +14,12 @@ from app.services.firebase_service import (
     set_manual_members,
     clear_manual_members
 )
+from app.services.meeting_service import (
+    start_meeting,
+    end_meeting,
+    is_meeting_active,
+    unlock_pro_for_group
+)
 from app.utils.flex_templates import (
     create_main_menu_flex,
     create_help_flex,
@@ -27,6 +33,8 @@ from app.utils.flex_templates import (
     create_upgrade_success_flex,
     create_ai_reminder_flex,
     create_invite_group_flex,
+    create_meeting_active_flex,
+    create_meeting_summary_flex,
     get_main_quick_reply
 )
 
@@ -136,18 +144,48 @@ def handle_user_command(user_text: str, group_id: str, user_id: str, user_name: 
     ]:
         return [create_upgrade_plan_flex()]
 
-    # 2.9 競賽 DEMO 一鍵體驗 PRO 尊榮升級（/體驗升級、/一鍵升級、/立即升級、/升級解鎖）
+    # 2.9 付款完解鎖 / 體驗 PRO 會議記錄功能（/解鎖會議、/付款解鎖、/一鍵升級等）
     if text.lower() in [
+        "/解鎖會議", "解鎖會議",
+        "/付款解鎖", "付款解鎖",
+        "/解鎖pro", "解鎖pro",
+        "/pro解鎖", "pro解鎖",
         "/體驗升級", "體驗升級",
         "/一鍵升級", "一鍵升級",
         "/立即升級", "立即升級",
         "/升級體驗", "升級體驗",
         "/升級解鎖", "升級解鎖",
-        "/解鎖pro", "解鎖pro",
-        "/pro解鎖", "pro解鎖",
         "/體驗pro", "體驗pro"
     ]:
+        unlock_pro_for_group(target_group)
         return [create_upgrade_success_flex()]
+
+    # 2.91 開始會議（/開始會議、/start_meeting、/開會）
+    if text.lower() in [
+        "/開始會議", "開始會議",
+        "/start_meeting", "/startmeeting", "start_meeting", "startmeeting",
+        "/開會", "開會",
+        "/會議開始", "會議開始"
+    ]:
+        ok, msg, meeting_info = start_meeting(target_group, user_id, user_name)
+        if ok:
+            return [create_meeting_active_flex(meeting_info)]
+        else:
+            return [TextMessage(text=msg, quick_reply=get_main_quick_reply())]
+
+    # 2.92 結束會議並由 AI 統整（/結束會議、/end_meeting、/散會）
+    if text.lower() in [
+        "/結束會議", "結束會議",
+        "/end_meeting", "/endmeeting", "end_meeting", "endmeeting",
+        "/散會", "散會",
+        "/會議結束", "會議結束",
+        "/統整會議", "統整會議"
+    ]:
+        ok, msg, summary_data = end_meeting(target_group, user_id, user_name)
+        if ok:
+            return [create_meeting_summary_flex(summary_data)]
+        else:
+            return [TextMessage(text=msg, quick_reply=get_main_quick_reply())]
 
     # 2.95 進度提醒通知（/催繳、/催繳 正式、/提醒）
     if text.lower().startswith("/催繳") or text.lower().startswith("催繳") or text.lower().startswith("/提醒") or text.lower().startswith("提醒"):

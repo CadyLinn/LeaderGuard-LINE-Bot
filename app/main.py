@@ -56,9 +56,9 @@ from app.routes.webhook import recent_webhook_logs
 @app.get("/version")
 def get_version():
     return {
-        "version": "1.10.20",
-        "build": "clean-minimalist-edition",
-        "description": "全面去除中二用語與所有 Emoji，轉換為簡約洗鍊之現代專案管理風格，所有文字清晰完整可見"
+        "version": "1.10.21",
+        "build": "pro-ai-meeting-minutes",
+        "description": "PRO 會議記錄統整功能上線（/開始會議, /結束會議, /解鎖會議），整合 Gemini AI 智能提取會議決議與待辦事項"
     }
 
 @app.get("/api/logs")

@@ -169,6 +169,7 @@ def handle_join(event):
 
 from app.services.firebase_service import record_member_activity
 from app.services.command_handler import handle_user_command
+from app.services.meeting_service import is_meeting_active, record_meeting_message
 
 @handler.add(MessageEvent, message=TextMessageContent)
 def handle_message(event):
@@ -261,6 +262,15 @@ def handle_message(event):
                 logger.error(f"LINE 回覆私聊主選單失敗: {reply_err}")
                 log_entry["reply_status"] = "failed_fallback_menu"
                 log_entry["error"] = str(reply_err)
+        else:
+            # 群組普通發言：若目前處於「進行中的會議」，自動收錄進會議紀錄對話池
+            if is_meeting_active(target_group):
+                record_meeting_message(
+                    group_id=target_group,
+                    user_id=user_id,
+                    user_name=user_name,
+                    text=user_text
+                )
 
 @handler.add(MessageEvent, message=(StickerMessageContent, ImageMessageContent))
 def handle_media_message(event):
