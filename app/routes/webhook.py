@@ -38,7 +38,7 @@ channel_secret = os.getenv("LINE_CHANNEL_SECRET", "")
 channel_access_token = os.getenv("LINE_CHANNEL_ACCESS_TOKEN", "")
 
 if not channel_secret:
-    logger.error("❌ 警告：未讀取到 LINE_CHANNEL_SECRET！請確認專案根目錄下有 .env 檔案並設定 LINE_CHANNEL_SECRET。")
+    logger.error("警告：未讀取到 LINE_CHANNEL_SECRET！請確認專案根目錄下有 .env 檔案並設定 LINE_CHANNEL_SECRET。")
 
 configuration = Configuration(access_token=channel_access_token)
 handler = WebhookHandler(channel_secret)
@@ -111,13 +111,13 @@ def handle_follow(event):
 
         greeting_text = (
             f"{user_name}您好！\n"
-            f"我是{account_name} 專案協作小幫手，感謝您加入好友！\n\n"
-            f"組長保險專為大學報告與小組專案打造，提供三大核心功能：\n\n"
-            f"1. 任務透明指派：一鍵建立分工，自動追蹤進度\n"
-            f"2. 🎲 命運抽籤：未認領工作隨機輪抽，公平不重複\n"
-            f"3. 期末工作存證：詳細紀錄組員付出，互評評分有憑有據\n\n"
-            f"🚀 開始使用：\n"
-            f"只要將【組長保險】邀請加入您的小組 LINE 群組，進群後輸入「/選單」即可立刻發起協作分工！"
+            f"我是{account_name}專案協作助手，感謝您加入好友！\n\n"
+            "組長保險專為大學報告與小組專案打造，提供三大核心功能：\n\n"
+            "1. 任務透明指派：一鍵建立分工，自動追蹤進度\n"
+            "2. 隨機分配指派：未認領工作系統隨機分配，公平不重複\n"
+            "3. 期末工作存證：詳細記錄組員付出，互評評分有憑有據\n\n"
+            "開始使用：\n"
+            "只要將【組長保險】邀請加入您的小組 LINE 群組，進群後輸入「/選單」即可立刻發起協作分工！"
         )
 
         welcome_flex = create_welcome_guide_flex()
@@ -147,11 +147,11 @@ def handle_join(event):
     logger.info(f"LeaderGuard 加入了新群組: {group_id}")
     
     welcome_text = (
-        "嗨大家好！我是【組長保險】專案小幫手。\n"
-        "這學期我會在群組協助大家輕鬆搞定報告分工：\n\n"
-        "• 工作認領：清楚記錄誰負責什麼，隨時可查\n"
-        "• 🎲 命運抽籤：沒人認領的工作隨機抽籤，公平省事\n"
-        "• 進度存證：自動記錄完成狀態，期末互評有依據\n\n"
+        "大家好！我是【組長保險】專案協作助手。\n"
+        "這學期我會在群組協助大家進行專案分工與進度追蹤：\n\n"
+        "• 工作認領：清楚記錄每位成員負責項目，隨時可查\n"
+        "• 隨機分配：尚未認領的工作由系統隨機指派，公平省時\n"
+        "• 進度存證：自動記錄完成狀態，期末互評有憑有據\n\n"
         "點擊下方選單即可立刻發起工作！"
     )
     

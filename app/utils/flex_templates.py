@@ -15,9 +15,9 @@ def get_main_quick_reply() -> QuickReply:
     return QuickReply(items=[
         QuickReplyItem(action=MessageAction(label="任務分工", text="/選單")),
         QuickReplyItem(action=MessageAction(label="任務清單", text="/task 清單")),
-        QuickReplyItem(action=MessageAction(label="🎲 命運抽籤", text="/命運抽籤")),
-        QuickReplyItem(action=MessageAction(label="😈 AI 催繳", text="/催繳")),
-        QuickReplyItem(action=MessageAction(label="👑 PRO 升級", text="/體驗升級")),
+        QuickReplyItem(action=MessageAction(label="隨機分配", text="/抽籤")),
+        QuickReplyItem(action=MessageAction(label="進度提醒", text="/催繳")),
+        QuickReplyItem(action=MessageAction(label="方案說明", text="/升級方案")),
         QuickReplyItem(action=MessageAction(label="常用指令", text="/常用指令說明")),
     ])
 
@@ -256,11 +256,11 @@ def create_preset_tasks_carousel() -> FlexMessage:
                         "type": "box",
                         "layout": "horizontal",
                         "contents": [
-                            {"type": "text", "text": "【效率神技】", "size": "xxs", "color": "#FBBF24", "weight": "bold"},
+                            {"type": "text", "text": "【快捷建立】", "size": "xxs", "color": "#FBBF24", "weight": "bold"},
                             {"type": "text", "text": "ALL IN ONE", "size": "xxs", "color": "#38BDF8", "align": "end", "weight": "bold"}
                         ]
                     },
-                    {"type": "text", "text": "一鍵全套分工建立！", "weight": "bold", "color": "#FBBF24", "size": "md", "margin": "xs"}
+                    {"type": "text", "text": "一鍵建立常見分工", "weight": "bold", "color": "#FBBF24", "size": "md", "margin": "xs"}
                 ]
             },
             "body": {
@@ -270,8 +270,8 @@ def create_preset_tasks_carousel() -> FlexMessage:
                 "paddingAll": "16px",
                 "backgroundColor": "#1E293B",
                 "contents": [
-                    {"type": "text", "text": "小組長必備效率神器", "weight": "bold", "size": "sm", "color": "#38BDF8"},
-                    {"type": "text", "text": "一次建立 4 大標準分工（簡報、報告、調研、書面），責任清楚、拒絕摸魚！", "size": "xs", "color": "#E2E8F0", "wrap": True}
+                    {"type": "text", "text": "小組分工快速初始化", "weight": "bold", "size": "sm", "color": "#38BDF8"},
+                    {"type": "text", "text": "一次建立 4 大標準工作項目（簡報、口頭、調研、書面），分工權責明確清楚。", "size": "xs", "color": "#E2E8F0", "wrap": True}
                 ]
             },
             "footer": {
@@ -284,7 +284,7 @@ def create_preset_tasks_carousel() -> FlexMessage:
                         "type": "button",
                         "action": {
                             "type": "message",
-                            "label": "一鍵全套分工建立",
+                            "label": "一鍵建立常見分工",
                             "text": "/task 批次建立"
                         },
                         "style": "primary",
@@ -304,7 +304,7 @@ def create_preset_tasks_carousel() -> FlexMessage:
                 "backgroundColor": "#0F172A",
                 "paddingAll": "16px",
                 "contents": [
-                    {"type": "text", "text": "自訂專屬小組任務", "weight": "bold", "color": "#FFFFFF", "size": "md"}
+                    {"type": "text", "text": "自訂小組工作項目", "weight": "bold", "color": "#FFFFFF", "size": "md"}
                 ]
             },
             "body": {
@@ -316,8 +316,8 @@ def create_preset_tasks_carousel() -> FlexMessage:
                 "borderColor": "#38BDF8",
                 "borderWidth": "1px",
                 "contents": [
-                    {"type": "text", "text": "拒絕摸魚！（自訂全新任務）", "weight": "bold", "size": "sm", "color": "#FBBF24"},
-                    {"type": "text", "text": "點擊下方按鈕，對話框會自動帶入指令，由你親手命名全新任務！", "size": "xs", "color": "#E2E8F0", "wrap": True}
+                    {"type": "text", "text": "自訂專案工作", "weight": "bold", "size": "sm", "color": "#FBBF24"},
+                    {"type": "text", "text": "點擊下方按鈕，對話框將自動帶入指令，即可自訂工作名稱與說明。", "size": "xs", "color": "#E2E8F0", "wrap": True}
                 ]
             },
             "footer": {
@@ -330,7 +330,7 @@ def create_preset_tasks_carousel() -> FlexMessage:
                         "type": "button",
                         "action": {
                             "type": "postback",
-                            "label": "點我自訂輸入工作",
+                            "label": "自訂新增工作",
                             "data": "action=prompt_custom_task",
                             "inputOption": "openKeyboard",
                             "fillInText": "/任務 新增 "
@@ -350,7 +350,7 @@ def create_preset_tasks_carousel() -> FlexMessage:
     }
 
     return FlexMessage(
-        alt_text="小組專案常用分工範本（學院守護版）",
+        alt_text="小組專案常用分工範本",
         contents=FlexContainer.from_dict(carousel),
         quick_reply=get_main_quick_reply()
     )
@@ -381,12 +381,12 @@ def create_main_menu_flex() -> FlexMessage:
                     "type": "box",
                     "layout": "horizontal",
                     "contents": [
-                        {"type": "text", "text": "👑 PRO 尊榮啟用中", "weight": "bold", "color": "#FBBF24", "size": "xs", "align": "end"}
+                        {"type": "text", "text": "PRO 專業版", "weight": "bold", "color": "#38BDF8", "size": "xs", "align": "end"}
                     ]
                 },
                 {
                     "type": "text",
-                    "text": "學院專案守護・功能選單",
+                    "text": "小組專案管理・功能選單",
                     "weight": "bold",
                     "color": "#FFFFFF",
                     "size": "lg",
@@ -394,7 +394,7 @@ def create_main_menu_flex() -> FlexMessage:
                 },
                 {
                     "type": "text",
-                    "text": "小組專案進度自動透明追蹤，全體裝置連線杜絕摸魚！",
+                    "text": "小組任務分工與進度追蹤，即時掌握團隊協作成效。",
                     "color": "#94A3B8",
                     "size": "xs",
                     "margin": "xs"
@@ -420,14 +420,14 @@ def create_main_menu_flex() -> FlexMessage:
                     "contents": [
                         {
                             "type": "text",
-                            "text": "專案工作分工",
+                            "text": "工作分工管理",
                             "weight": "bold",
                             "size": "sm",
                             "color": "#38BDF8"
                         },
                         {
                             "type": "text",
-                            "text": "標準工作範本一鍵發起，清楚記錄每位成員責任",
+                            "text": "建立專案分工範本，記錄每位成員責任",
                             "size": "xs",
                             "color": "#E2E8F0",
                             "margin": "xs",
@@ -473,7 +473,7 @@ def create_main_menu_flex() -> FlexMessage:
                                     "type": "button",
                                     "action": {
                                         "type": "postback",
-                                        "label": "自訂新增工作",
+                                        "label": "自訂工作",
                                         "data": "action=prompt_custom_task",
                                         "inputOption": "openKeyboard",
                                         "fillInText": "/任務 新增 "
@@ -499,26 +499,26 @@ def create_main_menu_flex() -> FlexMessage:
                         }
                     ]
                 },
-                # 區塊 2：命運抽籤輪盤
+                # 區塊 2：隨機分配指派
                 {
                     "type": "box",
                     "layout": "vertical",
                     "backgroundColor": "#1E293B",
                     "paddingAll": "14px",
                     "cornerRadius": "8px",
-                    "borderColor": "#F43F5E",
+                    "borderColor": "#38BDF8",
                     "borderWidth": "1.5px",
                     "contents": [
                         {
                             "type": "text",
-                            "text": "🎲 命運抽籤",
+                            "text": "隨機分配指派",
                             "weight": "bold",
                             "size": "sm",
-                            "color": "#F43F5E"
+                            "color": "#38BDF8"
                         },
                         {
                             "type": "text",
-                            "text": "工作沒人認領？組長可先登記全體組員姓名，再啟動公平輪抽！",
+                            "text": "未認領工作系統隨機指派，或登記小組名冊",
                             "size": "xs",
                             "color": "#E2E8F0",
                             "margin": "xs",
@@ -534,11 +534,11 @@ def create_main_menu_flex() -> FlexMessage:
                                     "type": "button",
                                     "action": {
                                         "type": "message",
-                                        "label": "🎲 啟動抽籤",
-                                        "text": "/命運抽籤"
+                                        "label": "隨機分配",
+                                        "text": "/抽籤"
                                     },
                                     "style": "primary",
-                                    "color": "#D97706",
+                                    "color": "#0284C7",
                                     "height": "sm",
                                     "flex": 1
                                 },
@@ -546,7 +546,7 @@ def create_main_menu_flex() -> FlexMessage:
                                     "type": "button",
                                     "action": {
                                         "type": "postback",
-                                        "label": "登記組員名單",
+                                        "label": "登記組員",
                                         "data": "action=prompt_set_members",
                                         "inputOption": "openKeyboard",
                                         "fillInText": "/組員 "
@@ -572,14 +572,14 @@ def create_main_menu_flex() -> FlexMessage:
                     "contents": [
                         {
                             "type": "text",
-                            "text": "進度追蹤與結算",
+                            "text": "進度追蹤與存證",
                             "weight": "bold",
                             "size": "sm",
                             "color": "#FBBF24"
                         },
                         {
                             "type": "text",
-                            "text": "即時掌握小組完成度，隨時產出完整專案紀錄",
+                            "text": "掌握小組分工進度，隨時產出完整存證報告",
                             "size": "xs",
                             "color": "#E2E8F0",
                             "margin": "xs",
@@ -606,7 +606,7 @@ def create_main_menu_flex() -> FlexMessage:
                                     "type": "button",
                                     "action": {
                                         "type": "message",
-                                        "label": "匯出紀錄",
+                                        "label": "存證報告",
                                         "text": "/export"
                                     },
                                     "style": "primary",
@@ -629,14 +629,14 @@ def create_main_menu_flex() -> FlexMessage:
                         }
                     ]
                 },
-                # 區塊 4：👑 PRO VIP 尊榮特權（競賽展示專區）
+                # 區塊 4：PRO 專業進階功能
                 {
                     "type": "box",
                     "layout": "vertical",
                     "backgroundColor": "#1E293B",
                     "paddingAll": "14px",
                     "cornerRadius": "8px",
-                    "borderColor": "#FBBF24",
+                    "borderColor": "#38BDF8",
                     "borderWidth": "2px",
                     "contents": [
                         {
@@ -644,23 +644,23 @@ def create_main_menu_flex() -> FlexMessage:
                             "layout": "horizontal",
                             "alignItems": "center",
                             "contents": [
-                                {"type": "text", "text": "👑 PRO 尊榮特權", "weight": "bold", "size": "sm", "color": "#FBBF24", "flex": 1},
+                                {"type": "text", "text": "PRO 專業功能", "weight": "bold", "size": "sm", "color": "#38BDF8", "flex": 1},
                                 {
                                     "type": "box",
                                     "layout": "vertical",
-                                    "backgroundColor": "#D97706",
+                                    "backgroundColor": "#0284C7",
                                     "paddingVertical": "2px",
                                     "paddingHorizontal": "6px",
                                     "cornerRadius": "4px",
                                     "contents": [
-                                        {"type": "text", "text": "DEMO 啟用", "size": "xxs", "color": "#FFFFFF", "weight": "bold"}
+                                        {"type": "text", "text": "已開通", "size": "xxs", "color": "#FFFFFF", "weight": "bold"}
                                     ]
                                 }
                             ]
                         },
                         {
                             "type": "text",
-                            "text": "競賽專用特權：解鎖 AI 黑臉嘴替催繳、核彈級成果報告與強制抽籤",
+                            "text": "支援自動進度提醒、分工成果存證與隨機分配等工具。",
                             "size": "xs",
                             "color": "#E2E8F0",
                             "margin": "xs",
@@ -676,11 +676,11 @@ def create_main_menu_flex() -> FlexMessage:
                                     "type": "button",
                                     "action": {
                                         "type": "message",
-                                        "label": "😈 AI 黑臉催繳",
+                                        "label": "進度提醒",
                                         "text": "/催繳"
                                     },
                                     "style": "primary",
-                                    "color": "#E11D48",
+                                    "color": "#0284C7",
                                     "height": "sm",
                                     "flex": 1
                                 },
@@ -688,11 +688,11 @@ def create_main_menu_flex() -> FlexMessage:
                                     "type": "button",
                                     "action": {
                                         "type": "message",
-                                        "label": "👑 PRO 尊榮面板",
-                                        "text": "/體驗升級"
+                                        "label": "方案說明",
+                                        "text": "/升級方案"
                                     },
                                     "style": "primary",
-                                    "color": "#D97706",
+                                    "color": "#334155",
                                     "height": "sm",
                                     "flex": 1
                                 }
@@ -718,7 +718,7 @@ def create_help_flex() -> FlexMessage:
         ("自訂任務", "/任務 新增", "/task add"),
         ("登記組員", "/組員 姓名1 姓名2", "/member"),
         ("組員名冊", "/組員", "/member list"),
-        ("🎲 命運抽籤", "/抽籤 或 /抽籤 名單", "/roulette"),
+        ("隨機分配", "/抽籤 或 /抽籤 名單", "/roulette"),
         ("刪除工作", "/任務 刪除", "/task delete"),
         ("專案進度", "/狀態", "/status")
     ]
@@ -820,7 +820,7 @@ def create_help_flex() -> FlexMessage:
                     "contents": [
                         {
                             "type": "text",
-                            "text": "• 認領示範：/認領 T001（或 /claim T001）\n• 幽靈組員：/成員 新增 小明 小華\n• 抽籤機制：🎲 命運之輪優先鎖定尚未認領任何工作的人！",
+                            "text": "• 認領示範：/認領 T001（或 /claim T001）\n• 登記組員：/成員 新增 小明 小華\n• 分配機制：系統將優先自尚未認領工作之成員中隨機指派",
                             "size": "xxs",
                             "color": "#E2E8F0",
                             "wrap": True
@@ -1455,8 +1455,8 @@ def create_task_list_flex(tasks: list) -> FlexMessage:
                 "type": "button",
                 "action": {
                     "type": "message",
-                    "label": "🎲 啟動命運抽籤未認領工作",
-                    "text": "/命運抽籤"
+                    "label": "隨機分配未認領工作",
+                    "text": "/抽籤"
                 },
                 "style": "primary",
                 "color": "#D97706",
@@ -1693,7 +1693,7 @@ def create_task_delete_flex(tasks: list) -> FlexMessage:
     )
 
 def create_roulette_flex(task_id: str, task_title: str, victim_name: str) -> FlexMessage:
-    """🎲 隨機抽籤結果卡片（命運輪盤風格）"""
+    """隨機抽籤結果卡片（專業簡潔風格）"""
     bubble = {
         "type": "bubble",
         "size": "mega",
@@ -1707,11 +1707,10 @@ def create_roulette_flex(task_id: str, task_title: str, victim_name: str) -> Fle
                     "type": "box",
                     "layout": "horizontal",
                     "contents": [
-                   
-                        {"type": "text", "text": "LUCKY", "size": "xs", "color": "#38BDF8", "align": "end", "weight": "bold"}
+                        {"type": "text", "text": "TASK ASSIGNMENT", "size": "xs", "color": "#38BDF8", "align": "end", "weight": "bold"}
                     ]
                 },
-                {"type": "text", "text": "學院能量共振！天選隊友誕生！", "weight": "bold", "color": "#FFFFFF", "size": "md", "align": "center", "margin": "xs"}
+                {"type": "text", "text": "系統隨機指派結果", "weight": "bold", "color": "#FFFFFF", "size": "md", "align": "center", "margin": "xs"}
             ]
         },
         "body": {
@@ -1725,16 +1724,16 @@ def create_roulette_flex(task_id: str, task_title: str, victim_name: str) -> Fle
                     "type": "box",
                     "layout": "vertical",
                     "backgroundColor": "#1E293B",
-                    "borderColor": "#E11D48",
+                    "borderColor": "#38BDF8",
                     "borderWidth": "2px",
                     "cornerRadius": "8px",
                     "paddingAll": "16px",
                     "contents": [
                         {
                             "type": "text",
-                            "text": "專案守護者選中的天選隊友：",
+                            "text": "本次指派負責成員：",
                             "size": "xs",
-                            "color": "#38BDF8",
+                            "color": "#94A3B8",
                             "align": "center"
                         },
                         {
@@ -1750,21 +1749,21 @@ def create_roulette_flex(task_id: str, task_title: str, victim_name: str) -> Fle
                         {"type": "separator", "color": "#0284C7", "margin": "md"},
                         {
                             "type": "text",
-                            "text": f"【{task_id}】{task_title}",
+                            "text": f"負責項目：【{task_id}】{task_title}",
                             "size": "sm",
                             "color": "#FFFFFF",
                             "wrap": True,
                             "weight": "bold",
-                            "margin": "md"
+                            "margin": "md",
+                            "align": "center"
                         },
                         {
                             "type": "text",
-                            "text": "神隊友出動！這項專案重任就交給你了！",
+                            "text": "系統已記錄指派資訊，請確認工作內容並推進進度。",
                             "size": "xs",
-                            "color": "#F43F5E",
+                            "color": "#38BDF8",
                             "align": "center",
                             "margin": "sm",
-                            "weight": "bold",
                             "wrap": True
                         }
                     ]
@@ -1773,7 +1772,7 @@ def create_roulette_flex(task_id: str, task_title: str, victim_name: str) -> Fle
         }
     }
     return FlexMessage(
-        alt_text=f"🎲 抽籤結果：由 {victim_name} 負責 {task_title}",
+        alt_text=f"隨機分配結果：由 {victim_name} 負責 {task_title}",
         contents=FlexContainer.from_dict(bubble),
         quick_reply=get_main_quick_reply()
     )
@@ -1784,9 +1783,9 @@ def create_welcome_guide_flex() -> FlexMessage:
     group_invite_url = os.getenv("GROUP_INVITE_URL", "https://line.me/R/nv/recommendOA/@805yffpw")
 
     manual_action = (
-        {"type": "uri", "label": "查看完整秘笈手冊", "uri": manual_url}
+        {"type": "uri", "label": "查看完整操作說明", "uri": manual_url}
         if manual_url
-        else {"type": "message", "label": "查看完整秘笈手冊", "text": "/常用指令說明"}
+        else {"type": "message", "label": "查看完整操作說明", "text": "/常用指令說明"}
     )
 
     bubble = {
@@ -1815,7 +1814,7 @@ def create_welcome_guide_flex() -> FlexMessage:
                 },
                 {
                     "type": "text",
-                    "text": "4 步驟啟動小組保險！",
+                    "text": "4 步驟快速上手指南",
                     "size": "xl",
                     "weight": "bold",
                     "color": "#FFFFFF",
@@ -1935,7 +1934,7 @@ def create_welcome_guide_flex() -> FlexMessage:
                                     "contents": [
                                         {
                                             "type": "text",
-                                            "text": "沈靜30分鐘自動標註",
+                                            "text": "閒置30分鐘自動提醒",
                                             "size": "sm",
                                             "color": "#FFFFFF",
                                             "weight": "bold",
@@ -1982,7 +1981,7 @@ def create_welcome_guide_flex() -> FlexMessage:
                                 },
                                 {
                                     "type": "text",
-                                    "text": "輸入 /export 匯出鐵證",
+                                    "text": "輸入 /export 匯出成果存證",
                                     "size": "sm",
                                     "color": "#FFFFFF",
                                     "weight": "bold",
@@ -2019,7 +2018,7 @@ def create_welcome_guide_flex() -> FlexMessage:
                     "color": "#D97706",
                     "action": {
                         "type": "message",
-                        "label": "查看升級方案",
+                        "label": "查看方案說明",
                         "text": "/升級方案"
                     }
                 }
@@ -2029,44 +2028,45 @@ def create_welcome_guide_flex() -> FlexMessage:
     }
 
     return FlexMessage(
-        alt_text="組長保險 LeaderGuard - 4 步驟使用手冊",
+        alt_text="組長保險 LeaderGuard - 4 步驟上手指南",
         contents=FlexContainer.from_dict(bubble),
         quick_reply=get_main_quick_reply()
     )
 
 def create_upgrade_plan_flex() -> FlexMessage:
-    """升級方案卡片（學院守護者風格：高對比、鮮明按鈕）"""
+    """升級方案卡片（簡約現代、文字清晰不遮擋）"""
     bubble = {
         "type": "bubble",
-        "size": "giga",
-        "hero": {
-            "type": "image",
-            "url": f"{BASE_URL}/assets/hero_upgrade_guardian.jpg",
-            "size": "full",
-            "aspectRatio": "20:13",
-            "aspectMode": "cover"
-        },
+        "size": "mega",
         "header": {
             "type": "box",
             "layout": "vertical",
             "backgroundColor": "#0F172A",
-            "paddingAll": "20px",
+            "paddingAll": "16px",
             "contents": [
                 {
                     "type": "box",
                     "layout": "horizontal",
                     "contents": [
-                        {"type": "text", "text": "組長保險 LEADERGUARD", "size": "xs", "color": "#FBBF24", "weight": "bold", "letterSpacing": "1px"},
-                        {"type": "text", "text": "👑 PRO VIP 啟用中", "size": "xs", "color": "#FBBF24", "align": "end", "weight": "bold"}
+                        {"type": "text", "text": "LEADERGUARD", "size": "xs", "color": "#38BDF8", "weight": "bold"},
+                        {"type": "text", "text": "PRO 專業版", "size": "xs", "color": "#94A3B8", "align": "end", "weight": "bold"}
                     ]
                 },
                 {
                     "type": "text",
-                    "text": "組長保險・學院守護升級方案",
+                    "text": "方案功能說明",
                     "weight": "bold",
                     "color": "#FFFFFF",
                     "size": "md",
                     "margin": "xs"
+                },
+                {
+                    "type": "text",
+                    "text": "專案協作與進階管理功能",
+                    "size": "xs",
+                    "color": "#94A3B8",
+                    "margin": "xs",
+                    "wrap": True
                 }
             ]
         },
@@ -2077,7 +2077,6 @@ def create_upgrade_plan_flex() -> FlexMessage:
             "spacing": "md",
             "backgroundColor": "#0B132B",
             "contents": [
-                # 方案 1：基礎免費版
                 {
                     "type": "box",
                     "layout": "vertical",
@@ -2092,133 +2091,7 @@ def create_upgrade_plan_flex() -> FlexMessage:
                             "layout": "horizontal",
                             "alignItems": "center",
                             "contents": [
-                                {"type": "text", "text": "基礎免費版", "weight": "bold", "size": "sm", "color": "#FFFFFF", "flex": 1},
-                                {
-                                    "type": "box",
-                                    "layout": "vertical",
-                                    "backgroundColor": "#334155",
-                                    "paddingVertical": "2px",
-                                    "paddingHorizontal": "6px",
-                                    "cornerRadius": "4px",
-                                    "contents": [
-                                        {"type": "text", "text": "標準版", "size": "xxs", "color": "#94A3B8", "weight": "bold"}
-                                    ]
-                                }
-                            ]
-                        },
-                        {
-                            "type": "text",
-                            "text": "• 基礎任務建立與自訂項目\n• 🎲 基礎隨機抽籤分配\n• 單一群組上限 1 個專案",
-                            "size": "xs",
-                            "color": "#E2E8F0",
-                            "margin": "sm",
-                            "wrap": True
-                        }
-                    ]
-                },
-                # 方案 2：專案保險單次包 (PRO)
-                {
-                    "type": "box",
-                    "layout": "vertical",
-                    "backgroundColor": "#1E293B",
-                    "paddingAll": "14px",
-                    "cornerRadius": "8px",
-                    "borderColor": "#F59E0B",
-                    "borderWidth": "1.5px",
-                    "contents": [
-                        {
-                            "type": "box",
-                            "layout": "horizontal",
-                            "contents": [
-                                {
-                                    "type": "box",
-                                    "layout": "vertical",
-                                    "backgroundColor": "#D97706",
-                                    "paddingVertical": "2px",
-                                    "paddingHorizontal": "6px",
-                                    "cornerRadius": "4px",
-                                    "contents": [
-                                        {"type": "text", "text": "🔥 熱銷 87% 組長首選", "size": "xxs", "color": "#FFFFFF", "weight": "bold"}
-                                    ]
-                                }
-                            ],
-                            "marginBottom": "xs"
-                        },
-                        {
-                            "type": "box",
-                            "layout": "horizontal",
-                            "alignItems": "center",
-                            "contents": [
-                                {"type": "text", "text": "保險單次包", "weight": "bold", "size": "sm", "color": "#FBBF24", "flex": 1},
-                                {
-                                    "type": "box",
-                                    "layout": "vertical",
-                                    "backgroundColor": "#E11D48",
-                                    "paddingVertical": "2px",
-                                    "paddingHorizontal": "6px",
-                                    "cornerRadius": "4px",
-                                    "contents": [
-                                        {"type": "text", "text": "NT$ 49 / 專案", "size": "xxs", "color": "#FFFFFF", "weight": "bold"}
-                                    ]
-                                }
-                            ]
-                        },
-                        {
-                            "type": "text",
-                            "text": "• 僅限單一專案群組使用（有效 120 天）\n• 匯出完整《小組貢獻度分析 PDF 報告》\n• 30 分鐘沉寂偵測與自動標註催繳\n• 🎲 命運抽籤（超時未認領自動強制指派）\n• LIFF 任務點擊查閱時間戳記紀錄（已讀精準追蹤）",
-                            "size": "xs",
-                            "color": "#FFFFFF",
-                            "margin": "sm",
-                            "wrap": True
-                        },
-                        {
-                            "type": "button",
-                            "action": {
-                                "type": "message",
-                                "label": "⚡ 體驗全學期 Pass 權益",
-                                "text": "/體驗升級"
-                            },
-                            "style": "primary",
-                            "color": "#1E3A8A",
-                            "height": "sm",
-                            "margin": "md"
-                        }
-                    ]
-                },
-                # 方案 3：全學期組長躺平 Pass
-                {
-                    "type": "box",
-                    "layout": "vertical",
-                    "backgroundColor": "#1E293B",
-                    "paddingAll": "14px",
-                    "cornerRadius": "8px",
-                    "borderColor": "#FBBF24",
-                    "borderWidth": "2px",
-                    "contents": [
-                        {
-                            "type": "box",
-                            "layout": "horizontal",
-                            "contents": [
-                                {
-                                    "type": "box",
-                                    "layout": "vertical",
-                                    "backgroundColor": "#F59E0B",
-                                    "paddingVertical": "2px",
-                                    "paddingHorizontal": "6px",
-                                    "cornerRadius": "4px",
-                                    "contents": [
-                                        {"type": "text", "text": "👑 性價比之王・全學期解脫", "size": "xxs", "color": "#0F172A", "weight": "bold"}
-                                    ]
-                                }
-                            ],
-                            "marginBottom": "xs"
-                        },
-                        {
-                            "type": "box",
-                            "layout": "horizontal",
-                            "alignItems": "center",
-                            "contents": [
-                                {"type": "text", "text": "組長躺平pass", "weight": "bold", "size": "sm", "color": "#38BDF8", "flex": 1},
+                                {"type": "text", "text": "PRO 專業版核心功能", "weight": "bold", "size": "sm", "color": "#38BDF8", "flex": 1},
                                 {
                                     "type": "box",
                                     "layout": "vertical",
@@ -2227,30 +2100,28 @@ def create_upgrade_plan_flex() -> FlexMessage:
                                     "paddingHorizontal": "6px",
                                     "cornerRadius": "4px",
                                     "contents": [
-                                        {"type": "text", "text": "👑 DEMO 尊榮使用中", "size": "xxs", "color": "#FFFFFF", "weight": "bold"}
+                                        {"type": "text", "text": "DEMO 開通", "size": "xxs", "color": "#FFFFFF", "weight": "bold"}
                                     ]
                                 }
                             ]
                         },
+                        {"type": "separator", "color": "#334155", "margin": "sm"},
                         {
                             "type": "text",
-                            "text": "• 可4個群組使用（有效 180 天）\n• 一個便當錢，全學期多群組無限暢用\n• 解鎖「毒舌嘴替／嚴格教授」AI 人格包\n• 適合修多門專案課、同時身兼多組組長的同學",
+                            "text": "• 自動進度提醒通知（/催繳）\n• 小組分工成果存證報告（/export）\n• 任務隨機分配指派（/抽籤）\n• 多專案與多群組管理支援",
                             "size": "xs",
-                            "color": "#E2E8F0",
+                            "color": "#FFFFFF",
                             "margin": "sm",
                             "wrap": True
                         },
+                        {"type": "separator", "color": "#334155", "margin": "sm"},
                         {
-                            "type": "button",
-                            "action": {
-                                "type": "message",
-                                "label": "👑 點我立即體驗・解鎖 PRO 尊榮",
-                                "text": "/體驗升級"
-                            },
-                            "style": "primary",
-                            "color": "#D97706",
-                            "height": "sm",
-                            "margin": "md"
+                            "type": "text",
+                            "text": "目前為競賽展示模式，功能皆可直接體驗。",
+                            "size": "xs",
+                            "color": "#94A3B8",
+                            "margin": "sm",
+                            "wrap": True
                         }
                     ]
                 }
@@ -2267,260 +2138,18 @@ def create_upgrade_plan_flex() -> FlexMessage:
                     "type": "button",
                     "action": {
                         "type": "message",
-                        "label": "✨ 點擊一鍵升級・立即體驗全特點 ✨",
+                        "label": "體驗專業版功能",
                         "text": "/體驗升級"
                     },
                     "style": "primary",
-                    "color": "#D97706",
+                    "color": "#0284C7",
                     "height": "sm"
                 },
-                {
-                    "type": "text",
-                    "text": "👑 競賽展示專用模式・點擊上方按鈕立即體驗升級效果",
-                    "size": "xxs",
-                    "color": "#FBBF24",
-                    "align": "center"
-                }
-            ]
-        }
-    }
-    return FlexMessage(
-        alt_text="組長保險・學院守護升級方案",
-        contents=FlexContainer.from_dict(bubble),
-        quick_reply=get_main_quick_reply()
-    )
-
-def create_upgrade_success_flex() -> FlexMessage:
-    """PRO VIP 升級成功與殺手級特點展示卡片（競賽展示專用高震撼視覺）"""
-    bubble = {
-        "type": "bubble",
-        "size": "mega",
-        "hero": {
-            "type": "image",
-            "url": f"{BASE_URL}/assets/hero_upgrade_guardian.jpg",
-            "size": "full",
-            "aspectRatio": "20:13",
-            "aspectMode": "cover"
-        },
-        "header": {
-            "type": "box",
-            "layout": "vertical",
-            "backgroundColor": "#0F172A",
-            "paddingAll": "20px",
-            "contents": [
-                {
-                    "type": "box",
-                    "layout": "horizontal",
-                    "contents": [
-                        {"type": "text", "text": "LEADERGUARD VIP", "size": "xs", "color": "#FBBF24", "weight": "bold", "letterSpacing": "1px"},
-                        {"type": "text", "text": "👑 PRO 解鎖成功", "size": "xs", "color": "#38BDF8", "align": "end", "weight": "bold"}
-                    ]
-                },
-                {
-                    "type": "text",
-                    "text": "🎉 恭喜組長！PRO 全學期尊榮權限已開通",
-                    "weight": "bold",
-                    "color": "#FFFFFF",
-                    "size": "md",
-                    "margin": "xs"
-                }
-            ]
-        },
-        "body": {
-            "type": "box",
-            "layout": "vertical",
-            "paddingAll": "16px",
-            "spacing": "md",
-            "backgroundColor": "#0B132B",
-            "contents": [
-                # VIP 認證徽章區
-                {
-                    "type": "box",
-                    "layout": "vertical",
-                    "backgroundColor": "#1E293B",
-                    "paddingAll": "12px",
-                    "cornerRadius": "8px",
-                    "borderColor": "#FBBF24",
-                    "borderWidth": "1.5px",
-                    "contents": [
-                        {
-                            "type": "box",
-                            "layout": "horizontal",
-                            "contents": [
-                                {"type": "text", "text": "👑 方案認證：", "size": "xs", "color": "#FBBF24", "weight": "bold"},
-                                {"type": "text", "text": "全學期組長躺平 Pass", "size": "xs", "color": "#FFFFFF", "weight": "bold", "flex": 1}
-                            ]
-                        },
-                        {
-                            "type": "box",
-                            "layout": "horizontal",
-                            "margin": "xs",
-                            "contents": [
-                                {"type": "text", "text": "🛡️ 專案守護：", "size": "xs", "color": "#38BDF8", "weight": "bold"},
-                                {"type": "text", "text": "最高防禦等級（杜絕甩鍋摸魚）", "size": "xs", "color": "#E2E8F0", "flex": 1}
-                            ]
-                        },
-                        {
-                            "type": "box",
-                            "layout": "horizontal",
-                            "margin": "xs",
-                            "contents": [
-                                {"type": "text", "text": "⚡ 權益天數：", "size": "xs", "color": "#10B981", "weight": "bold"},
-                                {"type": "text", "text": "180 天無限暢用（已核印時間戳記）", "size": "xs", "color": "#E2E8F0", "flex": 1}
-                            ]
-                        }
-                    ]
-                },
-                # 特點 1：AI 黑臉催繳
-                {
-                    "type": "box",
-                    "layout": "vertical",
-                    "backgroundColor": "#1E293B",
-                    "paddingAll": "12px",
-                    "cornerRadius": "8px",
-                    "borderColor": "#E11D48",
-                    "borderWidth": "1.5px",
-                    "contents": [
-                        {
-                            "type": "text",
-                            "text": "😈 競賽亮點 1：AI 毒舌嘴替／嚴格教授催繳",
-                            "weight": "bold",
-                            "size": "sm",
-                            "color": "#F43F5E"
-                        },
-                        {
-                            "type": "text",
-                            "text": "組長免當壞人！自動以辛辣幽默口吻催促裝死組員，或召喚教授高壓查核：",
-                            "size": "xs",
-                            "color": "#E2E8F0",
-                            "margin": "xs",
-                            "wrap": True
-                        },
-                        {
-                            "type": "box",
-                            "layout": "horizontal",
-                            "spacing": "sm",
-                            "margin": "sm",
-                            "contents": [
-                                {
-                                    "type": "button",
-                                    "action": {
-                                        "type": "message",
-                                        "label": "😈 試用毒舌嘴替",
-                                        "text": "/催繳 毒舌"
-                                    },
-                                    "style": "primary",
-                                    "color": "#E11D48",
-                                    "height": "sm",
-                                    "flex": 1
-                                },
-                                {
-                                    "type": "button",
-                                    "action": {
-                                        "type": "message",
-                                        "label": "🎓 試用嚴格教授",
-                                        "text": "/催繳 教授"
-                                    },
-                                    "style": "primary",
-                                    "color": "#0284C7",
-                                    "height": "sm",
-                                    "flex": 1
-                                }
-                            ]
-                        }
-                    ]
-                },
-                # 特點 2：核彈級存證報告
-                {
-                    "type": "box",
-                    "layout": "vertical",
-                    "backgroundColor": "#1E293B",
-                    "paddingAll": "12px",
-                    "cornerRadius": "8px",
-                    "borderColor": "#38BDF8",
-                    "borderWidth": "1.5px",
-                    "contents": [
-                        {
-                            "type": "text",
-                            "text": "📑 競賽亮點 2：期末互評核彈級存證報告",
-                            "weight": "bold",
-                            "size": "sm",
-                            "color": "#38BDF8"
-                        },
-                        {
-                            "type": "text",
-                            "text": "具備時間戳記存證效力，清楚列出每位組員已讀、認領與未交付紀錄：",
-                            "size": "xs",
-                            "color": "#E2E8F0",
-                            "margin": "xs",
-                            "wrap": True
-                        },
-                        {
-                            "type": "button",
-                            "action": {
-                                "type": "message",
-                                "label": "📑 立即生成 PRO 存證報告",
-                                "text": "/export"
-                            },
-                            "style": "primary",
-                            "color": "#0284C7",
-                            "height": "sm",
-                            "margin": "sm"
-                        }
-                    ]
-                },
-                # 特點 3：命運輪盤
-                {
-                    "type": "box",
-                    "layout": "vertical",
-                    "backgroundColor": "#1E293B",
-                    "paddingAll": "12px",
-                    "cornerRadius": "8px",
-                    "borderColor": "#D97706",
-                    "borderWidth": "1.5px",
-                    "contents": [
-                        {
-                            "type": "text",
-                            "text": "🎲 競賽亮點 3：命運輪盤・超時強制抽籤",
-                            "weight": "bold",
-                            "size": "sm",
-                            "color": "#FBBF24"
-                        },
-                        {
-                            "type": "text",
-                            "text": "組員擺爛不選工作？系統直接啟動命運抽籤，強制把任務指派給組員！",
-                            "size": "xs",
-                            "color": "#E2E8F0",
-                            "margin": "xs",
-                            "wrap": True
-                        },
-                        {
-                            "type": "button",
-                            "action": {
-                                "type": "message",
-                                "label": "🎲 立即啟動命運強制抽籤",
-                                "text": "/命運抽籤"
-                            },
-                            "style": "primary",
-                            "color": "#D97706",
-                            "height": "sm",
-                            "margin": "sm"
-                        }
-                    ]
-                }
-            ]
-        },
-        "footer": {
-            "type": "box",
-            "layout": "vertical",
-            "paddingAll": "10px",
-            "backgroundColor": "#0F172A",
-            "contents": [
                 {
                     "type": "button",
                     "action": {
                         "type": "message",
-                        "label": "📋 前往專案主功能選單",
+                        "label": "前往專案選單",
                         "text": "/選單"
                     },
                     "style": "primary",
@@ -2531,57 +2160,206 @@ def create_upgrade_success_flex() -> FlexMessage:
         }
     }
     return FlexMessage(
-        alt_text="🎉 恭喜組長！PRO 全學期尊榮權限已開通",
+        alt_text="組長保險・方案說明",
         contents=FlexContainer.from_dict(bubble),
         quick_reply=get_main_quick_reply()
     )
 
-def create_ai_reminder_flex(pending_tasks: list = None, mode: str = "toxic") -> FlexMessage:
-    """AI 催繳黑臉卡片（支持 toxic 毒舌嘴替 與 professor 嚴格教授）"""
+def create_upgrade_success_flex() -> FlexMessage:
+    """PRO 專業版啟用與快捷操作卡片（簡約洗鍊、字體清晰可見）"""
+    bubble = {
+        "type": "bubble",
+        "size": "mega",
+        "header": {
+            "type": "box",
+            "layout": "vertical",
+            "backgroundColor": "#0F172A",
+            "paddingAll": "16px",
+            "contents": [
+                {
+                    "type": "box",
+                    "layout": "horizontal",
+                    "contents": [
+                        {"type": "text", "text": "LEADERGUARD PRO", "size": "xs", "color": "#38BDF8", "weight": "bold"},
+                        {"type": "text", "text": "已啟用", "size": "xs", "color": "#10B981", "align": "end", "weight": "bold"}
+                    ]
+                },
+                {
+                    "type": "text",
+                    "text": "專業版功能已啟用",
+                    "weight": "bold",
+                    "color": "#FFFFFF",
+                    "size": "md",
+                    "margin": "xs"
+                },
+                {
+                    "type": "text",
+                    "text": "專案進階管理與存證工具已就緒，可直接點擊下方操作：",
+                    "size": "xs",
+                    "color": "#94A3B8",
+                    "margin": "xs",
+                    "wrap": True
+                }
+            ]
+        },
+        "body": {
+            "type": "box",
+            "layout": "vertical",
+            "paddingAll": "16px",
+            "spacing": "sm",
+            "backgroundColor": "#0B132B",
+            "contents": [
+                {
+                    "type": "box",
+                    "layout": "vertical",
+                    "backgroundColor": "#1E293B",
+                    "paddingAll": "12px",
+                    "cornerRadius": "8px",
+                    "borderColor": "#38BDF8",
+                    "borderWidth": "1px",
+                    "contents": [
+                        # 項目 1：進度提醒
+                        {
+                            "type": "box",
+                            "layout": "horizontal",
+                            "alignItems": "center",
+                            "contents": [
+                                {
+                                    "type": "box",
+                                    "layout": "vertical",
+                                    "flex": 7,
+                                    "contents": [
+                                        {"type": "text", "text": "進度提醒通知", "weight": "bold", "size": "sm", "color": "#FFFFFF"},
+                                        {"type": "text", "text": "發布小組提醒通知", "size": "xs", "color": "#94A3B8", "margin": "xs", "wrap": True}
+                                    ]
+                                },
+                                {
+                                    "type": "button",
+                                    "action": {
+                                        "type": "message",
+                                        "label": "發送",
+                                        "text": "/催繳"
+                                    },
+                                    "style": "primary",
+                                    "color": "#0284C7",
+                                    "height": "sm",
+                                    "flex": 3
+                                }
+                            ]
+                        },
+                        {"type": "separator", "color": "#334155", "margin": "md"},
+                        # 項目 2：成果存證
+                        {
+                            "type": "box",
+                            "layout": "horizontal",
+                            "alignItems": "center",
+                            "margin": "md",
+                            "contents": [
+                                {
+                                    "type": "box",
+                                    "layout": "vertical",
+                                    "flex": 7,
+                                    "contents": [
+                                        {"type": "text", "text": "成果存證報告", "weight": "bold", "size": "sm", "color": "#FFFFFF"},
+                                        {"type": "text", "text": "產出分工紀錄與時間戳記", "size": "xs", "color": "#94A3B8", "margin": "xs", "wrap": True}
+                                    ]
+                                },
+                                {
+                                    "type": "button",
+                                    "action": {
+                                        "type": "message",
+                                        "label": "匯出",
+                                        "text": "/export"
+                                    },
+                                    "style": "primary",
+                                    "color": "#0284C7",
+                                    "height": "sm",
+                                    "flex": 3
+                                }
+                            ]
+                        },
+                        {"type": "separator", "color": "#334155", "margin": "md"},
+                        # 項目 3：隨機分配
+                        {
+                            "type": "box",
+                            "layout": "horizontal",
+                            "alignItems": "center",
+                            "margin": "md",
+                            "contents": [
+                                {
+                                    "type": "box",
+                                    "layout": "vertical",
+                                    "flex": 7,
+                                    "contents": [
+                                        {"type": "text", "text": "隨機分配指派", "weight": "bold", "size": "sm", "color": "#FFFFFF"},
+                                        {"type": "text", "text": "系統指派未認領工作", "size": "xs", "color": "#94A3B8", "margin": "xs", "wrap": True}
+                                    ]
+                                },
+                                {
+                                    "type": "button",
+                                    "action": {
+                                        "type": "message",
+                                        "label": "抽籤",
+                                        "text": "/抽籤"
+                                    },
+                                    "style": "primary",
+                                    "color": "#D97706",
+                                    "height": "sm",
+                                    "flex": 3
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        "footer": {
+            "type": "box",
+            "layout": "vertical",
+            "paddingAll": "12px",
+            "backgroundColor": "#0F172A",
+            "contents": [
+                {
+                    "type": "button",
+                    "action": {
+                        "type": "message",
+                        "label": "前往專案主選單",
+                        "text": "/選單"
+                    },
+                    "style": "primary",
+                    "color": "#334155",
+                    "height": "sm"
+                }
+            ]
+        }
+    }
+    return FlexMessage(
+        alt_text="PRO 專業版功能已啟用",
+        contents=FlexContainer.from_dict(bubble),
+        quick_reply=get_main_quick_reply()
+    )
+
+def create_ai_reminder_flex(pending_tasks: list = None, mode: str = "friendly") -> FlexMessage:
+    """進度提醒卡片（簡約洗鍊、資訊直觀清楚）"""
     if pending_tasks is None:
         pending_tasks = []
 
-    if mode == "professor":
-        title_text = "🎓【指導教授・專案稽核嚴肅廣播】"
-        title_color = "#38BDF8"
-        border_color = "#38BDF8"
-        sub_text = "⚡ 本群組受學術倫理與專案責任追蹤系統嚴格監管"
-        
+    if mode in ["formal", "professor"]:
+        title_text = "專案里程碑通報"
+        sub_text = "進度核定通知"
         if pending_tasks:
-            tasks_preview = "、".join([f"「{t.get('title', '未認領任務')}」" for t in pending_tasks[:3]])
-            speech = (
-                f"各位同學請注意：\n\n"
-                f"剛剛透過組長保險稽核後台查看本專案進度，發現尚有 {len(pending_tasks)} 項工作處於未認領停滯狀態（如 {tasks_preview}）。\n\n"
-                f"大學教育核心在於主動承擔與團隊紀律。若在今日內仍無人推進行動，本學期平時互評成績將直接依據系統時間戳記從實核扣，絕無寬貸。\n\n"
-                f"請各位同學在 30 分鐘內落實認領與回報，切勿心存僥倖。"
-            )
+            preview = "、".join([f"「{t.get('title', '待辦工作')}」" for t in pending_tasks[:3]])
+            speech = f"目前尚有 {len(pending_tasks)} 項工作待認領（{preview}）。請相關成員儘速完成認領與進度回報。"
         else:
-            speech = (
-                "各位同學請注意：\n\n"
-                "剛剛檢視本專案進度，目前所有工作項目雖已完成認領，但期末考評重點在於「實際交付成果與時間戳記」。\n\n"
-                "請各負責同學務必如期繳交進度，切勿將所有負擔推遲給組長統整。"
-            )
+            speech = "目前所有工作均已完成指派，請各成員依時程推進交付成果。"
     else:
-        # toxic 毒舌嘴替
-        title_text = "😈【AI 毒舌嘴替・黑臉催繳廣播】"
-        title_color = "#F43F5E"
-        border_color = "#F43F5E"
-        sub_text = "⚡ 組長保險 PRO 替身黑臉催繳系統啟動中"
-
+        title_text = "專案進度提醒"
+        sub_text = "小組協作通知"
         if pending_tasks:
-            tasks_lines = "\n".join([f"• 🚨 {t.get('title', '專案工作')}" for t in pending_tasks[:4]])
-            speech = (
-                "各位親愛的組員醒醒～⏰\n\n"
-                "期末只剩沒幾天了，請問下面這幾項工作是會自己行光合作用生出來，還是有神仙半夜幫忙寫？\n\n"
-                f"【目前裸奔沒人認領的孤兒任務】：\n{tasks_lines}\n\n"
-                "組長已經幫大家把保險系統架好了，再繼續裝死已讀不回，期末互評打分數時，就別怪保險系統手滑打 0 分囉 🥰"
-            )
+            preview = "、".join([f"「{t.get('title', '待辦工作')}」" for t in pending_tasks[:3]])
+            speech = f"目前尚有 {len(pending_tasks)} 項待認領工作（{preview}）。請成員點選下方按鈕認領或進行隨機分配。"
         else:
-            speech = (
-                "各位親愛的組員～⏰\n\n"
-                "雖然大家名義上都認領了工作，但「已認領」不等於「已完工」好嗎？不要以為組長沒在看進度喔！\n\n"
-                "進度倒數計時中，請速速把檔案或草稿丟出來，不要逼組長召喚指導教授 😈"
-            )
+            speech = "目前所有工作皆已認領完畢，請各成員持續推進專案進度。"
 
     bubble = {
         "type": "bubble",
@@ -2593,18 +2371,12 @@ def create_ai_reminder_flex(pending_tasks: list = None, mode: str = "toxic") -> 
             "paddingAll": "16px",
             "contents": [
                 {
-                    "type": "text",
-                    "text": title_text,
-                    "weight": "bold",
-                    "size": "md",
-                    "color": title_color
-                },
-                {
-                    "type": "text",
-                    "text": sub_text,
-                    "size": "xxs",
-                    "color": "#94A3B8",
-                    "margin": "xs"
+                    "type": "box",
+                    "layout": "horizontal",
+                    "contents": [
+                        {"type": "text", "text": title_text, "weight": "bold", "size": "md", "color": "#38BDF8"},
+                        {"type": "text", "text": sub_text, "size": "xs", "color": "#94A3B8", "align": "end"}
+                    ]
                 }
             ]
         },
@@ -2620,13 +2392,13 @@ def create_ai_reminder_flex(pending_tasks: list = None, mode: str = "toxic") -> 
                     "backgroundColor": "#1E293B",
                     "paddingAll": "14px",
                     "cornerRadius": "8px",
-                    "borderColor": border_color,
-                    "borderWidth": "1.5px",
+                    "borderColor": "#38BDF8",
+                    "borderWidth": "1px",
                     "contents": [
                         {
                             "type": "text",
                             "text": speech,
-                            "size": "xs",
+                            "size": "sm",
                             "color": "#FFFFFF",
                             "wrap": True
                         }
@@ -2642,7 +2414,7 @@ def create_ai_reminder_flex(pending_tasks: list = None, mode: str = "toxic") -> 
                             "type": "button",
                             "action": {
                                 "type": "message",
-                                "label": "🙋‍♂️ 認領任務",
+                                "label": "認領工作",
                                 "text": "/task 清單"
                             },
                             "style": "primary",
@@ -2654,8 +2426,8 @@ def create_ai_reminder_flex(pending_tasks: list = None, mode: str = "toxic") -> 
                             "type": "button",
                             "action": {
                                 "type": "message",
-                                "label": "🎲 命運抽籤",
-                                "text": "/命運抽籤"
+                                "label": "隨機分配",
+                                "text": "/抽籤"
                             },
                             "style": "primary",
                             "color": "#D97706",
@@ -2676,7 +2448,7 @@ def create_ai_reminder_flex(pending_tasks: list = None, mode: str = "toxic") -> 
                     "type": "button",
                     "action": {
                         "type": "message",
-                        "label": "📑 查看存證報告",
+                        "label": "查看存證報告",
                         "text": "/export"
                     },
                     "style": "primary",
@@ -2691,3 +2463,5 @@ def create_ai_reminder_flex(pending_tasks: list = None, mode: str = "toxic") -> 
         contents=FlexContainer.from_dict(bubble),
         quick_reply=get_main_quick_reply()
     )
+
+

@@ -41,7 +41,7 @@ def read_root():
     return {
         "status": "online",
         "service": "LeaderGuard LINE Bot",
-        "message": "智慧校園小組協作與已讀不回審判庭 API 已就緒"
+        "message": "小組專案協作管理助手 API 已就緒"
     }
 
 @app.get("/health")
@@ -56,9 +56,9 @@ from app.routes.webhook import recent_webhook_logs
 @app.get("/version")
 def get_version():
     return {
-        "version": "1.10.19",
-        "build": "interactive-one-click-pro-upgrade",
-        "description": "新增一鍵升級互動按鍵、PRO 尊榮解鎖展示卡片、AI 毒舌嘴替與教授替身催繳廣播"
+        "version": "1.10.20",
+        "build": "clean-minimalist-edition",
+        "description": "全面去除中二用語與所有 Emoji，轉換為簡約洗鍊之現代專案管理風格，所有文字清晰完整可見"
     }
 
 @app.get("/api/logs")

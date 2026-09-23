@@ -33,12 +33,12 @@ from app.utils.flex_templates import (
 logger = logging.getLogger("leaderguard.command")
 
 def get_invite_group_guide_text() -> str:
-    """產生引導用戶將組長保險加入小組群組的文字說明（完全禁止非 🎲 之 emoji）"""
+    """產生引導用戶將組長保險加入小組群組的文字說明"""
     return (
         "【如何將「組長保險」加入小組群組】\n\n"
-        "只要簡單 3 步驟，即可將「組長保險」邀請進報告群組，全面防堵組員已讀不回與期末擺爛：\n\n"
+        "只要簡單 3 步驟，即可將「組長保險」邀請進報告群組，協助小組落實工作分工與進度追蹤：\n\n"
         "1. 開啟 LINE 小組群組\n"
-        "點群組聊天室，進入您的大學報告或專案小組群組。\n\n"
+        "點開群組聊天室，進入您的大學報告或專案小組群組。\n\n"
         "2. 點擊右上角選單（≡）> 點選「邀請」\n"
         "點群組右上角的選單按鈕（≡ 三條線），進入群組功能頁後點選「邀請」圖示。\n\n"
         "3. 搜尋並加入「組長保險」\n"
@@ -46,9 +46,9 @@ def get_invite_group_guide_text() -> str:
         "―――\n"
         "【進群後的第一步】\n"
         "• 輸入「/選單」：隨時喚起小組專案管理中心\n"
-        "• 輸入「/task 範本」：一鍵建立簡報、報告、調研、書面 4 大分工\n"
-        "• 輸入「/抽籤」：沒人認領的工作，交給 🎲 命運抽籤公平指派\n\n"
-        "若要快速推薦給朋友，也可直接轉傳官方帳號連結：\n"
+        "• 輸入「/task 範本」：建立簡報、報告、調研、書面等常見分工\n"
+        "• 輸入「/抽籤」：尚未認領的工作，交由系統隨機分配指派\n\n"
+        "若要推薦給同學或組員，也可直接轉傳官方帳號連結：\n"
         "https://line.me/R/nv/recommendOA/@805yffpw"
     )
 
@@ -149,9 +149,9 @@ def handle_user_command(user_text: str, group_id: str, user_id: str, user_name: 
     ]:
         return [create_upgrade_success_flex()]
 
-    # 2.95 AI 替身黑臉催繳廣播（/催繳、/催繳 毒舌、/催繳 教授）
-    if text.lower().startswith("/催繳") or text.lower().startswith("催繳") or text.lower() in ["/黑臉催繳", "黑臉催繳", "/毒舌催繳", "毒舌催繳", "/教授催繳", "教授催繳"]:
-        mode = "professor" if any(kw in text.lower() for kw in ["教授", "professor", "嚴格", "老師"]) else "toxic"
+    # 2.95 進度提醒通知（/催繳、/催繳 正式、/提醒）
+    if text.lower().startswith("/催繳") or text.lower().startswith("催繳") or text.lower().startswith("/提醒") or text.lower().startswith("提醒"):
+        mode = "formal" if any(kw in text.lower() for kw in ["正式", "期限", "里程碑", "教授", "稽核", "通報"]) else "friendly"
         tasks = list_tasks(target_group)
         pending_tasks = [t for t in tasks if t.get("status") == "pending"]
         return [create_ai_reminder_flex(pending_tasks=pending_tasks, mode=mode)]
@@ -328,8 +328,8 @@ def handle_user_command(user_text: str, group_id: str, user_id: str, user_name: 
 
     # 8. 隨機抽籤分工：/roulette 或 /抽籤 或 /輪盤（支援附加名單，例如 /抽籤 小明 小華 小美）
     roulette_prefixes = [
-        "/roulette", "/輪盤", "/抽籤", "/隨機分工", "/隨機抽籤", "/死鬥輪盤", "/命運抽籤",
-        "roulette", "輪盤", "抽籤", "隨機分工", "隨機抽籤", "死鬥輪盤", "命運抽籤"
+        "/roulette", "/輪盤", "/抽籤", "/隨機分工", "/隨機抽籤", "/隨機分配", "/命運抽籤",
+        "roulette", "輪盤", "抽籤", "隨機分工", "隨機抽籤", "隨機分配", "命運抽籤"
     ]
     is_roulette_cmd = False
     roulette_arg = ""
@@ -353,11 +353,11 @@ def handle_user_command(user_text: str, group_id: str, user_id: str, user_name: 
         
         # 情況 A：尚未建立任何任務
         if not all_tasks:
-            return [TextMessage(text="目前還沒有建立任何任務，請先點選「常用分工範本」或使用「/任務 新增」建立工作後再進行抽籤。", quick_reply=get_main_quick_reply())]
+            return [TextMessage(text="目前還沒有建立任何任務，請先點選「常用分工範本」或使用「/任務 新增」建立工作後再進行隨機分配。", quick_reply=get_main_quick_reply())]
         
         # 情況 B：所有任務皆已被認領
         if not pending_tasks:
-            return [TextMessage(text="目前所有任務都已經有人負責了，不需要抽籤。", quick_reply=get_main_quick_reply())]
+            return [TextMessage(text="目前所有任務都已經有人負責了，無需隨機分配。", quick_reply=get_main_quick_reply())]
             
         # 情況 C：優先從「尚未有任何任務」的人選中抽籤
         if free_members:
@@ -370,14 +370,14 @@ def handle_user_command(user_text: str, group_id: str, user_id: str, user_name: 
         task_id, task_title = assign_roulette_task(target_group, victim["user_id"], victim["user_name"])
         roulette_card = create_roulette_flex(task_id, task_title, victim["user_name"])
 
-        # 如果已知組員只有 1 人（即傳訊息的人），額外附上溫馨提示教學，讓組長知道如何設定名單
+        # 如果已知組員只有 1 人（即傳訊息的人），額外附上提示教學，讓組長知道如何設定名單
         if len(all_members) <= 1:
             notice_text = (
-                "💡 組長抽籤小提示：\n"
-                "目前群組名冊只有您 1 人，因此每次抽籤都會抽中傳訊息的人。\n\n"
+                "【隨機分配小提示】\n"
+                "目前群組名冊僅有您 1 人，因此隨機分配會指派給目前發送訊息者。\n\n"
                 "組長可直接在群組發送：\n"
                 "「/組員 姓名1, 姓名2, 姓名3, 姓名4」\n"
-                "登記全體組員姓名後，下次抽籤就會在全體組員中公平抽出！"
+                "登記全體組員姓名後，下次即可在全體名冊中進行隨機指派！"
             )
             return [roulette_card, TextMessage(text=notice_text, quick_reply=get_main_quick_reply())]
 
@@ -392,8 +392,8 @@ def handle_user_command(user_text: str, group_id: str, user_id: str, user_name: 
             f"【目前專案分工進度】\n\n"
             f"待認領任務：{pending_count} 件\n"
             f"進行中任務：{claimed_count} 件\n\n"
-            f"輸入「/task 清單」或「/任務 清單」查看詳細項目\n"
-            f"輸入「/命運抽籤」或「/roulette」隨機抽籤分配未認領工作"
+            f"輸入「/task 清單」查看詳細項目\n"
+            f"輸入「/抽籤」隨機分配未認領工作"
         )
         return [TextMessage(text=status_msg, quick_reply=get_main_quick_reply())]
 
@@ -406,8 +406,8 @@ def handle_user_command(user_text: str, group_id: str, user_id: str, user_name: 
         pending_tasks = [t for t in tasks if t.get("status") == "pending"]
         
         lines = [
-            "【🛡️ 組長保險 PRO 尊榮存證・期末分工成果報告】\n",
-            "認證狀態：👑 頂級尊榮保險已核印（具備時間戳記完整審核效力）",
+            "【組長保險・小組專案分工與成果存證報告】\n",
+            "存證狀態：已記錄系統時間戳記與各成員分工明細",
             f"專案任務總數：{len(tasks)} 件",
             f"已認領負責：{len(claimed_tasks)} 件",
             f"待認領工作：{len(pending_tasks)} 件\n",
@@ -431,7 +431,7 @@ def handle_user_command(user_text: str, group_id: str, user_id: str, user_name: 
             free_names = [m.get("user_name", "組員") for m in free_members]
             lines.append(f"\n【尚未指派工作之組員】：\n{', '.join(free_names)}")
             
-        lines.append("\n👑 本紀錄由組長保險 PRO 尊榮版自動存證，具備時間戳記與審核效力，可用於期末互評與成果報告依據。")
+        lines.append("\n本紀錄由組長保險系統自動生成，具備系統時間戳記，可作為期末成果報告與互評參考依據。")
         return [TextMessage(text="\n".join(lines), quick_reply=get_main_quick_reply())]
 
     # 10. 清空手動登記組員名冊：/組員 清空、/清空名單、/清空組員
@@ -481,7 +481,7 @@ def handle_user_command(user_text: str, group_id: str, user_id: str, user_name: 
                     "• /組員 小明, 小華, 小美, 大寶\n"
                     "• /組員 小明 小華 小美 大寶\n"
                     "• /組員 小明、小華、小美、大寶\n\n"
-                    "登記後輸入「/命運抽籤」即可在全體名冊中公平抽籤分配任務！"
+                    "登記後輸入「/抽籤」即可在全體名冊中公平隨機分配任務！"
                 ),
                 quick_reply=get_main_quick_reply()
             )]
@@ -494,10 +494,10 @@ def handle_user_command(user_text: str, group_id: str, user_id: str, user_name: 
             f"【小組成員名冊設定完成】\n\n"
             f"已成功登記 {len(all_members)} 位組員：\n"
             f"{member_list_str}\n\n"
-            f"💡 抽籤指引：\n"
-            f"• 現在輸入「/命運抽籤」即可在全體名冊中公平隨機抽籤！\n"
-            f"• 系統會優先抽尚未有工作的組員，公平不重複。\n"
-            f"• 輸入「/組員」可隨時檢視名冊，輸入「/組員 清空」可重新設定名單。"
+            "【隨機分配指引】：\n"
+            "• 輸入「/抽籤」即可在全體名冊中進行隨機分配。\n"
+            "• 系統優先分配尚未認領工作的成員，避免重複承擔。\n"
+            "• 輸入「/組員」檢視名冊，輸入「/組員 清空」可重設名冊。"
         )
         return [TextMessage(text=reply_msg, quick_reply=get_main_quick_reply())]
 
@@ -515,12 +515,12 @@ def handle_user_command(user_text: str, group_id: str, user_id: str, user_name: 
                 text=(
                     "【小組成員名冊】\n"
                     "目前群組尚未登記組員名單。\n\n"
-                    "💡 組長登記組員教學：\n"
+                    "【組長登記組員指引】：\n"
                     "直接在群組發送：\n"
                     "「/組員 姓名1, 姓名2, 姓名3...」\n\n"
                     "例如：\n"
                     "/組員 小明, 小華, 小美, 大寶\n\n"
-                    "登記後輸入「/命運抽籤」就會從全體組員中公平抽籤，杜絕每次只抽到傳訊息的人！"
+                    "登記後輸入「/抽籤」即可由全體組員進行隨機分配！"
                 ),
                 quick_reply=get_main_quick_reply()
             )]
@@ -544,9 +544,9 @@ def handle_user_command(user_text: str, group_id: str, user_id: str, user_name: 
                 lines.append(f"• {uname}：尚未分配任務（抽籤候選）")
                 
         if len(all_members) <= 1:
-            lines.append("\n💡 提示：目前名冊只有 1 人，組長可輸入「/組員 姓名1, 姓名2, 姓名3」一次登記全體組員，抽籤更公平精準！")
+            lines.append("\n提示：目前名冊只有 1 人，組長可輸入「/組員 姓名1, 姓名2, 姓名3」一次登記全體組員名單。")
         else:
-            lines.append("\n• 輸入「/命運抽籤」：隨機抽籤分配未認領工作\n• 輸入「/組員 清空」：重設成員名冊")
+            lines.append("\n• 輸入「/抽籤」：隨機分配未認領工作\n• 輸入「/組員 清空」：重設成員名冊")
             
         return [TextMessage(text="\n".join(lines), quick_reply=get_main_quick_reply())]
 
