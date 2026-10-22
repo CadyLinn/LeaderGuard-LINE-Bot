@@ -2114,7 +2114,7 @@ def create_upgrade_plan_flex() -> FlexMessage:
                                     "paddingHorizontal": "6px",
                                     "cornerRadius": "4px",
                                     "contents": [
-                                        {"type": "text", "text": "DEMO 開通", "size": "xxs", "color": "#FFFFFF", "weight": "bold"}
+                                        {"type": "text", "text": "即將開放", "size": "xxs", "color": "#FFFFFF", "weight": "bold"}
                                     ]
                                 }
                             ]
@@ -2131,7 +2131,7 @@ def create_upgrade_plan_flex() -> FlexMessage:
                         {"type": "separator", "color": "#334155", "margin": "sm"},
                         {
                             "type": "text",
-                            "text": "目前為競賽展示模式，點擊下方即可直接解鎖體驗。",
+                            "text": "PRO 方案目前尚未開放申請，敬請期待。",
                             "size": "xs",
                             "color": "#94A3B8",
                             "margin": "sm",

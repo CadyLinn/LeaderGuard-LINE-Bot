@@ -24,6 +24,8 @@ async def startup_event():
     init_firebase()
 
 import os
+import secrets
+from fastapi import Header, HTTPException
 from fastapi.staticfiles import StaticFiles
 
 # 掛載靜態資源目錄（供 LINE Flex 卡片引用高品質圖檔）
@@ -61,8 +63,14 @@ def get_version():
         "description": "PRO 會議記錄統整功能上線（/開始會議, /結束會議, /解鎖會議），整合 Gemini AI 智能提取會議決議與待辦事項"
     }
 
+ADMIN_API_TOKEN = os.getenv("ADMIN_API_TOKEN", "")
+
 @app.get("/api/logs")
-def get_webhook_logs():
+def get_webhook_logs(authorization: str = Header(None)):
+    # 需帶 Authorization: Bearer <ADMIN_API_TOKEN>；未設定 token 時一律拒絕
+    expected = f"Bearer {ADMIN_API_TOKEN}"
+    if not ADMIN_API_TOKEN or not authorization or not secrets.compare_digest(authorization.encode(), expected.encode()):
+        raise HTTPException(status_code=401, detail="Unauthorized")
     return {
         "total_events": len(recent_webhook_logs),
         "logs": list(reversed(recent_webhook_logs))

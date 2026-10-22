@@ -18,6 +18,13 @@ active_meetings = {}
 meeting_history = {}
 unlocked_pro_groups = set()
 
+def _parse_id_list(env_name: str) -> set:
+    return {x.strip() for x in os.getenv(env_name, "").split(",") if x.strip()}
+
+# 可執行 /解鎖會議 的管理員 LINE userId，以及永久開通 PRO 的群組 ID（逗號分隔）
+PRO_ADMIN_USER_IDS = _parse_id_list("PRO_ADMIN_USER_IDS")
+PRO_GROUP_IDS = _parse_id_list("PRO_GROUP_IDS")
+
 # 初始化 Gemini API
 GEMINI_KEY = os.getenv("GEMINI_API_KEY", "")
 gemini_model = None
@@ -32,15 +39,24 @@ if GEMINI_KEY:
     except Exception as e:
         logger.warning(f"Gemini API 初始化失敗: {e}")
 
-def unlock_pro_for_group(group_id: str) -> bool:
-    """付款解鎖群組之 PRO 會議記錄功能"""
+def is_pro_admin(user_id: str) -> bool:
+    """檢查使用者是否為可開通 PRO 的管理員"""
+    return bool(user_id) and user_id in PRO_ADMIN_USER_IDS
+
+def unlock_pro_for_group(group_id: str, user_id: str) -> bool:
+    """由管理員解鎖群組之 PRO 會議記錄功能（存於記憶體，重啟後需重新解鎖或寫入 PRO_GROUP_IDS）"""
+    if not is_pro_admin(user_id):
+        logger.warning(f"非管理員嘗試解鎖 PRO [user: {user_id}, group: {group_id}]")
+        return False
     target = group_id or "default_group"
     unlocked_pro_groups.add(target)
+    logger.info(f"PRO 已解鎖 [group: {target}, by: {user_id}]")
     return True
 
 def is_pro_unlocked(group_id: str) -> bool:
-    """檢查該群組是否已解鎖 PRO 功能（競賽展示預設視為已開通）"""
-    return True
+    """檢查該群組是否已解鎖 PRO 功能"""
+    target = group_id or "default_group"
+    return target in PRO_GROUP_IDS or target in unlocked_pro_groups
 
 def is_meeting_active(group_id: str) -> bool:
     """檢查群組是否正在進行會議"""
@@ -198,3 +214,4 @@ def fallback_summary(meeting_info: dict, messages: list) -> dict:
         "decisions": decisions[:2],
         "action_items": action_items[:4]
     }
+

@@ -18,6 +18,7 @@ from app.services.meeting_service import (
     start_meeting,
     end_meeting,
     is_meeting_active,
+    is_pro_unlocked,
     unlock_pro_for_group
 )
 from app.utils.flex_templates import (
@@ -157,7 +158,8 @@ def handle_user_command(user_text: str, group_id: str, user_id: str, user_name: 
         "/升級解鎖", "升級解鎖",
         "/體驗pro", "體驗pro"
     ]:
-        unlock_pro_for_group(target_group)
+        if not unlock_pro_for_group(target_group, user_id):
+            return [TextMessage(text="PRO 會議記錄功能目前尚未開放申請，敬請期待！", quick_reply=get_main_quick_reply())]
         return [create_upgrade_success_flex()]
 
     # 2.91 開始會議（/開始會議、/start_meeting、/開會）
@@ -167,6 +169,8 @@ def handle_user_command(user_text: str, group_id: str, user_id: str, user_name: 
         "/開會", "開會",
         "/會議開始", "會議開始"
     ]:
+        if not is_pro_unlocked(target_group):
+            return [create_upgrade_plan_flex()]
         ok, msg, meeting_info = start_meeting(target_group, user_id, user_name)
         if ok:
             return [create_meeting_active_flex(meeting_info)]
@@ -181,6 +185,8 @@ def handle_user_command(user_text: str, group_id: str, user_id: str, user_name: 
         "/會議結束", "會議結束",
         "/統整會議", "統整會議"
     ]:
+        if not is_pro_unlocked(target_group):
+            return [create_upgrade_plan_flex()]
         ok, msg, summary_data = end_meeting(target_group, user_id, user_name)
         if ok:
             return [create_meeting_summary_flex(summary_data)]
@@ -437,6 +443,8 @@ def handle_user_command(user_text: str, group_id: str, user_id: str, user_name: 
 
     # 9.5 期末專案報告匯出：/export 或 /匯出
     if text.lower() in ["/export", "/匯出", "/報告", "/結案報告", "export", "匯出"]:
+        if not is_pro_unlocked(target_group):
+            return [create_upgrade_plan_flex()]
         tasks = list_tasks(target_group)
         free_members, all_members, _, _ = get_unassigned_members(target_group)
         

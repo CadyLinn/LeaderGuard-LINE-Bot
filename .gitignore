@@ -54,3 +54,6 @@ wheels/
 node_modules/
 dist/
 .npm
+
+# Local fallback storage (contains real group / member data)
+data/local_storage.json
