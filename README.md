@@ -3,14 +3,14 @@
 > **你不用當壞人，讓 AI 當法官。**
 > 分工、催進度、抽籤、會議記錄都交給機器人，期末互評有憑有據。
 
-##  Demo 影片
+## Demo 影片
 
 <p align="center">
   <a href="https://www.youtube.com/shorts/QmC5gaNn8JA">
     <img src="https://img.youtube.com/vi/QmC5gaNn8JA/maxresdefault.jpg" alt="LeaderGuard Demo 影片" width="360">
   </a>
   <br>
-  ▶️ <a href="https://www.youtube.com/shorts/QmC5gaNn8JA">點此觀看 Demo（YouTube Shorts）</a>
+  <a href="https://www.youtube.com/shorts/QmC5gaNn8JA">點此觀看 Demo（YouTube Shorts）</a>
 </p>
 
 LeaderGuard 是專為大專院校小組報告設計的 LINE 群組機器人。組長最常遇到三種困擾：催進度得罪人、訊息發出去全體已讀不回、期末有人搭便車卻拿不出證據。LeaderGuard 把這些「當壞人」的工作交給系統處理，並把每一次分工與認領都記錄下來。
@@ -105,8 +105,8 @@ cp .env.example .env
 
 | 變數 | 必填 | 說明 |
 | --- | --- | --- |
-| `LINE_CHANNEL_SECRET` | ✅ | LINE Channel Secret |
-| `LINE_CHANNEL_ACCESS_TOKEN` | ✅ | LINE Channel Access Token |
+| `LINE_CHANNEL_SECRET` | 是 | LINE Channel Secret |
+| `LINE_CHANNEL_ACCESS_TOKEN` | 是 | LINE Channel Access Token |
 | `GEMINI_API_KEY` | | 會議 AI 摘要；未填則用規則式摘要 |
 | `FIREBASE_CREDENTIALS_PATH` | | 服務帳戶金鑰路徑，預設 `serviceAccountKey.json` |
 | `FIREBASE_CREDENTIALS_JSON` | | 直接放金鑰 JSON 字串（雲端部署較方便，優先於路徑） |
@@ -114,7 +114,7 @@ cp .env.example .env
 | `PRO_GROUP_IDS` | | 永久開通 PRO 的群組 ID，逗號分隔 |
 | `ADMIN_API_TOKEN` | | `/api/logs` 的存取權杖；留空則該端點完全關閉 |
 
->  `.env` 與 `serviceAccountKey.json` 已列入 `.gitignore`，請勿提交到版本控制。
+> `.env` 與 `serviceAccountKey.json` 已列入 `.gitignore`，請勿提交到版本控制。
 
 ### 4. 啟動
 
@@ -194,4 +194,4 @@ curl -H "Authorization: Bearer $ADMIN_API_TOKEN" https://<你的網域>/api/logs
 
 ## 授權
 
-本專案為課程 / 競賽專題作品。
+本專案為競賽專題作品。
